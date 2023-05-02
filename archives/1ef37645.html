@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liuaoao.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Markdown For Typora Overview Markdown is created by Daring Fireball; the original guideline is here. Its syntax, however, varies between different parsers or editors. Typora is using GitHub Flavored">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown-For-Typora">
+<meta property="og:url" content="https://liuaoao.top/archives/1ef37645.html">
+<meta property="og:site_name" content="白茶不雨的博客">
+<meta property="og:description" content="Markdown For Typora Overview Markdown is created by Daring Fireball; the original guideline is here. Its syntax, however, varies between different parsers or editors. Typora is using GitHub Flavored">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-20T16:33:08.000Z">
+<meta property="article:modified_time" content="2023-05-02T13:24:32.076Z">
+<meta property="article:author" content="白茶不雨">
+<meta property="article:tag" content="Markdown">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://liuaoao.top/archives/1ef37645.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Markdown-For-Typora | 白茶不雨的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">白茶不雨的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">世间所有的相遇，都是久别重逢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-chatgpt">
+
+    <a href="/ChatGPT/" rel="section"><i class="fa fa-bug fa-fw"></i>ChatGPT</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links" rel="section"><i class="fas fa-link fa-fw"></i>links</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/Humble-LiuAo" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener external nofollow noreferrer" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liuaoao.top/archives/1ef37645.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="白茶不雨">
+      <meta itemprop="description" content="种一棵树最好的时间是十年前，其次是现在！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白茶不雨的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Markdown-For-Typora
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-04-21 00:33:08" itemprop="dateCreated datePublished" datetime="2023-04-21T00:33:08+08:00">2023-04-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-05-02 21:24:32" itemprop="dateModified" datetime="2023-05-02T21:24:32+08:00">2023-05-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tools/Software/" itemprop="url" rel="index"><span itemprop="name">Software</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/1ef37645.html" class="post-meta-item leancloud_visitors" data-flag-title="Markdown-For-Typora" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <meta name="referrer" content="no-referrer" />
+<h1>Markdown For Typora</h1>
+<h2 id="Overview">Overview</h2>
+<p><strong>Markdown</strong> is created by <a target="_blank" rel="noopener external nofollow noreferrer" href="http://daringfireball.net/">Daring Fireball</a>; the original guideline is <a target="_blank" rel="noopener external nofollow noreferrer" href="http://daringfireball.net/projects/markdown/syntax">here</a>. Its syntax, however, varies between different parsers or editors. <strong>Typora</strong> is using <a target="_blank" rel="noopener external nofollow noreferrer" href="https://help.github.com/articles/github-flavored-markdown/">GitHub Flavored Markdown</a>.</p>
+<span id="more"></span>
+<h2 id="Block-Elements">Block Elements</h2>
+<h3 id="Paragraph-and-line-breaks">Paragraph and line breaks</h3>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.按一次&quot;return&quot;即可创建新段落</span><br><span class="line">2.按&quot;shift&quot;+&quot;return&quot;以创建单行中断。大多数其他减值解析器将忽略单行中断，因此，为了让其他减值解析器识别您的线路中断，您可以在行的末尾留出两个空格，或插入&quot;<span class="language-xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span>&quot;。</span><br></pre></td></tr></table></figure>
+<h3 id="Headers">Headers</h3>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">标题在行的开头使用 1-6 个哈希字符（&#x27;#&#x27;），对应于标题级别 1-6。</span><br><span class="line">例如：</span><br><span class="line"><span class="section"># This is an H1</span></span><br><span class="line"></span><br><span class="line"><span class="section">## This is an H2</span></span><br><span class="line"></span><br><span class="line"><span class="section">###### This is an H6</span></span><br></pre></td></tr></table></figure>
+<h3 id="Blockquotes">Blockquotes</h3>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Markdown 使用电子邮件式&gt;字符进行阻止引用。它们被呈现为:</span><br><span class="line"><span class="quote">&gt; This is a blockquote with two paragraphs. This is first paragraph.</span></span><br><span class="line"><span class="quote">&gt;</span></span><br><span class="line"><span class="quote">&gt; This is second pragraph. Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; This is another blockquote with one paragraph. There is three empty line to seperate two blockquote.</span></span><br><span class="line"></span><br><span class="line">在 Typora 中，输入&quot;&gt;&quot;，然后输入您的报价内容将生成报价块。Typora 将为您插入适当的&quot;&gt;&quot;或线路中断。嵌套块报价（另一个区块报价中的块报价），通过添加额外的&quot;&gt;&quot;级别。</span><br></pre></td></tr></table></figure>
+<h3 id="Lists">Lists</h3>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入&quot;* 列表项目 &quot; 将创建一个未排序的列表 -&quot;<span class="emphasis">*&quot;符号可以替换为&quot;+&quot;或&quot;-&quot;。   输入 &#x27;1.列表项目 &#x27; 将创建一个订单列表 - 其标记源代码如下：</span></span><br><span class="line"><span class="emphasis">## un-ordered list</span></span><br><span class="line"><span class="emphasis">*</span>   Red</span><br><span class="line"><span class="bullet">*</span>   Green</span><br><span class="line"><span class="bullet">*</span>   Blue</span><br><span class="line"></span><br><span class="line"><span class="section">## ordered list</span></span><br><span class="line"><span class="bullet">1.</span>  Red</span><br><span class="line"><span class="bullet">2.</span> 	Green</span><br><span class="line"><span class="bullet">3.</span>	Blue</span><br></pre></td></tr></table></figure>
+<h3 id="Task-List">Task List</h3>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">任务列表是标有 [] 或 [x] （不完整或已完成） 的项目列表。例如：</span><br><span class="line"><span class="bullet">-</span> [ ] a task list item</span><br><span class="line"><span class="bullet">-</span> [ ] list syntax required</span><br><span class="line"><span class="bullet">-</span> [ ] normal <span class="strong">**formatting**</span>, @mentions, #1234 refs</span><br><span class="line"><span class="bullet">-</span> [ ] incomplete</span><br><span class="line"><span class="bullet">-</span> [x] completed</span><br></pre></td></tr></table></figure>
+<h3 id="Fenced-Code-Blocks">(Fenced) Code Blocks</h3>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Typora 只支持 fences in GitHub Flavored Markdown。不支持 Markdown 中的原始代码块。   使用 fences 很容易：输入<span class="code">```和按 &#x27;return&#x27;。在```</span>之后添加可选语言标识符，我们将通过语法加亮来运行它：</span><br><span class="line">Here&#x27;s an example:</span><br><span class="line"></span><br><span class="line"><span class="code">```js</span></span><br><span class="line"><span class="code">function test() &#123;</span></span><br><span class="line"><span class="code">  console.log(&quot;notice the blank line before this function?&quot;);</span></span><br><span class="line"><span class="code">&#125;</span></span><br><span class="line"><span class="code">```</span></span><br><span class="line"></span><br><span class="line">syntax highlighting:</span><br><span class="line"><span class="code">```ruby</span></span><br><span class="line"><span class="code">require &#x27;redcarpet&#x27;</span></span><br><span class="line"><span class="code">markdown = Redcarpet.new(&quot;Hello World!&quot;)</span></span><br><span class="line"><span class="code">puts markdown.to_html</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
+<h3 id="Math-Blocks">Math Blocks</h3>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">您可以使用<span class="strong">**MathJax**</span>来渲染[LaTeX]数学表达式。</span><br><span class="line">要添加数学表达，输入&quot;$$&quot;并按&quot;return&quot;键。这将触发一个接受 <span class="emphasis">*Tex/LaTex*</span> 源的输入字段。例如：</span><br></pre></td></tr></table></figure>
+<p>$$<br>
+\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix}<br>
+\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \<br>
+\frac{\partial X}{\partial u} &amp;  \frac{\partial Y}{\partial u} &amp; 0 \<br>
+\frac{\partial X}{\partial v} &amp;  \frac{\partial Y}{\partial v} &amp; 0 \<br>
+\end{vmatrix}<br>
+$$</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">In the markdown source file, the math block is a <span class="emphasis">*LaTeX*</span> expression wrapped by a pair of ‘$$’ marks:</span><br><span class="line">$$</span><br><span class="line">\mathbf&#123;V&#125;<span class="emphasis">_1 \times \mathbf&#123;V&#125;_</span>2 =  \begin&#123;vmatrix&#125;</span><br><span class="line">\mathbf&#123;i&#125; &amp; \mathbf&#123;j&#125; &amp; \mathbf&#123;k&#125; \\</span><br><span class="line">\frac&#123;\partial X&#125;&#123;\partial u&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial u&#125; &amp; 0 \\</span><br><span class="line">\frac&#123;\partial X&#125;&#123;\partial v&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial v&#125; &amp; 0 \\</span><br><span class="line">\end&#123;vmatrix&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>You can find more details <a target="_blank" rel="noopener external nofollow noreferrer" href="https://support.typora.io/Math/">here</a>.</p>
+<h3 id="Tables">Tables</h3>
+<p>输入<code>| First Header  | Second Header |</code> &quot;并按<code>&quot;return&quot;</code>键。这将创建一个带有两列的表。   创建表后，将焦点放在该表上将打开表的工具栏，您可以调整表大小、对齐或删除表。您还可以使用上下文菜单复制和添加/删除单个列/行。   表的完整语法如下所述，但无需详细了解完整的语法，因为表的标记源代码由 Typora 自动生成。</p>
+<p>在 markdown 源代码中，它们看起来像：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">| First Header  | Second Header |</span><br><span class="line">| ------------- | ------------- |</span><br><span class="line">| Content Cell  | Content Cell  |</span><br><span class="line">| Content Cell  | Content Cell  |</span><br></pre></td></tr></table></figure>
+<p>您还可以在表中包含 inline Markdown 标记，如链接、粗体、斜体或删除线（links, bold, italics, or strikethrough）。</p>
+<p>最后，通过在头行中包含冒号  (<code>:</code>)，您可以将该列中的文本定义为左对齐、右对齐或中对齐：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">| Left-Aligned  | Center Aligned  | Right Aligned |</span><br><span class="line">| :------------ |:---------------:| -----:|</span><br><span class="line">| col 3 is      | some wordy text | $1600 |</span><br><span class="line">| col 2 is      | centered        |   $12 |</span><br><span class="line">| zebra stripes | are neat        |    $1 |</span><br></pre></td></tr></table></figure>
+<p>最左边的冒号表示左对齐的列；最右边的冒号表示列是右对齐的；两边的冒号表示是中心对齐的列。</p>
+<h3 id="Footnotes">Footnotes</h3>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">You can create footnotes like this[^footnote].</span><br><span class="line"></span><br><span class="line">[<span class="symbol">^footnote</span>]: <span class="link">Here is the *text* of the **footnote**.</span></span><br></pre></td></tr></table></figure>
+<p>will produce:</p>
+<p>You can create footnotes like this<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
+<p>将鼠标悬停在“脚注”上标上，可以查看脚注的内容。</p>
+<h3 id="Horizontal-Rules">Horizontal Rules</h3>
+<p>在空行输入 <code>***</code> 或 <code>---</code>，并按 <code>return</code> 将画出一条水平线。</p>
+<h3 id="YAML-Front-Matter">YAML Front Matter</h3>
+<p>Typora 现在支持<a target="_blank" rel="noopener external nofollow noreferrer" href="http://jekyllrb.com/docs/frontmatter/">YAML Front Matter</a>。在文章的顶部输入<code>---</code>，然后按 <code>Return</code> 引入元数据块。或者，您可以从 Typora 的顶部菜单中插入元数据块。</p>
+<h3 id="Table-of-Contents-TOC">Table of Contents(TOC)</h3>
+<p>输入<code>[toc]</code>并按<code>Return</code>键。这将创建一个“目录”部分。TOC从文档中提取所有标题，当您添加到文档时，它的内容会自动更新。</p>
+<h2 id="Span-Elements">Span Elements</h2>
+<p>Span元素将在输入后立即被解析和呈现。将光标移动到这些span元素的中间会将这些元素展开为markdown源。下面是每个span元素的语法解释</p>
+<h3 id="Links">Links</h3>
+<p>Markdown支持两种样式的链接:内联和引用。</p>
+<p>在这两种样式中，链接文本由 [方括号] 分隔。</p>
+<p>要创建内联链接，请在链接文本的右方括号后立即使用一组规则括号。在圆括号内，将URL放置在您希望链接指向的位置，并为链接提供一个可选的标题，用引号括起来。例如:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">This is [<span class="string">an example</span>](<span class="link">http://example.com/ &quot;Title&quot;</span>) inline link.</span><br><span class="line"></span><br><span class="line">[<span class="string">This link</span>](<span class="link">http://example.net/</span>) has no title attribute.</span><br></pre></td></tr></table></figure>
+<p>will produce:</p>
+<p>This is <a target="_blank" rel="noopener external nofollow noreferrer" href="http://example.com/" title="Title">an example</a> inline link. (<code>&lt;p&gt;This is &lt;a href=&quot;http://example.com/&quot; title=&quot;Title&quot;&gt;</code>)</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://example.net/">This link</a> has no title attribute… (<code>&lt;p&gt;&lt;a href=&quot;http://example.net/&quot;&gt;This link&lt;/a&gt; has no</code>)</p>
+<h4 id="Internal-Links">Internal Links</h4>
+<p><strong>您可以将 href 设置为headers</strong>，这将创建一个书签，允许您单击后跳转到该部分。</p>
+<p>例如: 命令(在Windows上:Ctrl) +单击此 <a href="#block-elements">This link</a> 将跳转到标题块元素。要查看如何编写，请移动光标或按下⌘键单击该链接以将元素展开为 markdown 源。</p>
+<h4 id="Reference-Links">Reference Links</h4>
+<p>参考样式的链接使用第二组方括号，在里面你可以选择一个标签来标识链接:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">This is [<span class="string">an example</span>][<span class="symbol">id</span>] reference-style link.</span><br><span class="line"></span><br><span class="line">Then, anywhere in the document, you define your link label on a line by itself like this:</span><br><span class="line"></span><br><span class="line">[<span class="symbol">id</span>]: <span class="link">http://example.com/  &quot;Optional Title Here&quot;</span></span><br></pre></td></tr></table></figure>
+<p>will produce</p>
+<p>This is <a target="_blank" rel="noopener external nofollow noreferrer" href="http://example.com/" title="Optional Title Here">an example</a> reference-style link.</p>
+<p>Then, anywhere in the document, you define your link label on a line by itself like this:</p>
+<p>隐式链接名称快捷方式允许您省略链接的名称，在这种情况下链接文本本身将用作名称。只需使用一组空的方括号-例如，链接单词“Google”到 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://google.com">google.com</a> 网站，你可以简单地写:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">Google</span>][<span class="symbol"></span>]</span><br><span class="line">And then define the link:</span><br><span class="line"></span><br><span class="line">[<span class="symbol">Google</span>]: <span class="link">http://google.com/</span></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://google.com/">Google</a><br>
+And then define the link:</p>
+<h3 id="URLs">URLs</h3>
+<p>Typora允许你以链接的形式插入url，用’ &lt; <code>brackets</code> &gt; '包围。</p>
+<p><code>&lt;i@typora.io&gt;</code> becomes <a href="mailto:i@typora.io" rel="external nofollow noreferrer">i@typora.io</a>.</p>
+<p>Typora 也会自动链接标准 url。例如: <a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.google.com">www.google.com</a>。</p>
+<h3 id="Images">Images</h3>
+<p>图片的语法与链接类似，但它们在链接开始之前需要额外的 <code>!</code> 符号。插入图像的语法是这样的:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/to/img.jpg</span>)</span><br><span class="line"></span><br><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/to/img.jpg &quot;Optional title&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>您可以使用拖放从图像文件或 web 浏览器插入图像。您可以通过单击图像来修改 markdown 源代码。如果使用拖放方式添加的图像与当前正在编辑的文档位于同一目录或子目录，则使用相对路径。</p>
+<p>如果你正在使用 markdown 来构建网站，你可以在 YAML Front Matters 中 使用属性<code>typora-root-url</code>为你的本地计算机上的图像预览指定一个URL前缀。例如，在YAML Front Matters 输入<code>typora-root-url:/User/Abner/Website/typora.io/</code>，然后<code>![alt](/blog/img/test.png)</code>在 Typora 将被视为<code>![alt](file:///User/Abner/Website/typora.io/blog/img/test.png)</code></p>
+<p>You can find more details <a target="_blank" rel="noopener external nofollow noreferrer" href="https://support.typora.io/Images/">here</a>.</p>
+<h3 id="Emphasis">Emphasis</h3>
+<p>Markdown 将星号 (<code>*</code>) 和下划线(<code> _</code>)作为强调的指示符。用一个 <code>*</code> or <code>_</code> 包装的文本将用一个 HTML <code>&lt;em&gt;</code> tag 包装。例如:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*single asterisks*</span></span><br><span class="line"></span><br><span class="line"><span class="emphasis">_single underscores_</span></span><br></pre></td></tr></table></figure>
+<p>output:</p>
+<p><em>single asterisks</em></p>
+<p><em>single underscores</em></p>
+<p>GFM 会忽略单词中常用的下划线，比如:</p>
+<blockquote>
+<p>wow_great_stuff</p>
+<p>do_this_and_do_that_and_another_thing.</p>
+</blockquote>
+<p>要在原本用作强调分隔符的位置产生星号或下划线，可以使用反斜杠转义:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\<span class="emphasis">*this text is surrounded by literal asterisks\*</span></span><br></pre></td></tr></table></figure>
+<p>推荐使用<code>*</code>符号。</p>
+<h3 id="Strong">Strong</h3>
+<p>双引号<code>*</code>或<code>_</code>将导致其包含的内容被一个HTML ’ <strong> '标签包装，例如</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="strong">**double asterisks**</span></span><br><span class="line"></span><br><span class="line"><span class="strong">__double underscores__</span></span><br></pre></td></tr></table></figure>
+<p>output:</p>
+<p><strong>double asterisks</strong></p>
+<p><strong>double underscores</strong></p>
+<p>推荐使用 <code>**</code>符号</p>
+<h3 id="Code">Code</h3>
+<p>若要指示代码的内联跨度，请用反勾引号(`)将其包装起来。与预格式化的代码块不同，代码跨度表示正常段落中的代码。例如:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Use the <span class="code">`printf()`</span> function.</span><br></pre></td></tr></table></figure>
+<p>will produce:</p>
+<p>Use the <code>printf()</code> function.</p>
+<p>使用<code>printf()</code>函数</p>
+<h3 id="Strikethrough">Strikethrough</h3>
+<p>GFM 添加了创建划线文本的语法，这是标准 Markdown 所缺少的。</p>
+<p><code>~~Mistaken text.~~</code> becomes <s>Mistaken text.</s></p>
+<h3 id="Underlines">Underlines</h3>
+<p>Underline 是由原始 HTML 驱动的。</p>
+<p><code>&lt;u&gt;Underline&lt;/u&gt;</code> becomes <u>Underline</u>.</p>
+<h3 id="Emoji-😄">Emoji 😄</h3>
+<p>输入带有语法的表情符号: <code>:smile:</code>。</p>
+<p>用户可以按下<code>ESC</code> 键自动完成对表情符号的建议，或者在首选面板上启用后自动触发。此外，直接输入 UTF-8 表情符号也可以通过菜单栏中的 <code>Edit</code> -&gt; <code>Emoji &amp; Symbols</code>来实现。</p>
+<h3 id="Inline-Math">Inline Math</h3>
+<p>要使用此功能，请先在 <code>Preference</code> 面板-&gt; <code>Markdown</code> 选项卡中启用它。然后，使用 <code>$</code> 包装 TeX 命令。例如: <code>$\lim_&#123;x \to \infty&#125; \exp(-x) = 0$</code> 将被呈现为 LaTeX 命令。</p>
+<p>要触发内联数学的内联预览:输入“$”，然后按“ESC”键，然后输入 TeX 命令。</p>
+<p>You can find more details <a target="_blank" rel="noopener external nofollow noreferrer" href="https://support.typora.io/Math/">here</a>.</p>
+<h3 id="Subscript">Subscript</h3>
+<p>要使用此功能，请先在<code>Preference</code> 面板-&gt;<code>Markdown</code> 选项卡中启用它。然后，使用 <code>~</code> 包装下标内容。例如: <code>H~2~O</code>, <code>X~long\ text~</code>/</p>
+<h3 id="Superscript">Superscript</h3>
+<p>要使用此功能，请先在<code>Preference</code> 面板-&gt;<code>Markdown</code> 选项卡中启用它。然后，使用  <code>^</code>  包装上标内容。例如: <code>X^2^</code>.</p>
+<h3 id="Highlight">Highlight</h3>
+<p>要使用此功能，请先在<code>Preference</code> 面板-&gt;<code>Markdown</code> 选项卡中启用它。然后，使用 <code>==</code> 包装高亮内容。例如: <code>==highlight==</code>.</p>
+<h2 id="HTML">HTML</h2>
+<p>您可以使用 HTML 来样式化纯 Markdown 不支持的内容。例如，使用 <code>&lt;span style=&quot;color:red&quot;&gt;this text is red&lt;/span&gt;</code> 来添加红色文本。</p>
+<h3 id="Embed-Contents">Embed Contents</h3>
+<p>一些网站提供基于框架的嵌入代码，你也可以将其粘贴到 Typora 中。例如:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">height</span>=<span class="string">&#x27;265&#x27;</span> <span class="attr">scrolling</span>=<span class="string">&#x27;no&#x27;</span> <span class="attr">title</span>=<span class="string">&#x27;Fancy Animated SVG Menu&#x27;</span> <span class="attr">src</span>=<span class="string">&#x27;http://codepen.io/jeangontijo/embed/OxVywj/?height=265&amp;theme-id=0&amp;default-tab=css,result&amp;embed-version=2&#x27;</span> <span class="attr">frameborder</span>=<span class="string">&#x27;no&#x27;</span> <span class="attr">allowtransparency</span>=<span class="string">&#x27;true&#x27;</span> <span class="attr">allowfullscreen</span>=<span class="string">&#x27;true&#x27;</span> <span class="attr">style</span>=<span class="string">&#x27;width: 100%;&#x27;</span>&gt;</span></span><span class="language-xml"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="Video">Video</h3>
+<p>你可以使用<code>&lt;video&gt;</code>HTML标签来嵌入视频。例如:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">&quot;xxx.mp4&quot;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="Other-HTML-Support">Other HTML Support</h3>
+<p>You can find more details <a target="_blank" rel="noopener external nofollow noreferrer" href="https://support.typora.io/HTML/">here</a>.</p>
+<h2 id="Reference">Reference</h2>
+<p>[1]	Typora的Markdown语法: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://support.typoraio.cn/zh/Markdown-Reference">https://support.typoraio.cn/zh/Markdown-Reference</a></p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Here is the <em>text</em> of the <strong>footnote</strong>. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">推荐文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\97cdff40.html" rel="bookmark">Markdown进阶</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\88b90715.html" rel="bookmark">LaTeX安装</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\2888cf0.html" rel="bookmark">Ps2019基础总结</a></div>
+    </li>
+  </ul>
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:20px;">
+            ------------------------------- 本文结束啦❤<i class="fa fa-heart-o"></i>感谢您阅读-------------------------------
+     </div>
+    
+</div>
+        <div class="reward-container">
+  <div>赞赏一杯咖啡</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="白茶不雨 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="白茶不雨 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>白茶不雨
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://liuaoao.top/archives/1ef37645.html" title="Markdown-For-Typora">https://liuaoao.top/archives/1ef37645.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Markdown/" rel="tag"><i class="fa fa-tag"></i> Markdown</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/d42a069d.html" rel="prev" title="浅层语义分析（LSA）">
+      <i class="fa fa-chevron-left"></i> 浅层语义分析（LSA）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/7b6d4a85.html" rel="next" title="Windows代理设置">
+      Windows代理设置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Markdown For Typora</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Block-Elements"><span class="nav-number">1.2.</span> <span class="nav-text">Block Elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Paragraph-and-line-breaks"><span class="nav-number">1.2.1.</span> <span class="nav-text">Paragraph and line breaks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Headers"><span class="nav-number">1.2.2.</span> <span class="nav-text">Headers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Blockquotes"><span class="nav-number">1.2.3.</span> <span class="nav-text">Blockquotes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lists"><span class="nav-number">1.2.4.</span> <span class="nav-text">Lists</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Task-List"><span class="nav-number">1.2.5.</span> <span class="nav-text">Task List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fenced-Code-Blocks"><span class="nav-number">1.2.6.</span> <span class="nav-text">(Fenced) Code Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Math-Blocks"><span class="nav-number">1.2.7.</span> <span class="nav-text">Math Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tables"><span class="nav-number">1.2.8.</span> <span class="nav-text">Tables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Footnotes"><span class="nav-number">1.2.9.</span> <span class="nav-text">Footnotes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Horizontal-Rules"><span class="nav-number">1.2.10.</span> <span class="nav-text">Horizontal Rules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#YAML-Front-Matter"><span class="nav-number">1.2.11.</span> <span class="nav-text">YAML Front Matter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table-of-Contents-TOC"><span class="nav-number">1.2.12.</span> <span class="nav-text">Table of Contents(TOC)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Span-Elements"><span class="nav-number">1.3.</span> <span class="nav-text">Span Elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Links"><span class="nav-number">1.3.1.</span> <span class="nav-text">Links</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Internal-Links"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Internal Links</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reference-Links"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Reference Links</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URLs"><span class="nav-number">1.3.2.</span> <span class="nav-text">URLs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Images"><span class="nav-number">1.3.3.</span> <span class="nav-text">Images</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Emphasis"><span class="nav-number">1.3.4.</span> <span class="nav-text">Emphasis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Strong"><span class="nav-number">1.3.5.</span> <span class="nav-text">Strong</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code"><span class="nav-number">1.3.6.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Strikethrough"><span class="nav-number">1.3.7.</span> <span class="nav-text">Strikethrough</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Underlines"><span class="nav-number">1.3.8.</span> <span class="nav-text">Underlines</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Emoji-%F0%9F%98%84"><span class="nav-number">1.3.9.</span> <span class="nav-text">Emoji 😄</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inline-Math"><span class="nav-number">1.3.10.</span> <span class="nav-text">Inline Math</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Subscript"><span class="nav-number">1.3.11.</span> <span class="nav-text">Subscript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Superscript"><span class="nav-number">1.3.12.</span> <span class="nav-text">Superscript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Highlight"><span class="nav-number">1.3.13.</span> <span class="nav-text">Highlight</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML"><span class="nav-number">1.4.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Embed-Contents"><span class="nav-number">1.4.1.</span> <span class="nav-text">Embed Contents</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Video"><span class="nav-number">1.4.2.</span> <span class="nav-text">Video</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-HTML-Support"><span class="nav-number">1.4.3.</span> <span class="nav-text">Other HTML Support</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.5.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="白茶不雨"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">白茶不雨</p>
+  <div class="site-description" itemprop="description">种一棵树最好的时间是十年前，其次是现在！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Humble-LiuAo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Humble-LiuAo" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1743185682@qq.com" title="E-Mail → mailto:1743185682@qq.com" rel="noopener external nofollow noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+  <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+  <div class="widget-wrap">
+    <div id="myCanvasContainer" class="widget tagcloud">
+      <canvas width="250" height="250" id="resCanvas" style="width:100%">
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Anaconda/" rel="tag">Anaconda</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/" rel="tag">CMD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ChatGPT/" rel="tag">ChatGPT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-mining/" rel="tag">Data mining</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LaTeX/" rel="tag">LaTeX</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ps/" rel="tag">Ps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90/" rel="tag">语义分析</a><span class="tag-list-count">1</span></li></ul>
+      </canvas>
+    </div>
+  </div>
+
+
+
+
+<div style="">
+  <canvas id="canvas" style="width:80%; height:80%">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1297742167&auto=0&height=66"></iframe>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">白茶不雨</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">16k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">15 分钟</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://liuaoao.top/archives/1ef37645.html',]
+      });
+      });
+  </script>
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'hpWRbFYPjuqQOOWegUU9wApt-gzGzoHsz',
+      appKey     : 'ijVoqxTEPQ3UW87ZGimvY741',
+      placeholder: "有什么问题，欢迎留言指正与交流...",
+      avatar     : 'retro',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":5,"vOffset":120},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
