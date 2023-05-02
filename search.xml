@@ -1,174 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Anaconda-环境安装</title>
-    <url>/archives/eabeff19.html</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
-<h1>Anaconda-Python环境安装</h1>
-<h3 id="查询版本信息">查询版本信息</h3>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>驱动器版本：右键NVIDIA–&gt;系统信息（点击开始菜单，搜索<code>dxdiag</code>）</p>
-</li>
-</ul>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>对应cuda版本：</p>
-<p><a href="https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html">https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html</a></p>
-</li>
-</ul>
-<span id="more"></span>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>对应tensorflow版本：</p>
-<p><a href="https://tensorflow.google.cn/install/source_windows?hl=en#gpu">https://tensorflow.google.cn/install/source_windows?hl=en#gpu</a></p>
-</li>
-<li class="lvl-2">
-<p>对应pytorch版本：</p>
-<p><a href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a></p>
-</li>
-</ul>
-<h3 id="安装Anaconda">安装Anaconda</h3>
-<p>网址：<a href="https://repo.anaconda.com/archive/">https://repo.anaconda.com/archive/</a><br>
-<strong>安装事项</strong>：</p>
-<ol>
-<li class="lvl-3">
-<p>修改路径</p>
-</li>
-<li class="lvl-3">
-<p>不要勾选“Add Anaconda to the system PATH environment variable”。</p>
-</li>
-<li class="lvl-3">
-<p>添加上：<mark>Anaconda3、Anaconda3/Scripts、Anaconda3/Library/bin</mark>这3个文件夹的路径（用户+系统，环境变量打开方式为：计算机–属性–高级系统设置–环境变量）</p>
-</li>
-</ol>
-<h3 id="设置镜像源">设置镜像源</h3>
-<p>清华镜像网址：<a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/</a><br>
-参考：<a href="https://www.cpci.dev/anaconda-mirrors-configure/">https://www.cpci.dev/anaconda-mirrors-configure/</a></p>
-<ol>
-<li class="lvl-3">
-<p>生成 <mark>.condarc</mark> 文件： <code>conda config --set show_channel_urls yes</code>（C:\users\username\）</p>
-</li>
-<li class="lvl-3">
-<p>清华源复制到 <mark>.condarc</mark> 文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: true</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch-lts: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">ssl_verify: false</span><br><span class="line"># 命令行</span><br><span class="line">conda clean -i</span><br></pre></td></tr></table></figure>
-</li>
-<li class="lvl-3">
-<p>不走镜像、代理设置</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">channels:</span><br><span class="line"><span class="bullet">  -</span> defaults</span><br><span class="line">show<span class="emphasis">_channel_</span>urls: true</span><br><span class="line">proxy<span class="emphasis">_servers:</span></span><br><span class="line"><span class="emphasis">  http: 127.0.0.1:7890</span></span><br><span class="line"><span class="emphasis">  https: 127.0.0.1:7890</span></span><br><span class="line"><span class="emphasis">ssl_</span>verify: false</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="conda安装tensorflow">conda安装tensorflow</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n tf python=3.6</span><br><span class="line">activate tf</span><br><span class="line">conda install tensorflow-gpu=1.9.0</span><br><span class="line"># 根据python版本默认安装 </span><br><span class="line">conda install tensorflow-gpu</span><br><span class="line"></span><br><span class="line">pip install --upgrade tensorflow</span><br><span class="line">python -c &quot;import tensorflow as tf;print(tf.reduce_sum(tf.random.normal([1000, 1000])))&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="高版本pip安装tensorflow：">高版本pip安装tensorflow：</h3>
-<p><a href="https://tensorflow.google.cn/install/pip?hl=en#windows-native">https://tensorflow.google.cn/install/pip?hl=en#windows-native</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0</span><br><span class="line">#如果上面这个执行失败了，多执行几次</span><br><span class="line">#如果自己的显卡支持，安装了上面的两个配置后，再安装下面的tensorflow-gpu 2.7.0版本的话</span><br><span class="line">#就可以直接显示gpu版本的状态为为true</span><br><span class="line">pip install tensorflow-gpu==2.7.0</span><br><span class="line">pip install &quot;tensorflow&lt;2.11&quot;</span><br><span class="line"># 走清华镜像</span><br><span class="line"> -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"># 设置timeout</span><br><span class="line">pip --default-timeout=600 install &quot;tensorflow&lt;2.11&quot; -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"># Verify install:</span><br><span class="line">#python</span><br><span class="line">#impor tensorflow as tf</span><br><span class="line">#print(tf.config.list_physical_devices(&#x27;GPU&#x27;))</span><br></pre></td></tr></table></figure>
-<h3 id="conda安装pytorch">conda安装pytorch</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n pytorch python=3.8</span><br><span class="line">conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia</span><br></pre></td></tr></table></figure>
-<h4 id="CondaSSLError-OpenSSL-appears-to-be-unavailable-on-this-machine-OpenSSL-is-required-to-download-and-install-packages">CondaSSLError: OpenSSL appears to be unavailable on this machine. OpenSSL is required to download and install packages.</h4>
-<p><mark>解决的方法</mark>：</p>
-<ol>
-<li class="lvl-3">
-<p>到你的anaconda的安装目录位置：比如<br>
-<img src="https://gitee.com/humble_ao/Image/raw/master/c6c98a6807fd4b559bac2703f3399427.png" alt=""></p>
-</li>
-<li class="lvl-3">
-<p>D:\ProgramData\Anaconda3\Library\bin，找到如下两个DLL的文件：</p>
-<ol>
-<li class="lvl-6">libcrypto-1_1-x64.dll<br>
-libssl-1_1-x64.dll<br>
-<img src="https://gitee.com/humble_ao/Image/raw/master/db37a06081a944b6ad430fad2c9a5336.png" alt=""></li>
-</ol>
-</li>
-<li class="lvl-3">
-<p>复制到 D:\ProgramData\Anaconda3\DLLs<br>
-<img src="https://gitee.com/humble_ao/Image/raw/master/b76e975a080d48a8bf437c02f17c4178.png" alt=""></p>
-</li>
-<li class="lvl-3">
-<p>重启下shell</p>
-</li>
-</ol>
-<h3 id="测试">测试</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># tf</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">if</span> tf.test.gpu_device_name():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Default GPU Device: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(tf.test.gpu_device_name()))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Please install GPU version of TF&quot;</span>)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="built_in">print</span>(tf.test.gpu_device_name())</span><br><span class="line"><span class="built_in">print</span>(tf.test.is_gpu_available())</span><br><span class="line"></span><br><span class="line"><span class="comment"># pytorch</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">flag = torch.cuda.is_available()</span><br><span class="line"><span class="keyword">if</span> flag:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;CUDA可使用&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;CUDA不可用&quot;</span>)</span><br><span class="line"></span><br><span class="line">ngpu= <span class="number">1</span></span><br><span class="line"><span class="comment"># Decide which device we want to run on</span></span><br><span class="line">device = torch.device(<span class="string">&quot;cuda:0&quot;</span> <span class="keyword">if</span> (torch.cuda.is_available() <span class="keyword">and</span> ngpu &gt; <span class="number">0</span>) <span class="keyword">else</span> <span class="string">&quot;cpu&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;驱动为：&quot;</span>,device)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;GPU型号： &quot;</span>,torch.cuda.get_device_name(<span class="number">0</span>))</span><br></pre></td></tr></table></figure>
-<h2 id="conda常用命令">conda常用命令</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version:</span><br><span class="line">conda -V</span><br><span class="line">env:</span><br><span class="line">conda env list</span><br><span class="line">conda create -n env python=3.6 </span><br><span class="line">conda remove -n env --all</span><br><span class="line">conda deactivate</span><br><span class="line">Package:</span><br><span class="line">conda list</span><br><span class="line">conda list -n your_env_name</span><br><span class="line">conda install -n env_name package_name</span><br><span class="line">conda update -n env_name package_name</span><br><span class="line">conda install numpy pandas matplotlib scikit-learn seaborn scikit-image opencv</span><br><span class="line">conda update conda</span><br><span class="line">conda update anaconda-navigator</span><br><span class="line">conda update navigator-updater</span><br><span class="line">conda update --all</span><br><span class="line"></span><br><span class="line">numpy matplotlib scikit-image scikit-learn tqdm pandas global-land-mask netCDF4 gdal</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Tools</category>
-        <category>Software</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Anaconda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LaTeX安装</title>
-    <url>/archives/88b90715.html</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-<h1>LaTeX安装教程</h1>
-<p>LaTeX是一种专业的排版系统和标记语言，用于创建高质量的文档，尤其适合包含数学公式、技术内容和复杂结构的文档，如学术论文、书籍、报告、简历等。TeX Live是一款跨平台的LaTeX发行版，它包含了LaTeX编译器、宏包、字体和各种工具，适用于多种操作系统，如Windows、Linux和macOS。TeXstudio是一款免费开源的LaTeX编辑器。</p>
-<p>WIindows推荐： <mark>Texlive 2023 + TeX studio</mark></p>
-<span id="more"></span>
-<h2 id="Texlive-2023">Texlive 2023</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>ISO 映像下载：<a href="https://www.tug.org/texlive/acquire-iso.html">https://www.tug.org/texlive/acquire-iso.html</a></p>
-</li>
-</ul>
-<p><strong>打开下载后的.ISO文件，以管理员身份运行install-tl-windows.bat文件。</strong></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/explorer_vgFd0Lbe70.png" alt=""></p>
-<p><strong>修改安装位置</strong></p>
-<p><strong>选择安装语言</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>高级选项里 <mark>Advanced</mark> $\rightarrow$点击 <mark>Customize</mark> $\rightarrow$选择 <mark>中文和英文</mark></p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/20230502111347.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/wish_PhEbgdUYiI.png" alt=""></p>
-<p><strong>确定安装，等待安装完成后关闭窗口</strong></p>
-<hr>
-<h3 id="Texlive添加环境变量">Texlive添加环境变量</h3>
-<p>添加Texlive环境变量，以在命令行中执行tex的命令</p>
-<ol>
-<li class="lvl-3">
-<p>win+R 然后输入**sysdm.cpl **在高级中选择<em>环境变量</em></p>
-</li>
-<li class="lvl-3">
-<p>编辑的Path变量（建议<u>用户和系统</u>的Path都添加），添加txtlive中的<mark>bin/windows</mark>路径（如：D:\Software\texlive\2023\bin\windows）</p>
-</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/SystemPropertiesAdvanced_iXSckGIh1W.png" alt=""></p>
-<ol start="3">
-<li class="lvl-3">
-<p>查看验证安装版本（出现 <mark>版本号</mark> 则成功）</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tex -v</span><br><span class="line">latex -v</span><br><span class="line">xelatex -v</span><br><span class="line">pdflatex -v</span><br></pre></td></tr></table></figure>
-<h2 id="TeXstudio的安装">TeXstudio的安装</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>官网下载：<a href="https://texstudio.sourceforge.net/">https://texstudio.sourceforge.net/</a></p>
-</li>
-</ul>
-<p><strong>双击安装$\rightarrow$修改安装位置即可</strong></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/texstudio-4.5.2-win-qt6_5StfAN4gxi.png" alt=""></p>
-<p><strong>使用注意</strong>：<em>如果撰写中文论文，将默认编译器改为<code>Xelatex</code>。如果撰写英文论文，将默认编译器改为<code>Pdflatex</code></em></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/texstudio_xkx0Bq0fS9.png" alt=""></p>
-<h2 id="Reference">Reference</h2>
-<p>[1]	LaTeX的安装教程：<a href="https://blog.csdn.net/weixin_43872190/article/details/113736283">https://blog.csdn.net/weixin_43872190/article/details/113736283</a><br>
-[2]	Latex（一）安装和环境变量的设置：<a href="https://blog.csdn.net/explorer9607/article/details/103506387">https://blog.csdn.net/explorer9607/article/details/103506387</a></p>
-]]></content>
-      <categories>
-        <category>Tools</category>
-        <category>Software</category>
-      </categories>
-      <tags>
-        <tag>LaTeX</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ChatGPT-Application</title>
     <url>/archives/4bc47d90.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer"/>
@@ -242,6 +74,411 @@ libssl-1_1-x64.dll<br>
       </categories>
       <tags>
         <tag>ChatGPT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LaTeX安装</title>
+    <url>/archives/88b90715.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<h1>LaTeX安装教程</h1>
+<p>LaTeX是一种专业的排版系统和标记语言，用于创建高质量的文档，尤其适合包含数学公式、技术内容和复杂结构的文档，如学术论文、书籍、报告、简历等。TeX Live是一款跨平台的LaTeX发行版，它包含了LaTeX编译器、宏包、字体和各种工具，适用于多种操作系统，如Windows、Linux和macOS。TeXstudio是一款免费开源的LaTeX编辑器。</p>
+<p>WIindows推荐： <mark>Texlive 2023 + TeX studio</mark></p>
+<span id="more"></span>
+<h2 id="Texlive-2023">Texlive 2023</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>ISO 映像下载：<a href="https://www.tug.org/texlive/acquire-iso.html">https://www.tug.org/texlive/acquire-iso.html</a></p>
+</li>
+</ul>
+<p><strong>打开下载后的.ISO文件，以管理员身份运行install-tl-windows.bat文件。</strong></p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/explorer_vgFd0Lbe70.png" alt=""></p>
+<p><strong>修改安装位置</strong></p>
+<p><strong>选择安装语言</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>高级选项里 <mark>Advanced</mark> $\rightarrow$点击 <mark>Customize</mark> $\rightarrow$选择 <mark>中文和英文</mark></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/20230502111347.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/wish_PhEbgdUYiI.png" alt=""></p>
+<p><strong>确定安装，等待安装完成后关闭窗口</strong></p>
+<hr>
+<h3 id="Texlive添加环境变量">Texlive添加环境变量</h3>
+<p>添加Texlive环境变量，以在命令行中执行tex的命令</p>
+<ol>
+<li class="lvl-3">
+<p>win+R 然后输入**sysdm.cpl **在高级中选择<em>环境变量</em></p>
+</li>
+<li class="lvl-3">
+<p>编辑的Path变量（建议<u>用户和系统</u>的Path都添加），添加txtlive中的<mark>bin/windows</mark>路径（如：D:\Software\texlive\2023\bin\windows）</p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/SystemPropertiesAdvanced_iXSckGIh1W.png" alt=""></p>
+<ol start="3">
+<li class="lvl-3">
+<p>查看验证安装版本（出现 <mark>版本号</mark> 则成功）</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tex -v</span><br><span class="line">latex -v</span><br><span class="line">xelatex -v</span><br><span class="line">pdflatex -v</span><br></pre></td></tr></table></figure>
+<h2 id="TeXstudio的安装">TeXstudio的安装</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>官网下载：<a href="https://texstudio.sourceforge.net/">https://texstudio.sourceforge.net/</a></p>
+</li>
+</ul>
+<p><strong>双击安装$\rightarrow$修改安装位置即可</strong></p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/texstudio-4.5.2-win-qt6_5StfAN4gxi.png" alt=""></p>
+<p><strong>使用注意</strong>：<em>如果撰写中文论文，将默认编译器改为<code>Xelatex</code>。如果撰写英文论文，将默认编译器改为<code>Pdflatex</code></em></p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/texstudio_xkx0Bq0fS9.png" alt=""></p>
+<h2 id="Reference">Reference</h2>
+<p>[1]	LaTeX的安装教程：<a href="https://blog.csdn.net/weixin_43872190/article/details/113736283">https://blog.csdn.net/weixin_43872190/article/details/113736283</a><br>
+[2]	Latex（一）安装和环境变量的设置：<a href="https://blog.csdn.net/explorer9607/article/details/103506387">https://blog.csdn.net/explorer9607/article/details/103506387</a></p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+        <category>Software</category>
+      </categories>
+      <tags>
+        <tag>LaTeX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ps2019基础总结</title>
+    <url>/archives/2888cf0.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<h1>Ps2019基础总结</h1>
+<h2 id="新建文档">新建文档</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><mark>Ctrl + N</mark></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">像素</th>
+<th>分辨率</th>
+<th>颜色模式</th>
+<th>单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">打印</td>
+<td>300</td>
+<td>CMK</td>
+<td>cm</td>
+</tr>
+<tr>
+<td style="text-align:left">显示</td>
+<td>72</td>
+<td>RGB</td>
+<td>像素</td>
+</tr>
+</tbody>
+</table>
+<p><em>背景透明的显示：灰白格子</em></p>
+<h2 id="文件打开">文件打开</h2>
+<ol>
+<li class="lvl-3">
+<p><mark>Ctrl+O</mark> 打开文件（<strong>Ctrl</strong>：点选 <strong>Shift</strong>：连选）</p>
+</li>
+<li class="lvl-3">
+<p>资源管理器$\rightarrow$拖拽文件</p>
+</li>
+</ol>
+<span id="more"></span>
+<h2 id="文件查看">文件查看</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>窗口$\rightarrow$排列</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/Photoshop_cmHe5yK04V.png" alt=""></p>
+<h2 id="文件保存">文件保存</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><mark>Ctrl+Shift+S</mark></p>
+</li>
+<li class="lvl-2">
+<p><input type="checkbox" id="checkbox0" checked="true"><label for="checkbox0">保持背景透明保存为PNG</label></p>
+</li>
+<li class="lvl-2">
+<p><input type="checkbox" id="checkbox1" checked="true"><label for="checkbox1">保存为GIF：文件$\rightarrow$导出$\rightarrow$存储为web格式（格式选为GIF）</label></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/%25E5%259B%25BE%25E5%2583%258F%25E6%25A0%25BC%25E5%25BC%258F.jpg" alt=""></p>
+<h2 id="基本操作">基本操作</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>工具栏快捷键: <mark>Alt + 相应字母</mark></p>
+</li>
+<li class="lvl-2">
+<p>打开滚轮缩放（编辑$\rightarrow$首选项$\rightarrow$工具$\rightarrow$滚轮缩放）</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">快捷键</th>
+<th style="text-align:center">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">V</td>
+<td style="text-align:center">移动</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">画笔</td>
+</tr>
+<tr>
+<td style="text-align:center">R</td>
+<td style="text-align:center">旋转</td>
+</tr>
+<tr>
+<td style="text-align:center">Z</td>
+<td style="text-align:center">缩放</td>
+</tr>
+<tr>
+<td style="text-align:center">M</td>
+<td style="text-align:center">选框</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + <code>+-</code></td>
+<td style="text-align:center">缩放</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + Z</td>
+<td style="text-align:center">撤回</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + Shift+ Z</td>
+<td style="text-align:center">前进</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + J</td>
+<td style="text-align:center">复制图层</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + Shift+ N</td>
+<td style="text-align:center">新建图层</td>
+</tr>
+<tr>
+<td style="text-align:center">Delete</td>
+<td style="text-align:center">删除图层</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + E</td>
+<td style="text-align:center">合并图层</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + Shift +  E</td>
+<td style="text-align:center">合并可见图层</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + [</td>
+<td style="text-align:center">图层下移</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + ]</td>
+<td style="text-align:center">图层上移</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <categories>
+        <category>Tools</category>
+        <category>Software</category>
+      </categories>
+      <tags>
+        <tag>Ps</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown进阶</title>
+    <url>/archives/97cdff40.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<h2 id="常用查表">常用查表</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">样式名</th>
+<th style="text-align:center">Markdown</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">转义</td>
+<td style="text-align:center">\</td>
+</tr>
+<tr>
+<td style="text-align:center">加粗</td>
+<td style="text-align:center"><code>**文本**</code> 或 <code>__文本__</code></td>
+</tr>
+<tr>
+<td style="text-align:center">斜体</td>
+<td style="text-align:center"><code>*文本*</code> 或 <code>_文本_</code></td>
+</tr>
+<tr>
+<td style="text-align:center">删除线</td>
+<td style="text-align:center"><code>~~文本~~</code></td>
+</tr>
+<tr>
+<td style="text-align:center">下划线</td>
+<td style="text-align:center"><code>&lt;u&gt;文本&lt;/u&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">上标</td>
+<td style="text-align:center"><code>文本^上标^</code></td>
+</tr>
+<tr>
+<td style="text-align:center">下标</td>
+<td style="text-align:center"><code>文本~下标~</code></td>
+</tr>
+<tr>
+<td style="text-align:center">小号字体</td>
+<td style="text-align:center"><code>&lt;small&gt;小号字体&lt;/small&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">大号字体</td>
+<td style="text-align:center"><code>&lt;big&gt;大号字体&lt;/big&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">高亮</td>
+<td style="text-align:center"><code>==文本==</code></td>
+</tr>
+<tr>
+<td style="text-align:center">代码块</td>
+<td style="text-align:center">`代码` 或 ```代码```</td>
+</tr>
+<tr>
+<td style="text-align:center">链接</td>
+<td style="text-align:center"><code>[链接文本](链接地址)</code></td>
+</tr>
+<tr>
+<td style="text-align:center">图片</td>
+<td style="text-align:center"><code>![图片替代文本](图片链接地址)</code></td>
+</tr>
+<tr>
+<td style="text-align:center">引用</td>
+<td style="text-align:center">&gt; 引用内容</td>
+</tr>
+<tr>
+<td style="text-align:center">分割线</td>
+<td style="text-align:center">— 或 ***</td>
+</tr>
+<tr>
+<td style="text-align:center">数学公式</td>
+<td style="text-align:center"><code>$$LaTex$$</code></td>
+</tr>
+</tbody>
+</table>
+<span id="more"></span>
+<h2 id="箭头">箭头</h2>
+<p><strong>基本箭头</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">基本箭头</th>
+<th style="text-align:center">Markdown</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$\uparrow$</td>
+<td style="text-align:center"><code>$\uparrow$</code></td>
+</tr>
+<tr>
+<td style="text-align:center">$\downarrow$</td>
+<td style="text-align:center"><code>$\downarrow$</code></td>
+</tr>
+<tr>
+<td style="text-align:center">$\leftarrow$</td>
+<td style="text-align:center"><code>$\leftarrow$</code></td>
+</tr>
+<tr>
+<td style="text-align:center">$\rightarrow$</td>
+<td style="text-align:center"><code>$\rightarrow$</code></td>
+</tr>
+<tr>
+<td style="text-align:center">$\updownarrow$</td>
+<td style="text-align:center"><code>$\updownarrow$</code></td>
+</tr>
+<tr>
+<td style="text-align:center">$\leftrightarrow$</td>
+<td style="text-align:center"><code>$\leftrightarro$</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>双线箭头</strong>：基本箭头<mark>首字母大写</mark></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">双线箭头</th>
+<th style="text-align:center">Markdown</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$\Uparrow$</td>
+<td style="text-align:center"><code>$\Uparrow$</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>长箭头</strong>：基本箭头前+<mark>long</mark></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">长箭头</th>
+<th style="text-align:center">Markdown</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$\longrightarrow$</td>
+<td style="text-align:center"><code>$\longrightarrow$</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>继续更新ing😄</p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows代理设置</title>
+    <url>/archives/7b6d4a85.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<h1>Windows代理设置</h1>
+<h2 id="CMD">CMD</h2>
+<h3 id="临时生效">临时生效</h3>
+<p>命令行窗口关闭就失效</p>
+<span id="more"></span>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 设置</span><br><span class="line">set http_proxy=http://127.0.0.1:7890</span><br><span class="line"># 如需账户、密码</span><br><span class="line">set http_proxy_user=username</span><br><span class="line">set http_proxy_pass=password</span><br><span class="line"># 查看</span><br><span class="line">set http_proxy</span><br><span class="line"># 取消</span><br><span class="line">set http_proxy=</span><br><span class="line">set http_proxy_user=</span><br><span class="line">set http_proxy_pass=</span><br></pre></td></tr></table></figure>
+<h3 id="永久生效">永久生效</h3>
+<p>管理员运行CMD（Git也可用）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 设置</span><br><span class="line">wmic ENVIRONMENT create name=&quot;http_proxy&quot;,username=&quot;&lt;system&gt;&quot;, VariableValue=&quot;http://127.0.0.1:7890&quot;</span><br><span class="line"># 查看</span><br><span class="line">wmic ENVIRONMENT where &quot;name=&#x27;http_proxy&#x27;&quot; get UserName,VariableValue</span><br><span class="line"># 删除</span><br><span class="line">wmic ENVIRONMENT where &quot;name=&#x27;http_proxy&#x27;&quot; delete</span><br></pre></td></tr></table></figure>
+<h2 id="Git（永久生效）">Git（永久生效）</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 设施全局代理</span><br><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br><span class="line"># 查看代理</span><br><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br><span class="line"># 取消全局代理</span><br><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
+<h2 id="Reference">Reference</h2>
+<p>[1]	windows设置和删除代理: <a href="https://liuxingjun.github.io/blog/2018/05/03/windows%E8%AE%BE%E7%BD%AE%E5%92%8C%E5%88%A0%E9%99%A4%E4%BB%A3%E7%90%86">https://liuxingjun.github.io/blog/2018/05/03/windows设置和删除代理</a></p>
+<p>[2]	git设置、查看、取消代理: <a href="https://www.cnblogs.com/yongy1030/p/11699086.html">https://www.cnblogs.com/yongy1030/p/11699086.html</a></p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+        <category>Windows</category>
+      </categories>
+      <tags>
+        <tag>Proxy</tag>
+        <tag>CMD</tag>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -403,345 +640,6 @@ And then define the link:</p>
       </tags>
   </entry>
   <entry>
-    <title>Markdown进阶</title>
-    <url>/archives/97cdff40.html</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-<h2 id="常用查表">常用查表</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">样式名</th>
-<th style="text-align:center">Markdown</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">转义</td>
-<td style="text-align:center">\</td>
-</tr>
-<tr>
-<td style="text-align:center">加粗</td>
-<td style="text-align:center"><code>**文本**</code> 或 <code>__文本__</code></td>
-</tr>
-<tr>
-<td style="text-align:center">斜体</td>
-<td style="text-align:center"><code>*文本*</code> 或 <code>_文本_</code></td>
-</tr>
-<tr>
-<td style="text-align:center">删除线</td>
-<td style="text-align:center"><code>~~文本~~</code></td>
-</tr>
-<tr>
-<td style="text-align:center">下划线</td>
-<td style="text-align:center"><code>&lt;u&gt;文本&lt;/u&gt;</code></td>
-</tr>
-<tr>
-<td style="text-align:center">上标</td>
-<td style="text-align:center"><code>文本^上标^</code></td>
-</tr>
-<tr>
-<td style="text-align:center">下标</td>
-<td style="text-align:center"><code>文本~下标~</code></td>
-</tr>
-<tr>
-<td style="text-align:center">小号字体</td>
-<td style="text-align:center"><code>&lt;small&gt;小号字体&lt;/small&gt;</code></td>
-</tr>
-<tr>
-<td style="text-align:center">大号字体</td>
-<td style="text-align:center"><code>&lt;big&gt;大号字体&lt;/big&gt;</code></td>
-</tr>
-<tr>
-<td style="text-align:center">高亮</td>
-<td style="text-align:center"><code>==文本==</code></td>
-</tr>
-<tr>
-<td style="text-align:center">代码块</td>
-<td style="text-align:center">`代码` 或 ```代码```</td>
-</tr>
-<tr>
-<td style="text-align:center">链接</td>
-<td style="text-align:center"><code>[链接文本](链接地址)</code></td>
-</tr>
-<tr>
-<td style="text-align:center">图片</td>
-<td style="text-align:center"><code>![图片替代文本](图片链接地址)</code></td>
-</tr>
-<tr>
-<td style="text-align:center">引用</td>
-<td style="text-align:center">&gt; 引用内容</td>
-</tr>
-<tr>
-<td style="text-align:center">分割线</td>
-<td style="text-align:center">— 或 ***</td>
-</tr>
-<tr>
-<td style="text-align:center">数学公式</td>
-<td style="text-align:center"><code>$$LaTex$$</code></td>
-</tr>
-</tbody>
-</table>
-<span id="more"></span>
-<h2 id="箭头">箭头</h2>
-<p><strong>基本箭头</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">基本箭头</th>
-<th style="text-align:center">Markdown</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$\uparrow$</td>
-<td style="text-align:center"><code>$\uparrow$</code></td>
-</tr>
-<tr>
-<td style="text-align:center">$\downarrow$</td>
-<td style="text-align:center"><code>$\downarrow$</code></td>
-</tr>
-<tr>
-<td style="text-align:center">$\leftarrow$</td>
-<td style="text-align:center"><code>$\leftarrow$</code></td>
-</tr>
-<tr>
-<td style="text-align:center">$\rightarrow$</td>
-<td style="text-align:center"><code>$\rightarrow$</code></td>
-</tr>
-<tr>
-<td style="text-align:center">$\updownarrow$</td>
-<td style="text-align:center"><code>$\updownarrow$</code></td>
-</tr>
-<tr>
-<td style="text-align:center">$\leftrightarrow$</td>
-<td style="text-align:center"><code>$\leftrightarro$</code></td>
-</tr>
-</tbody>
-</table>
-<p><strong>双线箭头</strong>：基本箭头<mark>首字母大写</mark></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">双线箭头</th>
-<th style="text-align:center">Markdown</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$\Uparrow$</td>
-<td style="text-align:center"><code>$\Uparrow$</code></td>
-</tr>
-</tbody>
-</table>
-<p><strong>长箭头</strong>：基本箭头前+<mark>long</mark></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">长箭头</th>
-<th style="text-align:center">Markdown</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$\longrightarrow$</td>
-<td style="text-align:center"><code>$\longrightarrow$</code></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p>继续更新ing😄</p>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ps2019基础总结</title>
-    <url>/archives/2888cf0.html</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-<h1>Ps2019基础总结</h1>
-<h2 id="新建文档">新建文档</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><mark>Ctrl + N</mark></p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">像素</th>
-<th>分辨率</th>
-<th>颜色模式</th>
-<th>单位</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">打印</td>
-<td>300</td>
-<td>CMK</td>
-<td>cm</td>
-</tr>
-<tr>
-<td style="text-align:left">显示</td>
-<td>72</td>
-<td>RGB</td>
-<td>像素</td>
-</tr>
-</tbody>
-</table>
-<p><em>背景透明的显示：灰白格子</em></p>
-<h2 id="文件打开">文件打开</h2>
-<ol>
-<li class="lvl-3">
-<p><mark>Ctrl+O</mark> 打开文件（<strong>Ctrl</strong>：点选 <strong>Shift</strong>：连选）</p>
-</li>
-<li class="lvl-3">
-<p>资源管理器$\rightarrow$拖拽文件</p>
-</li>
-</ol>
-<span id="more"></span>
-<h2 id="文件查看">文件查看</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>窗口$\rightarrow$排列</p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/Photoshop_cmHe5yK04V.png" alt=""></p>
-<h2 id="文件保存">文件保存</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><mark>Ctrl+Shift+S</mark></p>
-</li>
-<li class="lvl-2">
-<p><input type="checkbox" id="checkbox0" checked="true"><label for="checkbox0">保持背景透明保存为PNG</label></p>
-</li>
-<li class="lvl-2">
-<p><input type="checkbox" id="checkbox1" checked="true"><label for="checkbox1">保存为GIF：文件$\rightarrow$导出$\rightarrow$存储为web格式（格式选为GIF）</label></p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/%25E5%259B%25BE%25E5%2583%258F%25E6%25A0%25BC%25E5%25BC%258F.jpg" alt=""></p>
-<h2 id="基本操作">基本操作</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>工具栏快捷键: <mark>Alt + 相应字母</mark></p>
-</li>
-<li class="lvl-2">
-<p>打开滚轮缩放（编辑$\rightarrow$首选项$\rightarrow$工具$\rightarrow$滚轮缩放）</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">快捷键</th>
-<th style="text-align:center">操作</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">V</td>
-<td style="text-align:center">移动</td>
-</tr>
-<tr>
-<td style="text-align:center">B</td>
-<td style="text-align:center">画笔</td>
-</tr>
-<tr>
-<td style="text-align:center">R</td>
-<td style="text-align:center">旋转</td>
-</tr>
-<tr>
-<td style="text-align:center">Z</td>
-<td style="text-align:center">缩放</td>
-</tr>
-<tr>
-<td style="text-align:center">M</td>
-<td style="text-align:center">选框</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + <code>+-</code></td>
-<td style="text-align:center">缩放</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + Z</td>
-<td style="text-align:center">撤回</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + Shift+ Z</td>
-<td style="text-align:center">前进</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + J</td>
-<td style="text-align:center">复制图层</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + Shift+ N</td>
-<td style="text-align:center">新建图层</td>
-</tr>
-<tr>
-<td style="text-align:center">Delete</td>
-<td style="text-align:center">删除图层</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + E</td>
-<td style="text-align:center">合并图层</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + Shift +  E</td>
-<td style="text-align:center">合并可见图层</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + [</td>
-<td style="text-align:center">图层下移</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + ]</td>
-<td style="text-align:center">图层上移</td>
-</tr>
-</tbody>
-</table>
-]]></content>
-      <categories>
-        <category>Tools</category>
-        <category>Software</category>
-      </categories>
-      <tags>
-        <tag>Ps</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows代理设置</title>
-    <url>/archives/7b6d4a85.html</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-<h1>Windows代理设置</h1>
-<h2 id="CMD">CMD</h2>
-<h3 id="临时生效">临时生效</h3>
-<p>命令行窗口关闭就失效</p>
-<span id="more"></span>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 设置</span><br><span class="line">set http_proxy=http://127.0.0.1:7890</span><br><span class="line"># 如需账户、密码</span><br><span class="line">set http_proxy_user=username</span><br><span class="line">set http_proxy_pass=password</span><br><span class="line"># 查看</span><br><span class="line">set http_proxy</span><br><span class="line"># 取消</span><br><span class="line">set http_proxy=</span><br><span class="line">set http_proxy_user=</span><br><span class="line">set http_proxy_pass=</span><br></pre></td></tr></table></figure>
-<h3 id="永久生效">永久生效</h3>
-<p>管理员运行CMD（Git也可用）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 设置</span><br><span class="line">wmic ENVIRONMENT create name=&quot;http_proxy&quot;,username=&quot;&lt;system&gt;&quot;, VariableValue=&quot;http://127.0.0.1:7890&quot;</span><br><span class="line"># 查看</span><br><span class="line">wmic ENVIRONMENT where &quot;name=&#x27;http_proxy&#x27;&quot; get UserName,VariableValue</span><br><span class="line"># 删除</span><br><span class="line">wmic ENVIRONMENT where &quot;name=&#x27;http_proxy&#x27;&quot; delete</span><br></pre></td></tr></table></figure>
-<h2 id="Git（永久生效）">Git（永久生效）</h2>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 设施全局代理</span><br><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br><span class="line"># 查看代理</span><br><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br><span class="line"># 取消全局代理</span><br><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
-<h2 id="Reference">Reference</h2>
-<p>[1]	windows设置和删除代理: <a href="https://liuxingjun.github.io/blog/2018/05/03/windows%E8%AE%BE%E7%BD%AE%E5%92%8C%E5%88%A0%E9%99%A4%E4%BB%A3%E7%90%86">https://liuxingjun.github.io/blog/2018/05/03/windows设置和删除代理</a></p>
-<p>[2]	git设置、查看、取消代理: <a href="https://www.cnblogs.com/yongy1030/p/11699086.html">https://www.cnblogs.com/yongy1030/p/11699086.html</a></p>
-]]></content>
-      <categories>
-        <category>Tools</category>
-        <category>Windows</category>
-      </categories>
-      <tags>
-        <tag>Proxy</tag>
-        <tag>CMD</tag>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>浅层语义分析（LSA）</title>
     <url>/archives/d42a069d.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer"/>
@@ -808,6 +706,108 @@ And then define the link:</p>
         <tag>Machine learning</tag>
         <tag>语义分析</tag>
         <tag>Data mining</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Anaconda-环境安装</title>
+    <url>/archives/eabeff19.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+<h1>Anaconda-Python环境安装</h1>
+<h3 id="查询版本信息">查询版本信息</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>驱动器版本：右键NVIDIA–&gt;系统信息（点击开始菜单，搜索<code>dxdiag</code>）</p>
+</li>
+</ul>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>对应cuda版本：</p>
+<p><a href="https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html">https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html</a></p>
+</li>
+</ul>
+<span id="more"></span>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>对应tensorflow版本：</p>
+<p><a href="https://tensorflow.google.cn/install/source_windows?hl=en#gpu">https://tensorflow.google.cn/install/source_windows?hl=en#gpu</a></p>
+</li>
+<li class="lvl-2">
+<p>对应pytorch版本：</p>
+<p><a href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a></p>
+</li>
+</ul>
+<h3 id="安装Anaconda">安装Anaconda</h3>
+<p>网址：<a href="https://repo.anaconda.com/archive/">https://repo.anaconda.com/archive/</a><br>
+<strong>安装事项</strong>：</p>
+<ol>
+<li class="lvl-3">
+<p>修改路径</p>
+</li>
+<li class="lvl-3">
+<p>不要勾选“Add Anaconda to the system PATH environment variable”。</p>
+</li>
+<li class="lvl-3">
+<p>添加上：<mark>Anaconda3、Anaconda3/Scripts、Anaconda3/Library/bin</mark>这3个文件夹的路径（用户+系统，环境变量打开方式为：计算机–属性–高级系统设置–环境变量）</p>
+</li>
+</ol>
+<h3 id="设置镜像源">设置镜像源</h3>
+<p>清华镜像网址：<a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/</a><br>
+参考：<a href="https://www.cpci.dev/anaconda-mirrors-configure/">https://www.cpci.dev/anaconda-mirrors-configure/</a></p>
+<ol>
+<li class="lvl-3">
+<p>生成 <mark>.condarc</mark> 文件： <code>conda config --set show_channel_urls yes</code>（C:\users\username\）</p>
+</li>
+<li class="lvl-3">
+<p>清华源复制到 <mark>.condarc</mark> 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: true</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch-lts: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">ssl_verify: false</span><br><span class="line"># 命令行</span><br><span class="line">conda clean -i</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>不走镜像、代理设置</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">channels:</span><br><span class="line"><span class="bullet">  -</span> defaults</span><br><span class="line">show<span class="emphasis">_channel_</span>urls: true</span><br><span class="line">proxy<span class="emphasis">_servers:</span></span><br><span class="line"><span class="emphasis">  http: 127.0.0.1:7890</span></span><br><span class="line"><span class="emphasis">  https: 127.0.0.1:7890</span></span><br><span class="line"><span class="emphasis">ssl_</span>verify: false</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="conda安装tensorflow">conda安装tensorflow</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n tf python=3.6</span><br><span class="line">activate tf</span><br><span class="line">conda install tensorflow-gpu=1.9.0</span><br><span class="line"># 根据python版本默认安装 </span><br><span class="line">conda install tensorflow-gpu</span><br><span class="line"></span><br><span class="line">pip install --upgrade tensorflow</span><br><span class="line">python -c &quot;import tensorflow as tf;print(tf.reduce_sum(tf.random.normal([1000, 1000])))&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="高版本pip安装tensorflow：">高版本pip安装tensorflow：</h3>
+<p><a href="https://tensorflow.google.cn/install/pip?hl=en#windows-native">https://tensorflow.google.cn/install/pip?hl=en#windows-native</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0</span><br><span class="line">#如果上面这个执行失败了，多执行几次</span><br><span class="line">#如果自己的显卡支持，安装了上面的两个配置后，再安装下面的tensorflow-gpu 2.7.0版本的话</span><br><span class="line">#就可以直接显示gpu版本的状态为为true</span><br><span class="line">pip install tensorflow-gpu==2.7.0</span><br><span class="line">pip install &quot;tensorflow&lt;2.11&quot;</span><br><span class="line"># 走清华镜像</span><br><span class="line"> -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"># 设置timeout</span><br><span class="line">pip --default-timeout=600 install &quot;tensorflow&lt;2.11&quot; -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"># Verify install:</span><br><span class="line">#python</span><br><span class="line">#impor tensorflow as tf</span><br><span class="line">#print(tf.config.list_physical_devices(&#x27;GPU&#x27;))</span><br></pre></td></tr></table></figure>
+<h3 id="conda安装pytorch">conda安装pytorch</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n pytorch python=3.8</span><br><span class="line">conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia</span><br></pre></td></tr></table></figure>
+<h4 id="CondaSSLError-OpenSSL-appears-to-be-unavailable-on-this-machine-OpenSSL-is-required-to-download-and-install-packages">CondaSSLError: OpenSSL appears to be unavailable on this machine. OpenSSL is required to download and install packages.</h4>
+<p><mark>解决的方法</mark>：</p>
+<ol>
+<li class="lvl-3">
+<p>到你的anaconda的安装目录位置：比如<br>
+<img src="https://gitee.com/humble_ao/Image/raw/master/c6c98a6807fd4b559bac2703f3399427.png" alt=""></p>
+</li>
+<li class="lvl-3">
+<p>D:\ProgramData\Anaconda3\Library\bin，找到如下两个DLL的文件：</p>
+<ol>
+<li class="lvl-6">libcrypto-1_1-x64.dll<br>
+libssl-1_1-x64.dll<br>
+<img src="https://gitee.com/humble_ao/Image/raw/master/db37a06081a944b6ad430fad2c9a5336.png" alt=""></li>
+</ol>
+</li>
+<li class="lvl-3">
+<p>复制到 D:\ProgramData\Anaconda3\DLLs<br>
+<img src="https://gitee.com/humble_ao/Image/raw/master/b76e975a080d48a8bf437c02f17c4178.png" alt=""></p>
+</li>
+<li class="lvl-3">
+<p>重启下shell</p>
+</li>
+</ol>
+<h3 id="测试">测试</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># tf</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">if</span> tf.test.gpu_device_name():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Default GPU Device: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(tf.test.gpu_device_name()))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Please install GPU version of TF&quot;</span>)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="built_in">print</span>(tf.test.gpu_device_name())</span><br><span class="line"><span class="built_in">print</span>(tf.test.is_gpu_available())</span><br><span class="line"></span><br><span class="line"><span class="comment"># pytorch</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">flag = torch.cuda.is_available()</span><br><span class="line"><span class="keyword">if</span> flag:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;CUDA可使用&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;CUDA不可用&quot;</span>)</span><br><span class="line"></span><br><span class="line">ngpu= <span class="number">1</span></span><br><span class="line"><span class="comment"># Decide which device we want to run on</span></span><br><span class="line">device = torch.device(<span class="string">&quot;cuda:0&quot;</span> <span class="keyword">if</span> (torch.cuda.is_available() <span class="keyword">and</span> ngpu &gt; <span class="number">0</span>) <span class="keyword">else</span> <span class="string">&quot;cpu&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;驱动为：&quot;</span>,device)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;GPU型号： &quot;</span>,torch.cuda.get_device_name(<span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="conda常用命令">conda常用命令</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version:</span><br><span class="line">conda -V</span><br><span class="line">env:</span><br><span class="line">conda env list</span><br><span class="line">conda create -n env python=3.6 </span><br><span class="line">conda remove -n env --all</span><br><span class="line">conda deactivate</span><br><span class="line">Package:</span><br><span class="line">conda list</span><br><span class="line">conda list -n your_env_name</span><br><span class="line">conda install -n env_name package_name</span><br><span class="line">conda update -n env_name package_name</span><br><span class="line">conda install numpy pandas matplotlib scikit-learn seaborn scikit-image opencv</span><br><span class="line">conda update conda</span><br><span class="line">conda update anaconda-navigator</span><br><span class="line">conda update navigator-updater</span><br><span class="line">conda update --all</span><br><span class="line"></span><br><span class="line">numpy matplotlib scikit-image scikit-learn tqdm pandas global-land-mask netCDF4 gdal</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Tools</category>
+        <category>Software</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Anaconda</tag>
       </tags>
   </entry>
 </search>
