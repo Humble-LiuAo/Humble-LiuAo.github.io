@@ -87,7 +87,7 @@
     <title>VSCode安装配置</title>
     <url>/archives/fe901771.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
-<p>安装：官网下载即可（<a href="https://code.visualstudio.com/%EF%BC%89%EF%BC%8C%E5%AE%89%E8%A3%85%E6%97%B6%E4%B8%80%E8%88%AC">https://code.visualstudio.com/），安装时一般</a> <strong>把path添加到环境变量</strong></p>
+<p>安装：官网下载即可（<a href="https://code.visualstudio.com">https://code.visualstudio.com</a>），安装时一般 <strong>把path添加到环境变量</strong></p>
 <p><u>因为VSCode可以同步设置，重点写一下无法同步的的设置</u></p>
 <h2 id="主题、字体、插件">主题、字体、插件</h2>
 <p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504200256615.png" alt=""></p>
