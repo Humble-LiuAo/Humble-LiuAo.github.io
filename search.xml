@@ -1,172 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Anaconda-环境安装</title>
-    <url>/archives/eabeff19.html</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
-<h3 id="查询版本信息">查询版本信息</h3>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>驱动器版本：右键NVIDIA–&gt;系统信息（点击开始菜单，搜索<code>dxdiag</code>）</p>
-</li>
-</ul>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>对应cuda版本：</p>
-<p><a href="https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html">https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html</a></p>
-</li>
-</ul>
-<span id="more"></span>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>对应tensorflow版本：</p>
-<p><a href="https://tensorflow.google.cn/install/source_windows?hl=en#gpu">https://tensorflow.google.cn/install/source_windows?hl=en#gpu</a></p>
-</li>
-<li class="lvl-2">
-<p>对应pytorch版本：</p>
-<p><a href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a></p>
-</li>
-</ul>
-<h3 id="安装Anaconda">安装Anaconda</h3>
-<p>网址：<a href="https://repo.anaconda.com/archive/">https://repo.anaconda.com/archive/</a><br>
-<strong>安装事项</strong>：</p>
-<ol>
-<li class="lvl-3">
-<p>修改路径</p>
-</li>
-<li class="lvl-3">
-<p>不要勾选“Add Anaconda to the system PATH environment variable”。</p>
-</li>
-<li class="lvl-3">
-<p>添加上：<mark>Anaconda3、Anaconda3/Scripts、Anaconda3/Library/bin</mark>这3个文件夹的路径（用户+系统，环境变量打开方式为：计算机–属性–高级系统设置–环境变量）</p>
-</li>
-</ol>
-<h3 id="设置镜像源">设置镜像源</h3>
-<p>清华镜像网址：<a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/</a><br>
-参考：<a href="https://www.cpci.dev/anaconda-mirrors-configure/">https://www.cpci.dev/anaconda-mirrors-configure/</a></p>
-<ol>
-<li class="lvl-3">
-<p>生成 <mark>.condarc</mark> 文件： <code>conda config --set show_channel_urls yes</code>（C:\users\username\）</p>
-</li>
-<li class="lvl-3">
-<p>清华源复制到 <mark>.condarc</mark> 文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: true</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch-lts: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">ssl_verify: false</span><br><span class="line"># 命令行</span><br><span class="line">conda clean -i</span><br></pre></td></tr></table></figure>
-</li>
-<li class="lvl-3">
-<p>不走镜像、代理设置</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">channels:</span><br><span class="line"><span class="bullet">  -</span> defaults</span><br><span class="line">show<span class="emphasis">_channel_</span>urls: true</span><br><span class="line">proxy<span class="emphasis">_servers:</span></span><br><span class="line"><span class="emphasis">  http: 127.0.0.1:7890</span></span><br><span class="line"><span class="emphasis">  https: 127.0.0.1:7890</span></span><br><span class="line"><span class="emphasis">ssl_</span>verify: false</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="conda安装tensorflow">conda安装tensorflow</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n tf python=3.6</span><br><span class="line">activate tf</span><br><span class="line">conda install tensorflow-gpu=1.9.0</span><br><span class="line"># 根据python版本默认安装 </span><br><span class="line">conda install tensorflow-gpu</span><br><span class="line"></span><br><span class="line">pip install --upgrade tensorflow</span><br><span class="line">python -c &quot;import tensorflow as tf;print(tf.reduce_sum(tf.random.normal([1000, 1000])))&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="高版本pip安装tensorflow：">高版本pip安装tensorflow：</h3>
-<p><a href="https://tensorflow.google.cn/install/pip?hl=en#windows-native">https://tensorflow.google.cn/install/pip?hl=en#windows-native</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0</span><br><span class="line">#如果上面这个执行失败了，多执行几次</span><br><span class="line">#如果自己的显卡支持，安装了上面的两个配置后，再安装下面的tensorflow-gpu 2.7.0版本的话</span><br><span class="line">#就可以直接显示gpu版本的状态为为true</span><br><span class="line">pip install tensorflow-gpu==2.7.0</span><br><span class="line">pip install &quot;tensorflow&lt;2.11&quot;</span><br><span class="line"># 走清华镜像</span><br><span class="line"> -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"># 设置timeout</span><br><span class="line">pip --default-timeout=600 install &quot;tensorflow&lt;2.11&quot; -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"># Verify install:</span><br><span class="line">#python</span><br><span class="line">#impor tensorflow as tf</span><br><span class="line">#print(tf.config.list_physical_devices(&#x27;GPU&#x27;))</span><br></pre></td></tr></table></figure>
-<h3 id="conda安装pytorch">conda安装pytorch</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n pytorch python=3.8</span><br><span class="line">conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia</span><br></pre></td></tr></table></figure>
-<h4 id="CondaSSLError-OpenSSL-appears-to-be-unavailable-on-this-machine-OpenSSL-is-required-to-download-and-install-packages">CondaSSLError: OpenSSL appears to be unavailable on this machine. OpenSSL is required to download and install packages.</h4>
-<p><mark>解决的方法</mark>：</p>
-<ol>
-<li class="lvl-3">
-<p>到你的anaconda的安装目录位置：比如<br>
-<img src="https://gitee.com/humble_ao/Image/raw/master/c6c98a6807fd4b559bac2703f3399427.png" alt=""></p>
-</li>
-<li class="lvl-3">
-<p>D:\ProgramData\Anaconda3\Library\bin，找到如下两个DLL的文件：</p>
-<ol>
-<li class="lvl-6">libcrypto-1_1-x64.dll<br>
-libssl-1_1-x64.dll<br>
-<img src="https://gitee.com/humble_ao/Image/raw/master/db37a06081a944b6ad430fad2c9a5336.png" alt=""></li>
-</ol>
-</li>
-<li class="lvl-3">
-<p>复制到 D:\ProgramData\Anaconda3\DLLs<br>
-<img src="https://gitee.com/humble_ao/Image/raw/master/b76e975a080d48a8bf437c02f17c4178.png" alt=""></p>
-</li>
-<li class="lvl-3">
-<p>重启下shell</p>
-</li>
-</ol>
-<h3 id="测试">测试</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># tf</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">if</span> tf.test.gpu_device_name():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Default GPU Device: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(tf.test.gpu_device_name()))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Please install GPU version of TF&quot;</span>)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="built_in">print</span>(tf.test.gpu_device_name())</span><br><span class="line"><span class="built_in">print</span>(tf.test.is_gpu_available())</span><br><span class="line"></span><br><span class="line"><span class="comment"># pytorch</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">flag = torch.cuda.is_available()</span><br><span class="line"><span class="keyword">if</span> flag:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;CUDA可使用&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;CUDA不可用&quot;</span>)</span><br><span class="line"></span><br><span class="line">ngpu= <span class="number">1</span></span><br><span class="line"><span class="comment"># Decide which device we want to run on</span></span><br><span class="line">device = torch.device(<span class="string">&quot;cuda:0&quot;</span> <span class="keyword">if</span> (torch.cuda.is_available() <span class="keyword">and</span> ngpu &gt; <span class="number">0</span>) <span class="keyword">else</span> <span class="string">&quot;cpu&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;驱动为：&quot;</span>,device)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;GPU型号： &quot;</span>,torch.cuda.get_device_name(<span class="number">0</span>))</span><br></pre></td></tr></table></figure>
-<h2 id="conda常用命令">conda常用命令</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version:</span><br><span class="line">conda -V</span><br><span class="line">env:</span><br><span class="line">conda env list</span><br><span class="line">conda create -n env python=3.6 </span><br><span class="line">conda remove -n env --all</span><br><span class="line">conda deactivate</span><br><span class="line">Package:</span><br><span class="line">conda list</span><br><span class="line">conda list -n your_env_name</span><br><span class="line">conda install -n env_name package_name</span><br><span class="line">conda update -n env_name package_name</span><br><span class="line">conda install numpy pandas matplotlib scikit-learn seaborn scikit-image opencv</span><br><span class="line">conda update conda</span><br><span class="line">conda update anaconda-navigator</span><br><span class="line">conda update navigator-updater</span><br><span class="line">conda update --all</span><br><span class="line"></span><br><span class="line">numpy matplotlib scikit-image scikit-learn tqdm pandas global-land-mask netCDF4 gdal</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Tools</category>
-        <category>Software</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Anaconda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LaTeX安装</title>
-    <url>/archives/88b90715.html</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-<p>LaTeX是一种专业的排版系统和标记语言，用于创建高质量的文档，尤其适合包含数学公式、技术内容和复杂结构的文档，如学术论文、书籍、报告、简历等。TeX Live是一款跨平台的LaTeX发行版，它包含了LaTeX编译器、宏包、字体和各种工具，适用于多种操作系统，如Windows、Linux和macOS。TeXstudio是一款免费开源的LaTeX编辑器。</p>
-<p>WIindows推荐： <mark>Texlive 2023 + TeX studio</mark></p>
-<span id="more"></span>
-<h2 id="Texlive-2023">Texlive 2023</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>ISO 映像下载：<a href="https://www.tug.org/texlive/acquire-iso.html">https://www.tug.org/texlive/acquire-iso.html</a></p>
-</li>
-</ul>
-<p><strong>打开下载后的.ISO文件，以管理员身份运行install-tl-windows.bat文件。</strong></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/explorer_vgFd0Lbe70.png" alt=""></p>
-<p><strong>修改安装位置</strong></p>
-<p><strong>选择安装语言</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>高级选项里 <mark>Advanced</mark> $\rightarrow$点击 <mark>Customize</mark> $\rightarrow$选择 <mark>中文和英文</mark></p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/20230502111347.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/wish_PhEbgdUYiI.png" alt=""></p>
-<p><strong>确定安装，等待安装完成后关闭窗口</strong></p>
-<hr>
-<h3 id="Texlive添加环境变量">Texlive添加环境变量</h3>
-<p>添加Texlive环境变量，以在命令行中执行tex的命令</p>
-<ol>
-<li class="lvl-3">
-<p>win+R 然后输入**sysdm.cpl **在高级中选择<em>环境变量</em></p>
-</li>
-<li class="lvl-3">
-<p>编辑的Path变量（建议<u>用户和系统</u>的Path都添加），添加txtlive中的<mark>bin/windows</mark>路径（如：D:\Software\texlive\2023\bin\windows）</p>
-</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/SystemPropertiesAdvanced_iXSckGIh1W.png" alt=""></p>
-<ol start="3">
-<li class="lvl-3">
-<p>查看验证安装版本（出现 <mark>版本号</mark> 则成功）</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tex -v</span><br><span class="line">latex -v</span><br><span class="line">xelatex -v</span><br><span class="line">pdflatex -v</span><br></pre></td></tr></table></figure>
-<h2 id="TeXstudio的安装">TeXstudio的安装</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>官网下载：<a href="https://texstudio.sourceforge.net/">https://texstudio.sourceforge.net/</a></p>
-</li>
-</ul>
-<p><strong>双击安装$\rightarrow$修改安装位置即可</strong></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/texstudio-4.5.2-win-qt6_5StfAN4gxi.png" alt=""></p>
-<p><strong>使用注意</strong>：<em>如果撰写中文论文，将默认编译器改为<code>Xelatex</code>。如果撰写英文论文，将默认编译器改为<code>Pdflatex</code></em></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/texstudio_xkx0Bq0fS9.png" alt=""></p>
-<h2 id="Reference">Reference</h2>
-<p>[1]	LaTeX的安装教程：<a href="https://blog.csdn.net/weixin_43872190/article/details/113736283">https://blog.csdn.net/weixin_43872190/article/details/113736283</a><br>
-[2]	Latex（一）安装和环境变量的设置：<a href="https://blog.csdn.net/explorer9607/article/details/103506387">https://blog.csdn.net/explorer9607/article/details/103506387</a></p>
-]]></content>
-      <categories>
-        <category>Tools</category>
-        <category>Software</category>
-      </categories>
-      <tags>
-        <tag>LaTeX</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ChatGPT-Application</title>
     <url>/archives/4bc47d90.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer"/>
@@ -243,160 +77,407 @@ libssl-1_1-x64.dll<br>
       </tags>
   </entry>
   <entry>
-    <title>Markdown-For-Typora</title>
-    <url>/archives/1ef37645.html</url>
+    <title>Pr2020基础总结</title>
+    <url>/archives/7eda6880.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
-<h2 id="Overview">Overview</h2>
-<p><strong>Markdown</strong> is created by <a href="http://daringfireball.net/">Daring Fireball</a>; the original guideline is <a href="http://daringfireball.net/projects/markdown/syntax">here</a>. Its syntax, however, varies between different parsers or editors. <strong>Typora</strong> is using <a href="https://help.github.com/articles/github-flavored-markdown/">GitHub Flavored Markdown</a>.</p>
 <span id="more"></span>
-<h2 id="Block-Elements">Block Elements</h2>
-<h3 id="Paragraph-and-line-breaks">Paragraph and line breaks</h3>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">1.按一次&quot;return&quot;即可创建新段落</span><br><span class="line">2.按&quot;shift&quot;+&quot;return&quot;以创建单行中断。大多数其他减值解析器将忽略单行中断，因此，为了让其他减值解析器识别您的线路中断，您可以在行的末尾留出两个空格，或插入&quot;<span class="language-xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span>&quot;。</span><br></pre></td></tr></table></figure>
-<h3 id="Headers">Headers</h3>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">标题在行的开头使用 1-6 个哈希字符（&#x27;#&#x27;），对应于标题级别 1-6。</span><br><span class="line">例如：</span><br><span class="line"><span class="section"># This is an H1</span></span><br><span class="line"></span><br><span class="line"><span class="section">## This is an H2</span></span><br><span class="line"></span><br><span class="line"><span class="section">###### This is an H6</span></span><br></pre></td></tr></table></figure>
-<h3 id="Blockquotes">Blockquotes</h3>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">Markdown 使用电子邮件式&gt;字符进行阻止引用。它们被呈现为:</span><br><span class="line"><span class="quote">&gt; This is a blockquote with two paragraphs. This is first paragraph.</span></span><br><span class="line"><span class="quote">&gt;</span></span><br><span class="line"><span class="quote">&gt; This is second pragraph. Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; This is another blockquote with one paragraph. There is three empty line to seperate two blockquote.</span></span><br><span class="line"></span><br><span class="line">在 Typora 中，输入&quot;&gt;&quot;，然后输入您的报价内容将生成报价块。Typora 将为您插入适当的&quot;&gt;&quot;或线路中断。嵌套块报价（另一个区块报价中的块报价），通过添加额外的&quot;&gt;&quot;级别。</span><br></pre></td></tr></table></figure>
-<h3 id="Lists">Lists</h3>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">输入&quot;* 列表项目 &quot; 将创建一个未排序的列表 -&quot;<span class="emphasis">*&quot;符号可以替换为&quot;+&quot;或&quot;-&quot;。   输入 &#x27;1.列表项目 &#x27; 将创建一个订单列表 - 其标记源代码如下：</span></span><br><span class="line"><span class="emphasis">## un-ordered list</span></span><br><span class="line"><span class="emphasis">*</span>   Red</span><br><span class="line"><span class="bullet">*</span>   Green</span><br><span class="line"><span class="bullet">*</span>   Blue</span><br><span class="line"></span><br><span class="line"><span class="section">## ordered list</span></span><br><span class="line"><span class="bullet">1.</span>  Red</span><br><span class="line"><span class="bullet">2.</span> 	Green</span><br><span class="line"><span class="bullet">3.</span>	Blue</span><br></pre></td></tr></table></figure>
-<h3 id="Task-List">Task List</h3>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">任务列表是标有 [] 或 [x] （不完整或已完成） 的项目列表。例如：</span><br><span class="line"><span class="bullet">-</span> [ ] a task list item</span><br><span class="line"><span class="bullet">-</span> [ ] list syntax required</span><br><span class="line"><span class="bullet">-</span> [ ] normal <span class="strong">**formatting**</span>, @mentions, #1234 refs</span><br><span class="line"><span class="bullet">-</span> [ ] incomplete</span><br><span class="line"><span class="bullet">-</span> [x] completed</span><br></pre></td></tr></table></figure>
-<h3 id="Fenced-Code-Blocks">(Fenced) Code Blocks</h3>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">Typora 只支持 fences in GitHub Flavored Markdown。不支持 Markdown 中的原始代码块。   使用 fences 很容易：输入<span class="code">```和按 &#x27;return&#x27;。在```</span>之后添加可选语言标识符，我们将通过语法加亮来运行它：</span><br><span class="line">Here&#x27;s an example:</span><br><span class="line"></span><br><span class="line"><span class="code">```js</span></span><br><span class="line"><span class="code">function test() &#123;</span></span><br><span class="line"><span class="code">  console.log(&quot;notice the blank line before this function?&quot;);</span></span><br><span class="line"><span class="code">&#125;</span></span><br><span class="line"><span class="code">```</span></span><br><span class="line"></span><br><span class="line">syntax highlighting:</span><br><span class="line"><span class="code">```ruby</span></span><br><span class="line"><span class="code">require &#x27;redcarpet&#x27;</span></span><br><span class="line"><span class="code">markdown = Redcarpet.new(&quot;Hello World!&quot;)</span></span><br><span class="line"><span class="code">puts markdown.to_html</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
-<h3 id="Math-Blocks">Math Blocks</h3>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">您可以使用<span class="strong">**MathJax**</span>来渲染[LaTeX]数学表达式。</span><br><span class="line">要添加数学表达，输入&quot;$$&quot;并按&quot;return&quot;键。这将触发一个接受 <span class="emphasis">*Tex/LaTex*</span> 源的输入字段。例如：</span><br></pre></td></tr></table></figure>
-<p>$$<br>
-\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix}<br>
-\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \<br>
-\frac{\partial X}{\partial u} &amp;  \frac{\partial Y}{\partial u} &amp; 0 \<br>
-\frac{\partial X}{\partial v} &amp;  \frac{\partial Y}{\partial v} &amp; 0 \<br>
-\end{vmatrix}<br>
-$$</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">In the markdown source file, the math block is a <span class="emphasis">*LaTeX*</span> expression wrapped by a pair of ‘$$’ marks:</span><br><span class="line">$$</span><br><span class="line">\mathbf&#123;V&#125;<span class="emphasis">_1 \times \mathbf&#123;V&#125;_</span>2 =  \begin&#123;vmatrix&#125;</span><br><span class="line">\mathbf&#123;i&#125; &amp; \mathbf&#123;j&#125; &amp; \mathbf&#123;k&#125; \\</span><br><span class="line">\frac&#123;\partial X&#125;&#123;\partial u&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial u&#125; &amp; 0 \\</span><br><span class="line">\frac&#123;\partial X&#125;&#123;\partial v&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial v&#125; &amp; 0 \\</span><br><span class="line">\end&#123;vmatrix&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>You can find more details <a href="https://support.typora.io/Math/">here</a>.</p>
-<h3 id="Tables">Tables</h3>
-<p>输入<code>| First Header  | Second Header |</code> &quot;并按<code>&quot;return&quot;</code>键。这将创建一个带有两列的表。   创建表后，将焦点放在该表上将打开表的工具栏，您可以调整表大小、对齐或删除表。您还可以使用上下文菜单复制和添加/删除单个列/行。   表的完整语法如下所述，但无需详细了解完整的语法，因为表的标记源代码由 Typora 自动生成。</p>
-<p>在 markdown 源代码中，它们看起来像：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">| First Header  | Second Header |</span><br><span class="line">| ------------- | ------------- |</span><br><span class="line">| Content Cell  | Content Cell  |</span><br><span class="line">| Content Cell  | Content Cell  |</span><br></pre></td></tr></table></figure>
-<p>您还可以在表中包含 inline Markdown 标记，如链接、粗体、斜体或删除线（links, bold, italics, or strikethrough）。</p>
-<p>最后，通过在头行中包含冒号  (<code>:</code>)，您可以将该列中的文本定义为左对齐、右对齐或中对齐：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">| Left-Aligned  | Center Aligned  | Right Aligned |</span><br><span class="line">| :------------ |:---------------:| -----:|</span><br><span class="line">| col 3 is      | some wordy text | $1600 |</span><br><span class="line">| col 2 is      | centered        |   $12 |</span><br><span class="line">| zebra stripes | are neat        |    $1 |</span><br></pre></td></tr></table></figure>
-<p>最左边的冒号表示左对齐的列；最右边的冒号表示列是右对齐的；两边的冒号表示是中心对齐的列。</p>
-<h3 id="Footnotes">Footnotes</h3>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">You can create footnotes like this[^footnote].</span><br><span class="line"></span><br><span class="line">[<span class="symbol">^footnote</span>]: <span class="link">Here is the *text* of the **footnote**.</span></span><br></pre></td></tr></table></figure>
-<p>will produce:</p>
-<p>You can create footnotes like this<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
-<p>将鼠标悬停在“脚注”上标上，可以查看脚注的内容。</p>
-<h3 id="Horizontal-Rules">Horizontal Rules</h3>
-<p>在空行输入 <code>***</code> 或 <code>---</code>，并按 <code>return</code> 将画出一条水平线。</p>
-<h3 id="YAML-Front-Matter">YAML Front Matter</h3>
-<p>Typora 现在支持<a href="http://jekyllrb.com/docs/frontmatter/">YAML Front Matter</a>。在文章的顶部输入<code>---</code>，然后按 <code>Return</code> 引入元数据块。或者，您可以从 Typora 的顶部菜单中插入元数据块。</p>
-<h3 id="Table-of-Contents-TOC">Table of Contents(TOC)</h3>
-<p>输入<code>[toc]</code>并按<code>Return</code>键。这将创建一个“目录”部分。TOC从文档中提取所有标题，当您添加到文档时，它的内容会自动更新。</p>
-<h2 id="Span-Elements">Span Elements</h2>
-<p>Span元素将在输入后立即被解析和呈现。将光标移动到这些span元素的中间会将这些元素展开为markdown源。下面是每个span元素的语法解释</p>
-<h3 id="Links">Links</h3>
-<p>Markdown支持两种样式的链接:内联和引用。</p>
-<p>在这两种样式中，链接文本由 [方括号] 分隔。</p>
-<p>要创建内联链接，请在链接文本的右方括号后立即使用一组规则括号。在圆括号内，将URL放置在您希望链接指向的位置，并为链接提供一个可选的标题，用引号括起来。例如:</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">This is [<span class="string">an example</span>](<span class="link">http://example.com/ &quot;Title&quot;</span>) inline link.</span><br><span class="line"></span><br><span class="line">[<span class="string">This link</span>](<span class="link">http://example.net/</span>) has no title attribute.</span><br></pre></td></tr></table></figure>
-<p>will produce:</p>
-<p>This is <a href="http://example.com/" title="Title">an example</a> inline link. (<code>&lt;p&gt;This is &lt;a href=&quot;http://example.com/&quot; title=&quot;Title&quot;&gt;</code>)</p>
-<p><a href="http://example.net/">This link</a> has no title attribute… (<code>&lt;p&gt;&lt;a href=&quot;http://example.net/&quot;&gt;This link&lt;/a&gt; has no</code>)</p>
-<h4 id="Internal-Links">Internal Links</h4>
-<p><strong>您可以将 href 设置为headers</strong>，这将创建一个书签，允许您单击后跳转到该部分。</p>
-<p>例如: 命令(在Windows上:Ctrl) +单击此 <a href="#block-elements">This link</a> 将跳转到标题块元素。要查看如何编写，请移动光标或按下⌘键单击该链接以将元素展开为 markdown 源。</p>
-<h4 id="Reference-Links">Reference Links</h4>
-<p>参考样式的链接使用第二组方括号，在里面你可以选择一个标签来标识链接:</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">This is [<span class="string">an example</span>][<span class="symbol">id</span>] reference-style link.</span><br><span class="line"></span><br><span class="line">Then, anywhere in the document, you define your link label on a line by itself like this:</span><br><span class="line"></span><br><span class="line">[<span class="symbol">id</span>]: <span class="link">http://example.com/  &quot;Optional Title Here&quot;</span></span><br></pre></td></tr></table></figure>
-<p>will produce</p>
-<p>This is <a href="http://example.com/" title="Optional Title Here">an example</a> reference-style link.</p>
-<p>Then, anywhere in the document, you define your link label on a line by itself like this:</p>
-<p>隐式链接名称快捷方式允许您省略链接的名称，在这种情况下链接文本本身将用作名称。只需使用一组空的方括号-例如，链接单词“Google”到 <a href="http://google.com">google.com</a> 网站，你可以简单地写:</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="string">Google</span>][<span class="symbol"></span>]</span><br><span class="line">And then define the link:</span><br><span class="line"></span><br><span class="line">[<span class="symbol">Google</span>]: <span class="link">http://google.com/</span></span><br></pre></td></tr></table></figure>
-<p><a href="http://google.com/">Google</a><br>
-And then define the link:</p>
-<h3 id="URLs">URLs</h3>
-<p>Typora允许你以链接的形式插入url，用’ &lt; <code>brackets</code> &gt; '包围。</p>
-<p><code>&lt;i@typora.io&gt;</code> becomes <a href="mailto:i@typora.io">i@typora.io</a>.</p>
-<p>Typora 也会自动链接标准 url。例如: <a href="http://www.google.com">www.google.com</a>。</p>
-<h3 id="Images">Images</h3>
-<p>图片的语法与链接类似，但它们在链接开始之前需要额外的 <code>!</code> 符号。插入图像的语法是这样的:</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/to/img.jpg</span>)</span><br><span class="line"></span><br><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/to/img.jpg &quot;Optional title&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>您可以使用拖放从图像文件或 web 浏览器插入图像。您可以通过单击图像来修改 markdown 源代码。如果使用拖放方式添加的图像与当前正在编辑的文档位于同一目录或子目录，则使用相对路径。</p>
-<p>如果你正在使用 markdown 来构建网站，你可以在 YAML Front Matters 中 使用属性<code>typora-root-url</code>为你的本地计算机上的图像预览指定一个URL前缀。例如，在YAML Front Matters 输入<code>typora-root-url:/User/Abner/Website/typora.io/</code>，然后<code>![alt](/blog/img/test.png)</code>在 Typora 将被视为<code>![alt](file:///User/Abner/Website/typora.io/blog/img/test.png)</code></p>
-<p>You can find more details <a href="https://support.typora.io/Images/">here</a>.</p>
-<h3 id="Emphasis">Emphasis</h3>
-<p>Markdown 将星号 (<code>*</code>) 和下划线(<code> _</code>)作为强调的指示符。用一个 <code>*</code> or <code>_</code> 包装的文本将用一个 HTML <code>&lt;em&gt;</code> tag 包装。例如:</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="emphasis">*single asterisks*</span></span><br><span class="line"></span><br><span class="line"><span class="emphasis">_single underscores_</span></span><br></pre></td></tr></table></figure>
-<p>output:</p>
-<p><em>single asterisks</em></p>
-<p><em>single underscores</em></p>
-<p>GFM 会忽略单词中常用的下划线，比如:</p>
-<blockquote>
-<p>wow_great_stuff</p>
-<p>do_this_and_do_that_and_another_thing.</p>
-</blockquote>
-<p>要在原本用作强调分隔符的位置产生星号或下划线，可以使用反斜杠转义:</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">\<span class="emphasis">*this text is surrounded by literal asterisks\*</span></span><br></pre></td></tr></table></figure>
-<p>推荐使用<code>*</code>符号。</p>
-<h3 id="Strong">Strong</h3>
-<p>双引号<code>*</code>或<code>_</code>将导致其包含的内容被一个HTML ’ <strong> '标签包装，例如</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="strong">**double asterisks**</span></span><br><span class="line"></span><br><span class="line"><span class="strong">__double underscores__</span></span><br></pre></td></tr></table></figure>
-<p>output:</p>
-<p><strong>double asterisks</strong></p>
-<p><strong>double underscores</strong></p>
-<p>推荐使用 <code>**</code>符号</p>
-<h3 id="Code">Code</h3>
-<p>若要指示代码的内联跨度，请用反勾引号(`)将其包装起来。与预格式化的代码块不同，代码跨度表示正常段落中的代码。例如:</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">Use the <span class="code">`printf()`</span> function.</span><br></pre></td></tr></table></figure>
-<p>will produce:</p>
-<p>Use the <code>printf()</code> function.</p>
-<p>使用<code>printf()</code>函数</p>
-<h3 id="Strikethrough">Strikethrough</h3>
-<p>GFM 添加了创建划线文本的语法，这是标准 Markdown 所缺少的。</p>
-<p><code>~~Mistaken text.~~</code> becomes <s>Mistaken text.</s></p>
-<h3 id="Underlines">Underlines</h3>
-<p>Underline 是由原始 HTML 驱动的。</p>
-<p><code>&lt;u&gt;Underline&lt;/u&gt;</code> becomes <u>Underline</u>.</p>
-<h3 id="Emoji-😄">Emoji 😄</h3>
-<p>输入带有语法的表情符号: <code>:smile:</code>。</p>
-<p>用户可以按下<code>ESC</code> 键自动完成对表情符号的建议，或者在首选面板上启用后自动触发。此外，直接输入 UTF-8 表情符号也可以通过菜单栏中的 <code>Edit</code> -&gt; <code>Emoji &amp; Symbols</code>来实现。</p>
-<h3 id="Inline-Math">Inline Math</h3>
-<p>要使用此功能，请先在 <code>Preference</code> 面板-&gt; <code>Markdown</code> 选项卡中启用它。然后，使用 <code>$</code> 包装 TeX 命令。例如: <code>$\lim_&#123;x \to \infty&#125; \exp(-x) = 0$</code> 将被呈现为 LaTeX 命令。</p>
-<p>要触发内联数学的内联预览:输入“$”，然后按“ESC”键，然后输入 TeX 命令。</p>
-<p>You can find more details <a href="https://support.typora.io/Math/">here</a>.</p>
-<h3 id="Subscript">Subscript</h3>
-<p>要使用此功能，请先在<code>Preference</code> 面板-&gt;<code>Markdown</code> 选项卡中启用它。然后，使用 <code>~</code> 包装下标内容。例如: <code>H~2~O</code>, <code>X~long\ text~</code>/</p>
-<h3 id="Superscript">Superscript</h3>
-<p>要使用此功能，请先在<code>Preference</code> 面板-&gt;<code>Markdown</code> 选项卡中启用它。然后，使用  <code>^</code>  包装上标内容。例如: <code>X^2^</code>.</p>
-<h3 id="Highlight">Highlight</h3>
-<p>要使用此功能，请先在<code>Preference</code> 面板-&gt;<code>Markdown</code> 选项卡中启用它。然后，使用 <code>==</code> 包装高亮内容。例如: <code>==highlight==</code>.</p>
-<h2 id="HTML">HTML</h2>
-<p>您可以使用 HTML 来样式化纯 Markdown 不支持的内容。例如，使用 <code>&lt;span style=&quot;color:red&quot;&gt;this text is red&lt;/span&gt;</code> 来添加红色文本。</p>
-<h3 id="Embed-Contents">Embed Contents</h3>
-<p>一些网站提供基于框架的嵌入代码，你也可以将其粘贴到 Typora 中。例如:</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">height</span>=<span class="string">&#x27;265&#x27;</span> <span class="attr">scrolling</span>=<span class="string">&#x27;no&#x27;</span> <span class="attr">title</span>=<span class="string">&#x27;Fancy Animated SVG Menu&#x27;</span> <span class="attr">src</span>=<span class="string">&#x27;http://codepen.io/jeangontijo/embed/OxVywj/?height=265&amp;theme-id=0&amp;default-tab=css,result&amp;embed-version=2&#x27;</span> <span class="attr">frameborder</span>=<span class="string">&#x27;no&#x27;</span> <span class="attr">allowtransparency</span>=<span class="string">&#x27;true&#x27;</span> <span class="attr">allowfullscreen</span>=<span class="string">&#x27;true&#x27;</span> <span class="attr">style</span>=<span class="string">&#x27;width: 100%;&#x27;</span>&gt;</span></span><span class="language-xml"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="Video">Video</h3>
-<p>你可以使用<code>&lt;video&gt;</code>HTML标签来嵌入视频。例如:</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">&quot;xxx.mp4&quot;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="Other-HTML-Support">Other HTML Support</h3>
-<p>You can find more details <a href="https://support.typora.io/HTML/">here</a>.</p>
-<h2 id="Reference">Reference</h2>
-<p>[1]	Typora的Markdown语法: <a href="https://support.typoraio.cn/zh/Markdown-Reference">https://support.typoraio.cn/zh/Markdown-Reference</a></p>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>Here is the <em>text</em> of the <strong>footnote</strong>. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>VSCode安装配置</title>
+    <url>/archives/fe901771.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<p>安装：官网下载即可（<a href="https://code.visualstudio.com/%EF%BC%89%EF%BC%8C%E5%AE%89%E8%A3%85%E6%97%B6%E4%B8%80%E8%88%AC**%E6%8A%8Apath%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">https://code.visualstudio.com/），安装时一般**把path添加到环境变量</a>**</p>
+<p><u>因为VSCode可以同步设置，重点写一下无法同步的的设置</u></p>
+<h2 id="主题、字体、插件">主题、字体、插件</h2>
+<img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504200256615.png" alt="image-20230504200256615" style="zoom:80%;" />
+<span id="more"></span>
+<img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504200520492.png" alt="image-20230504200520492" style="zoom:50%;" />
+<h2 id="配置C-1">配置C++<sup>[1]</sup></h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>安装 C++ 插件</strong></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/e1311c50b41c19263e0b72ca0e79cf2.png" alt=""></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>安装编译调试环境</strong></p>
+</li>
+</ul>
+<p>Windows 系统 按照下面步骤配置</p>
+<ol>
+<li class="lvl-3">
+<p>下载安装 mingw-w64：<a href="https://sourceforge.net/projects/mingw-w64/files/">https://sourceforge.net/projects/mingw-w64/files/</a></p>
+</li>
+<li class="lvl-3">
+<p>直接将 mingw-w64 解压到一个合适的目录（例如C:\Program Files下）</p>
+</li>
+<li class="lvl-3">
+<p>添加上****mingw-w64\bin**个文件夹的路径（用户+系统，环境变量打开方式为：计算机–属性–高级系统设置–环境变量）</p>
 </li>
 </ol>
-</section>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/e66b9612b8c5eaba62dae5366029335.png" alt=""></p>
+<ol start="4">
+<li class="lvl-3">
+<p>打开powershell/cmd， 输入 <strong>gcc -v</strong> , 看到版本说明环境变量配置成功</p>
+</li>
+</ol>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>配置VS Code调试环境</strong></p>
+</li>
+</ul>
+<ol>
+<li class="lvl-3">
+<p>新建 <strong>CPP\ .vscode</strong> 文件夹</p>
+</li>
+<li class="lvl-3">
+<p>在 .vscode 文件夹中，依次新建文件如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">c_cpp_properties.<span class="property">json</span></span><br><span class="line">launch.<span class="property">json</span></span><br><span class="line">tasks.<span class="property">json</span></span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>复制内容到 json文件</p>
+</li>
+</ol>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><mark>launch.json</mark>中：</p>
+<ul class="lvl-2">
+<li class="lvl-4"><strong>“miDebuggerPath”: 后面修改为你的 mingw64 路径</strong></li>
+<li class="lvl-4">“preLaunchTask”: “task g++”** 和 <strong>tasks.json</strong> 中的 <strong>“label”: “task g++”</strong> 引号中的名字要一致，本代码中为 <strong>task g++</strong></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// launch.json 配置</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// Use IntelliSense to learn about possible attributes.</span></span><br><span class="line"><span class="comment">// Hover to view descriptions of existing attributes.</span></span><br><span class="line"><span class="comment">// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line"><span class="string">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line"><span class="string">&quot;configurations&quot;</span>: [</span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;name&quot;</span>: <span class="string">&quot;(gdb) Launch&quot;</span>,</span><br><span class="line"><span class="string">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,<span class="comment">//配置类型，只能为cppdbg</span></span><br><span class="line"><span class="string">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,<span class="comment">//请求配置类型，可以为launch（启动）或attach（附加）</span></span><br><span class="line"><span class="string">&quot;program&quot;</span>: <span class="string">&quot;$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,<span class="comment">//调试程序的路径名称</span></span><br><span class="line"><span class="string">&quot;args&quot;</span>: [],<span class="comment">//调试传递参数</span></span><br><span class="line"><span class="string">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line"><span class="string">&quot;environment&quot;</span>: [],</span><br><span class="line"><span class="string">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,<span class="comment">//true显示外置的控制台窗口，false显示内置终端</span></span><br><span class="line"><span class="string">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line"><span class="string">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;C:\\mingw64\\bin\\gdb.exe&quot;</span>, </span><br><span class="line"><span class="string">&quot;setupCommands&quot;</span>: [</span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;description&quot;</span>: <span class="string">&quot;Enable pretty-printing for gdb&quot;</span>,</span><br><span class="line"><span class="string">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line"><span class="string">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;task g++&quot;</span>,<span class="comment">//调试前执行的任务，就是之前配置的tasks.json中的label字段</span></span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// tasks.json 配置文件</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// See https://go.microsoft.com/fwlink/?LinkId=733558 </span></span><br><span class="line"><span class="comment">// for the documentation about the tasks.json format</span></span><br><span class="line"><span class="string">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span><br><span class="line"><span class="string">&quot;tasks&quot;</span>: [</span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line"><span class="string">&quot;label&quot;</span>: <span class="string">&quot;task g++&quot;</span>,<span class="comment">//任务的名字，就是刚才在命令面板中选择的时候所看到的，可以自己设置</span></span><br><span class="line"><span class="string">&quot;command&quot;</span>: <span class="string">&quot;g++&quot;</span>,</span><br><span class="line"><span class="string">&quot;args&quot;</span>: [<span class="comment">//编译时候的参数</span></span><br><span class="line"><span class="string">&quot;-g&quot;</span>,<span class="comment">//添加gdb调试选项</span></span><br><span class="line"><span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line"><span class="string">&quot;-o&quot;</span>,<span class="comment">//指定生成可执行文件的名称</span></span><br><span class="line"><span class="string">&quot;$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;problemMatcher&quot;</span>: &#123;</span><br><span class="line"><span class="string">&quot;owner&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line"><span class="string">&quot;fileLocation&quot;</span>: [</span><br><span class="line"><span class="string">&quot;relative&quot;</span>,</span><br><span class="line"><span class="string">&quot;$&#123;workspaceRoot&#125;&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;pattern&quot;</span>: &#123;</span><br><span class="line"><span class="string">&quot;regexp&quot;</span>: <span class="string">&quot;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$&quot;</span>,</span><br><span class="line"><span class="string">&quot;file&quot;</span>: <span class="number">1</span>,</span><br><span class="line"><span class="string">&quot;line&quot;</span>: <span class="number">2</span>,</span><br><span class="line"><span class="string">&quot;column&quot;</span>: <span class="number">3</span>,</span><br><span class="line"><span class="string">&quot;severity&quot;</span>: <span class="number">4</span>,</span><br><span class="line"><span class="string">&quot;message&quot;</span>: <span class="number">5</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">&quot;group&quot;</span>: &#123;</span><br><span class="line"><span class="string">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line"><span class="string">&quot;isDefault&quot;</span>: <span class="literal">true</span><span class="comment">//表示快捷键Ctrl+Shift+B可以运行该任务</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// c_cpp_properties.json 配置文件</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;configurations&quot;</span>: [</span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;name&quot;</span>: <span class="string">&quot;Win32&quot;</span>,</span><br><span class="line"><span class="string">&quot;includePath&quot;</span>: [</span><br><span class="line"><span class="string">&quot;$&#123;workspaceFolder&#125;/**&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;defines&quot;</span>: [</span><br><span class="line"><span class="string">&quot;_DEBUG&quot;</span>,</span><br><span class="line"><span class="string">&quot;UNICODE&quot;</span>,</span><br><span class="line"><span class="string">&quot;_UNICODE&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;compilerPath&quot;</span>: <span class="string">&quot;C:/mingw64/bin/g++.exe&quot;</span>,</span><br><span class="line"><span class="string">&quot;cStandard&quot;</span>: <span class="string">&quot;c11&quot;</span>,</span><br><span class="line"><span class="string">&quot;cppStandard&quot;</span>: <span class="string">&quot;c++17&quot;</span>,</span><br><span class="line"><span class="string">&quot;intelliSenseMode&quot;</span>: <span class="string">&quot;gcc-x64&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;version&quot;</span>: <span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li class="lvl-4">
+<p>配置完上面，vscode就可以正常调试了</p>
+</li>
+</ol>
+<h2 id="优化配置">优化配置</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>程序文件路径不要有 <strong>中文</strong>，否则会导致 <strong>调试失败</strong></p>
+</li>
+<li class="lvl-2">
+<p>Vscode设置保留在单文件夹中，如果要更换文件夹，请把 <strong>.vscode</strong> 文件夹也复制到你要更改的文件夹中</p>
+</li>
+<li class="lvl-2">
+<p>中文显示乱码问题 VScode 编码设置/文件乱码</p>
+</li>
+<li class="lvl-2">
+<ul class="lvl-2">
+<li class="lvl-4">点击文件-&gt;首选项-&gt;设置，然后在右边用户设置输入：<strong>“files.autoGuessEncoding”: true</strong></li>
+<li class="lvl-4">插入这一行内用并保存。</li>
+<li class="lvl-4">或者如下图打钩：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/165f67da7eb2ba912d58cd6d6e712fa.png" alt=""></p>
+<p>加入这个设置后，VSCode会在打开文件时尝试猜测字符集编码。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>VsCode内部终端运行代码</p>
+</li>
+</ul>
+<p>设置在终端运行 : 首选项 -&gt; 设置 -&gt; 扩展 -&gt; Run Code ，勾选 <strong>Run In Terminal</strong> 和 <strong>Save File Before Run</strong></p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/f35d61b71af8ed28acf99d20e644c2e.png" alt=""></p>
+<p>后记：投降了，Linux我用Clion，看<a href="">Linux配置C++</a></p>
+<h2 id="Reference">Reference</h2>
+<p>[1]	VSCode配置C++开发环境（MinGW-w64）: <a href="https://juejin.cn/post/7170216201849667621">https://juejin.cn/post/7170216201849667621</a></p>
 ]]></content>
       <categories>
         <category>Tools</category>
         <category>Software</category>
       </categories>
       <tags>
-        <tag>Markdown</tag>
+        <tag>VSCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PyCharm安装配置</title>
+    <url>/archives/c545af56.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>PyCharm专业版是功能最丰富的，与社区版相比，PyCharm 业版增加了Web开发、Python We框架、Python分析器、远程开发、支持数据库与SQL等更多高级功能。</p>
+</li>
+<li class="lvl-2">
+<p>PyCharm的社区版中没有Web开发、Python We框架、Python分析器、远程开发、支持数据库与SQL等这些功能。</p>
+</li>
+<li class="lvl-2">
+<p>PyCharm教育版的功能虽然比专业版会少一些，但与社区版相比，更加支持学校的教学工作。</p>
+</li>
+</ul>
+<h2 id="PyCharm专业版安装">PyCharm专业版安装</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>参考 <mark>软件管家</mark>公众号，或点击：<a href="https://mp.weixin.qq.com/s/V2Ls-lcnymD9_ZullCh_fg">https://mp.weixin.qq.com/s/V2Ls-lcnymD9_ZullCh_fg</a></p>
+</li>
+</ul>
+<span id="more"></span>
+<h2 id="主题字体配置">主题字体配置</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>外观（先安装主题插件Material theme）</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504191917951.png" alt=""></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>代码字体</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504191946833.png" alt=""></p>
+<h2 id="插件配置">插件配置</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>CodeGlance</strong>: 代码缩略图</p>
+</li>
+<li class="lvl-2">
+<p><strong>IdeaVim</strong>: 在IDE中使用Vim编辑器的功能</p>
+</li>
+<li class="lvl-2">
+<p><strong>Key Promoter X</strong>: 自动提示快捷键</p>
+</li>
+<li class="lvl-2">
+<p><strong>Material Theme</strong>: 修改主题</p>
+</li>
+<li class="lvl-2">
+<p><strong>RestfulToolkitX</strong>： 供了一组用于构建 RESTful API 的工具和方法</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504192054149.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+        <category>Software</category>
+      </categories>
+      <tags>
+        <tag>PyCharm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LaTeX安装</title>
+    <url>/archives/88b90715.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<p>LaTeX是一种专业的排版系统和标记语言，用于创建高质量的文档，尤其适合包含数学公式、技术内容和复杂结构的文档，如学术论文、书籍、报告、简历等。TeX Live是一款跨平台的LaTeX发行版，它包含了LaTeX编译器、宏包、字体和各种工具，适用于多种操作系统，如Windows、Linux和macOS。TeXstudio是一款免费开源的LaTeX编辑器。</p>
+<p>WIindows推荐： <mark>Texlive 2023 + TeX studio</mark></p>
+<span id="more"></span>
+<h2 id="Texlive-2023">Texlive 2023</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>ISO 映像下载：<a href="https://www.tug.org/texlive/acquire-iso.html">https://www.tug.org/texlive/acquire-iso.html</a></p>
+</li>
+</ul>
+<p><strong>打开下载后的.ISO文件，以管理员身份运行install-tl-windows.bat文件。</strong></p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/explorer_vgFd0Lbe70.png" alt=""></p>
+<p><strong>修改安装位置</strong></p>
+<p><strong>选择安装语言</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>高级选项里 <mark>Advanced</mark> $\rightarrow$点击 <mark>Customize</mark> $\rightarrow$选择 <mark>中文和英文</mark></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/20230502111347.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/wish_PhEbgdUYiI.png" alt=""></p>
+<p><strong>确定安装，等待安装完成后关闭窗口</strong></p>
+<hr>
+<h3 id="Texlive添加环境变量">Texlive添加环境变量</h3>
+<p>添加Texlive环境变量，以在命令行中执行tex的命令</p>
+<ol>
+<li class="lvl-3">
+<p>win+R 然后输入**sysdm.cpl **在高级中选择<em>环境变量</em></p>
+</li>
+<li class="lvl-3">
+<p>编辑的Path变量（建议<u>用户和系统</u>的Path都添加），添加txtlive中的<mark>bin/windows</mark>路径（如：D:\Software\texlive\2023\bin\windows）</p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/SystemPropertiesAdvanced_iXSckGIh1W.png" alt=""></p>
+<ol start="3">
+<li class="lvl-3">
+<p>查看验证安装版本（出现 <mark>版本号</mark> 则成功）</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tex -v</span><br><span class="line">latex -v</span><br><span class="line">xelatex -v</span><br><span class="line">pdflatex -v</span><br></pre></td></tr></table></figure>
+<h2 id="TeXstudio的安装">TeXstudio的安装</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>官网下载：<a href="https://texstudio.sourceforge.net/">https://texstudio.sourceforge.net/</a></p>
+</li>
+</ul>
+<p><strong>双击安装$\rightarrow$修改安装位置即可</strong></p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/texstudio-4.5.2-win-qt6_5StfAN4gxi.png" alt=""></p>
+<p><strong>使用注意</strong>：<em>如果撰写中文论文，将默认编译器改为<code>Xelatex</code>。如果撰写英文论文，将默认编译器改为<code>Pdflatex</code></em></p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/texstudio_xkx0Bq0fS9.png" alt=""></p>
+<h2 id="Reference">Reference</h2>
+<p>[1]	LaTeX的安装教程：<a href="https://blog.csdn.net/weixin_43872190/article/details/113736283">https://blog.csdn.net/weixin_43872190/article/details/113736283</a><br>
+[2]	Latex（一）安装和环境变量的设置：<a href="https://blog.csdn.net/explorer9607/article/details/103506387">https://blog.csdn.net/explorer9607/article/details/103506387</a></p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+        <category>Software</category>
+      </categories>
+      <tags>
+        <tag>LaTeX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ps2019基础总结</title>
+    <url>/archives/2888cf0.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<p><strong>安装</strong>：参考 <mark>软件管家</mark> 公众号(<a href="https://mp.weixin.qq.com/s/jUEyqVY8RrU2RB_mlPlKDQ">https://mp.weixin.qq.com/s/jUEyqVY8RrU2RB_mlPlKDQ</a>)，推荐2019及以上版本</p>
+<p><u>注意：电脑出现蓝屏自动重启情况，是显卡驱动问题，需更新到最新版</u></p>
+<p>推荐使用<strong>GeForce Experience</strong>更新<strong>Studio</strong>（3D工作流畅）最新驱动</p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504091325087.png" alt="image-20230504091325087"></p>
+<h2 id="新建文档">新建文档</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><mark>Ctrl + N</mark></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">像素</th>
+<th>分辨率</th>
+<th>颜色模式</th>
+<th>单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">打印</td>
+<td>300</td>
+<td>CMK</td>
+<td>cm</td>
+</tr>
+<tr>
+<td style="text-align:left">显示</td>
+<td>72</td>
+<td>RGB</td>
+<td>像素</td>
+</tr>
+</tbody>
+</table>
+<p><em>背景透明的显示：灰白格子</em></p>
+<h2 id="文件打开">文件打开</h2>
+<ol>
+<li class="lvl-3">
+<p><mark>Ctrl+O</mark> 打开文件（<strong>Ctrl</strong>：点选 <strong>Shift</strong>：连选）</p>
+</li>
+<li class="lvl-3">
+<p>资源管理器$\rightarrow$拖拽文件</p>
+</li>
+</ol>
+<span id="more"></span>
+<h2 id="文件查看">文件查看</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>窗口$\rightarrow$排列</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/Photoshop_cmHe5yK04V.png" alt=""></p>
+<h2 id="文件保存">文件保存</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><mark>Ctrl+Shift+S</mark></p>
+</li>
+<li class="lvl-2">
+<p><input type="checkbox" id="checkbox0" checked="true"><label for="checkbox0">保持背景透明保存为PNG</label></p>
+</li>
+<li class="lvl-2">
+<p><input type="checkbox" id="checkbox1" checked="true"><label for="checkbox1">保存为GIF：文件$\rightarrow$导出$\rightarrow$存储为web格式（格式选为GIF）</label></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/%25E5%259B%25BE%25E5%2583%258F%25E6%25A0%25BC%25E5%25BC%258F.jpg" alt=""></p>
+<h2 id="基本操作">基本操作</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>工具栏快捷键: <mark>Alt + 相应字母</mark></p>
+</li>
+<li class="lvl-2">
+<p>打开滚轮缩放（编辑$\rightarrow$首选项$\rightarrow$工具$\rightarrow$滚轮缩放）</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">快捷键</th>
+<th style="text-align:center">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">V</td>
+<td style="text-align:center">移动</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">画笔</td>
+</tr>
+<tr>
+<td style="text-align:center">R</td>
+<td style="text-align:center">旋转</td>
+</tr>
+<tr>
+<td style="text-align:center">Z</td>
+<td style="text-align:center">缩放</td>
+</tr>
+<tr>
+<td style="text-align:center">M</td>
+<td style="text-align:center">选框</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + <code>+-</code></td>
+<td style="text-align:center">缩放</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + Z</td>
+<td style="text-align:center">撤回</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + Shift+ Z</td>
+<td style="text-align:center">前进</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + J</td>
+<td style="text-align:center">复制图层</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + Shift+ N</td>
+<td style="text-align:center">新建图层</td>
+</tr>
+<tr>
+<td style="text-align:center">Delete</td>
+<td style="text-align:center">删除图层</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + E</td>
+<td style="text-align:center">合并图层</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + Shift +  E</td>
+<td style="text-align:center">合并可见图层</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + [</td>
+<td style="text-align:center">图层下移</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl + ]</td>
+<td style="text-align:center">图层上移</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <categories>
+        <category>Tools</category>
+        <category>Software</category>
+      </categories>
+      <tags>
+        <tag>Ps</tag>
       </tags>
   </entry>
   <entry>
@@ -584,6 +665,163 @@ And then define the link:</p>
       </tags>
   </entry>
   <entry>
+    <title>Markdown-For-Typora</title>
+    <url>/archives/1ef37645.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<h2 id="Overview">Overview</h2>
+<p><strong>Markdown</strong> is created by <a href="http://daringfireball.net/">Daring Fireball</a>; the original guideline is <a href="http://daringfireball.net/projects/markdown/syntax">here</a>. Its syntax, however, varies between different parsers or editors. <strong>Typora</strong> is using <a href="https://help.github.com/articles/github-flavored-markdown/">GitHub Flavored Markdown</a>.</p>
+<span id="more"></span>
+<h2 id="Block-Elements">Block Elements</h2>
+<h3 id="Paragraph-and-line-breaks">Paragraph and line breaks</h3>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">1.按一次&quot;return&quot;即可创建新段落</span><br><span class="line">2.按&quot;shift&quot;+&quot;return&quot;以创建单行中断。大多数其他减值解析器将忽略单行中断，因此，为了让其他减值解析器识别您的线路中断，您可以在行的末尾留出两个空格，或插入&quot;<span class="language-xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span>&quot;。</span><br></pre></td></tr></table></figure>
+<h3 id="Headers">Headers</h3>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">标题在行的开头使用 1-6 个哈希字符（&#x27;#&#x27;），对应于标题级别 1-6。</span><br><span class="line">例如：</span><br><span class="line"><span class="section"># This is an H1</span></span><br><span class="line"></span><br><span class="line"><span class="section">## This is an H2</span></span><br><span class="line"></span><br><span class="line"><span class="section">###### This is an H6</span></span><br></pre></td></tr></table></figure>
+<h3 id="Blockquotes">Blockquotes</h3>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">Markdown 使用电子邮件式&gt;字符进行阻止引用。它们被呈现为:</span><br><span class="line"><span class="quote">&gt; This is a blockquote with two paragraphs. This is first paragraph.</span></span><br><span class="line"><span class="quote">&gt;</span></span><br><span class="line"><span class="quote">&gt; This is second pragraph. Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; This is another blockquote with one paragraph. There is three empty line to seperate two blockquote.</span></span><br><span class="line"></span><br><span class="line">在 Typora 中，输入&quot;&gt;&quot;，然后输入您的报价内容将生成报价块。Typora 将为您插入适当的&quot;&gt;&quot;或线路中断。嵌套块报价（另一个区块报价中的块报价），通过添加额外的&quot;&gt;&quot;级别。</span><br></pre></td></tr></table></figure>
+<h3 id="Lists">Lists</h3>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">输入&quot;* 列表项目 &quot; 将创建一个未排序的列表 -&quot;<span class="emphasis">*&quot;符号可以替换为&quot;+&quot;或&quot;-&quot;。   输入 &#x27;1.列表项目 &#x27; 将创建一个订单列表 - 其标记源代码如下：</span></span><br><span class="line"><span class="emphasis">## un-ordered list</span></span><br><span class="line"><span class="emphasis">*</span>   Red</span><br><span class="line"><span class="bullet">*</span>   Green</span><br><span class="line"><span class="bullet">*</span>   Blue</span><br><span class="line"></span><br><span class="line"><span class="section">## ordered list</span></span><br><span class="line"><span class="bullet">1.</span>  Red</span><br><span class="line"><span class="bullet">2.</span> 	Green</span><br><span class="line"><span class="bullet">3.</span>	Blue</span><br></pre></td></tr></table></figure>
+<h3 id="Task-List">Task List</h3>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">任务列表是标有 [] 或 [x] （不完整或已完成） 的项目列表。例如：</span><br><span class="line"><span class="bullet">-</span> [ ] a task list item</span><br><span class="line"><span class="bullet">-</span> [ ] list syntax required</span><br><span class="line"><span class="bullet">-</span> [ ] normal <span class="strong">**formatting**</span>, @mentions, #1234 refs</span><br><span class="line"><span class="bullet">-</span> [ ] incomplete</span><br><span class="line"><span class="bullet">-</span> [x] completed</span><br></pre></td></tr></table></figure>
+<h3 id="Fenced-Code-Blocks">(Fenced) Code Blocks</h3>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">Typora 只支持 fences in GitHub Flavored Markdown。不支持 Markdown 中的原始代码块。   使用 fences 很容易：输入<span class="code">```和按 &#x27;return&#x27;。在```</span>之后添加可选语言标识符，我们将通过语法加亮来运行它：</span><br><span class="line">Here&#x27;s an example:</span><br><span class="line"></span><br><span class="line"><span class="code">```js</span></span><br><span class="line"><span class="code">function test() &#123;</span></span><br><span class="line"><span class="code">  console.log(&quot;notice the blank line before this function?&quot;);</span></span><br><span class="line"><span class="code">&#125;</span></span><br><span class="line"><span class="code">```</span></span><br><span class="line"></span><br><span class="line">syntax highlighting:</span><br><span class="line"><span class="code">```ruby</span></span><br><span class="line"><span class="code">require &#x27;redcarpet&#x27;</span></span><br><span class="line"><span class="code">markdown = Redcarpet.new(&quot;Hello World!&quot;)</span></span><br><span class="line"><span class="code">puts markdown.to_html</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
+<h3 id="Math-Blocks">Math Blocks</h3>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">您可以使用<span class="strong">**MathJax**</span>来渲染[LaTeX]数学表达式。</span><br><span class="line">要添加数学表达，输入&quot;$$&quot;并按&quot;return&quot;键。这将触发一个接受 <span class="emphasis">*Tex/LaTex*</span> 源的输入字段。例如：</span><br></pre></td></tr></table></figure>
+<p>$$<br>
+\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix}<br>
+\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \<br>
+\frac{\partial X}{\partial u} &amp;  \frac{\partial Y}{\partial u} &amp; 0 \<br>
+\frac{\partial X}{\partial v} &amp;  \frac{\partial Y}{\partial v} &amp; 0 \<br>
+\end{vmatrix}<br>
+$$</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">In the markdown source file, the math block is a <span class="emphasis">*LaTeX*</span> expression wrapped by a pair of ‘$$’ marks:</span><br><span class="line">$$</span><br><span class="line">\mathbf&#123;V&#125;<span class="emphasis">_1 \times \mathbf&#123;V&#125;_</span>2 =  \begin&#123;vmatrix&#125;</span><br><span class="line">\mathbf&#123;i&#125; &amp; \mathbf&#123;j&#125; &amp; \mathbf&#123;k&#125; \\</span><br><span class="line">\frac&#123;\partial X&#125;&#123;\partial u&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial u&#125; &amp; 0 \\</span><br><span class="line">\frac&#123;\partial X&#125;&#123;\partial v&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial v&#125; &amp; 0 \\</span><br><span class="line">\end&#123;vmatrix&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>You can find more details <a href="https://support.typora.io/Math/">here</a>.</p>
+<h3 id="Tables">Tables</h3>
+<p>输入<code>| First Header  | Second Header |</code> &quot;并按<code>&quot;return&quot;</code>键。这将创建一个带有两列的表。   创建表后，将焦点放在该表上将打开表的工具栏，您可以调整表大小、对齐或删除表。您还可以使用上下文菜单复制和添加/删除单个列/行。   表的完整语法如下所述，但无需详细了解完整的语法，因为表的标记源代码由 Typora 自动生成。</p>
+<p>在 markdown 源代码中，它们看起来像：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">| First Header  | Second Header |</span><br><span class="line">| ------------- | ------------- |</span><br><span class="line">| Content Cell  | Content Cell  |</span><br><span class="line">| Content Cell  | Content Cell  |</span><br></pre></td></tr></table></figure>
+<p>您还可以在表中包含 inline Markdown 标记，如链接、粗体、斜体或删除线（links, bold, italics, or strikethrough）。</p>
+<p>最后，通过在头行中包含冒号  (<code>:</code>)，您可以将该列中的文本定义为左对齐、右对齐或中对齐：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">| Left-Aligned  | Center Aligned  | Right Aligned |</span><br><span class="line">| :------------ |:---------------:| -----:|</span><br><span class="line">| col 3 is      | some wordy text | $1600 |</span><br><span class="line">| col 2 is      | centered        |   $12 |</span><br><span class="line">| zebra stripes | are neat        |    $1 |</span><br></pre></td></tr></table></figure>
+<p>最左边的冒号表示左对齐的列；最右边的冒号表示列是右对齐的；两边的冒号表示是中心对齐的列。</p>
+<h3 id="Footnotes">Footnotes</h3>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">You can create footnotes like this[^footnote].</span><br><span class="line"></span><br><span class="line">[<span class="symbol">^footnote</span>]: <span class="link">Here is the *text* of the **footnote**.</span></span><br></pre></td></tr></table></figure>
+<p>will produce:</p>
+<p>You can create footnotes like this<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
+<p>将鼠标悬停在“脚注”上标上，可以查看脚注的内容。</p>
+<h3 id="Horizontal-Rules">Horizontal Rules</h3>
+<p>在空行输入 <code>***</code> 或 <code>---</code>，并按 <code>return</code> 将画出一条水平线。</p>
+<h3 id="YAML-Front-Matter">YAML Front Matter</h3>
+<p>Typora 现在支持<a href="http://jekyllrb.com/docs/frontmatter/">YAML Front Matter</a>。在文章的顶部输入<code>---</code>，然后按 <code>Return</code> 引入元数据块。或者，您可以从 Typora 的顶部菜单中插入元数据块。</p>
+<h3 id="Table-of-Contents-TOC">Table of Contents(TOC)</h3>
+<p>输入<code>[toc]</code>并按<code>Return</code>键。这将创建一个“目录”部分。TOC从文档中提取所有标题，当您添加到文档时，它的内容会自动更新。</p>
+<h2 id="Span-Elements">Span Elements</h2>
+<p>Span元素将在输入后立即被解析和呈现。将光标移动到这些span元素的中间会将这些元素展开为markdown源。下面是每个span元素的语法解释</p>
+<h3 id="Links">Links</h3>
+<p>Markdown支持两种样式的链接:内联和引用。</p>
+<p>在这两种样式中，链接文本由 [方括号] 分隔。</p>
+<p>要创建内联链接，请在链接文本的右方括号后立即使用一组规则括号。在圆括号内，将URL放置在您希望链接指向的位置，并为链接提供一个可选的标题，用引号括起来。例如:</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">This is [<span class="string">an example</span>](<span class="link">http://example.com/ &quot;Title&quot;</span>) inline link.</span><br><span class="line"></span><br><span class="line">[<span class="string">This link</span>](<span class="link">http://example.net/</span>) has no title attribute.</span><br></pre></td></tr></table></figure>
+<p>will produce:</p>
+<p>This is <a href="http://example.com/" title="Title">an example</a> inline link. (<code>&lt;p&gt;This is &lt;a href=&quot;http://example.com/&quot; title=&quot;Title&quot;&gt;</code>)</p>
+<p><a href="http://example.net/">This link</a> has no title attribute… (<code>&lt;p&gt;&lt;a href=&quot;http://example.net/&quot;&gt;This link&lt;/a&gt; has no</code>)</p>
+<h4 id="Internal-Links">Internal Links</h4>
+<p><strong>您可以将 href 设置为headers</strong>，这将创建一个书签，允许您单击后跳转到该部分。</p>
+<p>例如: 命令(在Windows上:Ctrl) +单击此 <a href="#block-elements">This link</a> 将跳转到标题块元素。要查看如何编写，请移动光标或按下⌘键单击该链接以将元素展开为 markdown 源。</p>
+<h4 id="Reference-Links">Reference Links</h4>
+<p>参考样式的链接使用第二组方括号，在里面你可以选择一个标签来标识链接:</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">This is [<span class="string">an example</span>][<span class="symbol">id</span>] reference-style link.</span><br><span class="line"></span><br><span class="line">Then, anywhere in the document, you define your link label on a line by itself like this:</span><br><span class="line"></span><br><span class="line">[<span class="symbol">id</span>]: <span class="link">http://example.com/  &quot;Optional Title Here&quot;</span></span><br></pre></td></tr></table></figure>
+<p>will produce</p>
+<p>This is <a href="http://example.com/" title="Optional Title Here">an example</a> reference-style link.</p>
+<p>Then, anywhere in the document, you define your link label on a line by itself like this:</p>
+<p>隐式链接名称快捷方式允许您省略链接的名称，在这种情况下链接文本本身将用作名称。只需使用一组空的方括号-例如，链接单词“Google”到 <a href="http://google.com">google.com</a> 网站，你可以简单地写:</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="string">Google</span>][<span class="symbol"></span>]</span><br><span class="line">And then define the link:</span><br><span class="line"></span><br><span class="line">[<span class="symbol">Google</span>]: <span class="link">http://google.com/</span></span><br></pre></td></tr></table></figure>
+<p><a href="http://google.com/">Google</a><br>
+And then define the link:</p>
+<h3 id="URLs">URLs</h3>
+<p>Typora允许你以链接的形式插入url，用’ &lt; <code>brackets</code> &gt; '包围。</p>
+<p><code>&lt;i@typora.io&gt;</code> becomes <a href="mailto:i@typora.io">i@typora.io</a>.</p>
+<p>Typora 也会自动链接标准 url。例如: <a href="http://www.google.com">www.google.com</a>。</p>
+<h3 id="Images">Images</h3>
+<p>图片的语法与链接类似，但它们在链接开始之前需要额外的 <code>!</code> 符号。插入图像的语法是这样的:</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/to/img.jpg</span>)</span><br><span class="line"></span><br><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/to/img.jpg &quot;Optional title&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>您可以使用拖放从图像文件或 web 浏览器插入图像。您可以通过单击图像来修改 markdown 源代码。如果使用拖放方式添加的图像与当前正在编辑的文档位于同一目录或子目录，则使用相对路径。</p>
+<p>如果你正在使用 markdown 来构建网站，你可以在 YAML Front Matters 中 使用属性<code>typora-root-url</code>为你的本地计算机上的图像预览指定一个URL前缀。例如，在YAML Front Matters 输入<code>typora-root-url:/User/Abner/Website/typora.io/</code>，然后<code>![alt](/blog/img/test.png)</code>在 Typora 将被视为<code>![alt](file:///User/Abner/Website/typora.io/blog/img/test.png)</code></p>
+<p>You can find more details <a href="https://support.typora.io/Images/">here</a>.</p>
+<h3 id="Emphasis">Emphasis</h3>
+<p>Markdown 将星号 (<code>*</code>) 和下划线(<code> _</code>)作为强调的指示符。用一个 <code>*</code> or <code>_</code> 包装的文本将用一个 HTML <code>&lt;em&gt;</code> tag 包装。例如:</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="emphasis">*single asterisks*</span></span><br><span class="line"></span><br><span class="line"><span class="emphasis">_single underscores_</span></span><br></pre></td></tr></table></figure>
+<p>output:</p>
+<p><em>single asterisks</em></p>
+<p><em>single underscores</em></p>
+<p>GFM 会忽略单词中常用的下划线，比如:</p>
+<blockquote>
+<p>wow_great_stuff</p>
+<p>do_this_and_do_that_and_another_thing.</p>
+</blockquote>
+<p>要在原本用作强调分隔符的位置产生星号或下划线，可以使用反斜杠转义:</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">\<span class="emphasis">*this text is surrounded by literal asterisks\*</span></span><br></pre></td></tr></table></figure>
+<p>推荐使用<code>*</code>符号。</p>
+<h3 id="Strong">Strong</h3>
+<p>双引号<code>*</code>或<code>_</code>将导致其包含的内容被一个HTML ’ <strong> '标签包装，例如</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="strong">**double asterisks**</span></span><br><span class="line"></span><br><span class="line"><span class="strong">__double underscores__</span></span><br></pre></td></tr></table></figure>
+<p>output:</p>
+<p><strong>double asterisks</strong></p>
+<p><strong>double underscores</strong></p>
+<p>推荐使用 <code>**</code>符号</p>
+<h3 id="Code">Code</h3>
+<p>若要指示代码的内联跨度，请用反勾引号(`)将其包装起来。与预格式化的代码块不同，代码跨度表示正常段落中的代码。例如:</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">Use the <span class="code">`printf()`</span> function.</span><br></pre></td></tr></table></figure>
+<p>will produce:</p>
+<p>Use the <code>printf()</code> function.</p>
+<p>使用<code>printf()</code>函数</p>
+<h3 id="Strikethrough">Strikethrough</h3>
+<p>GFM 添加了创建划线文本的语法，这是标准 Markdown 所缺少的。</p>
+<p><code>~~Mistaken text.~~</code> becomes <s>Mistaken text.</s></p>
+<h3 id="Underlines">Underlines</h3>
+<p>Underline 是由原始 HTML 驱动的。</p>
+<p><code>&lt;u&gt;Underline&lt;/u&gt;</code> becomes <u>Underline</u>.</p>
+<h3 id="Emoji-😄">Emoji 😄</h3>
+<p>输入带有语法的表情符号: <code>:smile:</code>。</p>
+<p>用户可以按下<code>ESC</code> 键自动完成对表情符号的建议，或者在首选面板上启用后自动触发。此外，直接输入 UTF-8 表情符号也可以通过菜单栏中的 <code>Edit</code> -&gt; <code>Emoji &amp; Symbols</code>来实现。</p>
+<h3 id="Inline-Math">Inline Math</h3>
+<p>要使用此功能，请先在 <code>Preference</code> 面板-&gt; <code>Markdown</code> 选项卡中启用它。然后，使用 <code>$</code> 包装 TeX 命令。例如: <code>$\lim_&#123;x \to \infty&#125; \exp(-x) = 0$</code> 将被呈现为 LaTeX 命令。</p>
+<p>要触发内联数学的内联预览:输入“$”，然后按“ESC”键，然后输入 TeX 命令。</p>
+<p>You can find more details <a href="https://support.typora.io/Math/">here</a>.</p>
+<h3 id="Subscript">Subscript</h3>
+<p>要使用此功能，请先在<code>Preference</code> 面板-&gt;<code>Markdown</code> 选项卡中启用它。然后，使用 <code>~</code> 包装下标内容。例如: <code>H~2~O</code>, <code>X~long\ text~</code>/</p>
+<h3 id="Superscript">Superscript</h3>
+<p>要使用此功能，请先在<code>Preference</code> 面板-&gt;<code>Markdown</code> 选项卡中启用它。然后，使用  <code>^</code>  包装上标内容。例如: <code>X^2^</code>.</p>
+<h3 id="Highlight">Highlight</h3>
+<p>要使用此功能，请先在<code>Preference</code> 面板-&gt;<code>Markdown</code> 选项卡中启用它。然后，使用 <code>==</code> 包装高亮内容。例如: <code>==highlight==</code>.</p>
+<h2 id="HTML">HTML</h2>
+<p>您可以使用 HTML 来样式化纯 Markdown 不支持的内容。例如，使用 <code>&lt;span style=&quot;color:red&quot;&gt;this text is red&lt;/span&gt;</code> 来添加红色文本。</p>
+<h3 id="Embed-Contents">Embed Contents</h3>
+<p>一些网站提供基于框架的嵌入代码，你也可以将其粘贴到 Typora 中。例如:</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">height</span>=<span class="string">&#x27;265&#x27;</span> <span class="attr">scrolling</span>=<span class="string">&#x27;no&#x27;</span> <span class="attr">title</span>=<span class="string">&#x27;Fancy Animated SVG Menu&#x27;</span> <span class="attr">src</span>=<span class="string">&#x27;http://codepen.io/jeangontijo/embed/OxVywj/?height=265&amp;theme-id=0&amp;default-tab=css,result&amp;embed-version=2&#x27;</span> <span class="attr">frameborder</span>=<span class="string">&#x27;no&#x27;</span> <span class="attr">allowtransparency</span>=<span class="string">&#x27;true&#x27;</span> <span class="attr">allowfullscreen</span>=<span class="string">&#x27;true&#x27;</span> <span class="attr">style</span>=<span class="string">&#x27;width: 100%;&#x27;</span>&gt;</span></span><span class="language-xml"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="Video">Video</h3>
+<p>你可以使用<code>&lt;video&gt;</code>HTML标签来嵌入视频。例如:</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">&quot;xxx.mp4&quot;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="Other-HTML-Support">Other HTML Support</h3>
+<p>You can find more details <a href="https://support.typora.io/HTML/">here</a>.</p>
+<h2 id="Reference">Reference</h2>
+<p>[1]	Typora的Markdown语法: <a href="https://support.typoraio.cn/zh/Markdown-Reference">https://support.typoraio.cn/zh/Markdown-Reference</a></p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Here is the <em>text</em> of the <strong>footnote</strong>. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+]]></content>
+      <categories>
+        <category>Tools</category>
+        <category>Software</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>浅层语义分析（LSA）</title>
     <url>/archives/d42a069d.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer"/>
@@ -653,342 +891,104 @@ And then define the link:</p>
       </tags>
   </entry>
   <entry>
-    <title>Pr2020基础总结</title>
-    <url>/archives/7eda6880.html</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-<span id="more"></span>
-]]></content>
-  </entry>
-  <entry>
-    <title>PyCharm安装配置</title>
-    <url>/archives/c545af56.html</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+    <title>Anaconda-环境安装</title>
+    <url>/archives/eabeff19.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+<h3 id="查询版本信息">查询版本信息</h3>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>PyCharm专业版是功能最丰富的，与社区版相比，PyCharm 业版增加了Web开发、Python We框架、Python分析器、远程开发、支持数据库与SQL等更多高级功能。</p>
-</li>
-<li class="lvl-2">
-<p>PyCharm的社区版中没有Web开发、Python We框架、Python分析器、远程开发、支持数据库与SQL等这些功能。</p>
-</li>
-<li class="lvl-2">
-<p>PyCharm教育版的功能虽然比专业版会少一些，但与社区版相比，更加支持学校的教学工作。</p>
+<p>驱动器版本：右键NVIDIA–&gt;系统信息（点击开始菜单，搜索<code>dxdiag</code>）</p>
 </li>
 </ul>
-<h2 id="PyCharm专业版安装">PyCharm专业版安装</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>参考 <mark>软件管家</mark>公众号，或点击：<a href="https://mp.weixin.qq.com/s/V2Ls-lcnymD9_ZullCh_fg">https://mp.weixin.qq.com/s/V2Ls-lcnymD9_ZullCh_fg</a></p>
+<p>对应cuda版本：</p>
+<p><a href="https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html">https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html</a></p>
 </li>
 </ul>
 <span id="more"></span>
-<h2 id="主题字体配置">主题字体配置</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>外观（先安装主题插件Material theme）</p>
+<p>对应tensorflow版本：</p>
+<p><a href="https://tensorflow.google.cn/install/source_windows?hl=en#gpu">https://tensorflow.google.cn/install/source_windows?hl=en#gpu</a></p>
+</li>
+<li class="lvl-2">
+<p>对应pytorch版本：</p>
+<p><a href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a></p>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504191917951.png" alt=""></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>代码字体</p>
+<h3 id="安装Anaconda">安装Anaconda</h3>
+<p>网址：<a href="https://repo.anaconda.com/archive/">https://repo.anaconda.com/archive/</a><br>
+<strong>安装事项</strong>：</p>
+<ol>
+<li class="lvl-3">
+<p>修改路径</p>
 </li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504191946833.png" alt=""></p>
-<h2 id="插件配置">插件配置</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>CodeGlance</strong>: 代码缩略图</p>
+<li class="lvl-3">
+<p>不要勾选“Add Anaconda to the system PATH environment variable”。</p>
 </li>
-<li class="lvl-2">
-<p><strong>IdeaVim</strong>: 在IDE中使用Vim编辑器的功能</p>
+<li class="lvl-3">
+<p>添加上：<mark>Anaconda3、Anaconda3/Scripts、Anaconda3/Library/bin</mark>这3个文件夹的路径（用户+系统，环境变量打开方式为：计算机–属性–高级系统设置–环境变量）</p>
 </li>
-<li class="lvl-2">
-<p><strong>Key Promoter X</strong>: 自动提示快捷键</p>
+</ol>
+<h3 id="设置镜像源">设置镜像源</h3>
+<p>清华镜像网址：<a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/</a><br>
+参考：<a href="https://www.cpci.dev/anaconda-mirrors-configure/">https://www.cpci.dev/anaconda-mirrors-configure/</a></p>
+<ol>
+<li class="lvl-3">
+<p>生成 <mark>.condarc</mark> 文件： <code>conda config --set show_channel_urls yes</code>（C:\users\username\）</p>
 </li>
-<li class="lvl-2">
-<p><strong>Material Theme</strong>: 修改主题</p>
+<li class="lvl-3">
+<p>清华源复制到 <mark>.condarc</mark> 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: true</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch-lts: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">ssl_verify: false</span><br><span class="line"># 命令行</span><br><span class="line">conda clean -i</span><br></pre></td></tr></table></figure>
 </li>
-<li class="lvl-2">
-<p><strong>RestfulToolkitX</strong>： 供了一组用于构建 RESTful API 的工具和方法</p>
+<li class="lvl-3">
+<p>不走镜像、代理设置</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">channels:</span><br><span class="line"><span class="bullet">  -</span> defaults</span><br><span class="line">show<span class="emphasis">_channel_</span>urls: true</span><br><span class="line">proxy<span class="emphasis">_servers:</span></span><br><span class="line"><span class="emphasis">  http: 127.0.0.1:7890</span></span><br><span class="line"><span class="emphasis">  https: 127.0.0.1:7890</span></span><br><span class="line"><span class="emphasis">ssl_</span>verify: false</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504192054149.png" alt=""></p>
+</ol>
+<h3 id="conda安装tensorflow">conda安装tensorflow</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n tf python=3.6</span><br><span class="line">activate tf</span><br><span class="line">conda install tensorflow-gpu=1.9.0</span><br><span class="line"># 根据python版本默认安装 </span><br><span class="line">conda install tensorflow-gpu</span><br><span class="line"></span><br><span class="line">pip install --upgrade tensorflow</span><br><span class="line">python -c &quot;import tensorflow as tf;print(tf.reduce_sum(tf.random.normal([1000, 1000])))&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="高版本pip安装tensorflow：">高版本pip安装tensorflow：</h3>
+<p><a href="https://tensorflow.google.cn/install/pip?hl=en#windows-native">https://tensorflow.google.cn/install/pip?hl=en#windows-native</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0</span><br><span class="line">#如果上面这个执行失败了，多执行几次</span><br><span class="line">#如果自己的显卡支持，安装了上面的两个配置后，再安装下面的tensorflow-gpu 2.7.0版本的话</span><br><span class="line">#就可以直接显示gpu版本的状态为为true</span><br><span class="line">pip install tensorflow-gpu==2.7.0</span><br><span class="line">pip install &quot;tensorflow&lt;2.11&quot;</span><br><span class="line"># 走清华镜像</span><br><span class="line"> -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"># 设置timeout</span><br><span class="line">pip --default-timeout=600 install &quot;tensorflow&lt;2.11&quot; -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"># Verify install:</span><br><span class="line">#python</span><br><span class="line">#impor tensorflow as tf</span><br><span class="line">#print(tf.config.list_physical_devices(&#x27;GPU&#x27;))</span><br></pre></td></tr></table></figure>
+<h3 id="conda安装pytorch">conda安装pytorch</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n pytorch python=3.8</span><br><span class="line">conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia</span><br></pre></td></tr></table></figure>
+<h4 id="CondaSSLError-OpenSSL-appears-to-be-unavailable-on-this-machine-OpenSSL-is-required-to-download-and-install-packages">CondaSSLError: OpenSSL appears to be unavailable on this machine. OpenSSL is required to download and install packages.</h4>
+<p><mark>解决的方法</mark>：</p>
+<ol>
+<li class="lvl-3">
+<p>到你的anaconda的安装目录位置：比如<br>
+<img src="https://gitee.com/humble_ao/Image/raw/master/c6c98a6807fd4b559bac2703f3399427.png" alt=""></p>
+</li>
+<li class="lvl-3">
+<p>D:\ProgramData\Anaconda3\Library\bin，找到如下两个DLL的文件：</p>
+<ol>
+<li class="lvl-6">libcrypto-1_1-x64.dll<br>
+libssl-1_1-x64.dll<br>
+<img src="https://gitee.com/humble_ao/Image/raw/master/db37a06081a944b6ad430fad2c9a5336.png" alt=""></li>
+</ol>
+</li>
+<li class="lvl-3">
+<p>复制到 D:\ProgramData\Anaconda3\DLLs<br>
+<img src="https://gitee.com/humble_ao/Image/raw/master/b76e975a080d48a8bf437c02f17c4178.png" alt=""></p>
+</li>
+<li class="lvl-3">
+<p>重启下shell</p>
+</li>
+</ol>
+<h3 id="测试">测试</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># tf</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">if</span> tf.test.gpu_device_name():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Default GPU Device: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(tf.test.gpu_device_name()))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Please install GPU version of TF&quot;</span>)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="built_in">print</span>(tf.test.gpu_device_name())</span><br><span class="line"><span class="built_in">print</span>(tf.test.is_gpu_available())</span><br><span class="line"></span><br><span class="line"><span class="comment"># pytorch</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">flag = torch.cuda.is_available()</span><br><span class="line"><span class="keyword">if</span> flag:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;CUDA可使用&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;CUDA不可用&quot;</span>)</span><br><span class="line"></span><br><span class="line">ngpu= <span class="number">1</span></span><br><span class="line"><span class="comment"># Decide which device we want to run on</span></span><br><span class="line">device = torch.device(<span class="string">&quot;cuda:0&quot;</span> <span class="keyword">if</span> (torch.cuda.is_available() <span class="keyword">and</span> ngpu &gt; <span class="number">0</span>) <span class="keyword">else</span> <span class="string">&quot;cpu&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;驱动为：&quot;</span>,device)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;GPU型号： &quot;</span>,torch.cuda.get_device_name(<span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="conda常用命令">conda常用命令</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version:</span><br><span class="line">conda -V</span><br><span class="line">env:</span><br><span class="line">conda env list</span><br><span class="line">conda create -n env python=3.6 </span><br><span class="line">conda remove -n env --all</span><br><span class="line">conda deactivate</span><br><span class="line">Package:</span><br><span class="line">conda list</span><br><span class="line">conda list -n your_env_name</span><br><span class="line">conda install -n env_name package_name</span><br><span class="line">conda update -n env_name package_name</span><br><span class="line">conda install numpy pandas matplotlib scikit-learn seaborn scikit-image opencv</span><br><span class="line">conda update conda</span><br><span class="line">conda update anaconda-navigator</span><br><span class="line">conda update navigator-updater</span><br><span class="line">conda update --all</span><br><span class="line"></span><br><span class="line">numpy matplotlib scikit-image scikit-learn tqdm pandas global-land-mask netCDF4 gdal</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Tools</category>
         <category>Software</category>
       </categories>
       <tags>
-        <tag>PyCharm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ps2019基础总结</title>
-    <url>/archives/2888cf0.html</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-<p><strong>安装</strong>：参考 <mark>软件管家</mark> 公众号(<a href="https://mp.weixin.qq.com/s/jUEyqVY8RrU2RB_mlPlKDQ">https://mp.weixin.qq.com/s/jUEyqVY8RrU2RB_mlPlKDQ</a>)，推荐2019及以上版本</p>
-<p><u>注意：电脑出现蓝屏自动重启情况，是显卡驱动问题，需更新到最新版</u></p>
-<p>推荐使用<strong>GeForce Experience</strong>更新<strong>Studio</strong>（3D工作流畅）最新驱动</p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504091325087.png" alt="image-20230504091325087"></p>
-<h2 id="新建文档">新建文档</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><mark>Ctrl + N</mark></p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">像素</th>
-<th>分辨率</th>
-<th>颜色模式</th>
-<th>单位</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">打印</td>
-<td>300</td>
-<td>CMK</td>
-<td>cm</td>
-</tr>
-<tr>
-<td style="text-align:left">显示</td>
-<td>72</td>
-<td>RGB</td>
-<td>像素</td>
-</tr>
-</tbody>
-</table>
-<p><em>背景透明的显示：灰白格子</em></p>
-<h2 id="文件打开">文件打开</h2>
-<ol>
-<li class="lvl-3">
-<p><mark>Ctrl+O</mark> 打开文件（<strong>Ctrl</strong>：点选 <strong>Shift</strong>：连选）</p>
-</li>
-<li class="lvl-3">
-<p>资源管理器$\rightarrow$拖拽文件</p>
-</li>
-</ol>
-<span id="more"></span>
-<h2 id="文件查看">文件查看</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>窗口$\rightarrow$排列</p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/Photoshop_cmHe5yK04V.png" alt=""></p>
-<h2 id="文件保存">文件保存</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><mark>Ctrl+Shift+S</mark></p>
-</li>
-<li class="lvl-2">
-<p><input type="checkbox" id="checkbox0" checked="true"><label for="checkbox0">保持背景透明保存为PNG</label></p>
-</li>
-<li class="lvl-2">
-<p><input type="checkbox" id="checkbox1" checked="true"><label for="checkbox1">保存为GIF：文件$\rightarrow$导出$\rightarrow$存储为web格式（格式选为GIF）</label></p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/%25E5%259B%25BE%25E5%2583%258F%25E6%25A0%25BC%25E5%25BC%258F.jpg" alt=""></p>
-<h2 id="基本操作">基本操作</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>工具栏快捷键: <mark>Alt + 相应字母</mark></p>
-</li>
-<li class="lvl-2">
-<p>打开滚轮缩放（编辑$\rightarrow$首选项$\rightarrow$工具$\rightarrow$滚轮缩放）</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">快捷键</th>
-<th style="text-align:center">操作</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">V</td>
-<td style="text-align:center">移动</td>
-</tr>
-<tr>
-<td style="text-align:center">B</td>
-<td style="text-align:center">画笔</td>
-</tr>
-<tr>
-<td style="text-align:center">R</td>
-<td style="text-align:center">旋转</td>
-</tr>
-<tr>
-<td style="text-align:center">Z</td>
-<td style="text-align:center">缩放</td>
-</tr>
-<tr>
-<td style="text-align:center">M</td>
-<td style="text-align:center">选框</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + <code>+-</code></td>
-<td style="text-align:center">缩放</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + Z</td>
-<td style="text-align:center">撤回</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + Shift+ Z</td>
-<td style="text-align:center">前进</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + J</td>
-<td style="text-align:center">复制图层</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + Shift+ N</td>
-<td style="text-align:center">新建图层</td>
-</tr>
-<tr>
-<td style="text-align:center">Delete</td>
-<td style="text-align:center">删除图层</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + E</td>
-<td style="text-align:center">合并图层</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + Shift +  E</td>
-<td style="text-align:center">合并可见图层</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + [</td>
-<td style="text-align:center">图层下移</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl + ]</td>
-<td style="text-align:center">图层上移</td>
-</tr>
-</tbody>
-</table>
-]]></content>
-      <categories>
-        <category>Tools</category>
-        <category>Software</category>
-      </categories>
-      <tags>
-        <tag>Ps</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VSCode安装配置</title>
-    <url>/archives/fe901771.html</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-<p>安装：官网下载即可（<a href="https://code.visualstudio.com/%EF%BC%89%EF%BC%8C%E5%AE%89%E8%A3%85%E6%97%B6%E4%B8%80%E8%88%AC**%E6%8A%8Apath%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">https://code.visualstudio.com/），安装时一般**把path添加到环境变量</a>**</p>
-<p><u>因为VSCode可以同步设置，重点写一下无法同步的的设置</u></p>
-<h2 id="主题、字体、插件">主题、字体、插件</h2>
-<img src="C:/Users/17431/AppData/Roaming/Typora/typora-user-images/image-20230504200256615.png" alt="image-20230504200256615" style="zoom:80%;" />
-<span id="more"></span>
-<img src="C:/Users/17431/AppData/Roaming/Typora/typora-user-images/image-20230504200520492.png" alt="image-20230504200520492" style="zoom:50%;" />
-<h2 id="配置C-1">配置C++<sup>[1]</sup></h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>安装 C++ 插件</strong></p>
-</li>
-</ul>
-<p><img src="C:/Users/17431/AppData/Local/Temp/WeChat%20Files/e1311c50b41c19263e0b72ca0e79cf2.png" alt="e1311c50b41c19263e0b72ca0e79cf2"></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>安装编译调试环境</strong></p>
-</li>
-</ul>
-<p>Windows 系统 按照下面步骤配置</p>
-<ol>
-<li class="lvl-3">
-<p>下载安装 mingw-w64：<a href="https://sourceforge.net/projects/mingw-w64/files/">https://sourceforge.net/projects/mingw-w64/files/</a></p>
-</li>
-<li class="lvl-3">
-<p>直接将 mingw-w64 解压到一个合适的目录（例如C:\Program Files下）</p>
-</li>
-<li class="lvl-3">
-<p>添加上****mingw-w64\bin**个文件夹的路径（用户+系统，环境变量打开方式为：计算机–属性–高级系统设置–环境变量）</p>
-</li>
-</ol>
-<p><img src="C:/Users/17431/AppData/Local/Temp/WeChat%20Files/e66b9612b8c5eaba62dae5366029335.png" alt="e66b9612b8c5eaba62dae5366029335"></p>
-<ol start="4">
-<li class="lvl-3">
-<p>打开powershell/cmd， 输入 <strong>gcc -v</strong> , 看到版本说明环境变量配置成功</p>
-</li>
-</ol>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>配置VS Code调试环境</strong></p>
-</li>
-</ul>
-<ol>
-<li class="lvl-3">
-<p>新建 <strong>CPP\ .vscode</strong> 文件夹</p>
-</li>
-<li class="lvl-3">
-<p>在 .vscode 文件夹中，依次新建文件如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">c_cpp_properties.<span class="property">json</span></span><br><span class="line">launch.<span class="property">json</span></span><br><span class="line">tasks.<span class="property">json</span></span><br></pre></td></tr></table></figure>
-</li>
-<li class="lvl-3">
-<p>复制内容到 json文件</p>
-</li>
-</ol>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><mark>launch.json</mark>中：</p>
-<ul class="lvl-2">
-<li class="lvl-4"><strong>“miDebuggerPath”: 后面修改为你的 mingw64 路径</strong></li>
-<li class="lvl-4">“preLaunchTask”: “task g++”** 和 <strong>tasks.json</strong> 中的 <strong>“label”: “task g++”</strong> 引号中的名字要一致，本代码中为 <strong>task g++</strong></li>
-</ul>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// launch.json 配置</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// Use IntelliSense to learn about possible attributes.</span></span><br><span class="line"><span class="comment">// Hover to view descriptions of existing attributes.</span></span><br><span class="line"><span class="comment">// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line"><span class="string">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line"><span class="string">&quot;configurations&quot;</span>: [</span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;name&quot;</span>: <span class="string">&quot;(gdb) Launch&quot;</span>,</span><br><span class="line"><span class="string">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,<span class="comment">//配置类型，只能为cppdbg</span></span><br><span class="line"><span class="string">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,<span class="comment">//请求配置类型，可以为launch（启动）或attach（附加）</span></span><br><span class="line"><span class="string">&quot;program&quot;</span>: <span class="string">&quot;$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,<span class="comment">//调试程序的路径名称</span></span><br><span class="line"><span class="string">&quot;args&quot;</span>: [],<span class="comment">//调试传递参数</span></span><br><span class="line"><span class="string">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line"><span class="string">&quot;environment&quot;</span>: [],</span><br><span class="line"><span class="string">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,<span class="comment">//true显示外置的控制台窗口，false显示内置终端</span></span><br><span class="line"><span class="string">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line"><span class="string">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;C:\\mingw64\\bin\\gdb.exe&quot;</span>, </span><br><span class="line"><span class="string">&quot;setupCommands&quot;</span>: [</span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;description&quot;</span>: <span class="string">&quot;Enable pretty-printing for gdb&quot;</span>,</span><br><span class="line"><span class="string">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line"><span class="string">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;task g++&quot;</span>,<span class="comment">//调试前执行的任务，就是之前配置的tasks.json中的label字段</span></span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// tasks.json 配置文件</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// See https://go.microsoft.com/fwlink/?LinkId=733558 </span></span><br><span class="line"><span class="comment">// for the documentation about the tasks.json format</span></span><br><span class="line"><span class="string">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span><br><span class="line"><span class="string">&quot;tasks&quot;</span>: [</span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line"><span class="string">&quot;label&quot;</span>: <span class="string">&quot;task g++&quot;</span>,<span class="comment">//任务的名字，就是刚才在命令面板中选择的时候所看到的，可以自己设置</span></span><br><span class="line"><span class="string">&quot;command&quot;</span>: <span class="string">&quot;g++&quot;</span>,</span><br><span class="line"><span class="string">&quot;args&quot;</span>: [<span class="comment">//编译时候的参数</span></span><br><span class="line"><span class="string">&quot;-g&quot;</span>,<span class="comment">//添加gdb调试选项</span></span><br><span class="line"><span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line"><span class="string">&quot;-o&quot;</span>,<span class="comment">//指定生成可执行文件的名称</span></span><br><span class="line"><span class="string">&quot;$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;problemMatcher&quot;</span>: &#123;</span><br><span class="line"><span class="string">&quot;owner&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line"><span class="string">&quot;fileLocation&quot;</span>: [</span><br><span class="line"><span class="string">&quot;relative&quot;</span>,</span><br><span class="line"><span class="string">&quot;$&#123;workspaceRoot&#125;&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;pattern&quot;</span>: &#123;</span><br><span class="line"><span class="string">&quot;regexp&quot;</span>: <span class="string">&quot;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$&quot;</span>,</span><br><span class="line"><span class="string">&quot;file&quot;</span>: <span class="number">1</span>,</span><br><span class="line"><span class="string">&quot;line&quot;</span>: <span class="number">2</span>,</span><br><span class="line"><span class="string">&quot;column&quot;</span>: <span class="number">3</span>,</span><br><span class="line"><span class="string">&quot;severity&quot;</span>: <span class="number">4</span>,</span><br><span class="line"><span class="string">&quot;message&quot;</span>: <span class="number">5</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">&quot;group&quot;</span>: &#123;</span><br><span class="line"><span class="string">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line"><span class="string">&quot;isDefault&quot;</span>: <span class="literal">true</span><span class="comment">//表示快捷键Ctrl+Shift+B可以运行该任务</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// c_cpp_properties.json 配置文件</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;configurations&quot;</span>: [</span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;name&quot;</span>: <span class="string">&quot;Win32&quot;</span>,</span><br><span class="line"><span class="string">&quot;includePath&quot;</span>: [</span><br><span class="line"><span class="string">&quot;$&#123;workspaceFolder&#125;/**&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;defines&quot;</span>: [</span><br><span class="line"><span class="string">&quot;_DEBUG&quot;</span>,</span><br><span class="line"><span class="string">&quot;UNICODE&quot;</span>,</span><br><span class="line"><span class="string">&quot;_UNICODE&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;compilerPath&quot;</span>: <span class="string">&quot;C:/mingw64/bin/g++.exe&quot;</span>,</span><br><span class="line"><span class="string">&quot;cStandard&quot;</span>: <span class="string">&quot;c11&quot;</span>,</span><br><span class="line"><span class="string">&quot;cppStandard&quot;</span>: <span class="string">&quot;c++17&quot;</span>,</span><br><span class="line"><span class="string">&quot;intelliSenseMode&quot;</span>: <span class="string">&quot;gcc-x64&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;version&quot;</span>: <span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li class="lvl-4">
-<p>配置完上面，vscode就可以正常调试了</p>
-</li>
-</ol>
-<h2 id="优化配置">优化配置</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>程序文件路径不要有 <strong>中文</strong>，否则会导致 <strong>调试失败</strong></p>
-</li>
-<li class="lvl-2">
-<p>Vscode设置保留在单文件夹中，如果要更换文件夹，请把 <strong>.vscode</strong> 文件夹也复制到你要更改的文件夹中</p>
-</li>
-<li class="lvl-2">
-<p>中文显示乱码问题 VScode 编码设置/文件乱码</p>
-</li>
-<li class="lvl-2">
-<ul class="lvl-2">
-<li class="lvl-4">点击文件-&gt;首选项-&gt;设置，然后在右边用户设置输入：<strong>“files.autoGuessEncoding”: true</strong></li>
-<li class="lvl-4">插入这一行内用并保存。</li>
-<li class="lvl-4">或者如下图打钩：</li>
-</ul>
-</li>
-</ul>
-<p><img src="C:/Users/17431/AppData/Local/Temp/WeChat%20Files/165f67da7eb2ba912d58cd6d6e712fa.png" alt="165f67da7eb2ba912d58cd6d6e712fa"></p>
-<p>加入这个设置后，VSCode会在打开文件时尝试猜测字符集编码。</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>VsCode内部终端运行代码</p>
-</li>
-</ul>
-<p>设置在终端运行 : 首选项 -&gt; 设置 -&gt; 扩展 -&gt; Run Code ，勾选 <strong>Run In Terminal</strong> 和 <strong>Save File Before Run</strong></p>
-<p><img src="C:/Users/17431/AppData/Local/Temp/WeChat%20Files/f35d61b71af8ed28acf99d20e644c2e.png" alt="f35d61b71af8ed28acf99d20e644c2e"></p>
-<p>后记：投降了，Linux我用Clion，看<a href="">Linux配置C++</a></p>
-<h2 id="Reference">Reference</h2>
-<p>[1]	VSCode配置C++开发环境（MinGW-w64）: <a href="https://juejin.cn/post/7170216201849667621">https://juejin.cn/post/7170216201849667621</a></p>
-]]></content>
-      <categories>
-        <category>Tools</category>
-        <category>Software</category>
-      </categories>
-      <tags>
-        <tag>VSCode</tag>
+        <tag>Python</tag>
+        <tag>Anaconda</tag>
       </tags>
   </entry>
 </search>
