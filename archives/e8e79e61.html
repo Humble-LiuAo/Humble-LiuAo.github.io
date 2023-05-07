@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liuaoao.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="hello world开始   join() 函数：阻塞当前线程，直到关联的线程执行完毕。   detach() 函数：让一个线程在后台独立运行，不受主线程的控制，从而允许主线程提前退出而不必等待后台线程完成。   12345678910void hello() &amp;#123;    cout &lt;&lt; &quot;hello world&quot; &lt;&lt; endl;&amp;#125">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++并发编程">
+<meta property="og:url" content="https://liuaoao.top/archives/e8e79e61.html">
+<meta property="og:site_name" content="白茶不雨的博客">
+<meta property="og:description" content="hello world开始   join() 函数：阻塞当前线程，直到关联的线程执行完毕。   detach() 函数：让一个线程在后台独立运行，不受主线程的控制，从而允许主线程提前退出而不必等待后台线程完成。   12345678910void hello() &amp;#123;    cout &lt;&lt; &quot;hello world&quot; &lt;&lt; endl;&amp;#125">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-06T12:25:42.000Z">
+<meta property="article:modified_time" content="2023-05-07T06:22:41.900Z">
+<meta property="article:author" content="白茶不雨">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="并发编程">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://liuaoao.top/archives/e8e79e61.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css">
+  <title>C++并发编程 | 白茶不雨的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">白茶不雨的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">世间所有的相遇，都是久别重逢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">12</span></a>
+
+  </li>
+        <li class="menu-item menu-item-chatgpt">
+
+    <a href="/ChatGPT/" rel="section"><i class="fa fa-bug fa-fw"></i>ChatGPT</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links" rel="section"><i class="fas fa-link fa-fw"></i>links</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/Humble-LiuAo" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener external nofollow noreferrer" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liuaoao.top/archives/e8e79e61.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="白茶不雨">
+      <meta itemprop="description" content="种一棵树最好的时间是十年前，其次是现在！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白茶不雨的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++并发编程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-05-06 20:25:42" itemprop="dateCreated datePublished" datetime="2023-05-06T20:25:42+08:00">2023-05-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-05-07 14:22:41" itemprop="dateModified" datetime="2023-05-07T14:22:41+08:00">2023-05-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/e8e79e61.html" class="post-meta-item leancloud_visitors" data-flag-title="C++并发编程" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/archives/e8e79e61.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/archives/e8e79e61.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <meta name="referrer" content="no-referrer" />
+<h2 id="hello-world开始">hello world开始</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><mark>join()</mark> 函数：阻塞当前线程，直到关联的线程执行完毕。</p>
+</li>
+<li class="lvl-2">
+<p><mark>detach()</mark> 函数：让一个线程在后台独立运行，不受主线程的控制，从而允许主线程提前退出而不必等待后台线程完成。</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;hello world&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">thread <span class="title">t</span><span class="params">(hello)</span></span>;</span><br><span class="line">    t.<span class="built_in">join</span>();       <span class="comment">// must add this line otherwise will failed!</span></span><br><span class="line">    <span class="comment">// 需要注意的是线程对象执行了join后就不再joinable了，所以只能调用join一次。</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="Basic">Basic</h2>
+<h3 id="悬空引用">悬空引用</h3>
+<p>当 <strong>i</strong> 的生命周期结束时，<strong>func</strong> 对象中的引用 <strong>i</strong> 就变成了悬空引用，其指向的内存可能被其他程序占用或被释放，从而导致不可预测的错误。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">do_something</span><span class="params">(<span class="type">int</span> &amp;i)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;do_something&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">func</span> &#123;</span><br><span class="line">    <span class="type">int</span> &amp;i;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">func</span>(<span class="type">int</span> &amp;i_) : <span class="built_in">i</span>(i_) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">unsigned</span> j = <span class="number">0</span>; j &lt; <span class="number">1000000</span>; ++j) &#123;</span><br><span class="line">            <span class="built_in">do_something</span>(i);           <span class="comment">// 1. 潜在访问隐患：悬空引用</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="简洁机制">简洁机制</h4>
+<p>保线程在函数结束之前安全退出</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 特殊情况下的等待</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> some_local_state = <span class="number">0</span>;</span><br><span class="line">    <span class="function">func <span class="title">my_func</span><span class="params">(some_local_state)</span></span>;</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">(my_func)</span></span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line"><span class="comment">//        do_something_in_current_thread();</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span> (...) &#123;</span><br><span class="line">        t.<span class="built_in">join</span>();  <span class="comment">// 1</span></span><br><span class="line">        <span class="keyword">throw</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    t.<span class="built_in">join</span>();  <span class="comment">// 2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// try catch 只能捕获轻量级错误,所以如需确保线程在函数之前结束——查看是否因为线程函数使用了局部变量的引用，</span></span><br><span class="line"><span class="comment">// 以及其他原因——而后再确定一下程序可能会退出的途径，无论正常与否，可以提供一个简洁的机制，来做解决这个问题。</span></span><br></pre></td></tr></table></figure>
+<h4 id="资源获取即初始化方式”-RAII，Resource-Acquisition-Is-Initialization">资源获取即初始化方式”(RAII，Resource Acquisition Is Initialization)</h4>
+<p>一种方式是使用“资源获取即初始化方式 <strong>(RAII，Resource Acquisition Is Initialization)</strong>，并且提供一个类，在析构函数中使用join()，</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// std::thread支持移动的好处是可以创建thread_guard类的实例，并且拥有其线程的所有权。</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">thread_guard</span> &#123;</span><br><span class="line">    std::thread &amp;t;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">thread_guard</span><span class="params">(std::thread &amp;t_)</span> :</span></span><br><span class="line"><span class="function">            t(t_) &#123;</span>&#125;</span><br><span class="line"></span><br><span class="line">    ~<span class="built_in">thread_guard</span>() &#123;</span><br><span class="line">        <span class="keyword">if</span> (t.<span class="built_in">joinable</span>()) <span class="comment">// 1</span></span><br><span class="line">        &#123;</span><br><span class="line">            t.<span class="built_in">join</span>();      <span class="comment">// 2</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">thread_guard</span>(thread_guard <span class="type">const</span> &amp;) = <span class="keyword">delete</span>;   <span class="comment">// 3</span></span><br><span class="line">    thread_guard &amp;<span class="keyword">operator</span>=(thread_guard <span class="type">const</span> &amp;) = <span class="keyword">delete</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">f1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> some_local_state=<span class="number">0</span>;</span><br><span class="line">    <span class="function">func <span class="title">my_func</span><span class="params">(some_local_state)</span></span>;</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">(my_func)</span></span>;</span><br><span class="line">    <span class="function">thread_guard <span class="title">g</span><span class="params">(t)</span></span>;</span><br><span class="line"><span class="comment">//    do_something_in_current_thread();</span></span><br><span class="line">&#125;    <span class="comment">// 4</span></span><br><span class="line"><span class="comment">// 线程所关联的局部对象（即 my_func 的参数）的生命周期将在 thread_guard 对象之后结束，而不是在线程结束之后。当线程执行到4处时，局部对象就要被逆序销毁了。因此，thread_guard对象g是第一个被销毁的，</span></span><br><span class="line"><span class="comment">// 这时线程在析构函数中被加入2到原始线程中。</span></span><br><span class="line"><span class="comment">// 即使do_something_in_current_thread抛出一个异常，这个销毁依旧会发生。</span></span><br></pre></td></tr></table></figure>
+<p>由于线程的管理得到了线程保护对象的管理，线程在程序结束时一定会被正确的处理，并且不会产生悬空的线程引用，保证了线程的安全退出.</p>
+<h3 id="Most-Vexing-Parse">Most Vexing Parse</h3>
+<p><strong>Most Vexing Parse</strong>：声明的对象被解析为一个函数声明而不是对象定义。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">background_task</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;ok&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// error</span></span><br><span class="line"><span class="function">thread <span class="title">my_thread1</span><span class="params">(background_task())</span></span></span><br></pre></td></tr></table></figure>
+<p>解决如下：</p>
+<ol>
+<li class="lvl-3">
+<p>使用多组括号：这种方法可以告诉编译器我们正在声明一个对象，而不是一个函数。</p>
+</li>
+<li class="lvl-3">
+<p>使用新的初始化语法：C<ins>11引入了C</ins>的新初始化语法，即使用花括号{}来初始化对象。</p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">thread <span class="title">my_thread1</span><span class="params">((background_task()))</span></span>; <span class="comment">// 使用多组括号</span></span><br><span class="line">my_thread1.<span class="built_in">join</span>();</span><br><span class="line"></span><br><span class="line">thread my_thread2&#123;<span class="built_in">background_task</span>()&#125;;   <span class="comment">// 使用新的初始化语法</span></span><br><span class="line">my_thread2.<span class="built_in">join</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="transfer">transfer</h2>
+<p>这段代码演示了如何使用<code>std::thread</code>来创建新线程，并将类成员函数作为线程函数传递，同时也演示了如何使用<code>std::unique_ptr</code>来管理资源，并将这个资源传递给一个新线程。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>std::move(p)</code>: 左值转化为右值</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">X</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">do_length_work</span><span class="params">()</span> </span>&#123;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">process_big_object</span><span class="params">(std::unique_ptr&lt;X&gt;)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    X my_x;</span><br><span class="line">    <span class="function">thread <span class="title">t</span><span class="params">(&amp;X::do_length_work, &amp;my_x)</span></span>; <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function">std::unique_ptr&lt;X&gt; <span class="title">p</span><span class="params">(<span class="keyword">new</span> X)</span></span>;</span><br><span class="line">    p-&gt;<span class="built_in">do_length_work</span>();</span><br><span class="line">    <span class="function">std::thread <span class="title">tt</span><span class="params">(process_big_object,std::move(p))</span></span>;</span><br><span class="line">    <span class="comment">//std::thread实例的可移动且不可复制性。不可复制保性证了在同一时间点，</span></span><br><span class="line">    <span class="comment">// 一个std::thread实例只能关联一个执行线程；可移动性使得程序员可以自己决定，哪个实例拥有实际执行线程的所有权。</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="ownership">ownership</h2>
+<h3 id="线程的创建、移动和管理">线程的创建、移动和管理</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">some_function</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">some_other_function</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">std::thread <span class="title">t1</span><span class="params">(some_function)</span></span>; <span class="comment">// 构造一个thread对象t1</span></span><br><span class="line">std::thread t2 = std::<span class="built_in">move</span>(t1); <span class="comment">// 把t1 move给另外一个thread对象t2，t1不再管理之前的线程了。</span></span><br><span class="line"><span class="comment">// 这句不需要std::move()，从临时变量进行移动是自动和隐式的。调用的是operator=(std::thread&amp;&amp;)</span></span><br><span class="line">t1 = std::<span class="built_in">thread</span>(some_other_function);</span><br><span class="line">std::thread t3;</span><br><span class="line">t3 = std::<span class="built_in">move</span>(t2); <span class="comment">// 把t2 move给t3</span></span><br><span class="line"><span class="comment">// 把t3 move给t1，非法。因为`t1`已经有了一个相关的线程，会调用`std::terminate()`来终止程序。</span></span><br><span class="line">t1 = std::<span class="built_in">move</span>(t3);</span><br></pre></td></tr></table></figure>
+<h3 id="一组线程">一组线程</h3>
+<p>这段代码使用了<code>std::vector</code>和<code>std::thread</code>，它展示了如何使用C++11标准库来创建一组线程并等待它们完成工作。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">do_work</span><span class="params">(<span class="type">unsigned</span> id)</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::vector&lt;std::thread&gt; threads;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">unsigned</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; ++i) &#123;</span><br><span class="line">        threads.<span class="built_in">push_back</span>(std::<span class="built_in">thread</span>(do_work, i)); <span class="comment">// 产生线程</span></span><br><span class="line">    &#125;</span><br><span class="line">    std::for_each(threads.<span class="built_in">begin</span>(), threads.<span class="built_in">end</span>(),</span><br><span class="line">                  std::<span class="built_in">mem_fn</span>(&amp;std::thread::join)); <span class="comment">// 对每个线程调用join()</span></span><br><span class="line">    <span class="comment">// &amp;std::thread::join获取的是std::thread::join成员函数的地址，将地址传递给std::mem_fn进行包装，从而将这个函数变成一个可调用对象。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="RAII类scoped-thread">RAII类<code>scoped_thread</code></h3>
+<p>这是一个RAII类<code>scoped_thread</code>的定义，它使用C++11标准库中的<code>std::thread</code>类来封装线程对象。具体来说，<code>scoped_thread</code>类通过重载构造函数和析构函数来控制线程的生命周期，从而确保线程在适当的时候被销毁。</p>
+<p>在这个类的定义中，几个关键的实现细节：</p>
+<ol>
+<li class="lvl-3">
+<p>使用<code>explicit</code>防止隐式类型转换。</p>
+</li>
+<li class="lvl-3">
+<p>使用<code>std::logic_error</code>来抛出异常，以表示线程没有被启动的错误情况。</p>
+</li>
+<li class="lvl-3">
+<p>在析构函数中调用<code>join()</code>函数，以确保线程在<code>scoped_thread</code>对象被销毁时能够正常结束。</p>
+</li>
+</ol>
+<p>除此之外，由于线程对象的复制和复制赋值操作不可重载，因此需要通过<code>delete</code>关键字来禁止这些操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class scoped_thread &#123;</span><br><span class="line">    std::thread t;</span><br><span class="line">public:</span><br><span class="line">    explicit scoped_thread(std::thread t_) :                 // 1</span><br><span class="line">            t(std::move(t_)) &#123;</span><br><span class="line">        if (!t.joinable())                                     // 2</span><br><span class="line">            throw std::logic_error(&quot;No thread&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ~scoped_thread() &#123;</span><br><span class="line">        t.join();                                            // 3</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    scoped_thread(scoped_thread const &amp;) = delete;</span><br><span class="line"></span><br><span class="line">    scoped_thread &amp;operator=(scoped_thread const &amp;) = delete;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="runtime">runtime</h2>
+<p>简单的线程池：将迭代器范围分割成多个子范围，每个子范围由一个线程进行处理，最后合并所有子范围的累加结果，从而实现了并行的累加操作。</p>
+<p>在实现上，函数首先根据范围长度和硬件线程数，计算出要使用的线程数和任务块的大小。然后，函数将序列分块，并为每个块创建一个线程来执行累加操作。最后，使用<code>std::accumulate</code>将所有结果相加以得到最终结果。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;numeric&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使得每个线程具有最小数目的元素以避免过多的线程开销</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">accumulate_block</span> &#123;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(Iterator first, Iterator last, T &amp;result)</span> </span>&#123;</span><br><span class="line">        result = std::<span class="built_in">accumulate</span>(first, last, result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function">T <span class="title">parallel_accumlate</span><span class="params">(Iterator first, Iterator last, T init)</span> </span>&#123;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> <span class="type">const</span> length = std::<span class="built_in">distance</span>(first, last);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!length)</span><br><span class="line">        <span class="keyword">return</span> init;</span><br><span class="line"></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> <span class="type">const</span> min_per_thread = <span class="number">25</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> <span class="type">const</span> max_threads = (length + min_per_thread - <span class="number">1</span>) / min_per_thread;</span><br><span class="line">    cout&lt;&lt;max_threads&lt;&lt;endl;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> <span class="type">const</span> hardware_threads = std::thread::<span class="built_in">hardware_concurrency</span>();</span><br><span class="line">    cout&lt;&lt;hardware_threads&lt;&lt;endl;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> <span class="type">const</span> num_threads = std::<span class="built_in">min</span>(hardware_threads != <span class="number">0</span> ? hardware_threads : <span class="number">2</span>, max_threads);</span><br><span class="line">    cout&lt;&lt;num_threads&lt;&lt;endl;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> <span class="type">const</span> block_size = length / num_threads;</span><br><span class="line">    cout&lt;&lt;block_size&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    <span class="function">std::vector&lt;T&gt; <span class="title">results</span><span class="params">(num_threads)</span></span>;</span><br><span class="line">    <span class="function">std::vector&lt;std::thread&gt; <span class="title">threads</span><span class="params">(num_threads - <span class="number">1</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    Iterator block_start = first;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">long</span> i = <span class="number">0</span>; i &lt; (num_threads - <span class="number">1</span>); ++i) &#123;</span><br><span class="line">        Iterator block_end = block_start;</span><br><span class="line">        std::<span class="built_in">advance</span>(block_end, block_size);</span><br><span class="line">        threads[i] = std::<span class="built_in">thread</span>(<span class="built_in">accumulate_block</span>&lt;Iterator, T&gt;(), block_start, block_end, std::<span class="built_in">ref</span>(results[i]));</span><br><span class="line">        <span class="comment">// std::ref用于将一个对象转化为一个引用</span></span><br><span class="line">        block_start = block_end;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">accumulate_block</span>&lt;Iterator, T&gt;()(block_start, last, results[num_threads - <span class="number">1</span>]);</span><br><span class="line">    <span class="comment">// block_start到last无法划分为一个完整的块时，需要单独对这个子范围执行累加操作</span></span><br><span class="line">    std::for_each(threads.<span class="built_in">begin</span>(), threads.<span class="built_in">end</span>(), std::<span class="built_in">mem_fn</span>(&amp;std::thread::join));</span><br><span class="line">    <span class="comment">// std::mem_fn将一个成员函数指针转换为一个函数对象</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> std::<span class="built_in">accumulate</span>(results.<span class="built_in">begin</span>(), results.<span class="built_in">end</span>(), init);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; v&#123;<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line">    <span class="type">int</span> res=<span class="number">0</span>;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">parallel_accumlate</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">end</span>(),res);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="id">id</h2>
+<p>代码定义了两个函数<code>do_master_thread_work</code>和<code>do_common_work</code>，分别用于处理主线程和其他线程（即非主线程）的工作。在<code>some_core_part_of_algorithm</code>函数中，代码首先判断当前线程是否为主线程，如果是，则调用<code>do_master_thread_work</code>函数，否则调用<code>do_common_work</code>函数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 线程的通用标识符</span></span><br><span class="line">std::thread::id master_thread;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">do_master_thread_work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;master&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">do_common_work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;common&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">some_core_part_of_algorithm</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (std::this_thread::<span class="built_in">get_id</span>() == master_thread) &#123;</span><br><span class="line">        <span class="built_in">do_master_thread_work</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">do_common_work</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    master_thread = std::this_thread::<span class="built_in">get_id</span>();</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;master_thread: &quot;</span> &lt;&lt; master_thread &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;master_thread 中运行:&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">some_core_part_of_algorithm</span>();</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;thread 中运行:&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="function">thread <span class="title">t</span><span class="params">(some_core_part_of_algorithm)</span></span>;</span><br><span class="line">    t.<span class="built_in">join</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Reference">Reference</h2>
+<p>[1]	C++ 那些事: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Light-City/CPlusPlusThings">https://github.com/Light-City/CPlusPlusThings</a></p>
+
+    </div>
+
+    
+    
+    
+      
+<div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,douban,qzone,facebook,twitter"
+      
+      
+        data-wechat-qrcode-title="share.title"
+      
+      
+        data-wechat-qrcode-helper="share.prompt"
+      
+    >
+    </div>
+  </div>
+  <script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js"></script><div>
+    
+        <div style="text-align:center;color: #ccc;font-size:20px;">
+            ------------------------------- 本文结束啦❤<i class="fa fa-heart-o"></i>感谢您阅读-------------------------------
+     </div>
+    
+</div>
+        <div class="reward-container">
+  <div>赞赏一杯咖啡</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="白茶不雨 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="白茶不雨 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>白茶不雨
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://liuaoao.top/archives/e8e79e61.html" title="C++并发编程">https://liuaoao.top/archives/e8e79e61.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+              <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> 并发编程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/7eda6880.html" rel="prev" title="Pr2020基础总结">
+      <i class="fa fa-chevron-left"></i> Pr2020基础总结
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hello-world%E5%BC%80%E5%A7%8B"><span class="nav-number">1.</span> <span class="nav-text">hello world开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic"><span class="nav-number">2.</span> <span class="nav-text">Basic</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%82%AC%E7%A9%BA%E5%BC%95%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">悬空引用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E6%B4%81%E6%9C%BA%E5%88%B6"><span class="nav-number">2.1.1.</span> <span class="nav-text">简洁机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E8%8E%B7%E5%8F%96%E5%8D%B3%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E5%BC%8F%E2%80%9D-RAII%EF%BC%8CResource-Acquisition-Is-Initialization"><span class="nav-number">2.1.2.</span> <span class="nav-text">资源获取即初始化方式”(RAII，Resource Acquisition Is Initialization)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Most-Vexing-Parse"><span class="nav-number">2.2.</span> <span class="nav-text">Most Vexing Parse</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transfer"><span class="nav-number">3.</span> <span class="nav-text">transfer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ownership"><span class="nav-number">4.</span> <span class="nav-text">ownership</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E3%80%81%E7%A7%BB%E5%8A%A8%E5%92%8C%E7%AE%A1%E7%90%86"><span class="nav-number">4.1.</span> <span class="nav-text">线程的创建、移动和管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E7%BB%84%E7%BA%BF%E7%A8%8B"><span class="nav-number">4.2.</span> <span class="nav-text">一组线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RAII%E7%B1%BBscoped-thread"><span class="nav-number">4.3.</span> <span class="nav-text">RAII类scoped_thread</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#runtime"><span class="nav-number">5.</span> <span class="nav-text">runtime</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#id"><span class="nav-number">6.</span> <span class="nav-text">id</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">7.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="白茶不雨"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">白茶不雨</p>
+  <div class="site-description" itemprop="description">种一棵树最好的时间是十年前，其次是现在！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Humble-LiuAo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Humble-LiuAo" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1743185682@qq.com" title="E-Mail → mailto:1743185682@qq.com" rel="noopener external nofollow noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+  <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+  <div class="widget-wrap">
+    <div id="myCanvasContainer" class="widget tagcloud">
+      <canvas width="250" height="250" id="resCanvas" style="width:100%">
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Anaconda/" rel="tag">Anaconda</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/" rel="tag">CMD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ChatGPT/" rel="tag">ChatGPT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-mining/" rel="tag">Data mining</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LaTeX/" rel="tag">LaTeX</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pr/" rel="tag">Pr</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ps/" rel="tag">Ps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/" rel="tag">VSCode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90/" rel="tag">语义分析</a><span class="tag-list-count">1</span></li></ul>
+      </canvas>
+    </div>
+  </div>
+
+
+
+
+<div style="">
+  <canvas id="canvas" style="width:80%; height:80%">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1297742167&auto=0&height=66"></iframe>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">白茶不雨</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">28k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">26 分钟</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://liuaoao.top/archives/e8e79e61.html',]
+      });
+      });
+  </script>
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'hpWRbFYPjuqQOOWegUU9wApt-gzGzoHsz',
+      appKey     : 'ijVoqxTEPQ3UW87ZGimvY741',
+      placeholder: "有什么问题，欢迎留言指正与交流...",
+      avatar     : 'retro',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":5,"vOffset":120},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
