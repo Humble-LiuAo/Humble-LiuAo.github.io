@@ -279,7 +279,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>937</span>
+              <span>909</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -303,12 +303,12 @@
 <h3 id="临时生效">临时生效</h3>
 <p>命令行窗口关闭就失效</p>
 <span id="more"></span>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 设置</span><br><span class="line">set http_proxy=http://127.0.0.1:7890</span><br><span class="line"># 如需账户、密码</span><br><span class="line">set http_proxy_user=username</span><br><span class="line">set http_proxy_pass=password</span><br><span class="line"># 查看</span><br><span class="line">set http_proxy</span><br><span class="line"># 取消</span><br><span class="line">set http_proxy=</span><br><span class="line">set http_proxy_user=</span><br><span class="line">set http_proxy_pass=</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 设置</span><br><span class="line">set http_proxy=http://127.0.0.1:7890</span><br><span class="line"># 如需账户、密码</span><br><span class="line">set http_proxy_user=username</span><br><span class="line">set http_proxy_pass=password</span><br><span class="line"># 查看</span><br><span class="line">set http_proxy</span><br><span class="line"># 取消</span><br><span class="line">set http_proxy=</span><br><span class="line">set http_proxy_user=</span><br><span class="line">set http_proxy_pass=</span><br></pre></td></tr></table></figure>
 <h3 id="永久生效">永久生效</h3>
 <p>管理员运行CMD（Git也可用）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 设置</span><br><span class="line">wmic ENVIRONMENT create name=&quot;http_proxy&quot;,username=&quot;&lt;system&gt;&quot;, VariableValue=&quot;http://127.0.0.1:7890&quot;</span><br><span class="line"># 查看</span><br><span class="line">wmic ENVIRONMENT where &quot;name=&#x27;http_proxy&#x27;&quot; get UserName,VariableValue</span><br><span class="line"># 删除</span><br><span class="line">wmic ENVIRONMENT where &quot;name=&#x27;http_proxy&#x27;&quot; delete</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 设置</span><br><span class="line">wmic ENVIRONMENT create name=&quot;http_proxy&quot;,username=&quot;&lt;system&gt;&quot;, VariableValue=&quot;http://127.0.0.1:7890&quot;</span><br><span class="line"># 查看</span><br><span class="line">wmic ENVIRONMENT where &quot;name=&#x27;http_proxy&#x27;&quot; get UserName,VariableValue</span><br><span class="line"># 删除</span><br><span class="line">wmic ENVIRONMENT where &quot;name=&#x27;http_proxy&#x27;&quot; delete</span><br></pre></td></tr></table></figure>
 <h2 id="Git（永久生效）">Git（永久生效）</h2>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 设施全局代理</span><br><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br><span class="line"># 查看代理</span><br><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br><span class="line"># 取消全局代理</span><br><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 设施全局代理</span><br><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br><span class="line"># 查看代理</span><br><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br><span class="line"># 取消全局代理</span><br><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
 <h2 id="Reference">Reference</h2>
 <p>[1]	windows设置和删除代理: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://liuxingjun.github.io/blog/2018/05/03/windows%E8%AE%BE%E7%BD%AE%E5%92%8C%E5%88%A0%E9%99%A4%E4%BB%A3%E7%90%86">https://liuxingjun.github.io/blog/2018/05/03/windows设置和删除代理</a></p>
 <p>[2]	git设置、查看、取消代理: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/yongy1030/p/11699086.html">https://www.cnblogs.com/yongy1030/p/11699086.html</a></p>
@@ -814,7 +814,7 @@ if(canvas.getContext){
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">28k</span>
+    <span title="站点总字数">27k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
