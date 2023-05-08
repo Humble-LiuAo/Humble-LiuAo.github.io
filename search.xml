@@ -1103,7 +1103,7 @@ And then define the link:</p>
 </li>
 </ul>
 <h2 id="安装Anaconda">安装Anaconda</h2>
-<p>网址：<a href="https://repo.anaconda.com/archive/">https://repo.anaconda.com/archive/</a><br>
+<p>下载网址：<a href="https://repo.anaconda.com/archive/">https://repo.anaconda.com/archive/</a><br>
 <strong>安装事项</strong>：</p>
 <ol>
 <li class="lvl-3">
@@ -1134,8 +1134,8 @@ And then define the link:</p>
 </ol>
 <h2 id="conda安装tensorflow">conda安装tensorflow</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n tf python=3.6</span><br><span class="line">activate tf</span><br><span class="line">conda install tensorflow-gpu=1.9.0</span><br><span class="line"># 根据python版本默认安装 </span><br><span class="line">conda install tensorflow-gpu</span><br><span class="line"></span><br><span class="line">pip install --upgrade tensorflow</span><br><span class="line">python -c &quot;import tensorflow as tf;print(tf.reduce_sum(tf.random.normal([1000, 1000])))&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="高版本pip安装tensorflow：">高版本pip安装tensorflow：</h3>
-<p><a href="https://tensorflow.google.cn/install/pip?hl=en#windows-native">https://tensorflow.google.cn/install/pip?hl=en#windows-native</a></p>
+<h3 id="高版本安装">高版本安装</h3>
+<p>需要 <strong>pip</strong>安装 <strong>tensorflow</strong>：<a href="https://tensorflow.google.cn/install/pip?hl=en#windows-native">https://tensorflow.google.cn/install/pip?hl=en#windows-native</a></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0</span><br><span class="line">#如果上面这个执行失败了，多执行几次</span><br><span class="line">#如果自己的显卡支持，安装了上面的两个配置后，再安装下面的tensorflow-gpu 2.7.0版本的话</span><br><span class="line">#就可以直接显示gpu版本的状态为为true</span><br><span class="line">pip install tensorflow-gpu==2.7.0</span><br><span class="line">pip install &quot;tensorflow&lt;2.11&quot;</span><br><span class="line"># 走清华镜像</span><br><span class="line"> -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"># 设置timeout</span><br><span class="line">pip --default-timeout=600 install &quot;tensorflow&lt;2.11&quot; -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"># Verify install:</span><br><span class="line">#python</span><br><span class="line">#impor tensorflow as tf</span><br><span class="line">#print(tf.config.list_physical_devices(&#x27;GPU&#x27;))</span><br></pre></td></tr></table></figure>
 <h2 id="conda安装pytorch">conda安装pytorch</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n pytorch python=3.8</span><br><span class="line">conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia</span><br></pre></td></tr></table></figure>

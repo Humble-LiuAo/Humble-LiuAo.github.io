@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://gitee.com/humble_ao/Image/raw/master/db37a06081a944b6ad430fad2c9a5336.png">
 <meta property="og:image" content="https://gitee.com/humble_ao/Image/raw/master/b76e975a080d48a8bf437c02f17c4178.png">
 <meta property="article:published_time" content="2023-04-16T14:50:15.000Z">
-<meta property="article:modified_time" content="2023-05-08T00:39:30.995Z">
+<meta property="article:modified_time" content="2023-05-08T00:45:41.019Z">
 <meta property="article:author" content="白茶不雨">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Anaconda">
@@ -239,7 +239,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-05-08 08:39:30" itemprop="dateModified" datetime="2023-05-08T08:39:30+08:00">2023-05-08</time>
+                <time title="修改时间：2023-05-08 08:45:41" itemprop="dateModified" datetime="2023-05-08T08:45:41+08:00">2023-05-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -326,7 +326,7 @@
 </li>
 </ul>
 <h2 id="安装Anaconda">安装Anaconda</h2>
-<p>网址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://repo.anaconda.com/archive/">https://repo.anaconda.com/archive/</a><br>
+<p>下载网址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://repo.anaconda.com/archive/">https://repo.anaconda.com/archive/</a><br>
 <strong>安装事项</strong>：</p>
 <ol>
 <li class="lvl-3">
@@ -357,8 +357,8 @@
 </ol>
 <h2 id="conda安装tensorflow">conda安装tensorflow</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n tf python=3.6</span><br><span class="line">activate tf</span><br><span class="line">conda install tensorflow-gpu=1.9.0</span><br><span class="line"># 根据python版本默认安装 </span><br><span class="line">conda install tensorflow-gpu</span><br><span class="line"></span><br><span class="line">pip install --upgrade tensorflow</span><br><span class="line">python -c &quot;import tensorflow as tf;print(tf.reduce_sum(tf.random.normal([1000, 1000])))&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="高版本pip安装tensorflow：">高版本pip安装tensorflow：</h3>
-<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://tensorflow.google.cn/install/pip?hl=en#windows-native">https://tensorflow.google.cn/install/pip?hl=en#windows-native</a></p>
+<h3 id="高版本安装">高版本安装</h3>
+<p>需要 <strong>pip</strong>安装 <strong>tensorflow</strong>：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://tensorflow.google.cn/install/pip?hl=en#windows-native">https://tensorflow.google.cn/install/pip?hl=en#windows-native</a></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0</span><br><span class="line">#如果上面这个执行失败了，多执行几次</span><br><span class="line">#如果自己的显卡支持，安装了上面的两个配置后，再安装下面的tensorflow-gpu 2.7.0版本的话</span><br><span class="line">#就可以直接显示gpu版本的状态为为true</span><br><span class="line">pip install tensorflow-gpu==2.7.0</span><br><span class="line">pip install &quot;tensorflow&lt;2.11&quot;</span><br><span class="line"># 走清华镜像</span><br><span class="line"> -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"># 设置timeout</span><br><span class="line">pip --default-timeout=600 install &quot;tensorflow&lt;2.11&quot; -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"># Verify install:</span><br><span class="line">#python</span><br><span class="line">#impor tensorflow as tf</span><br><span class="line">#print(tf.config.list_physical_devices(&#x27;GPU&#x27;))</span><br></pre></td></tr></table></figure>
 <h2 id="conda安装pytorch">conda安装pytorch</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n pytorch python=3.8</span><br><span class="line">conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia</span><br></pre></td></tr></table></figure>
@@ -540,7 +540,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">查询版本信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Anaconda"><span class="nav-number">2.</span> <span class="nav-text">安装Anaconda</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%95%9C%E5%83%8F%E6%BA%90"><span class="nav-number">2.1.</span> <span class="nav-text">设置镜像源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conda%E5%AE%89%E8%A3%85tensorflow"><span class="nav-number">3.</span> <span class="nav-text">conda安装tensorflow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E7%89%88%E6%9C%ACpip%E5%AE%89%E8%A3%85tensorflow%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">高版本pip安装tensorflow：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conda%E5%AE%89%E8%A3%85pytorch"><span class="nav-number">4.</span> <span class="nav-text">conda安装pytorch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">5.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conda%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">6.</span> <span class="nav-text">conda常用命令</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">查询版本信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Anaconda"><span class="nav-number">2.</span> <span class="nav-text">安装Anaconda</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%95%9C%E5%83%8F%E6%BA%90"><span class="nav-number">2.1.</span> <span class="nav-text">设置镜像源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conda%E5%AE%89%E8%A3%85tensorflow"><span class="nav-number">3.</span> <span class="nav-text">conda安装tensorflow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%85"><span class="nav-number">3.1.</span> <span class="nav-text">高版本安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conda%E5%AE%89%E8%A3%85pytorch"><span class="nav-number">4.</span> <span class="nav-text">conda安装pytorch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">5.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conda%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">6.</span> <span class="nav-text">conda常用命令</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
