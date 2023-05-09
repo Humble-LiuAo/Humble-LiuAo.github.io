@@ -76,6 +76,78 @@
       </tags>
   </entry>
   <entry>
+    <title>Jupyter安装配置</title>
+    <url>/archives/72216da9.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<h2 id="安装">安装</h2>
+<ol>
+<li class="lvl-3">
+<p><strong>conda安装</strong></p>
+</li>
+</ol>
+<p>打开<code>Anaconda Prompt</code>，输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda install jupyter notebook</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<ol start="2">
+<li class="lvl-3">
+<p><strong>navigator安装</strong></p>
+</li>
+</ol>
+<p>打开<code>Anaconda Navigator</code>，点击<code>Jupyter</code>下的 <code>Insatll</code></p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230509223656406.png" alt=""></p>
+<h2 id="修改默认打开路径">修改默认打开路径</h2>
+<ol>
+<li class="lvl-3">
+<p><strong>生成配置文件</strong></p>
+</li>
+</ol>
+<p>打开<code>Anaconda Prompt</code>，输入<code>jupyter notebook --generate-config</code></p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/a6b56b88c868a12438d03169baed880.png" alt=""></p>
+<ol start="2">
+<li class="lvl-3">
+<p><strong>修改配置文件</strong></p>
+<p>根据显示的路径，打开配置文件<code>jupyter_notebook_config.py</code>，全文搜索 <code>notebook_dir</code>，找到后填入自己的工作路径并保存。（注意：工作路径不能出现中文，否则无法打开<code>Jupyter Notebook</code>）</p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230509223042167.png" alt=""></p>
+<ol start="3">
+<li class="lvl-3">
+<p><strong>修改JupyterNotebook快捷方式的目标属性</strong></p>
+</li>
+</ol>
+<p>右击<code>JupyterNotebook</code>快捷方式，选择【属性】，删除【目标】属性中的【%USERPROFILE%】，点击【应用】–【确定】</p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/7e5c619809d4324a7bfd40810834af3.png" alt=""></p>
+<h2 id="优化">优化</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>主题切换</strong></p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># install jupyterthemes</span><br><span class="line">conda install -c conda-forge jupyterthemes</span><br><span class="line"># update to latest version</span><br><span class="line">conda update jupyterthemes</span><br><span class="line"></span><br><span class="line">jt -l # 加载可用主题列表</span><br><span class="line"># selecting a particular theme</span><br><span class="line">jt -t &lt;name of the theme&gt;</span><br><span class="line"># reverting to original Theme</span><br><span class="line">jt -r</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230509225426973.png" alt=""></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>插件安装</strong></p>
+</li>
+</ul>
+<p>打开<code>Anaconda Prompt</code>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda install -c conda-forge jupyter_contrib_nbextensions</span><br></pre></td></tr></table></figure>
+<p>安装完点击<code>extensions</code>，勾选相应的功能即可</p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230509230915195.png" alt=""></p>
+<h2 id="Reference">Reference</h2>
+<p>[1]	jupyter-contrib-nbextensions: <a href="https://pypi.org/project/jupyter-contrib-nbextensions/">https://pypi.org/project/jupyter-contrib-nbextensions/</a></p>
+<p>[2]	jupyter-themes: <a href="https://github.com/dunovank/jupyter-themes">https://github.com/dunovank/jupyter-themes</a></p>
+<p>[3]	Installing Jupyter: <a href="https://jupyter.org/install">https://jupyter.org/install</a></p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+        <category>Software</category>
+      </categories>
+      <tags>
+        <tag>Anaconda,Jupyter</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>You-Get下载视频</title>
     <url>/archives/96ba4918.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -799,6 +871,7 @@
     <url>/archives/97cdff40.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 <h2 id="常用查表">常用查表</h2>
+<span id="more"></span>
 <table>
 <thead>
 <tr>
@@ -873,7 +946,6 @@
 </tr>
 </tbody>
 </table>
-<span id="more"></span>
 <h2 id="箭头">箭头</h2>
 <p><strong>基本箭头</strong></p>
 <table>
