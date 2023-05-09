@@ -102,6 +102,8 @@
 </li>
 </ul>
 <h2 id="下载命令">下载命令</h2>
+<p><strong>视频信息</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">you-get -i URL #提示如何下载不同比例不同格式文件</span><br><span class="line">- format:        dash-flv</span><br><span class="line">  container:     mp4</span><br><span class="line">  quality:       高清 1080P</span><br><span class="line">  size:          222.8 MiB (233636151 bytes)</span><br><span class="line"># download-with: you-get --format=dash-flv [URL]</span><br></pre></td></tr></table></figure>
 <p><strong>单个视频</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">you-get [URL]              #通过网址下载文件</span><br><span class="line">you-get -o 本地路径  [URL]   #更改本地下载目录，默认下载位置为当前powershell打开目录</span><br><span class="line">cd C:\                         #更改powershell目录</span><br></pre></td></tr></table></figure>
 <p><strong>批量下载</strong></p>
