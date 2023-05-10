@@ -1,6 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Linux配置C++</title>
+    <url>/archives/1a24c243.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<blockquote>
+<p>使用系统：Ubuntu</p>
+<p>使用IDE：Clion（目前用的免费教育许可证：<a href="https://www.jetbrains.com/zh-cn/community/education/#students%EF%BC%89">https://www.jetbrains.com/zh-cn/community/education/#students）</a></p>
+</blockquote>
+<span id="more"></span>
+<h2 id="环境配置">环境配置</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 终端安装</span><br><span class="line">apt-get install gcc</span><br><span class="line">apt-get install g++</span><br><span class="line">或指定版本：8</span><br><span class="line">sudo apt-get install gcc-8</span><br><span class="line">sudo apt-get install g++-8</span><br><span class="line"># 查看版本</span><br><span class="line">gcc --version</span><br><span class="line">g++ --version</span><br><span class="line"># 查看该命令的所有操作</span><br><span class="line">g++ --h</span><br><span class="line">gcc --h</span><br></pre></td></tr></table></figure>
+<h2 id="终端运行示例">终端运行示例</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Ctrl+Alt+T 打开终端</span><br><span class="line">mkdir ~/Projects/cppdemo &amp;&amp; cd ~/Projects/cppdemo # 创建项目目录cppdemo</span><br><span class="line">vi hello.cpp # vi打开文件hello.cp</span><br></pre></td></tr></table></figure>
+<p>输入代码（<code>vi</code>操作）</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::cout&lt;&lt;<span class="string">&quot;hello world&quot;</span>&lt;&lt;std::endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用<code>g++</code>编辑器编译，生成可执行文件 hello，<code>-o</code> 后面的hello是生成的存储输出内容的文件名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">g++ hello.cpp -o hello</span><br></pre></td></tr></table></figure>
+<p>执行可执行文件（即打开hello）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./hello</span><br></pre></td></tr></table></figure>
+<h2 id="vim常用命令">vim常用命令</h2>
+<p><strong>Vim(Vi IMproved)</strong> 是一种功能强大的文本编辑器，常用于Unix和Linux系统中。下面是一些常见的 Vim 操作：</p>
+<ol>
+<li class="lvl-3">
+<p>打开文件：</p>
+<ul class="lvl-2">
+<li class="lvl-5">在终端中输入<code>vim</code>命令，后跟文件路径和名称，例如：<code>vim myfile.txt</code>。</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p>模式切换：</p>
+<ul class="lvl-2">
+<li class="lvl-5">按下<code>i</code>进入插入模式，可以输入和编辑文本。</li>
+<li class="lvl-5">按下<code>Esc</code>键回到普通模式，可以执行命令。</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p>保存和退出：</p>
+<ul class="lvl-2">
+<li class="lvl-5">在普通模式下，输入<code>:w</code>保存文件。</li>
+<li class="lvl-5">输入<code>:q</code>退出 Vim。</li>
+<li class="lvl-5">输入<code>:wq</code>保存并退出。</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p>导航和编辑文本：</p>
+<ul class="lvl-2">
+<li class="lvl-5">在普通模式下，使用箭头键或<code>h</code>、<code>j</code>、<code>k</code>、<code>l</code>进行光标导航。</li>
+<li class="lvl-5">使用<code>x</code>删除当前光标所在位置的字符。</li>
+<li class="lvl-5">使用<code>dd</code>删除当前行。</li>
+<li class="lvl-5">使用<code>yy</code>复制当前行。</li>
+<li class="lvl-5">使用<code>p</code>粘贴剪贴板中的内容。</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p>撤销和重做：</p>
+<ul class="lvl-2">
+<li class="lvl-5">在普通模式下，输入<code>u</code>撤销最近的操作。</li>
+<li class="lvl-5">输入<code>Ctrl + r</code>重做撤销的操作。</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p>查找和替换：</p>
+<ul class="lvl-2">
+<li class="lvl-5">在普通模式下，输入<code>/</code>，后跟要查找的内容，按下回车键开始查找。</li>
+<li class="lvl-5">输入<code>n</code>查找下一个匹配项。</li>
+<li class="lvl-5">输入<code>:%s/old/new/g</code>全局替换文档中的所有匹配项。</li>
+</ul>
+</li>
+</ol>
+<h2 id="Reference">Reference</h2>
+<p>[1]	Linux下的C/C++编译环境配置: <a href="https://blog.csdn.net/qq_27607539/article/details/73721946">https://blog.csdn.net/qq_27607539/article/details/73721946</a></p>
+<p>[2]	如何在Ubuntu终端运行C++程序: <a href="https://blog.csdn.net/W1995S/article/details/117876875">https://blog.csdn.net/W1995S/article/details/117876875</a></p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+        <category>Software</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>Linux</tag>
+        <tag>Vim</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VMware安装配置Ubuntu</title>
     <url>/archives/4da17f55.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -153,8 +237,8 @@
         <category>Software</category>
       </categories>
       <tags>
-        <tag>Ubuntu</tag>
         <tag>Linux</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
