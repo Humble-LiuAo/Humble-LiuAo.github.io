@@ -1,78 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ChatGPT-Application</title>
-    <url>/archives/4bc47d90.html</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
-<h2 id="ChatGPT-API-Web">ChatGPT-API-Web</h2>
-<p><mark>本站的ChatGPT</mark>：无需科学上网，自备OPENAI-API-KEY，点击左侧菜单栏的ChatGPT填写密码即可使用。<br>
-<strong>必备条件</strong></p>
-<ul class="lvl-0">
+    <title>VMware安装配置Ubuntu</title>
+    <url>/archives/4da17f55.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<h2 id="开启虚拟化">开启虚拟化</h2>
+<p><strong>进入BIOS模式</strong>：联想拯救者：重启出现图标时按 <strong><u>Fn+F2</u></strong></p>
+<ol>
 <li class="lvl-3">
-<p>本站ChatGPT访问密码</p>
+<p>选择 Configuration，再选择 Intel Virtualization Technology，此时该选项应该是 Disabled（关闭）；</p>
 </li>
 <li class="lvl-3">
-<p>OPENAI-API-KEY</p>
+<p>将 Disabled（关闭）改为 Enabled（开启）；</p>
 </li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230424102506698.png" alt=""></p>
-<h3 id="联系我">联系我</h3>
+</ol>
+<span id="more"></span>  　　　　
+<ol start="3">
+<li class="lvl-3">
+<p>点击Fn+F10，保存后退出，重启即可。</p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504172953354.png" alt=""></p>
+<h2 id="安装ubuntu">安装ubuntu</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>如需使用或注册ChatGPT，点击头像下方邮箱联系我</p>
+<p>参考 <mark>软件管家</mark> 公众号，或点击：<a href="https://mp.weixin.qq.com/s/OWUfIJ9Iwd-nwYhbTWXjuA">https://mp.weixin.qq.com/s/OWUfIJ9Iwd-nwYhbTWXjuA</a></p>
+</li>
+<li class="lvl-2">
+<p><strong>硬盘、内存</strong>等参数可根据电脑配置修改</p>
 </li>
 </ul>
-<span id="more"></span>
-<h2 id="ChatGPT（网页版桌面应用）">ChatGPT（网页版桌面应用）</h2>
-<p><a href="https://github.com/lencx/ChatGPT">https://github.com/lencx/ChatGPT</a></p>
+<h2 id="禁止更新">禁止更新</h2>
 <ol>
 <li class="lvl-3">
-<p><mark><strong>prompt</strong></mark></p>
-</li>
-<li class="lvl-3">
-<p><mark><strong>导出md、图片、pdf</strong></mark></p>
+<p>系统设置–&gt;软件和更新–&gt;更新</p>
 </li>
 </ol>
-<p><img src="https://gitee.com/humble_ao/Image/raw/master/image-20230415190959912.png" alt=""></p>
-<h2 id="NoFWL（API）">NoFWL（API）</h2>
-<p><a href="https://github.com/lencx/nofwl">https://github.com/lencx/nofwl</a></p>
+<p>将“自动检查更新”和“有新版本时通知我”设置为“从不“，关闭对话框完成设置。</p>
+<p><img src="https://s2.loli.net/2023/05/11/WqTUCsxc2kt7vRa.png" alt=""></p>
+<ol start="2">
+<li class="lvl-3">
+<p>修改配置文件</p>
+</li>
+</ol>
+<p>修改配置文件<code>/etc/apt/apt.conf.d/10periodic</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">xxxx:~$cat /etc/apt/apt.conf.d/10periodic</span><br><span class="line">APT : :Periodic: : Update-Package-Lists &quot;1&quot;;</span><br><span class="line">APT : :Periodic: : Download-Upgradeable-Packages &quot;0&quot;;</span><br><span class="line">APT : :Periodic: :AutocleanInterval &quot;0&quot;;</span><br><span class="line">APT : :Periodic: :Unattended-Upgrade &quot;0&quot;;</span><br></pre></td></tr></table></figure>
+<p><strong>linux系统下修改只读【read-only】文件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo chmod a+w /etc/apt/apt.conf.d/10periodic</span><br></pre></td></tr></table></figure>
+<h2 id="输入法">输入法</h2>
 <ol>
 <li class="lvl-3">
-<p><mark><strong>自定义头像</strong></mark></p>
-</li>
-<li class="lvl-3">
-<p>期待更新</p>
+<p>安装<code>fcitx</code>输入法框架</p>
 </li>
 </ol>
-<p><img src="https://gitee.com/humble_ao/Image/raw/master/image-20230415191024389.png" alt=""></p>
-<h2 id="BingGPT（new-bing桌面应用）">BingGPT（new bing桌面应用）</h2>
-<p><a href="https://github.com/dice2o/BingGPT">https://github.com/dice2o/BingGPT</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install fcitx  # 安装fcitx输入法框架</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li class="lvl-3">
+<p>配置<code>Fcitx</code></p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">im-config  # 终端运行命令</span><br></pre></td></tr></table></figure>
+<p>在弹出窗口选择<code>fcitx</code>，确认关闭窗口，并重启电脑让配置生效</p>
+<p><img src="https://s2.loli.net/2023/05/11/iJMhA9I6Ny3zQXl.png" alt=""></p>
+<ol start="3">
+<li class="lvl-3">
+<p>安装谷歌输入法</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install fcitx-googlepinyin -y # 安装谷歌输入法</span><br><span class="line">fcitx-config-gtk3   # 配置谷歌输入法</span><br></pre></td></tr></table></figure>
+<p>在弹出对话框中取消勾选 “仅显示当前语言”，然后搜索选中“google”，点击确认。</p>
+<p><img src="https://s2.loli.net/2023/05/11/jwv1inJr9ldCU4N.png" alt=""></p>
+<p>点击桌面右上角，打开<code>configure</code>可以修改快捷键</p>
+<p><img src="https://s2.loli.net/2023/05/11/AucRjCPOnmzFS8v.png" alt=""></p>
+<h2 id="必备软件">必备软件</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>Vim、Firefox（浏览器）、Variety（桌面壁纸）</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/05/11/HsgGFj1eu3I6LmM.png" alt=""></p>
+<h2 id="设置代理">设置代理</h2>
 <ol>
 <li class="lvl-3">
-<p>比较稳定，不需要修改请求头</p>
+<p>安装clash for windows</p>
 </li>
 </ol>
-<p><img src="https://gitee.com/humble_ao/Image/raw/master/image-20230415191208080.png" alt=""></p>
-<h2 id="chat-gpt-next-web（API）">chat-gpt-next-web（API）</h2>
-<p><mark>一键部署私人网页应用</mark>：<a href="https://github.com/Yidadaa/ChatGPT-Next-Web">https://github.com/Yidadaa/ChatGPT-Next-Web</a></p>
-<ol>
+<p>下载链接：<a href="https://github.com/Fndroid/clash_for_windows_pkg%EF%BC%8C%E9%80%89%E6%8B%A9%60linux%60%E7%89%88%E6%9C%AC">https://github.com/Fndroid/clash_for_windows_pkg，选择`linux`版本</a></p>
+<p><img src="https://s2.loli.net/2023/05/11/p3aCmfMAWLU9Hni.png" alt=""></p>
+<ol start="2">
 <li class="lvl-3">
-<p><mark>使用vercel免费部署</mark></p>
-</li>
-<li class="lvl-3">
-<p><mark>API 响应快</mark></p>
-</li>
-<li class="lvl-4">
-<p><mark>自带prompt</mark></p>
+<p>运行clash</p>
 </li>
 </ol>
-<p><img src="https://gitee.com/humble_ao/Image/raw/master/image-20230415191132974.png" alt=""></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd download #切换到下载目录</span><br><span class="line">sudo tar -zx Clash.for.Windows-0.17.1-x64-linux.tar.gz -C /opt #解压</span><br><span class="line">cd /opt</span><br><span class="line">sudo mv &#x27;Clash for Windows-0.17.1-x64-linux&#x27; clash  # 重命名</span><br><span class="line">cd clash</span><br><span class="line">./cfw  # run</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li class="lvl-3">
+<p>配置clash</p>
+</li>
+</ol>
+<p>clash导入订阅链接–&gt;开启代理（建议打开开机自启）</p>
+<p><img src="https://s2.loli.net/2023/05/11/1QnjTCq4LlwOeyx.png" alt=""></p>
+<ol start="4">
+<li class="lvl-3">
+<p>设置代理</p>
+</li>
+</ol>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>终端添加环境变量</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo chmod 666 /etc/environment</span><br><span class="line">vi /etc/environment</span><br><span class="line"># 填入内容</span><br><span class="line">http_proxy=http://127.0.0.1:7890/</span><br><span class="line">https_proxy=http://127.0.0.1:7890/</span><br><span class="line">ftp_proxy=http://127.0.0.1:7890/</span><br><span class="line">HTTP_PROXY=http://127.0.0.1:7890/</span><br><span class="line">HTTPS_PROXY=http://127.0.0.1:7890/</span><br><span class="line">FTP_PROXY=http://127.0.0.1:7890/</span><br><span class="line"># 恢复原始状态</span><br><span class="line">sudo chmod 444 /etc/environment</span><br></pre></td></tr></table></figure>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>或者：设置–&gt;网络–&gt;手动设置代理</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/05/11/XNFpfvIk95E3ire.png" alt=""></p>
+<h2 id="克隆">克隆</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>右击虚拟机–&gt;管理–&gt;克隆</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/05/11/KDLpXHFaYlCncSm.png" alt=""></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>修改克隆文件名</p>
+</li>
+</ul>
+<p>修改如下克隆配置文件名字</p>
+<p><img src="https://s2.loli.net/2023/05/11/rJDClkcfet8vRVZ.png" alt=""></p>
+<p>打开<code>.vmx</code>文件，修改相应的值即可</p>
+<p><img src="https://s2.loli.net/2023/05/11/WMFa1jY7kQ3dVue.png" alt=""></p>
+<h2 id="优化">优化</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>修改导航栏位置</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/05/11/n8hEAt1fxYr2veP.png" alt=""></p>
+<h2 id="Reference">Reference</h2>
+<p>[1]	ubuntu 禁止/取消系统自动更新的方法: <a href="https://blog.csdn.net/dacming/article/details/125164420">https://blog.csdn.net/dacming/article/details/125164420</a></p>
+<p>[2] 	linux系统下修改只读【read-only】文件: <a href="https://blog.csdn.net/weixin_45677951/article/details/108746753">https://blog.csdn.net/weixin_45677951/article/details/108746753</a></p>
+<p>[3]	ubuntu20.04 LTS安装谷歌拼音输入法: <a href="https://blog.csdn.net/kan2016/article/details/105735645">https://blog.csdn.net/kan2016/article/details/105735645</a></p>
+<p>[4]	linux下使用clash(GUI): <a href="https://www.jianshu.com/p/02e3e8ccfe80">https://www.jianshu.com/p/02e3e8ccfe80</a></p>
+<p>[5]	ubuntu启动栏导航栏放置到桌面底部、左侧: <a href="https://blog.csdn.net/lzp_k2/article/details/100089800">https://blog.csdn.net/lzp_k2/article/details/100089800</a></p>
 ]]></content>
       <categories>
-        <category>AI</category>
+        <category>Tools</category>
+        <category>Software</category>
       </categories>
       <tags>
-        <tag>ChatGPT</tag>
+        <tag>Ubuntu,Linux</tag>
       </tags>
   </entry>
   <entry>
