@@ -85,7 +85,8 @@
 <p>安装clash for windows</p>
 </li>
 </ol>
-<p>下载链接：<a href="https://github.com/Fndroid/clash_for_windows_pkg%EF%BC%8C%E9%80%89%E6%8B%A9%60linux%60%E7%89%88%E6%9C%AC">https://github.com/Fndroid/clash_for_windows_pkg，选择`linux`版本</a></p>
+<p>下载链接：<a href="https://github.com/Fndroid/clash_for_windows_pkg">https://github.com/Fndroid/clash_for_windows_pkg</a></p>
+<p>选择<code>linux</code>版本的压缩包</p>
 <p><img src="https://s2.loli.net/2023/05/11/p3aCmfMAWLU9Hni.png" alt=""></p>
 <ol start="2">
 <li class="lvl-3">
@@ -152,7 +153,8 @@
         <category>Software</category>
       </categories>
       <tags>
-        <tag>Ubuntu,Linux</tag>
+        <tag>Ubuntu</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
