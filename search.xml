@@ -79,9 +79,9 @@
       </categories>
       <tags>
         <tag>C++</tag>
-        <tag>Ubuntu</tag>
         <tag>Linux</tag>
         <tag>Vim</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -237,8 +237,8 @@
         <category>Software</category>
       </categories>
       <tags>
-        <tag>Ubuntu</tag>
         <tag>Linux</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -1190,7 +1190,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Windows代理设置</title>
+    <title>Windows终端代理</title>
     <url>/archives/7b6d4a85.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 <h2 id="CMD">CMD</h2>
@@ -1223,6 +1223,54 @@
 </tbody>
 </table>
 <p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/c68f9ab677f3436d8a02a8a847329137.png" alt=""></p>
+<h3 id="常用快捷键">常用快捷键</h3>
+<p>有的需要右键–&gt;编辑模式–&gt;开启复制粘贴</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl + a</td>
+<td>将光标移到行首</td>
+</tr>
+<tr>
+<td>Ctrl + e</td>
+<td>将光标移到末尾</td>
+</tr>
+<tr>
+<td>Ctrl + u</td>
+<td>删除整行</td>
+</tr>
+<tr>
+<td>Ctrl + k</td>
+<td>向后删除，从光标开始直至行尾</td>
+</tr>
+<tr>
+<td>Alt + Backspace</td>
+<td>光标向前删除一个单词</td>
+</tr>
+<tr>
+<td>Alt + f</td>
+<td>将光标移动到后一个单词</td>
+</tr>
+<tr>
+<td>Alt + b</td>
+<td>将光标移动到前一个单词</td>
+</tr>
+<tr>
+<td>Ctrl + p</td>
+<td>上一条命令</td>
+</tr>
+<tr>
+<td>Ctrl + n</td>
+<td>下一条命令</td>
+</tr>
+</tbody>
+</table>
 <h2 id="Git（永久生效）">Git（永久生效）</h2>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 设施全局代理</span><br><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br><span class="line"># 查看代理</span><br><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br><span class="line"># 取消全局代理</span><br><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
 <h2 id="测试">测试</h2>
