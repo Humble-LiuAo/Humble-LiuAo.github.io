@@ -205,7 +205,7 @@
 <h2 id="克隆">克隆</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>右击虚拟机–&gt;管理–&gt;克隆</p>
+<p>右键点击虚拟机–&gt;管理–&gt;克隆</p>
 </li>
 </ul>
 <p><img src="https://s2.loli.net/2023/05/11/KDLpXHFaYlCncSm.png" alt=""></p>
@@ -310,7 +310,8 @@
         <category>Software</category>
       </categories>
       <tags>
-        <tag>Anaconda,Jupyter</tag>
+        <tag>Anaconda</tag>
+        <tag>Jupyter</tag>
       </tags>
   </entry>
   <entry>
@@ -698,13 +699,13 @@
 <p>PyCharm的社区版中没有Web开发、Python We框架、Python分析器、远程开发、支持数据库与SQL等这些功能。</p>
 <p>PyCharm教育版的功能虽然比专业版会少一些，但与社区版相比，更加支持学校的教学工作。</p>
 </blockquote>
+<span id="more"></span>
 <h2 id="PyCharm专业版安装">PyCharm专业版安装</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>参考 <mark>软件管家</mark>公众号，或点击：<a href="https://mp.weixin.qq.com/s/V2Ls-lcnymD9_ZullCh_fg">https://mp.weixin.qq.com/s/V2Ls-lcnymD9_ZullCh_fg</a></p>
 </li>
 </ul>
-<span id="more"></span>
 <h2 id="主题字体配置">主题字体配置</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -1036,8 +1037,11 @@
     <title>Markdown进阶</title>
     <url>/archives/97cdff40.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
-<h2 id="常用查表">常用查表</h2>
+<blockquote>
+<p>Markdown是一种轻量级标记语言，旨在提供一个易于学习和使用的文本到HTML转换工具。它提供了标题、列表、代码块、链接等简单的标记和语法，使文本排版更加简单、清晰和易读。现在，许多平台都支持Markdown，包括GitHub、Stack Overflow和Reddit。掌握Markdown是非常有用的，具体参考<a href="https://liuaoao.top/archives/1ef37645.html">Markdown-For-Typora</a>。</p>
+</blockquote>
 <span id="more"></span>
+<h2 id="常用查表">常用查表</h2>
 <table>
 <thead>
 <tr>
