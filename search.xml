@@ -1,6 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>代理与内网穿透</title>
+    <url>/archives/b512fc98.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<h2 id="代理">代理</h2>
+<h3 id="什么是反向代理？">什么是反向代理？</h3>
+<p>反向代理是位于 Web 服务器前面的服务器，其将客户端（例如 Web 浏览器）请求转发到这些 Web 服务器。反向代理通常用于帮助提高<a href="https://www.cloudflare.com/learning/security/what-is-web-application-security/">安全性</a>、<a href="https://www.cloudflare.com/learning/performance/why-site-speed-matters/">性能</a>和可靠性。为了更好地理解反向代理的工作原理以及它可以提供的好处，我们来首先定义什么是代理服务器。</p>
+<span id="more"></span>
+<h3 id="什么是代理服务器？">什么是代理服务器？</h3>
+<p>转发代理，通常称为代理、代理服务器或 Web 代理，是位于一组客户端计算机之前的服务器。当这些计算机向 Internet 上的站点和服务发出请求时，代理服务器将拦截这些请求，然后代表客户端与 Web 服务器进行通信，起到中间设备的作用。</p>
+<p>例如，典型的转发代理通信中涉及 3 台计算机：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>A：这是用户的家用计算机</p>
+</li>
+<li class="lvl-2">
+<p>B：这是一个转发代理服务器</p>
+</li>
+<li class="lvl-2">
+<p>C：这是网站的源站（用于存储网站数据）</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/05/11/jNpMBu3SwHXDsdF.png" alt="正向代理流：流量从用户的设备 (A) 到正向代理 (B) 到互联网到源服务器 (C)"></p>
+<p>在标准的互联网通信中，计算机 A 将直接与计算机 C 保持联系，客户端将请求发送到<a href="https://www.cloudflare.com/learning/cdn/glossary/origin-server/">源服务器</a>，并且源服务器将响应客户端。当存在转发代理时，A 将请求发送到 B，B 随后将请求转发给 C。C 将向 B 发送响应，而 B 则将响应转发给 A。</p>
+<p>为什么要将这个多余的中间设备添加到 Internet 活动中？使用转发代理可能有几个原因：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>为避免州或机构的浏览限制</strong>——一些政府、学校和其他组织使用防火墙来使用户访问受限版本的互联网。转发代理可用于绕过这些限制，因为它们使用户可以连接到代理，而不是直接连接到他们正在访问的站点。</p>
+</li>
+<li class="lvl-2">
+<p><strong>阻止访问某些内容</strong>——相对的，也可以设置代理以阻止特定用户群访问某些站点。例如，学校网络可能配置为通过启用内容筛选规则的代理连接到 Web，以拒绝转发来自 Facebook 和其他社交媒体网站的响应。</p>
+</li>
+<li class="lvl-2">
+<p><strong>保护自己的在线身份</strong>——在某些情况下，常规互联网用户希望增加在线匿名性，但在其他情况下，互联网用户居住在政府可能对政治异议者施加严重后果的地方。在网络论坛或社交媒体上批评政府可能会导致这些用户受到罚款或监禁。如果持不同政见者使用转发代理连接到他们发布政治敏感评论的网站，则用于发表评论的 <a href="https://www.cloudflare.com/learning/dns/glossary/what-is-my-ip-address/">IP 地址</a>将更难追溯到持不同政见者。仅代理服务器的 IP 地址将对他人可见。</p>
+</li>
+</ul>
+<h3 id="反向代理有何不同？">反向代理有何不同？</h3>
+<p>反向代理是位于一个或多个 Web 服务器前面的服务器，拦截来自客户端的请求。这与转发代理不同 - 在转发代理中，代理位于客户端的前面。使用反向代理，当客户端将请求发送到网站的源服务器时，反向代理服务器会在<a href="https://www.cloudflare.com/learning/serverless/glossary/what-is-edge-computing/">网络边缘</a>拦截这些请求。然后，反向代理服务器将向源服务器发送请求并从源服务器接收响应。</p>
+<p>转发代理和反向代理之间的区别非常细微，但非常重要。简单概括而言，转发代理位于客户端的前面，确保没有源站直接与该特定客户端通信；而反向代理服务器位于源站前面，确保没有客户端直接与该源站通信。</p>
+<p>这一次，所涉及的计算机包括：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>D：任意数量的用户家用计算机</p>
+</li>
+<li class="lvl-2">
+<p>E：这是反向代理服务器</p>
+</li>
+<li class="lvl-2">
+<p>F：一台或多台源站</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/05/11/IoGSXLkaHTrl7PU.png" alt="反向代理流：流量从用户的设备 (D) 到互联网到反向代理 (E) 到源服务器 (F)"></p>
+<p>通常，来自 D 的所有请求都将直接发送到 F，而 F 会直接将响应发送到 D。使用反向代理，来自 D 的所有请求都将直接发送给 E，而 E 会将其请求发送到 F 并从 F 接收响应，然后将适当响应传递给 D。</p>
+<p>下面是反向代理的一些好处：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong><a href="https://www.cloudflare.com/learning/cdn/cdn-load-balance-reliability/">负载均衡</a></strong> - 一个每天吸引数百万用户的热门网站可能无法使用单个源服务器处理所有传入站点流量。但该站点可以分布在不同服务器的池中，让所有服务器都处理同一站点的请求。在这种情况下，反向代理可以提供一种负载均衡解决方案，在不同服务器之间平均分配传入流量，以防止单个服务器过载。如果某台服务器完全无法运转，则其他服务器可以代为处理流量。</p>
+</li>
+<li class="lvl-2">
+<p><strong>防范攻击</strong> - 配备反向代理后，网站或服务无需透露其源服务器的 IP 地址。这使得攻击者更难利用针对性攻击，例如 <a href="https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/">DDoS 攻击</a>。这时候，攻击者只能针对反向代理，例如 Cloudflare 的 <a href="https://www.cloudflare.com/learning/cdn/what-is-a-cdn/">CDN</a>，而后者拥有具有更严格的安全性，拥有更多资源来抵御网络攻击。</p>
+</li>
+<li class="lvl-2">
+<p><strong><a href="https://www.cloudflare.com/learning/cdn/glossary/global-server-load-balancing-gslb/">全局服务器负载平衡</a> (GSLB)</strong> - 在这种负载均衡形式中，一个网站可以分布在全球各地的多个服务器上，反向代理会将客户端发送到地理位置上最接近它们的服务器。这样可以减少请求和响应传播的距离，从而最大程度地减少加载时间。</p>
+</li>
+<li class="lvl-2">
+<p><strong>缓存</strong> - 反向代理还可以<a href="https://www.cloudflare.com/learning/cdn/what-is-caching/">缓存</a>内容，从而提高速度。例如，如果巴黎的用户访问使用反向代理而 Web 服务器位于洛杉矶的网站，则该用户实际上可能连接到巴黎本地的反向代理服务器，然后该本地反向代理服务器必须与洛杉矶的源服务器进行通信。之后，代理服务器可以缓存（或临时保存）响应数据。随后浏览该站点的巴黎用户将从巴黎反向代理服务器处获取本地缓存的响应，从而享受到更快的性能。</p>
+</li>
+<li class="lvl-2">
+<p><strong>SSL 加密</strong> - <a href="https://www.cloudflare.com/learning/ssl/what-is-encryption/">加密</a>和解密每个客户端的 <a href="https://www.cloudflare.com/learning/security/glossary/what-is-ssl/">SSL</a>（或 <a href="https://www.cloudflare.com/learning/security/glossary/transport-layer-security-tls/">TLS</a>）通信对于源服务器可能需要耗费大量计算资源。可以配置由反向代理解密所有传入请求并加密所有传出响应，腾出源服务器上的宝贵资源。</p>
+</li>
+</ul>
+<h3 id="如何实施反向代理">如何实施反向代理</h3>
+<p>一些公司构建自己的反向代理，但这需要大量的软件和硬件工程资源，以及对硬件的大量投资。享受反向代理的所有好处的最简单、最具成本效益的方法之一就是注册 CDN 服务。例如，<a href="https://www.cloudflare.com/cdn/">Cloudflare CDN</a> 提供上面列出的所有性能和安全功能，以及许多其他功能。</p>
+<h2 id="内网穿透">内网穿透</h2>
+<h3 id="1-什么是内网穿透">1. 什么是内网穿透?</h3>
+<p>在了解内网穿透原理之前，我们先说什么是内网穿透。内网，就是在公司或者家庭内部，建立的局域网络或者是办公网络，可以实现多台电脑之间的资源共享，包括设备、资料、数据等。而外网则是通过一个网关与其它的网络系统连接，相对于内网而言，这种网络系统称之为外部网络，常见的就是我们日常使用的互联网。</p>
+<p>一般而言，在没有固定公网IP的情况下，外网设备无法直接访问内网设备。而内网穿透技术，顾名思义就是能让外网的设备找到处于内网的设备，从而实现数据通信。</p>
+<h3 id="2-内网穿透的原理">2. 内网穿透的原理</h3>
+<p>内网穿透，又称为NAT穿透。NAT背后的设备，它们的主要特点是 ，可以访问外网，但不能被外网设备有效访问。基于这一特点，NAT穿透技术是让NAT背后的设备，先访问指定的外网服务器，由指定的外网服务器搭建桥梁，打通内、外网设备的访问通道，实现外网设备访问到内网设备。</p>
+<p>该技术除了可以访问隐藏在NAT后的设备，同样可以穿透防火墙。这是因为防火墙一般只拦截了入站没有拦截出站，所以也可以让防火墙内的设备对外提供服务。</p>
+<p>由于内网设备并不是与外网设备直接相连，所以在安全性上是毋庸置疑的，内网穿透可以说是安全与效率兼得。 <img src="https://s2.loli.net/2023/05/11/RE1iaN8nV6dDMWg.png" alt="img"></p>
+<h3 id="3-如何实现内网穿透">3. 如何实现内网穿透</h3>
+<p>我们可以安装<a href="https://hsk.oray.com/">花生壳</a>内网穿透软件，在软件上添加<a href="https://hsk.oray.com/">映射</a>时，配置被访问内网设备的相关信息 ，以及选择用作外网访问该映射的<a href="https://domain.oray.com/">域名</a>。当映射诊断信息提示连接成功时，即可实现内网穿透。</p>
+<p>利用花生壳的内网穿透技术，外网的设备通过访问固定域名，连接花生壳服务器所搭建的通道，顺畅地与内网设备进行数据通信。</p>
+<h2 id="Reference">Reference</h2>
+<p>[1]	什么是反向代理？|代理服务器介绍: <a href="https://www.cloudflare.com/zh-cn/learning/cdn/glossary/reverse-proxy/">https://www.cloudflare.com/zh-cn/learning/cdn/glossary/reverse-proxy/</a></p>
+<p>[2]	内网穿透原理解析: <a href="https://service.oray.com/question/5571.html">https://service.oray.com/question/5571.html</a></p>
+]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux配置C++</title>
     <url>/archives/1a24c243.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -156,6 +251,29 @@
 <p><img src="https://s2.loli.net/2023/05/11/jwv1inJr9ldCU4N.png" alt=""></p>
 <p>点击桌面右上角，打开<code>configure</code>可以修改快捷键</p>
 <p><img src="https://s2.loli.net/2023/05/11/AucRjCPOnmzFS8v.png" alt=""></p>
+<p><strong>解决Jetbarins Clion Ubuntu Fcitx 中文输入法光标跟随问题</strong></p>
+<ol>
+<li class="lvl-3">
+<p>下载根据补丁修复过的<code>jre</code>：<a href="https://github.com/RikudouPatrickstar/JetBrainsRuntime-for-Linux-x64/">https://github.com/RikudouPatrickstar/JetBrainsRuntime-for-Linux-x64/</a></p>
+</li>
+<li class="lvl-3">
+<p>替换Clion的<code>jre</code></p>
+<ul class="lvl-2">
+<li class="lvl-5">选择特定<strong>路径</strong>解压</li>
+<li class="lvl-5">Ctrl+shift+A，搜索: <code>Choose Boot Java Runtime for the IDE的Action</code>，并点击进入</li>
+<li class="lvl-5">选择 <strong>New</strong> --&gt; <strong>Add Custom Runtime…</strong></li>
+</ul>
+<p><img src="https://s2.loli.net/2023/05/11/25oLvcydS8Jz1VW.png" alt="image-20230511201625729"></p>
+<ul class="lvl-2">
+<li class="lvl-5">
+<p><strong>Add JDK…</strong></p>
+</li>
+<li class="lvl-5">
+<p>选择你解压的 <strong>路径</strong> ，点击OK，重启即可</p>
+</li>
+</ul>
+</li>
+</ol>
 <h2 id="必备软件">必备软件</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
