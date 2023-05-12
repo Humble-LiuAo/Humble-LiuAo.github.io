@@ -21,29 +21,29 @@
     var CONFIG = {"hostname":"liuaoao.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":false,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言 浅层语义分析（LSA） 是一种自然语言处理中用到的方法，其通过“矢量语义空间”来提取文档与词中的“概念”，进而分析文档与词之间的关系。LSA的基本假设是，如果两个词多次出现在同一文档中，则这两个词在语义上具有相似性。LSA使用大量的文本上构建一个矩阵，这个矩阵的一行代表一个词，一列代表一个文档，矩阵元素代表该词在该文档中出现的次数，然后再此矩阵上使用奇异值分解（SVD）来保留列信息的情况下">
+  <meta name="description" content="Git安装 在 Windows 上安装：   Git for Windows 是运行在Windows系统上的Git版本，它提供了与其他版本相同的功能和命令，以便Windows用户能够使用Git来开发和管理项目。同时，Git for Windows还提供了额外的工具和选项，如Bash命令行工具和ssh客户端。   GitHub Desktop是一个可视化的GitHub客户端程序，它帮助用户简化了使">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅层语义分析（LSA）">
-<meta property="og:url" content="https://liuaoao.top/archives/d42a069d.html">
+<meta property="og:title" content="Git及NodeJS安装配置">
+<meta property="og:url" content="https://liuaoao.top/archives/938d5a31.html">
 <meta property="og:site_name" content="白茶不雨的博客">
-<meta property="og:description" content="前言 浅层语义分析（LSA） 是一种自然语言处理中用到的方法，其通过“矢量语义空间”来提取文档与词中的“概念”，进而分析文档与词之间的关系。LSA的基本假设是，如果两个词多次出现在同一文档中，则这两个词在语义上具有相似性。LSA使用大量的文本上构建一个矩阵，这个矩阵的一行代表一个词，一列代表一个文档，矩阵元素代表该词在该文档中出现的次数，然后再此矩阵上使用奇异值分解（SVD）来保留列信息的情况下">
+<meta property="og:description" content="Git安装 在 Windows 上安装：   Git for Windows 是运行在Windows系统上的Git版本，它提供了与其他版本相同的功能和命令，以便Windows用户能够使用Git来开发和管理项目。同时，Git for Windows还提供了额外的工具和选项，如Bash命令行工具和ssh客户端。   GitHub Desktop是一个可视化的GitHub客户端程序，它帮助用户简化了使">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/202204191240431.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/202204191240905.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/202204191240123.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/202204191242577.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/202204191242830.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/202204191242875.png">
-<meta property="article:published_time" content="2023-04-16T14:55:11.000Z">
-<meta property="article:modified_time" content="2023-04-21T07:43:18.936Z">
+<meta property="og:image" content="https://s2.loli.net/2023/05/13/Zt7JU2mjPwq9DNu.png">
+<meta property="og:image" content="https://s2.loli.net/2023/05/13/n3yBG1Rx6K8viTY.png">
+<meta property="og:image" content="https://s2.loli.net/2023/05/13/g9QYUONCXtD2aTS.png">
+<meta property="og:image" content="https://s2.loli.net/2023/05/13/NtR31WeHUvMrC8u.png">
+<meta property="og:image" content="https://s2.loli.net/2023/05/13/q4oE6MkztX9amBi.png">
+<meta property="og:image" content="https://s2.loli.net/2023/05/13/hzdHwlSCp3RujUr.png">
+<meta property="og:image" content="https://s2.loli.net/2023/05/13/IyAcesFCoTz3Xwa.png">
+<meta property="og:image" content="https://s2.loli.net/2023/05/13/TtWgGUVuB92YQA7.png">
+<meta property="article:published_time" content="2023-05-12T17:14:47.000Z">
+<meta property="article:modified_time" content="2023-05-12T17:27:16.101Z">
 <meta property="article:author" content="白茶不雨">
-<meta property="article:tag" content="Machine learning">
-<meta property="article:tag" content="语义分析">
-<meta property="article:tag" content="Data mining">
+<meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/202204191240431.png">
+<meta name="twitter:image" content="https://s2.loli.net/2023/05/13/Zt7JU2mjPwq9DNu.png">
 
-<link rel="canonical" href="https://liuaoao.top/archives/d42a069d.html">
+<link rel="canonical" href="https://liuaoao.top/archives/938d5a31.html">
 
 
 <script id="page-configurations">
@@ -56,7 +56,7 @@
   };
 </script>
 <link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css">
-  <title>浅层语义分析（LSA） | 白茶不雨的博客</title>
+  <title>Git及NodeJS安装配置 | 白茶不雨的博客</title>
   
 
 
@@ -213,7 +213,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liuaoao.top/archives/d42a069d.html">
+    <link itemprop="mainEntityOfPage" href="https://liuaoao.top/archives/938d5a31.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -226,7 +226,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          浅层语义分析（LSA）
+          Git及NodeJS安装配置
         </h1>
 
         <div class="post-meta">
@@ -235,32 +235,26 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2023-04-16 22:55:11" itemprop="dateCreated datePublished" datetime="2023-04-16T22:55:11+08:00">2023-04-16</time>
+              <time title="创建时间：2023-05-13 01:14:47 / 修改时间：01:27:16" itemprop="dateCreated datePublished" datetime="2023-05-13T01:14:47+08:00">2023-05-13</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-21 15:43:18" itemprop="dateModified" datetime="2023-04-21T15:43:18+08:00">2023-04-21</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-learning/" itemprop="url" rel="index"><span itemprop="name">Machine learning</span></a>
+                  <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-learning/Data-mining/" itemprop="url" rel="index"><span itemprop="name">Data mining</span></a>
+                  <a href="/categories/Tools/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
                 </span>
             </span>
 
           
-            <span id="/archives/d42a069d.html" class="post-meta-item leancloud_visitors" data-flag-title="浅层语义分析（LSA）" title="阅读次数">
+            <span id="/archives/938d5a31.html" class="post-meta-item leancloud_visitors" data-flag-title="Git及NodeJS安装配置" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -275,8 +269,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/archives/d42a069d.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/archives/d42a069d.html" itemprop="commentCount"></span>
+    <a title="valine" href="/archives/938d5a31.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/archives/938d5a31.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -286,7 +280,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
+              <span>1.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -305,61 +299,140 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <meta name="referrer" content="no-referrer"/>
-<p><strong>前言</strong></p>
-<p><mark>浅层语义分析（LSA）</mark> 是一种自然语言处理中用到的方法，其通过“矢量语义空间”来提取文档与词中的“概念”，进而分析文档与词之间的关系。LSA的基本假设是，如果两个词多次出现在同一文档中，则这两个词在语义上具有相似性。LSA使用大量的文本上构建一个矩阵，这个矩阵的一行代表一个词，一列代表一个文档，矩阵元素代表该词在该文档中出现的次数，然后再此矩阵上使用奇异值分解（SVD）来保留列信息的情况下减少矩阵行数，之后每两个词语的相似性则可以通过其行向量的cos值（或者归一化之后使用向量点乘）来进行标示，此值越接近于1则说明两个词语越相似，越接近于0则说明越不相似。</p>
+        <meta name="referrer" content="no-referrer" />
+<h2 id="Git安装">Git安装</h2>
+<p>在 Windows 上安装：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://git-scm.com/download/win">Git for Windows</a> 是运行在Windows系统上的Git版本，它提供了与其他版本相同的功能和命令，以便Windows用户能够使用Git来开发和管理项目。同时，Git for Windows还提供了额外的工具和选项，如Bash命令行工具和ssh客户端。</p>
+</li>
+<li class="lvl-3">
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://desktop.github.com/">GitHub Desktop</a>是一个可视化的GitHub客户端程序，它帮助用户简化了使用Git控制代码版本的复杂性。通过GitHub Desktop，用户可以方便地克隆、更新、提交和推送代码，管理分支和合并请求，以及与他人协作开发代码。它适用于Windows和macOS操作系统，并且是免费提供下载和使用的。</p>
+</li>
+</ul>
 <span id="more"></span>
-<p>LSA最早在1988年由 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.wikipedia.org/wiki/Scott_Deerwester">Scott Deerwester</a>, <a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.wikipedia.org/wiki/Susan_Dumais">Susan Dumais</a>, <a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.wikipedia.org/wiki/George_Furnas">George Furnas</a>, <a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.wikipedia.org/wiki/Richard_Harshman">Richard Harshman</a>, <a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.wikipedia.org/wiki/Thomas_Landauer">Thomas Landauer</a>, <a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.wikipedia.org/w/index.php?title=Karen_Lochbaum&amp;action=edit&amp;redlink=1">Karen Lochbaum</a> and <a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.wikipedia.org/w/index.php?title=Lynn_Streeter&amp;action=edit&amp;redlink=1">Lynn Streeter</a>提出，在某些情况下，LSA又被称作潜在语义索引（LSI）。</p>
-<p><strong>概述</strong></p>
-<p><strong>词-文档矩阵（Occurences Matrix)</strong></p>
-<p>LSA 使用词-文档矩阵来描述一个词语是否在一篇文档中。词-文档矩阵式一个稀疏矩阵，其行代表词语，其列代表文档。一般情况下，词-文档矩阵的元素是该词在文档中的出现次数，也可以是是该词语的tf-idf(term frequency–inverse document frequency)。</p>
-<p>词-文档矩阵和传统的语义模型相比并没有实质上的区别，只是因为传统的语义模型并不是使用“矩阵”这种数学语言来进行描述。</p>
-<p><strong>降维</strong></p>
-<p>在构建好词-文档矩阵之后，LSA将对该矩阵进行降维，来找到词-文档矩阵的一个低阶近似。降维的原因有以下几点：</p>
+<h3 id="Git-for-Windows-2-39-2">Git for Windows(2.39.2)</h3>
+<ol>
+<li class="lvl-3">
+<p>修改安装路径</p>
+</li>
+<li class="lvl-3">
+<p>选择安装组件，选择如下</p>
+</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/05/13/Zt7JU2mjPwq9DNu.png" alt=""></p>
+<ol start="3">
+<li class="lvl-3">
+<p>选择<code>Git</code>默认编辑器，默认<code>Vim</code></p>
+</li>
+<li class="lvl-3">
+<p>调整新存储库中的初始分支的名称，默认<code>Let Git decide</code></p>
+</li>
+<li class="lvl-3">
+<p>调整<code>PATH</code>环境，默认即可</p>
+</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/05/13/n3yBG1Rx6K8viTY.png" alt=""></p>
+<ol start="6">
+<li class="lvl-3">
+<p>选择<code>SSH</code>可执行文件，默认<code>Use bundled OpenSSH</code></p>
+</li>
+<li class="lvl-3">
+<p>选择<code>HTTPS</code>后端传输，默认<code>Use the OpenSSL library</code></p>
+</li>
+<li class="lvl-3">
+<p>配置行结束转换，默认<code>Checkout Windows-style, commit Unix-style line endings</code></p>
+</li>
+<li class="lvl-3">
+<p>配置终端模拟器以与<code>Git Bash</code>一起使用，默认<code>Use MinTTY(the default terminal of MSYS2)</code></p>
+</li>
+<li class="lvl-4">
+<p>选择<code>git pull</code>的默认行为，默认<code>Default (fast-forward or merge)</code></p>
+</li>
+<li class="lvl-4">
+<p>选择凭据助手，默认<code>Git Credential Manager</code></p>
+</li>
+<li class="lvl-4">
+<p>配置额外选项，默认<code>Enable file system caching</code></p>
+</li>
+<li class="lvl-4">
+<p>配置实验选项，默认即可</p>
+</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/05/13/g9QYUONCXtD2aTS.png" alt=""></p>
+<ol start="14">
+<li class="lvl-4">
+<p>测试</p>
+</li>
+</ol>
+<p>安装完成，可以在开始菜单中看到<code>Git</code>的三个启动图标<code>（Git Bash、Git CMD、Git GUI）</code>,推荐使用<code>Git Bash</code></p>
+<p><img src="https://s2.loli.net/2023/05/13/NtR31WeHUvMrC8u.png" alt=""></p>
+<h4 id="配置SSH">配置SSH</h4>
+<ol>
+<li class="lvl-3">
+<p><code>Git Bash</code>:</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">git config --<span class="variable language_">global</span> user.<span class="property">name</span> <span class="string">&quot;Humble-LiuAo&quot;</span></span><br><span class="line">git config --<span class="variable language_">global</span> user.<span class="property">email</span> <span class="string">&quot;1743185682@qq.com&quot;</span></span><br><span class="line"></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;1743185682@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li class="lvl-3">
+<p>新建SSH</p>
+</li>
+</ol>
+<p>登录 <a href="https://link.zhihu.com/?target=http%3A//github.com/" rel="external nofollow noreferrer">github</a>，在头像下面点击<code>settings</code>，再点击<code>SSH and GPG keys</code>，新建一个<code>SSH</code></p>
+<ol start="3">
+<li class="lvl-3">
+<p><code>git bash</code>:</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<p>将输出的内容复制到 <code>github SSH</code>,点击确定保存</p>
+<ol start="4">
+<li class="lvl-3">
+<p>验证</p>
+</li>
+</ol>
+<p>输入<code>ssh -T git@github.com</code>，显示如下信息，配置成功</p>
+<p><img src="https://s2.loli.net/2023/05/13/q4oE6MkztX9amBi.png" alt=""></p>
+<h2 id="NodeJS安装">NodeJS安装</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>原始的词-文档矩阵太大导致计算机无法处理，从此角度来看，降维后的新矩阵式原有矩阵的一个近似。</p>
+<p>下载安装：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://nodejs.org/en">https://nodejs.org/en</a></p>
 </li>
 <li class="lvl-2">
-<p>原始的词-文档矩阵中有噪音，从此角度来看，降维后的新矩阵式原矩阵的一个去噪矩阵。</p>
-</li>
-<li class="lvl-2">
-<p>原始的词-文档矩阵过于稀疏。原始的词-文档矩阵精确的反映了每个词是否“出现”于某篇文档的情况，然而我们往往对某篇文档“相关”的所有词更感兴趣，因此我们需要发掘一个词的各种同义词的情况。</p>
+<p>修改全局包保存路径（非必须）</p>
 </li>
 </ul>
-<p>降维的结果是不同的词或因为其语义的相关性导致合并，如：</p>
-<p>{(car), (truck), (flower)} --&gt; {(1.3452 * car + 0.2828 * truck), (flower)}</p>
-<p>将维可以解决一部分同义词的问题，也能解决一部分二义性问题。具体来说，原始词-文档矩阵经过降维处理后，原有词向量对应的二义部分会加到和其语义相似的词上，而剩余部分则减少对应的二义分量。</p>
-<p><strong>推导</strong></p>
-<p>假设X是词-文档矩阵，其元素（i,j）代表词语i在文档j中的出现次数，则X矩阵看上去是如下的样子：</p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/202204191240431.png" alt=""></p>
-<p>可以看到，每一行代表一个词的向量，该向量描述了该词和所有文档的关系。</p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/202204191240905.png" alt=""></p>
-<p>相似的，一列代表一个文档向量，该向量描述了该文档与所有词的关系。</p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/202204191240123.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/202204191242577.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/202204191242830.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/202204191242875.png" alt=""></p>
-<p>**代码：**<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Humble-LiuAo/Machine-Learning/tree/main/Data%20Mining/LSA">https://github.com/Humble-LiuAo/Machine-Learning/tree/main/Data Mining/LSA</a></p>
-<p><strong>应用</strong></p>
-<p>低维的语义空间可以用于以下几个方面:</p>
+<p>下载全局包时，默认保存在C盘下，可通过 <code>npm root -g</code> 命令查看当前路径，有时候想把全局包放在其他目录下，以免占用C盘空间。</p>
+<p>在安装目录下创建两个文件夹，<code>node_global </code>全局包存放，<code>node_cache node</code>缓存。</p>
+<p><img src="https://s2.loli.net/2023/05/13/hzdHwlSCp3RujUr.png" alt=""></p>
+<ol>
+<li class="lvl-3">
+<p>在cmd命令行中执行如下两条命令</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm config set prefix <span class="string">&quot;D:\Software\nodejs\node_global&quot;</span></span><br><span class="line">npm config set cache <span class="string">&quot;D:\Software\nodejs\node_cache&quot;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li class="lvl-3">
+<p>修改环境变量</p>
+</li>
+</ol>
+<p>上面步骤里更改了<code>npm</code>全局模块的存放路径和<code>cache</code>路径，但是系统还不知道，所以需要修改环境变量。</p>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>在低维语义空间可对文档进行比较，进而可用于文档聚类和文档分类。</p>
-</li>
-<li class="lvl-2">
-<p>在翻译好的文档上进行训练，可以发现不同语言的相似文档，可用于跨语言检索。</p>
-</li>
-<li class="lvl-2">
-<p>发现词与词之间的关系，可用于同义词、歧义词检测。.</p>
-</li>
-<li class="lvl-2">
-<p>通过查询映射到语义空间，可进行信息检索。</p>
-</li>
-<li class="lvl-2">
-<p>从语义的角度发现词语的相关性，可用于“选择题回答模型”（multi choice qustions answering model）</p>
+<p>修改用户变量 <code>path</code>，添加 <code>node_global</code> 的路径</p>
 </li>
 </ul>
+<p><img src="https://s2.loli.net/2023/05/13/IyAcesFCoTz3Xwa.png" alt=""></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>添加系统变量 NODE_PATH</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/05/13/TtWgGUVuB92YQA7.png" alt=""></p>
+<h2 id="Reference">Reference</h2>
+<p>[1]	Git 详细安装教程（详解 Git 安装过程的每一个步骤）: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/mukes/article/details/115693833">https://blog.csdn.net/mukes/article/details/115693833</a></p>
+<p>[2]	NodeJS安装及配置(Windows): <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/yaorongke/article/details/119084295">https://blog.csdn.net/yaorongke/article/details/119084295</a></p>
 
     </div>
 
@@ -367,6 +440,12 @@
     
     
       
+  <div class="popular-posts-header">推荐文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\7b6d4a85.html" rel="bookmark">Windows终端代理</a></div>
+    </li>
+  </ul>
 <div class="post-widgets">
     <div
       class="social-share"
@@ -418,7 +497,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://liuaoao.top/archives/d42a069d.html" title="浅层语义分析（LSA）">https://liuaoao.top/archives/d42a069d.html</a>
+    <a href="https://liuaoao.top/archives/938d5a31.html" title="Git及NodeJS安装配置">https://liuaoao.top/archives/938d5a31.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -430,9 +509,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Machine-learning/" rel="tag"><i class="fa fa-tag"></i> Machine learning</a>
-              <a href="/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90/" rel="tag"><i class="fa fa-tag"></i> 语义分析</a>
-              <a href="/tags/Data-mining/" rel="tag"><i class="fa fa-tag"></i> Data mining</a>
+              <a href="/tags/Git/" rel="tag"><i class="fa fa-tag"></i> Git</a>
           </div>
 
         
@@ -441,13 +518,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/archives/eabeff19.html" rel="prev" title="Anaconda-Python环境安装">
-      <i class="fa fa-chevron-left"></i> Anaconda-Python环境安装
+    <a href="/archives/b512fc98.html" rel="prev" title="代理与内网穿透">
+      <i class="fa fa-chevron-left"></i> 代理与内网穿透
     </a></div>
-      <div class="post-nav-item">
-    <a href="/archives/1ef37645.html" rel="next" title="Markdown-For-Typora">
-      Markdown-For-Typora <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -507,6 +581,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">Git安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-for-Windows-2-39-2"><span class="nav-number">1.1.</span> <span class="nav-text">Git for Windows(2.39.2)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AESSH"><span class="nav-number">1.1.1.</span> <span class="nav-text">配置SSH</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NodeJS%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">NodeJS安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -1011,7 +1086,7 @@ window.addEventListener('pjax:success', () => {
       quicklink({
         timeout : 3000,
         priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'https://liuaoao.top/archives/d42a069d.html',]
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://liuaoao.top/archives/938d5a31.html',]
       });
       });
   </script>

@@ -1,6 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Git及NodeJS安装配置</title>
+    <url>/archives/938d5a31.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<h2 id="Git安装">Git安装</h2>
+<p>在 Windows 上安装：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><a href="https://git-scm.com/download/win">Git for Windows</a> 是运行在Windows系统上的Git版本，它提供了与其他版本相同的功能和命令，以便Windows用户能够使用Git来开发和管理项目。同时，Git for Windows还提供了额外的工具和选项，如Bash命令行工具和ssh客户端。</p>
+</li>
+<li class="lvl-3">
+<p><a href="https://desktop.github.com/">GitHub Desktop</a>是一个可视化的GitHub客户端程序，它帮助用户简化了使用Git控制代码版本的复杂性。通过GitHub Desktop，用户可以方便地克隆、更新、提交和推送代码，管理分支和合并请求，以及与他人协作开发代码。它适用于Windows和macOS操作系统，并且是免费提供下载和使用的。</p>
+</li>
+</ul>
+<span id="more"></span>
+<h3 id="Git-for-Windows-2-39-2">Git for Windows(2.39.2)</h3>
+<ol>
+<li class="lvl-3">
+<p>修改安装路径</p>
+</li>
+<li class="lvl-3">
+<p>选择安装组件，选择如下</p>
+</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/05/13/Zt7JU2mjPwq9DNu.png" alt=""></p>
+<ol start="3">
+<li class="lvl-3">
+<p>选择<code>Git</code>默认编辑器，默认<code>Vim</code></p>
+</li>
+<li class="lvl-3">
+<p>调整新存储库中的初始分支的名称，默认<code>Let Git decide</code></p>
+</li>
+<li class="lvl-3">
+<p>调整<code>PATH</code>环境，默认即可</p>
+</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/05/13/n3yBG1Rx6K8viTY.png" alt=""></p>
+<ol start="6">
+<li class="lvl-3">
+<p>选择<code>SSH</code>可执行文件，默认<code>Use bundled OpenSSH</code></p>
+</li>
+<li class="lvl-3">
+<p>选择<code>HTTPS</code>后端传输，默认<code>Use the OpenSSL library</code></p>
+</li>
+<li class="lvl-3">
+<p>配置行结束转换，默认<code>Checkout Windows-style, commit Unix-style line endings</code></p>
+</li>
+<li class="lvl-3">
+<p>配置终端模拟器以与<code>Git Bash</code>一起使用，默认<code>Use MinTTY(the default terminal of MSYS2)</code></p>
+</li>
+<li class="lvl-4">
+<p>选择<code>git pull</code>的默认行为，默认<code>Default (fast-forward or merge)</code></p>
+</li>
+<li class="lvl-4">
+<p>选择凭据助手，默认<code>Git Credential Manager</code></p>
+</li>
+<li class="lvl-4">
+<p>配置额外选项，默认<code>Enable file system caching</code></p>
+</li>
+<li class="lvl-4">
+<p>配置实验选项，默认即可</p>
+</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/05/13/g9QYUONCXtD2aTS.png" alt=""></p>
+<ol start="14">
+<li class="lvl-4">
+<p>测试</p>
+</li>
+</ol>
+<p>安装完成，可以在开始菜单中看到<code>Git</code>的三个启动图标<code>（Git Bash、Git CMD、Git GUI）</code>,推荐使用<code>Git Bash</code></p>
+<p><img src="https://s2.loli.net/2023/05/13/NtR31WeHUvMrC8u.png" alt=""></p>
+<h4 id="配置SSH">配置SSH</h4>
+<ol>
+<li class="lvl-3">
+<p><code>Git Bash</code>:</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">git config --<span class="variable language_">global</span> user.<span class="property">name</span> <span class="string">&quot;Humble-LiuAo&quot;</span></span><br><span class="line">git config --<span class="variable language_">global</span> user.<span class="property">email</span> <span class="string">&quot;1743185682@qq.com&quot;</span></span><br><span class="line"></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;1743185682@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li class="lvl-3">
+<p>新建SSH</p>
+</li>
+</ol>
+<p>登录 <a href="https://link.zhihu.com/?target=http%3A//github.com/">github</a>，在头像下面点击<code>settings</code>，再点击<code>SSH and GPG keys</code>，新建一个<code>SSH</code></p>
+<ol start="3">
+<li class="lvl-3">
+<p><code>git bash</code>:</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<p>将输出的内容复制到 <code>github SSH</code>,点击确定保存</p>
+<ol start="4">
+<li class="lvl-3">
+<p>验证</p>
+</li>
+</ol>
+<p>输入<code>ssh -T git@github.com</code>，显示如下信息，配置成功</p>
+<p><img src="https://s2.loli.net/2023/05/13/q4oE6MkztX9amBi.png" alt=""></p>
+<h2 id="NodeJS安装">NodeJS安装</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>下载安装：<a href="https://nodejs.org/en">https://nodejs.org/en</a></p>
+</li>
+<li class="lvl-2">
+<p>修改全局包保存路径（非必须）</p>
+</li>
+</ul>
+<p>下载全局包时，默认保存在C盘下，可通过 <code>npm root -g</code> 命令查看当前路径，有时候想把全局包放在其他目录下，以免占用C盘空间。</p>
+<p>在安装目录下创建两个文件夹，<code>node_global </code>全局包存放，<code>node_cache node</code>缓存。</p>
+<p><img src="https://s2.loli.net/2023/05/13/hzdHwlSCp3RujUr.png" alt=""></p>
+<ol>
+<li class="lvl-3">
+<p>在cmd命令行中执行如下两条命令</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm config set prefix <span class="string">&quot;D:\Software\nodejs\node_global&quot;</span></span><br><span class="line">npm config set cache <span class="string">&quot;D:\Software\nodejs\node_cache&quot;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li class="lvl-3">
+<p>修改环境变量</p>
+</li>
+</ol>
+<p>上面步骤里更改了<code>npm</code>全局模块的存放路径和<code>cache</code>路径，但是系统还不知道，所以需要修改环境变量。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>修改用户变量 <code>path</code>，添加 <code>node_global</code> 的路径</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/05/13/IyAcesFCoTz3Xwa.png" alt=""></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>添加系统变量 NODE_PATH</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/05/13/TtWgGUVuB92YQA7.png" alt=""></p>
+<h2 id="Reference">Reference</h2>
+<p>[1]	Git 详细安装教程（详解 Git 安装过程的每一个步骤）: <a href="https://blog.csdn.net/mukes/article/details/115693833">https://blog.csdn.net/mukes/article/details/115693833</a></p>
+<p>[2]	NodeJS安装及配置(Windows): <a href="https://blog.csdn.net/yaorongke/article/details/119084295">https://blog.csdn.net/yaorongke/article/details/119084295</a></p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>代理与内网穿透</title>
     <url>/archives/b512fc98.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -680,6 +826,10 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align:center">~</td>
+<td style="text-align:center">放大资源</td>
+</tr>
+<tr>
 <td style="text-align:center">V</td>
 <td style="text-align:center">移动</td>
 </tr>
@@ -796,7 +946,7 @@
 </ul>
 <p>设置在终端运行 : 首选项 -&gt; 设置 -&gt; 扩展 -&gt; Run Code ，勾选 <strong>Run In Terminal</strong> 和 <strong>Save File Before Run</strong></p>
 <p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/f35d61b71af8ed28acf99d20e644c2e.png" alt=""></p>
-<p>后记：投降了，Linux我用Clion，看<a href="">Linux配置C++</a></p>
+<p>后记：投降了，Linux我用Clion，看<a href="https://liuaoao.top/archives/1a24c243.html">Linux配置C++</a></p>
 <h2 id="Reference">Reference</h2>
 <p>[1]	VSCode配置C++开发环境（MinGW-w64）: <a href="https://juejin.cn/post/7170216201849667621">https://juejin.cn/post/7170216201849667621</a></p>
 ]]></content>
@@ -1403,12 +1553,12 @@
 ]]></content>
       <categories>
         <category>Tools</category>
-        <category>Windows</category>
+        <category>开发工具</category>
       </categories>
       <tags>
+        <tag>Git</tag>
         <tag>Proxy</tag>
         <tag>CMD</tag>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
