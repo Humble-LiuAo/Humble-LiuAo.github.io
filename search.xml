@@ -812,11 +812,11 @@
 </ol>
 </blockquote>
 <span id="more"></span>
-<h3 id="项目">项目</h3>
+<h2 id="项目">项目</h2>
 <p>新建：Ctrl+Alt+N</p>
 <p>打开：Ctrl+O</p>
 <h2 id="基本操作">基本操作</h2>
-<p>工具栏快捷键: <mark>Alt + 相应字母</mark></p>
+<h3 id="资源管理">资源管理</h3>
 <table>
 <thead>
 <tr>
@@ -830,11 +830,174 @@
 <td style="text-align:center">放大资源</td>
 </tr>
 <tr>
-<td style="text-align:center">V</td>
-<td style="text-align:center">移动</td>
+<td style="text-align:center">J、K、L</td>
+<td style="text-align:center">前进、暂停、后退</td>
+</tr>
+<tr>
+<td style="text-align:center">I、O</td>
+<td style="text-align:center">入点、出点</td>
+</tr>
+<tr>
+<td style="text-align:center">M</td>
+<td style="text-align:center">标记</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl+Alt+M</td>
+<td style="text-align:center">删除标记</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl+Shift+Alt+M</td>
+<td style="text-align:center">删除所有标记</td>
+</tr>
+<tr>
+<td style="text-align:center">Shift</td>
+<td style="text-align:center">多选</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl</td>
+<td style="text-align:center">点选</td>
 </tr>
 </tbody>
 </table>
+<p>工具栏快捷键: <mark>Alt + 相应字母</mark></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>红色：一般模式</p>
+</li>
+<li class="lvl-2">
+<p>黄色：吸附模式</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">快捷键</th>
+<th style="text-align:center">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">按住Ctrl</td>
+<td style="text-align:center">切换边缘编辑模式</td>
+</tr>
+<tr>
+<td style="text-align:center">按住Shfit</td>
+<td style="text-align:center">标尺吸附到边缘</td>
+</tr>
+<tr>
+<td style="text-align:center">按住Alt+滑轮</td>
+<td style="text-align:center">放大缩小</td>
+</tr>
+<tr>
+<td style="text-align:center">双击边缘</td>
+<td style="text-align:center">精确修剪</td>
+</tr>
+<tr>
+<td style="text-align:center">J、K、L</td>
+<td style="text-align:center">前进、暂停、后退</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">波纹编辑</td>
+</tr>
+<tr>
+<td style="text-align:center">N</td>
+<td style="text-align:center">滚动编辑</td>
+</tr>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">向前选择轨道</td>
+</tr>
+<tr>
+<td style="text-align:center">V</td>
+<td style="text-align:center">移动</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">剃刀</td>
+</tr>
+<tr>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">外滑</td>
+</tr>
+<tr>
+<td style="text-align:center">P</td>
+<td style="text-align:center">钢笔</td>
+</tr>
+<tr>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">手形</td>
+</tr>
+<tr>
+<td style="text-align:center">T</td>
+<td style="text-align:center">文字</td>
+</tr>
+<tr>
+<td style="text-align:center">Shfit+剃刀</td>
+<td style="text-align:center">整个</td>
+</tr>
+<tr>
+<td style="text-align:center">Shfit+选择轨道</td>
+<td style="text-align:center">单个</td>
+</tr>
+<tr>
+<td style="text-align:center">Shift+Delete</td>
+<td style="text-align:center">贴合删除</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl+K</td>
+<td style="text-align:center">截断</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl+D</td>
+<td style="text-align:center">视频过度</td>
+</tr>
+<tr>
+<td style="text-align:center">Q</td>
+<td style="text-align:center">波纹修剪上一个编辑点到播放指示器</td>
+</tr>
+<tr>
+<td style="text-align:center">W</td>
+<td style="text-align:center">波纹修剪下一个编辑点到播放指示器</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl+Alt+Q</td>
+<td style="text-align:center">修剪上一个编辑点到播放指示器</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl+Alt+W</td>
+<td style="text-align:center">修剪下一个编辑点到播放指示器</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="音轨">音轨</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>标准 -</strong> 标准音轨替代了旧版本的立体声音轨类型。它可以同时容纳单声道和立体声音频剪辑。</p>
+</li>
+<li class="lvl-2">
+<p><strong>单声道 -</strong> 单声道轨道包含一个音频通道。单声道轨道会复制该通道，以便左声道和右声道播放相同的录音，或仅通过左声道或右声道中的一个通道播放录音。如果立体声剪辑添加到单声道轨道，立体声剪辑声道将由单声道轨道汇总为单声道。</p>
+</li>
+<li class="lvl-2">
+<p><strong>立体声轨道 -</strong> 立体声轨道为双声道音频。立体声轨道是以两个声道（一左一右）录制的音频。</p>
+</li>
+<li class="lvl-2">
+<p><strong>自适应轨道 -</strong> 自适应轨道可以包含单声道、立体声和自适应剪辑。对于自适应音轨，可通过对工作流程效果最佳的方式将源音频映射至输出音频声道。处理可录制多个音轨的摄像机录制的音频时，这种音轨类型非常有用。处理合并后的剪辑或多机位序列时，也可使用自适应音轨。</p>
+</li>
+<li class="lvl-2">
+<p><strong>5.1 -</strong> 包含以下声道：</p>
+<ul class="lvl-2">
+<li class="lvl-4">三条前置音频声道（左声道、中置声道、右声道）</li>
+<li class="lvl-4">两条后置或环绕音频声道（左声道和右声道）</li>
+<li class="lvl-4">通向低音炮扬声器的低频效果 (LFE) 音频声道。</li>
+</ul>
+<p>5.1 音轨只能包含 5.1 剪辑。</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>Tools</category>
