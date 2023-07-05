@@ -306,6 +306,163 @@
       </tags>
   </entry>
   <entry>
+    <title>C++类构造函数 &amp; 析构函数</title>
+    <url>/archives/7b6761ef.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<h2 id="类的构造函数">类的构造函数</h2>
+<p>类的 <strong>构造函数</strong>是类的一种特殊的成员函数，它会在每次创建类的新对象时执行。</p>
+<p>构造函数的名称与类的名称是完全相同的，并且不会返回任何类型，也不会返回 void。构造函数可用于为某些成员变量设置初始值。</p>
+<span id="more"></span>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Line</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="type">void</span> <span class="title">setLength</span><span class="params">( <span class="type">double</span> len )</span></span>;</span><br><span class="line">      <span class="function"><span class="type">double</span> <span class="title">getLength</span><span class="params">( <span class="type">void</span> )</span></span>;</span><br><span class="line">      <span class="built_in">Line</span>(<span class="type">double</span> len);  <span class="comment">// 这是构造函数</span></span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">      <span class="type">double</span> length;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 成员函数定义，包括构造函数</span></span><br><span class="line">Line::<span class="built_in">Line</span>( <span class="type">double</span> len)</span><br><span class="line">&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Object is being created, length = &quot;</span> &lt;&lt; len &lt;&lt; endl;</span><br><span class="line">    length = len;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Line::setLength</span><span class="params">( <span class="type">double</span> len )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    length = len;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">Line::getLength</span><span class="params">( <span class="type">void</span> )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> length;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 程序的主函数</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">( )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="function">Line <span class="title">line</span><span class="params">(<span class="number">10.0</span>)</span></span>;</span><br><span class="line"> </span><br><span class="line">   <span class="comment">// 获取默认设置的长度</span></span><br><span class="line">   cout &lt;&lt; <span class="string">&quot;Length of line : &quot;</span> &lt;&lt; line.<span class="built_in">getLength</span>() &lt;&lt;endl;</span><br><span class="line">   <span class="comment">// 再次设置长度</span></span><br><span class="line">   line.<span class="built_in">setLength</span>(<span class="number">6.0</span>); </span><br><span class="line">   cout &lt;&lt; <span class="string">&quot;Length of line : &quot;</span> &lt;&lt; line.<span class="built_in">getLength</span>() &lt;&lt;endl;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* Output</span></span><br><span class="line"><span class="comment">Object is being created, length = 10</span></span><br><span class="line"><span class="comment">Length of line : 10</span></span><br><span class="line"><span class="comment">Length of line : 6</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用初始化列表来初始化字段">使用初始化列表来初始化字段</h3>
+<p>使用初始化列表来初始化字段：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Line::<span class="built_in">Line</span>( <span class="type">double</span> len): <span class="built_in">length</span>(len)</span><br><span class="line">&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Object is being created, length = &quot;</span> &lt;&lt; len &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的语法等同于如下语法：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Line::<span class="built_in">Line</span>( <span class="type">double</span> len)</span><br><span class="line">&#123;</span><br><span class="line">    length = len;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Object is being created, length = &quot;</span> &lt;&lt; len &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设有一个类 C，具有多个字段 X、Y、Z 等需要进行初始化，同理地，您可以使用上面的语法，只需要在不同的字段使用逗号进行分隔，如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">C::<span class="built_in">C</span>( <span class="type">double</span> a, <span class="type">double</span> b, <span class="type">double</span> c): <span class="built_in">X</span>(a), <span class="built_in">Y</span>(b), <span class="built_in">Z</span>(c)</span><br><span class="line">&#123;</span><br><span class="line">  ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="类的析构函数">类的析构函数</h2>
+<p>类的 <strong>析构函数</strong>是类的一种特殊的成员函数，它会在每次删除所创建的对象时执行。</p>
+<p>析构函数的名称与类的名称是完全相同的，只是在前面加了个波浪号（~）作为前缀，它不会返回任何值，也不能带有任何参数。析构函数有助于在跳出程序（比如关闭文件、释放内存等）前释放资源。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Line</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="type">void</span> <span class="title">setLength</span><span class="params">( <span class="type">double</span> len )</span></span>;</span><br><span class="line">      <span class="function"><span class="type">double</span> <span class="title">getLength</span><span class="params">( <span class="type">void</span> )</span></span>;</span><br><span class="line">      <span class="built_in">Line</span>();   <span class="comment">// 这是构造函数声明</span></span><br><span class="line">      ~<span class="built_in">Line</span>();  <span class="comment">// 这是析构函数声明</span></span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">      <span class="type">double</span> length;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 成员函数定义，包括构造函数</span></span><br><span class="line">Line::<span class="built_in">Line</span>(<span class="type">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Object is being created&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">Line::~<span class="built_in">Line</span>(<span class="type">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Object is being deleted&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Line::setLength</span><span class="params">( <span class="type">double</span> len )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    length = len;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">Line::getLength</span><span class="params">( <span class="type">void</span> )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> length;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 程序的主函数</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">( )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   Line line;</span><br><span class="line"> </span><br><span class="line">   <span class="comment">// 设置长度</span></span><br><span class="line">   line.<span class="built_in">setLength</span>(<span class="number">6.0</span>); </span><br><span class="line">   cout &lt;&lt; <span class="string">&quot;Length of line : &quot;</span> &lt;&lt; line.<span class="built_in">getLength</span>() &lt;&lt;endl;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* Output</span></span><br><span class="line"><span class="comment">Object is being created</span></span><br><span class="line"><span class="comment">Length of line : 6</span></span><br><span class="line"><span class="comment">Object is being deleted</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<h2 id="调用顺序">调用顺序</h2>
+<p>1、<strong>构造函数</strong>的调用顺序</p>
+<p>基类构造函数、对象成员构造函数、派生类本身的构造函数</p>
+<p>2、<strong>析构函数</strong>的调用顺序</p>
+<p>派生类本身的析构函数、对象成员析构函数、基类析构函数（与构造顺序正好 <mark>相反</mark>）</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">     <span class="built_in">A</span>()&#123;cout&lt;&lt;<span class="string">&quot;A::constructor&quot;</span>&lt;&lt;endl;&#125;;</span><br><span class="line">     ~<span class="built_in">A</span>()&#123;cout&lt;&lt;<span class="string">&quot;A::deconstructor&quot;</span>&lt;&lt;endl;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">     <span class="built_in">B</span>()&#123;cout&lt;&lt;<span class="string">&quot;B::constructor&quot;</span>&lt;&lt;endl;&#125;;</span><br><span class="line">     ~<span class="built_in">B</span>()&#123;cout&lt;&lt;<span class="string">&quot;B::deconstructor&quot;</span>&lt;&lt;endl;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">C</span> : <span class="keyword">public</span> A</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">     <span class="built_in">C</span>()&#123;cout&lt;&lt;<span class="string">&quot;C::constructor&quot;</span>&lt;&lt;endl;&#125;;</span><br><span class="line">     ~<span class="built_in">C</span>()&#123;cout&lt;&lt;<span class="string">&quot;C::deconstructor&quot;</span>&lt;&lt;endl;&#125;;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="comment">//    static B b;</span></span><br><span class="line">     B b;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">D</span> : <span class="keyword">public</span> C</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">     <span class="built_in">D</span>()&#123;cout&lt;&lt;<span class="string">&quot;D::constructor&quot;</span>&lt;&lt;endl;&#125;;</span><br><span class="line">     ~<span class="built_in">D</span>()&#123;cout&lt;&lt;<span class="string">&quot;D::deconstructor&quot;</span>&lt;&lt;endl;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    C* pd = <span class="keyword">new</span> <span class="built_in">D</span>();</span><br><span class="line">    <span class="keyword">delete</span> pd;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* Output</span></span><br><span class="line"><span class="comment">-----&gt;B b</span></span><br><span class="line"><span class="comment">A::constructor</span></span><br><span class="line"><span class="comment">B::constructor</span></span><br><span class="line"><span class="comment">C::constructor</span></span><br><span class="line"><span class="comment">D::constructor</span></span><br><span class="line"><span class="comment">C::deconstructor</span></span><br><span class="line"><span class="comment">B::deconstructor</span></span><br><span class="line"><span class="comment">A::deconstructor</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">-----&gt;static B b</span></span><br><span class="line"><span class="comment">A::constructor</span></span><br><span class="line"><span class="comment">C::constructor</span></span><br><span class="line"><span class="comment">D::constructor</span></span><br><span class="line"><span class="comment">C::deconstructor</span></span><br><span class="line"><span class="comment">A::deconstructor</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>static B b</code>：<code>B</code>类的构造函数没有被调用的原因是因为 <code>B</code> 类对象 <code>b</code> 被声明为静态成员变量。静态成员变量在类的定义中只是声明，需要在类外部进行定义和初始化。</p>
+</blockquote>
+<h2 id="拷贝构造函数-赋值构造函数">拷贝构造函数 &amp; 赋值构造函数</h2>
+<p>拷贝构造函数和赋值构造函数都是C++中的特殊成员函数，用于在对象之间进行数据的拷贝操作。它们的定义和功能有所不同。</p>
+<ol>
+<li class="lvl-3">
+<p>拷贝构造函数：拷贝构造函数用于创建一个新对象，该对象与另一个已存在的同类对象具有相同的值和属性。它的定义形式为：<code> 类名(const 类名&amp; 对象名)</code>。拷贝构造函数通常用于以下情况：</p>
+</li>
+</ol>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>通过赋值或参数传递方式将一个对象的值复制给另一个对象。</p>
+</li>
+<li class="lvl-2">
+<p>当函数返回一个对象时，会调用拷贝构造函数来生成一个临时副本。</p>
+</li>
+<li class="lvl-2">
+<p>当对象作为参数传递给函数时，会调用拷贝构造函数来生成参数对象的副本。</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 拷贝构造函数</span></span><br><span class="line">    <span class="built_in">MyClass</span>(<span class="type">const</span> MyClass&amp; obj) &#123;</span><br><span class="line">        <span class="comment">// 拷贝对象的数据</span></span><br><span class="line">        <span class="keyword">this</span>-&gt;data = obj.data;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> data;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    MyClass obj1;</span><br><span class="line">    <span class="comment">// 使用拷贝构造函数创建一个新对象obj2，它与obj1具有相同的值</span></span><br><span class="line">    <span class="function">MyClass <span class="title">obj2</span><span class="params">(obj1)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li class="lvl-3">
+<p>赋值构造函数：赋值构造函数用于将一个已存在的对象的值赋给另一个已存在的对象。它的定义形式为：<code>类名&amp; operator=(const 类名&amp; 对象名)</code>。赋值构造函数通常用于以下情况：</p>
+</li>
+</ol>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>在一个对象已经存在的情况下，将其赋值给另一个对象。</p>
+</li>
+<li class="lvl-2">
+<p>对象在创建后需要动态地改变其值。</p>
+</li>
+<li class="lvl-2">
+<p>赋值构造函数实际上是对对象的状态进行了复制,它们仍然是两个独立的对象，在内存中具有不同的地址。</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 赋值构造函数</span></span><br><span class="line">    MyClass&amp; <span class="keyword">operator</span>=(<span class="type">const</span> MyClass&amp; obj) &#123;</span><br><span class="line">        <span class="comment">// 将对象的数据赋值给当前对象</span></span><br><span class="line">        <span class="keyword">this</span>-&gt;data = obj.data;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> data;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    MyClass obj1;</span><br><span class="line">    MyClass obj2;</span><br><span class="line">    <span class="comment">// 将obj1的值赋给obj2，调用赋值构造函数</span></span><br><span class="line">    obj2 = obj1;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总结：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>拷贝构造函数用于创建一个新对象，并将另一个对象的值复制给该新对象。</p>
+</li>
+<li class="lvl-2">
+<p>赋值构造函数用于将一个已存在的对象的值赋给另一个已存在的对象。</p>
+</li>
+<li class="lvl-2">
+<p>拷贝构造函数在对象创建、返回和参数传递时调用，赋值构造函数在对象赋值时调用。</p>
+</li>
+</ul>
+<h2 id="Reference">Reference</h2>
+<p>[1] 	C++ 类构造函数 &amp; 析构函数: <a href="https://www.runoob.com/cplusplus/cpp-constructor-destructor.html">https://www.runoob.com/cplusplus/cpp-constructor-destructor.html</a></p>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>构造函数</tag>
+        <tag>析构函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LaTeX安装</title>
+    <url>/archives/88b90715.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<blockquote>
+<p>LaTeX是一种专业的排版系统和标记语言，用于创建高质量的文档，尤其适合包含数学公式、技术内容和复杂结构的文档，如学术论文、书籍、报告、简历等。TeX Live是一款跨平台的LaTeX发行版，它包含了LaTeX编译器、宏包、字体和各种工具，适用于多种操作系统，如Windows、Linux和macOS。TeXstudio是一款免费开源的LaTeX编辑器。</p>
+<p>WIindows推荐： <mark>Texlive 2023 + TeX studio</mark></p>
+</blockquote>
+<span id="more"></span>
+<h2 id="Texlive-2023">Texlive 2023</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>ISO 映像下载：<a href="https://www.tug.org/texlive/acquire-iso.html">https://www.tug.org/texlive/acquire-iso.html</a></p>
+</li>
+</ul>
+<p><strong>打开下载后的.ISO文件，以管理员身份运行install-tl-windows.bat文件。</strong></p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/explorer_vgFd0Lbe70.png" alt=""></p>
+<p><strong>修改安装位置</strong></p>
+<p><strong>选择安装语言</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>高级选项里 <mark>Advanced</mark> $\rightarrow$点击 <mark>Customize</mark> $\rightarrow$选择 <mark>中文和英文</mark></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/20230502111347.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/wish_PhEbgdUYiI.png" alt=""></p>
+<p><strong>确定安装，等待安装完成后关闭窗口</strong></p>
+<hr>
+<h3 id="Texlive添加环境变量">Texlive添加环境变量</h3>
+<p>添加Texlive环境变量，以在命令行中执行tex的命令</p>
+<ol>
+<li class="lvl-3">
+<p>win+R 然后输入**sysdm.cpl **在高级中选择<em>环境变量</em></p>
+</li>
+<li class="lvl-3">
+<p>编辑的Path变量（建议<u>用户和系统</u>的Path都添加），添加txtlive中的<mark>bin/windows</mark>路径（如：D:\Software\texlive\2023\bin\windows）</p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/SystemPropertiesAdvanced_iXSckGIh1W.png" alt=""></p>
+<ol start="3">
+<li class="lvl-3">
+<p>查看验证安装版本（出现 <mark>版本号</mark> 则成功）</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tex -v</span><br><span class="line">latex -v</span><br><span class="line">xelatex -v</span><br><span class="line">pdflatex -v</span><br></pre></td></tr></table></figure>
+<h2 id="TeXstudio的安装">TeXstudio的安装</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>官网下载：<a href="https://texstudio.sourceforge.net/">https://texstudio.sourceforge.net/</a></p>
+</li>
+</ul>
+<p><strong>双击安装$\rightarrow$修改安装位置即可</strong></p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/texstudio-4.5.2-win-qt6_5StfAN4gxi.png" alt=""></p>
+<p><strong>使用注意</strong>：<em>如果撰写中文论文，将默认编译器改为<code>Xelatex</code>。如果撰写英文论文，将默认编译器改为<code>Pdflatex</code></em></p>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/texstudio_xkx0Bq0fS9.png" alt=""></p>
+<h2 id="Reference">Reference</h2>
+<p>[1]	LaTeX的安装教程：<a href="https://blog.csdn.net/weixin_43872190/article/details/113736283">https://blog.csdn.net/weixin_43872190/article/details/113736283</a><br>
+[2]	Latex（一）安装和环境变量的设置：<a href="https://blog.csdn.net/explorer9607/article/details/103506387">https://blog.csdn.net/explorer9607/article/details/103506387</a></p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+        <category>Software</category>
+      </categories>
+      <tags>
+        <tag>LaTeX</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git及NodeJS安装配置</title>
     <url>/archives/938d5a31.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -382,6 +539,7 @@
 <p><code>Git Bash</code>:</p>
 </li>
 </ol>
+<p><code>Git Bash</code>中<code>Ctrl+ins</code> 复制 <code>Shift+ins</code>粘贴</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">git config --<span class="variable language_">global</span> user.<span class="property">name</span> <span class="string">&quot;Humble-LiuAo&quot;</span></span><br><span class="line">git config --<span class="variable language_">global</span> user.<span class="property">email</span> <span class="string">&quot;1743185682@qq.com&quot;</span></span><br><span class="line"></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;1743185682@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li class="lvl-3">
@@ -413,7 +571,7 @@
 </li>
 </ul>
 <p>下载全局包时，默认保存在C盘下，可通过 <code>npm root -g</code> 命令查看当前路径，有时候想把全局包放在其他目录下，以免占用C盘空间。</p>
-<p>在安装目录下创建两个文件夹，<code>node_global </code>全局包存放，<code>node_cache node</code>缓存。</p>
+<p>在安装目录下创建两个文件夹，<code>node_global </code>全局包存放，<code>node_cache</code> node缓存。</p>
 <p><img src="https://s2.loli.net/2023/05/13/hzdHwlSCp3RujUr.png" alt=""></p>
 <ol>
 <li class="lvl-3">
@@ -435,7 +593,7 @@
 <p><img src="https://s2.loli.net/2023/05/13/IyAcesFCoTz3Xwa.png" alt=""></p>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>添加系统变量 NODE_PATH</p>
+<p>添加系统变量 <code>NODE_PATH</code></p>
 </li>
 </ul>
 <p><img src="https://s2.loli.net/2023/05/13/TtWgGUVuB92YQA7.png" alt=""></p>
@@ -522,73 +680,6 @@
       <tags>
         <tag>Anaconda</tag>
         <tag>Jupyter</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LaTeX安装</title>
-    <url>/archives/88b90715.html</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-<blockquote>
-<p>LaTeX是一种专业的排版系统和标记语言，用于创建高质量的文档，尤其适合包含数学公式、技术内容和复杂结构的文档，如学术论文、书籍、报告、简历等。TeX Live是一款跨平台的LaTeX发行版，它包含了LaTeX编译器、宏包、字体和各种工具，适用于多种操作系统，如Windows、Linux和macOS。TeXstudio是一款免费开源的LaTeX编辑器。</p>
-<p>WIindows推荐： <mark>Texlive 2023 + TeX studio</mark></p>
-</blockquote>
-<span id="more"></span>
-<h2 id="Texlive-2023">Texlive 2023</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>ISO 映像下载：<a href="https://www.tug.org/texlive/acquire-iso.html">https://www.tug.org/texlive/acquire-iso.html</a></p>
-</li>
-</ul>
-<p><strong>打开下载后的.ISO文件，以管理员身份运行install-tl-windows.bat文件。</strong></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/explorer_vgFd0Lbe70.png" alt=""></p>
-<p><strong>修改安装位置</strong></p>
-<p><strong>选择安装语言</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>高级选项里 <mark>Advanced</mark> $\rightarrow$点击 <mark>Customize</mark> $\rightarrow$选择 <mark>中文和英文</mark></p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/20230502111347.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/wish_PhEbgdUYiI.png" alt=""></p>
-<p><strong>确定安装，等待安装完成后关闭窗口</strong></p>
-<hr>
-<h3 id="Texlive添加环境变量">Texlive添加环境变量</h3>
-<p>添加Texlive环境变量，以在命令行中执行tex的命令</p>
-<ol>
-<li class="lvl-3">
-<p>win+R 然后输入**sysdm.cpl **在高级中选择<em>环境变量</em></p>
-</li>
-<li class="lvl-3">
-<p>编辑的Path变量（建议<u>用户和系统</u>的Path都添加），添加txtlive中的<mark>bin/windows</mark>路径（如：D:\Software\texlive\2023\bin\windows）</p>
-</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/SystemPropertiesAdvanced_iXSckGIh1W.png" alt=""></p>
-<ol start="3">
-<li class="lvl-3">
-<p>查看验证安装版本（出现 <mark>版本号</mark> 则成功）</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tex -v</span><br><span class="line">latex -v</span><br><span class="line">xelatex -v</span><br><span class="line">pdflatex -v</span><br></pre></td></tr></table></figure>
-<h2 id="TeXstudio的安装">TeXstudio的安装</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>官网下载：<a href="https://texstudio.sourceforge.net/">https://texstudio.sourceforge.net/</a></p>
-</li>
-</ul>
-<p><strong>双击安装$\rightarrow$修改安装位置即可</strong></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/texstudio-4.5.2-win-qt6_5StfAN4gxi.png" alt=""></p>
-<p><strong>使用注意</strong>：<em>如果撰写中文论文，将默认编译器改为<code>Xelatex</code>。如果撰写英文论文，将默认编译器改为<code>Pdflatex</code></em></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/texstudio_xkx0Bq0fS9.png" alt=""></p>
-<h2 id="Reference">Reference</h2>
-<p>[1]	LaTeX的安装教程：<a href="https://blog.csdn.net/weixin_43872190/article/details/113736283">https://blog.csdn.net/weixin_43872190/article/details/113736283</a><br>
-[2]	Latex（一）安装和环境变量的设置：<a href="https://blog.csdn.net/explorer9607/article/details/103506387">https://blog.csdn.net/explorer9607/article/details/103506387</a></p>
-]]></content>
-      <categories>
-        <category>Tools</category>
-        <category>Software</category>
-      </categories>
-      <tags>
-        <tag>LaTeX</tag>
       </tags>
   </entry>
   <entry>
@@ -1205,6 +1296,63 @@ And then define the link:</p>
       </tags>
   </entry>
   <entry>
+    <title>PyCharm安装配置</title>
+    <url>/archives/c545af56.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<blockquote>
+<p>PyCharm专业版是功能最丰富的，与社区版相比，PyCharm 业版增加了Web开发、Python We框架、Python分析器、远程开发、支持数据库与SQL等更多高级功能。</p>
+<p>PyCharm的社区版中没有Web开发、Python We框架、Python分析器、远程开发、支持数据库与SQL等这些功能。</p>
+<p>PyCharm教育版的功能虽然比专业版会少一些，但与社区版相比，更加支持学校的教学工作。</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="PyCharm专业版安装">PyCharm专业版安装</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>参考 <mark>软件管家</mark>公众号，或点击：<a href="https://mp.weixin.qq.com/s/V2Ls-lcnymD9_ZullCh_fg">https://mp.weixin.qq.com/s/V2Ls-lcnymD9_ZullCh_fg</a></p>
+</li>
+</ul>
+<h2 id="主题字体配置">主题字体配置</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>外观（先安装主题插件Material theme）</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504191917951.png" alt=""></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>代码字体</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504191946833.png" alt=""></p>
+<h2 id="插件配置">插件配置</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>CodeGlance</strong>: 代码缩略图</p>
+</li>
+<li class="lvl-2">
+<p><strong>IdeaVim</strong>: 在IDE中使用Vim编辑器的功能</p>
+</li>
+<li class="lvl-2">
+<p><strong>Key Promoter X</strong>: 自动提示快捷键</p>
+</li>
+<li class="lvl-2">
+<p><strong>Material Theme</strong>: 修改主题</p>
+</li>
+<li class="lvl-2">
+<p><strong>RestfulToolkitX</strong>： 供了一组用于构建 RESTful API 的工具和方法</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504192054149.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+        <category>Software</category>
+      </categories>
+      <tags>
+        <tag>PyCharm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ps2019基础总结</title>
     <url>/archives/2888cf0.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -1421,63 +1569,6 @@ And then define the link:</p>
       </categories>
       <tags>
         <tag>Ps</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PyCharm安装配置</title>
-    <url>/archives/c545af56.html</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-<blockquote>
-<p>PyCharm专业版是功能最丰富的，与社区版相比，PyCharm 业版增加了Web开发、Python We框架、Python分析器、远程开发、支持数据库与SQL等更多高级功能。</p>
-<p>PyCharm的社区版中没有Web开发、Python We框架、Python分析器、远程开发、支持数据库与SQL等这些功能。</p>
-<p>PyCharm教育版的功能虽然比专业版会少一些，但与社区版相比，更加支持学校的教学工作。</p>
-</blockquote>
-<span id="more"></span>
-<h2 id="PyCharm专业版安装">PyCharm专业版安装</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>参考 <mark>软件管家</mark>公众号，或点击：<a href="https://mp.weixin.qq.com/s/V2Ls-lcnymD9_ZullCh_fg">https://mp.weixin.qq.com/s/V2Ls-lcnymD9_ZullCh_fg</a></p>
-</li>
-</ul>
-<h2 id="主题字体配置">主题字体配置</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>外观（先安装主题插件Material theme）</p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504191917951.png" alt=""></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>代码字体</p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504191946833.png" alt=""></p>
-<h2 id="插件配置">插件配置</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>CodeGlance</strong>: 代码缩略图</p>
-</li>
-<li class="lvl-2">
-<p><strong>IdeaVim</strong>: 在IDE中使用Vim编辑器的功能</p>
-</li>
-<li class="lvl-2">
-<p><strong>Key Promoter X</strong>: 自动提示快捷键</p>
-</li>
-<li class="lvl-2">
-<p><strong>Material Theme</strong>: 修改主题</p>
-</li>
-<li class="lvl-2">
-<p><strong>RestfulToolkitX</strong>： 供了一组用于构建 RESTful API 的工具和方法</p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230504192054149.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>Tools</category>
-        <category>Software</category>
-      </categories>
-      <tags>
-        <tag>PyCharm</tag>
       </tags>
   </entry>
   <entry>
@@ -1925,6 +2016,75 @@ And then define the link:</p>
       </tags>
   </entry>
   <entry>
+    <title>You-Get下载视频</title>
+    <url>/archives/96ba4918.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<blockquote>
+<p><code>You-Get</code>是一款功能强大的开源命令行工具，可支持从多种网站下载视频、音频等媒体内容，包括流行的YouTube、Bilibili、优酷、爱奇艺等平台。不仅如此，它还能够下载各种在线流媒体、HLS、DASH、M3U8等格式的视频和音频。该工具简单易用，支持多种操作系统，如Windows、macOS和Linux等平台。使用者只需在终端输入指令，即可轻松将感兴趣的媒体下载到本地。<code>You-Get</code>还支持批量下载、断点续传等实用功能，非常适合在需要下载大量媒体内容的情况下使用。</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="配置">配置</h2>
+<p><strong>安装 you-get</strong>（<em>装有python环境</em>：参考<a href="https://liuaoao.top/archives/eabeff19.html">Anaconda-Python环境安装</a>）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install you-get  </span><br></pre></td></tr></table></figure>
+<p><strong>安装 ffmpeg</strong>（合并音画必须）</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>python: <code>pip install ffmpeg</code></p>
+</li>
+<li class="lvl-2">
+<p>或者官网下载：<a href="https://ffmpeg.org/download.html">https://ffmpeg.org/download.html</a></p>
+<ul class="lvl-2">
+<li class="lvl-4">将<code>ffmpeg.exe</code>的上一层路径 <code>xxx\bin</code>填入环境变量（用户+系统的Path，环境变量打开方式为：计算机–属性–高级系统设置–环境变量）</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>检验是否安装成功<code>ffmpeg -version</code></p>
+</li>
+</ul>
+<h2 id="下载命令">下载命令</h2>
+<p><strong>视频信息</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">you-get -i URL #提示如何下载不同比例不同格式文件</span><br><span class="line">- format:        dash-flv</span><br><span class="line">  container:     mp4</span><br><span class="line">  quality:       高清 1080P</span><br><span class="line">  size:          222.8 MiB (233636151 bytes)</span><br><span class="line"># download-with: you-get --format=dash-flv [URL]</span><br></pre></td></tr></table></figure>
+<p><strong>单个视频</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">you-get [URL]              #通过网址下载文件</span><br><span class="line">you-get -o 本地路径  [URL]   #更改本地下载目录，默认下载位置为当前powershell打开目录</span><br><span class="line">cd C:\                         #更改powershell目录</span><br></pre></td></tr></table></figure>
+<p><strong>批量下载</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>playlist</code>可以使其按列表下载（批量下载的关键）</p>
+</li>
+<li class="lvl-2">
+<p><code>format=dash-flv720</code>指定下载720P的flv视频</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 查看批量视频信息</span><br><span class="line">you-get --playlist -i https://www.bilibili.com/video/BV13t411G7oh</span><br><span class="line"># 下载</span><br><span class="line">you-get --playlist --format=dash-flv720 -o D:\SX https://www.bilibili.com/video/BV13t411G7oh</span><br></pre></td></tr></table></figure>
+<h2 id="使用技巧">使用技巧</h2>
+<ol>
+<li class="lvl-3">
+<p>使用代理加速（参考：<a href="https://liuaoao.top/archives/7b6d4a85.html">Windows代理设置</a>）</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 一次性关闭命令行需重新设置</span><br><span class="line">set http_proxy=http://127.0.0.1:1080</span><br><span class="line">set https_proxy=http://127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li class="lvl-3">
+<p>cookies请求</p>
+</li>
+</ol>
+<p>一些视频可能需要会员才能下载，此时我们需要带cookies请求。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">you-get --cookies=C:\Users\91425\Desktop\cookies.txt --format=dash-flv -o D:\SX https://www.bilibili.com/video/BV19h411s7oq </span><br><span class="line"># --cookies=C:\Users\91425\Desktop\cookies.txt 部分就是指定cookies的部分</span><br></pre></td></tr></table></figure>
+<p><code>you-get</code>支持<code>Mozilla cookies.sqlite</code>和<code>Netscape</code>两种格式的<code>cookies</code>。前者可以使用火狐浏览器直接导出。后者在<code>Chromium</code>内核的浏览器上可以使用<code>Get cookies.txt</code>插件获取。</p>
+<h2 id="Reference">Reference</h2>
+<p>[1]	记录一个you-get批量下载B站视频的方法: <a href="https://zhuanlan.zhihu.com/p/442019718">https://zhuanlan.zhihu.com/p/442019718</a></p>
+<p>[2]	You-get在Windows系统下的安装+会员视频下载的cookie配置: <a href="https://blog.csdn.net/cwj1412/article/details/107775004">https://blog.csdn.net/cwj1412/article/details/107775004</a></p>
+<p>[3]	you-get不自动合并音频和视频的解决办法: <a href="https://zhuanlan.zhihu.com/p/386392241">https://zhuanlan.zhihu.com/p/386392241</a></p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+        <category>Tips</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Windows终端代理</title>
     <url>/archives/7b6d4a85.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -2022,135 +2182,6 @@ And then define the link:</p>
         <tag>Git</tag>
         <tag>Proxy</tag>
         <tag>CMD</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>You-Get下载视频</title>
-    <url>/archives/96ba4918.html</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-<blockquote>
-<p><code>You-Get</code>是一款功能强大的开源命令行工具，可支持从多种网站下载视频、音频等媒体内容，包括流行的YouTube、Bilibili、优酷、爱奇艺等平台。不仅如此，它还能够下载各种在线流媒体、HLS、DASH、M3U8等格式的视频和音频。该工具简单易用，支持多种操作系统，如Windows、macOS和Linux等平台。使用者只需在终端输入指令，即可轻松将感兴趣的媒体下载到本地。<code>You-Get</code>还支持批量下载、断点续传等实用功能，非常适合在需要下载大量媒体内容的情况下使用。</p>
-</blockquote>
-<span id="more"></span>
-<h2 id="配置">配置</h2>
-<p><strong>安装 you-get</strong>（<em>装有python环境</em>：参考<a href="https://liuaoao.top/archives/eabeff19.html">Anaconda-Python环境安装</a>）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install you-get  </span><br></pre></td></tr></table></figure>
-<p><strong>安装 ffmpeg</strong>（合并音画必须）</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>python: <code>pip install ffmpeg</code></p>
-</li>
-<li class="lvl-2">
-<p>或者官网下载：<a href="https://ffmpeg.org/download.html">https://ffmpeg.org/download.html</a></p>
-<ul class="lvl-2">
-<li class="lvl-4">将<code>ffmpeg.exe</code>的上一层路径 <code>xxx\bin</code>填入环境变量（用户+系统的Path，环境变量打开方式为：计算机–属性–高级系统设置–环境变量）</li>
-</ul>
-</li>
-<li class="lvl-2">
-<p>检验是否安装成功<code>ffmpeg -version</code></p>
-</li>
-</ul>
-<h2 id="下载命令">下载命令</h2>
-<p><strong>视频信息</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">you-get -i URL #提示如何下载不同比例不同格式文件</span><br><span class="line">- format:        dash-flv</span><br><span class="line">  container:     mp4</span><br><span class="line">  quality:       高清 1080P</span><br><span class="line">  size:          222.8 MiB (233636151 bytes)</span><br><span class="line"># download-with: you-get --format=dash-flv [URL]</span><br></pre></td></tr></table></figure>
-<p><strong>单个视频</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">you-get [URL]              #通过网址下载文件</span><br><span class="line">you-get -o 本地路径  [URL]   #更改本地下载目录，默认下载位置为当前powershell打开目录</span><br><span class="line">cd C:\                         #更改powershell目录</span><br></pre></td></tr></table></figure>
-<p><strong>批量下载</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><code>playlist</code>可以使其按列表下载（批量下载的关键）</p>
-</li>
-<li class="lvl-2">
-<p><code>format=dash-flv720</code>指定下载720P的flv视频</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 查看批量视频信息</span><br><span class="line">you-get --playlist -i https://www.bilibili.com/video/BV13t411G7oh</span><br><span class="line"># 下载</span><br><span class="line">you-get --playlist --format=dash-flv720 -o D:\SX https://www.bilibili.com/video/BV13t411G7oh</span><br></pre></td></tr></table></figure>
-<h2 id="使用技巧">使用技巧</h2>
-<ol>
-<li class="lvl-3">
-<p>使用代理加速（参考：<a href="https://liuaoao.top/archives/7b6d4a85.html">Windows代理设置</a>）</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 一次性关闭命令行需重新设置</span><br><span class="line">set http_proxy=http://127.0.0.1:1080</span><br><span class="line">set https_proxy=http://127.0.0.1:1080</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li class="lvl-3">
-<p>cookies请求</p>
-</li>
-</ol>
-<p>一些视频可能需要会员才能下载，此时我们需要带cookies请求。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">you-get --cookies=C:\Users\91425\Desktop\cookies.txt --format=dash-flv -o D:\SX https://www.bilibili.com/video/BV19h411s7oq </span><br><span class="line"># --cookies=C:\Users\91425\Desktop\cookies.txt 部分就是指定cookies的部分</span><br></pre></td></tr></table></figure>
-<p><code>you-get</code>支持<code>Mozilla cookies.sqlite</code>和<code>Netscape</code>两种格式的<code>cookies</code>。前者可以使用火狐浏览器直接导出。后者在<code>Chromium</code>内核的浏览器上可以使用<code>Get cookies.txt</code>插件获取。</p>
-<h2 id="Reference">Reference</h2>
-<p>[1]	记录一个you-get批量下载B站视频的方法: <a href="https://zhuanlan.zhihu.com/p/442019718">https://zhuanlan.zhihu.com/p/442019718</a></p>
-<p>[2]	You-get在Windows系统下的安装+会员视频下载的cookie配置: <a href="https://blog.csdn.net/cwj1412/article/details/107775004">https://blog.csdn.net/cwj1412/article/details/107775004</a></p>
-<p>[3]	you-get不自动合并音频和视频的解决办法: <a href="https://zhuanlan.zhihu.com/p/386392241">https://zhuanlan.zhihu.com/p/386392241</a></p>
-]]></content>
-      <categories>
-        <category>Tools</category>
-        <category>Tips</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python-axis</title>
-    <url>/archives/e3a284ef.html</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-<blockquote>
-<p>在Python中，<code>axis</code>参数在许多库如NumPy、Pandas中是一个重要概念，它表示数据沿着哪个轴或维度进行操作。</p>
-</blockquote>
-<h2 id="NumPy">NumPy</h2>
-<h3 id="np-array">np.array()</h3>
-<p>对于一个二维数组（矩阵），<code>axis=0</code>表示操作沿着行（垂直方向），<code>axis=1</code>表示操作沿着列（水平方向）</p>
-<span id="more"></span>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建一个 3x3 的数组</span></span><br><span class="line">arr = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 沿着 axis=0（行方向）求和</span></span><br><span class="line">sum_axis0 = np.<span class="built_in">sum</span>(arr, axis=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 输出: array([12, 15, 18])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 沿着 axis=1（列方向）求和</span></span><br><span class="line">sum_axis1 = np.<span class="built_in">sum</span>(arr, axis=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 输出: array([ 6, 15, 24])</span></span><br></pre></td></tr></table></figure>
-<h3 id="np-concatenate-a1-a2-axis-0">np.concatenate(a1,a2 axis=0)</h3>
-<p><code>np.concatenate</code>主要用于在指定轴上对多个数组进行拼接，拼接的轴的长度必须相同，例如：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]]) </span><br><span class="line">b = np.array([[<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>]]) </span><br><span class="line"></span><br><span class="line">c = np.concatenate((a, b), axis=<span class="number">0</span>)</span><br><span class="line">d = np.concatenate((a, b), axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"><span class="comment">#[[1 2]</span></span><br><span class="line"><span class="comment"># [3 4]</span></span><br><span class="line"><span class="comment"># [5 6]</span></span><br><span class="line"><span class="comment"># [7 8]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#[[1 2 5 6]</span></span><br><span class="line"><span class="comment"># [3 4 7 8]]</span></span><br></pre></td></tr></table></figure>
-<h3 id="np-append-arr-values-axis-None">np.append(arr, values, axis=None)</h3>
-<p><code>np.append</code>是在数组的末尾添加元素，其使用方法为：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.append(arr, values, axis=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
-<p>其中，arr为原数组，values为需要添加的值，axis为需要添加的轴（如果不指定axis，则会将数组先展开成1D数组，再进行添加）。如果添加的值是一个数组，则会将数组在指定的轴上与原数组进行拼接。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]]) </span><br><span class="line">b = np.array([[<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>]])</span><br><span class="line"></span><br><span class="line">c = np.append(a, b)  <span class="comment"># 在1D数组上进行拼接</span></span><br><span class="line">d = np.append(a, b, axis=<span class="number">0</span>)  <span class="comment"># 在行上进行拼接</span></span><br><span class="line">e = np.append(a, b, axis=<span class="number">1</span>)  <span class="comment"># 在列上进行拼接</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"><span class="built_in">print</span>(e)</span><br><span class="line"><span class="comment">#[1 2 3 4 5 6 7 8]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#[[1 2]</span></span><br><span class="line"><span class="comment"># [3 4]</span></span><br><span class="line"><span class="comment"># [5 6]</span></span><br><span class="line"><span class="comment"># [7 8]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#[[1 2 5 6]</span></span><br><span class="line"><span class="comment"># [3 4 7 8]]</span></span><br></pre></td></tr></table></figure>
-<p>需要注意的是，<code>np.append</code>返回的是新的数组，不会改变原数组。在原始数据集比较大时，推荐使用<code>np.concatenate()</code>函数进行数组拼接。</p>
-<h3 id="np-stack-array-axis-0">np.stack(array, axis=0)</h3>
-<p>沿着新轴连接数组的序列，<mark>此方法与拼接不同</mark>。</p>
-<p><em>axis</em> 参数指定新轴在结果尺寸中的索引。例如，如果<code>axis=0</code>，它将是第一个维度，如果<code>axis=-1</code>，它将是最后一个维度。</p>
-<h4 id="一维数组">一维数组</h4>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义两个一维数组</span></span><br><span class="line">a = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">b = np.array([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在轴0方向连接这两个数组</span></span><br><span class="line">c = np.stack((a, b), axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(c.shape)</span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment"># (2,3)</span></span><br><span class="line"><span class="comment"># [[1 2 3]</span></span><br><span class="line"><span class="comment">#  [4 5 6]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在轴1方向连接这两个数组</span></span><br><span class="line">d = np.stack((a, b), axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(d.shape)</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment"># (3,2)</span></span><br><span class="line"><span class="comment"># [[1 4]</span></span><br><span class="line"><span class="comment">#  [2 5]</span></span><br><span class="line"><span class="comment">#  [3 6]]</span></span><br></pre></td></tr></table></figure>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><input type="checkbox" id="checkbox2" checked="true"><label for="checkbox2"></label><code>(2,3)</code>和<code>(3,2)</code>中的<code>2</code>是怎么来的：因为有<code>a</code>和<code>b</code>两个<code>array</code>。</p>
-</li>
-<li class="lvl-2">
-<p><input type="checkbox" id="checkbox3" checked="true"><label for="checkbox3">可以理解</label><code>axis</code>指定了要增加的维度：例如<code>axis=0</code>表示在第一维度上增加，因此<code>(2,3)</code>中的<code>2</code>位于第一维度。而<code>axis=1</code>表示在第二维度上增加，因此<code>(3,2)</code>中的<code>2</code>位于第二维度。</p>
-</li>
-</ul>
-<h4 id="二维数组">二维数组</h4>
-<p>两个要素：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>stack堆叠的 <strong>方向</strong></p>
-</li>
-<li class="lvl-2">
-<p>stack堆叠后增加的 <strong>维度</strong></p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义一个2行3列的二维数组</span></span><br><span class="line">arr1 = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一个2行3列的二维数组</span></span><br><span class="line">arr2 = np.array([[<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>], [<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在轴0方向连接这两个数组</span></span><br><span class="line">arr3 = np.stack((arr1, arr2), axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Arr3 shape:<span class="subst">&#123;arr3.shape&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(arr3)</span><br><span class="line"><span class="comment"># Arr3 shape:(2, 2, 3)</span></span><br><span class="line"><span class="comment"># [[[ 1  2  3]</span></span><br><span class="line"><span class="comment">#   [ 4  5  6]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#  [[ 7  8  9]</span></span><br><span class="line"><span class="comment">#   [10 11 12]]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在轴1方向连接这两个数组</span></span><br><span class="line">arr4 = np.stack((arr1, arr2), axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Arr4 shape:<span class="subst">&#123;arr4.shape&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(arr4)</span><br><span class="line"><span class="comment"># Arr4 shape:(2, 2, 3)</span></span><br><span class="line"><span class="comment"># [[[ 1  2  3]</span></span><br><span class="line"><span class="comment">#   [ 7  8  9]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#  [[ 4  5  6]</span></span><br><span class="line"><span class="comment">#   [10 11 12]]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在轴2方向连接这两个数组</span></span><br><span class="line">arr5 = np.stack((arr1, arr2), axis=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Arr5 shape:<span class="subst">&#123;arr5.shape&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(arr5)</span><br><span class="line"><span class="comment"># Arr5 shape:(2, 3, 2)</span></span><br><span class="line"><span class="comment"># [[[ 1  7]</span></span><br><span class="line"><span class="comment">#   [ 2  8]</span></span><br><span class="line"><span class="comment">#   [ 3  9]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#  [[ 4 10]</span></span><br><span class="line"><span class="comment">#   [ 5 11]</span></span><br><span class="line"><span class="comment">#   [ 6 12]]]</span></span><br></pre></td></tr></table></figure>
-<p>这里的<code>2</code>就是指的<code>a</code>和<code>b</code>，而<code>2</code>放在什么位置是根据<code>axis</code>来确定的</p>
-<h2 id="Pandas">Pandas</h2>
-<p>在Pandas中，<code>axis</code>参数用于在<code>DataFrame</code>（类似于二维表格的数据结构）上执行操作，如汇总、排序和删除列或行等。与<code>NumPy</code>类似，<code>axis=0</code>表示操作沿着行（垂直方向），<code>axis=1</code>表示操作沿着列（水平方向）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个 DataFrame</span></span><br><span class="line">data = &#123;<span class="string">&#x27;A&#x27;</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">&#x27;B&#x27;</span>: [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], <span class="string">&#x27;C&#x27;</span>: [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]&#125;</span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"><span class="built_in">print</span>(df)</span><br><span class="line"><span class="comment">#    A  B  C</span></span><br><span class="line"><span class="comment"># 0  1  4  7</span></span><br><span class="line"><span class="comment"># 1  2  5  8</span></span><br><span class="line"><span class="comment"># 2  3  6  9</span></span><br><span class="line"><span class="comment"># 删除名为 &#x27;A&#x27; 的列，沿着 axis=1（列方向）</span></span><br><span class="line">df = df.drop(<span class="string">&#x27;A&#x27;</span>, axis=<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(df)</span><br><span class="line"><span class="comment">#    B  C</span></span><br><span class="line"><span class="comment"># 0  4  7</span></span><br><span class="line"><span class="comment"># 1  5  8</span></span><br><span class="line"><span class="comment"># 2  6  9</span></span><br><span class="line"><span class="comment"># 计算每一行的和，沿着 axis=1（列方向）</span></span><br><span class="line">row_sum = df.<span class="built_in">sum</span>(axis=<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(row_sum)</span><br><span class="line"><span class="comment"># 0    11</span></span><br><span class="line"><span class="comment"># 1    13</span></span><br><span class="line"><span class="comment"># 2    15</span></span><br></pre></td></tr></table></figure>
-<h2 id="Reference">Reference</h2>
-<p>[1]	numpy.stack最通俗的理解: <a href="https://blog.csdn.net/qq_17550379/article/details/78934529">https://blog.csdn.net/qq_17550379/article/details/78934529</a></p>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -2315,6 +2346,66 @@ And then define the link:</p>
         <tag>Machine learning</tag>
         <tag>语义分析</tag>
         <tag>Data mining</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python-axis</title>
+    <url>/archives/e3a284ef.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<blockquote>
+<p>在Python中，<code>axis</code>参数在许多库如NumPy、Pandas中是一个重要概念，它表示数据沿着哪个轴或维度进行操作。</p>
+</blockquote>
+<h2 id="NumPy">NumPy</h2>
+<h3 id="np-array">np.array()</h3>
+<p>对于一个二维数组（矩阵），<code>axis=0</code>表示操作沿着行（垂直方向），<code>axis=1</code>表示操作沿着列（水平方向）</p>
+<span id="more"></span>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建一个 3x3 的数组</span></span><br><span class="line">arr = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 沿着 axis=0（行方向）求和</span></span><br><span class="line">sum_axis0 = np.<span class="built_in">sum</span>(arr, axis=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 输出: array([12, 15, 18])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 沿着 axis=1（列方向）求和</span></span><br><span class="line">sum_axis1 = np.<span class="built_in">sum</span>(arr, axis=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 输出: array([ 6, 15, 24])</span></span><br></pre></td></tr></table></figure>
+<h3 id="np-concatenate-a1-a2-axis-0">np.concatenate(a1,a2 axis=0)</h3>
+<p><code>np.concatenate</code>主要用于在指定轴上对多个数组进行拼接，拼接的轴的长度必须相同，例如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]]) </span><br><span class="line">b = np.array([[<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>]]) </span><br><span class="line"></span><br><span class="line">c = np.concatenate((a, b), axis=<span class="number">0</span>)</span><br><span class="line">d = np.concatenate((a, b), axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"><span class="comment">#[[1 2]</span></span><br><span class="line"><span class="comment"># [3 4]</span></span><br><span class="line"><span class="comment"># [5 6]</span></span><br><span class="line"><span class="comment"># [7 8]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#[[1 2 5 6]</span></span><br><span class="line"><span class="comment"># [3 4 7 8]]</span></span><br></pre></td></tr></table></figure>
+<h3 id="np-append-arr-values-axis-None">np.append(arr, values, axis=None)</h3>
+<p><code>np.append</code>是在数组的末尾添加元素，其使用方法为：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.append(arr, values, axis=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<p>其中，arr为原数组，values为需要添加的值，axis为需要添加的轴（如果不指定axis，则会将数组先展开成1D数组，再进行添加）。如果添加的值是一个数组，则会将数组在指定的轴上与原数组进行拼接。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]]) </span><br><span class="line">b = np.array([[<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>]])</span><br><span class="line"></span><br><span class="line">c = np.append(a, b)  <span class="comment"># 在1D数组上进行拼接</span></span><br><span class="line">d = np.append(a, b, axis=<span class="number">0</span>)  <span class="comment"># 在行上进行拼接</span></span><br><span class="line">e = np.append(a, b, axis=<span class="number">1</span>)  <span class="comment"># 在列上进行拼接</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"><span class="built_in">print</span>(e)</span><br><span class="line"><span class="comment">#[1 2 3 4 5 6 7 8]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#[[1 2]</span></span><br><span class="line"><span class="comment"># [3 4]</span></span><br><span class="line"><span class="comment"># [5 6]</span></span><br><span class="line"><span class="comment"># [7 8]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#[[1 2 5 6]</span></span><br><span class="line"><span class="comment"># [3 4 7 8]]</span></span><br></pre></td></tr></table></figure>
+<p>需要注意的是，<code>np.append</code>返回的是新的数组，不会改变原数组。在原始数据集比较大时，推荐使用<code>np.concatenate()</code>函数进行数组拼接。</p>
+<h3 id="np-stack-array-axis-0">np.stack(array, axis=0)</h3>
+<p>沿着新轴连接数组的序列，<mark>此方法与拼接不同</mark>。</p>
+<p><em>axis</em> 参数指定新轴在结果尺寸中的索引。例如，如果<code>axis=0</code>，它将是第一个维度，如果<code>axis=-1</code>，它将是最后一个维度。</p>
+<h4 id="一维数组">一维数组</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义两个一维数组</span></span><br><span class="line">a = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">b = np.array([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在轴0方向连接这两个数组</span></span><br><span class="line">c = np.stack((a, b), axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(c.shape)</span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment"># (2,3)</span></span><br><span class="line"><span class="comment"># [[1 2 3]</span></span><br><span class="line"><span class="comment">#  [4 5 6]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在轴1方向连接这两个数组</span></span><br><span class="line">d = np.stack((a, b), axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(d.shape)</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment"># (3,2)</span></span><br><span class="line"><span class="comment"># [[1 4]</span></span><br><span class="line"><span class="comment">#  [2 5]</span></span><br><span class="line"><span class="comment">#  [3 6]]</span></span><br></pre></td></tr></table></figure>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><input type="checkbox" id="checkbox2" checked="true"><label for="checkbox2"></label><code>(2,3)</code>和<code>(3,2)</code>中的<code>2</code>是怎么来的：因为有<code>a</code>和<code>b</code>两个<code>array</code>。</p>
+</li>
+<li class="lvl-2">
+<p><input type="checkbox" id="checkbox3" checked="true"><label for="checkbox3">可以理解</label><code>axis</code>指定了要增加的维度：例如<code>axis=0</code>表示在第一维度上增加，因此<code>(2,3)</code>中的<code>2</code>位于第一维度。而<code>axis=1</code>表示在第二维度上增加，因此<code>(3,2)</code>中的<code>2</code>位于第二维度。</p>
+</li>
+</ul>
+<h4 id="二维数组">二维数组</h4>
+<p>两个要素：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>stack堆叠的 <strong>方向</strong></p>
+</li>
+<li class="lvl-2">
+<p>stack堆叠后增加的 <strong>维度</strong></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义一个2行3列的二维数组</span></span><br><span class="line">arr1 = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一个2行3列的二维数组</span></span><br><span class="line">arr2 = np.array([[<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>], [<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在轴0方向连接这两个数组</span></span><br><span class="line">arr3 = np.stack((arr1, arr2), axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Arr3 shape:<span class="subst">&#123;arr3.shape&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(arr3)</span><br><span class="line"><span class="comment"># Arr3 shape:(2, 2, 3)</span></span><br><span class="line"><span class="comment"># [[[ 1  2  3]</span></span><br><span class="line"><span class="comment">#   [ 4  5  6]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#  [[ 7  8  9]</span></span><br><span class="line"><span class="comment">#   [10 11 12]]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在轴1方向连接这两个数组</span></span><br><span class="line">arr4 = np.stack((arr1, arr2), axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Arr4 shape:<span class="subst">&#123;arr4.shape&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(arr4)</span><br><span class="line"><span class="comment"># Arr4 shape:(2, 2, 3)</span></span><br><span class="line"><span class="comment"># [[[ 1  2  3]</span></span><br><span class="line"><span class="comment">#   [ 7  8  9]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#  [[ 4  5  6]</span></span><br><span class="line"><span class="comment">#   [10 11 12]]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在轴2方向连接这两个数组</span></span><br><span class="line">arr5 = np.stack((arr1, arr2), axis=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Arr5 shape:<span class="subst">&#123;arr5.shape&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(arr5)</span><br><span class="line"><span class="comment"># Arr5 shape:(2, 3, 2)</span></span><br><span class="line"><span class="comment"># [[[ 1  7]</span></span><br><span class="line"><span class="comment">#   [ 2  8]</span></span><br><span class="line"><span class="comment">#   [ 3  9]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#  [[ 4 10]</span></span><br><span class="line"><span class="comment">#   [ 5 11]</span></span><br><span class="line"><span class="comment">#   [ 6 12]]]</span></span><br></pre></td></tr></table></figure>
+<p>这里的<code>2</code>就是指的<code>a</code>和<code>b</code>，而<code>2</code>放在什么位置是根据<code>axis</code>来确定的</p>
+<h2 id="Pandas">Pandas</h2>
+<p>在Pandas中，<code>axis</code>参数用于在<code>DataFrame</code>（类似于二维表格的数据结构）上执行操作，如汇总、排序和删除列或行等。与<code>NumPy</code>类似，<code>axis=0</code>表示操作沿着行（垂直方向），<code>axis=1</code>表示操作沿着列（水平方向）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个 DataFrame</span></span><br><span class="line">data = &#123;<span class="string">&#x27;A&#x27;</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">&#x27;B&#x27;</span>: [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], <span class="string">&#x27;C&#x27;</span>: [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]&#125;</span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"><span class="built_in">print</span>(df)</span><br><span class="line"><span class="comment">#    A  B  C</span></span><br><span class="line"><span class="comment"># 0  1  4  7</span></span><br><span class="line"><span class="comment"># 1  2  5  8</span></span><br><span class="line"><span class="comment"># 2  3  6  9</span></span><br><span class="line"><span class="comment"># 删除名为 &#x27;A&#x27; 的列，沿着 axis=1（列方向）</span></span><br><span class="line">df = df.drop(<span class="string">&#x27;A&#x27;</span>, axis=<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(df)</span><br><span class="line"><span class="comment">#    B  C</span></span><br><span class="line"><span class="comment"># 0  4  7</span></span><br><span class="line"><span class="comment"># 1  5  8</span></span><br><span class="line"><span class="comment"># 2  6  9</span></span><br><span class="line"><span class="comment"># 计算每一行的和，沿着 axis=1（列方向）</span></span><br><span class="line">row_sum = df.<span class="built_in">sum</span>(axis=<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(row_sum)</span><br><span class="line"><span class="comment"># 0    11</span></span><br><span class="line"><span class="comment"># 1    13</span></span><br><span class="line"><span class="comment"># 2    15</span></span><br></pre></td></tr></table></figure>
+<h2 id="Reference">Reference</h2>
+<p>[1]	numpy.stack最通俗的理解: <a href="https://blog.csdn.net/qq_17550379/article/details/78934529">https://blog.csdn.net/qq_17550379/article/details/78934529</a></p>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
 </search>
