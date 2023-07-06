@@ -125,6 +125,10 @@
 <p>图片不显示名称，删掉[]里的值</p>
 </li>
 </ul>
+<h2 id="Reference">Reference</h2>
+<p>[1]	hexo theme next7.8 主题美化: <a href="https://blog.csdn.net/tuckEnough/article/details/107383201">https://blog.csdn.net/tuckEnough/article/details/107383201</a></p>
+<p>[2]	Github+Hexo搭建个人博客(图文详解): <a href="https://blog.csdn.net/weixin_45377770/article/details/105228938?spm=1001.2014.3001.5506">https://blog.csdn.net/weixin_45377770/article/details/105228938?spm=1001.2014.3001.5506</a></p>
+<p>[3]	在hexo-NexT中插入note提示块: <a href="https://jinnsjj.github.io/uncategorized/hexo-next-note/">https://jinnsjj.github.io/uncategorized/hexo-next-note/</a></p>
 ]]></content>
       <categories>
         <category>Web</category>
