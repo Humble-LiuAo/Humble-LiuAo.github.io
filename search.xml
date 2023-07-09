@@ -1,6 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>RE（正则表达式）</title>
+    <url>/archives/c7331187.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<h1>RE（正则表达式）</h1>
+<p>正则表达式（Regular Expression，简称为 “regex”）是一种用于处理字符串的强大工具，可以用来匹配、查找、替换和分割文本。在编程中，正则表达式广泛应用于文本处理和数据提取等场景。</p>
+<p>通过在线工具（如 <a href="https://regex101.com/">regex101 ↗</a>）可以方便地测试和调试正则表达式。</p>
+<span id="more"></span>
+<h2 id="1-基本匹配">1. 基本匹配</h2>
+<p>正则表达式是由字符和元字符组成的模式，用于描述字符串的一部分。字符就是普通的文本字符，例如 <code>a</code>、<code>b</code>、<code>1</code> 等；元字符具有特殊含义，用于表示某种模式。</p>
+<h3 id="1-1-字符匹配">1.1 字符匹配</h3>
+<p>在正则表达式中，大多数字符都与自身相匹配。例如，正则表达式 <code>abc</code> 匹配字符串 <code>&quot;abc&quot;</code>。</p>
+<h3 id="1-2-元字符">1.2 元字符</h3>
+<p>以下字符具有特殊含义，被称为元字符：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">. ^ $ * + ? &#123; &#125; [ ] \ | ( )</span><br></pre></td></tr></table></figure>
+<p>要在正则表达式中匹配这些字符本身，需要在它们前面加上反斜线 <code>\</code>。</p>
+<h2 id="2-字符类">2. 字符类</h2>
+<p>字符类允许我们匹配一组字符中的任意一个。它由一对方括号 <code>[</code> 和 <code>]</code> 包围，其中包含要匹配的字符。</p>
+<p>例如，正则表达式 <code>[abc]</code> 匹配字符 <code>a</code>、<code>b</code> 或 <code>c</code>。</p>
+<h3 id="2-1-范围">2.1 范围</h3>
+<p>在字符类中，可以使用短横线 <code>-</code> 表示字符范围。例如，<code>[a-z]</code> 匹配任意小写字母；<code>[0-9]</code> 匹配任意数字。</p>
+<h3 id="2-2-预定义字符类">2.2 预定义字符类</h3>
+<p>正则表达式提供了一些预定义的字符类：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>\d</code>：等价于 <code>[0-9]</code>，匹配任意数字。</p>
+</li>
+<li class="lvl-2">
+<p><code>\D</code>：等价于 <code>[^0-9]</code>，匹配任意非数字字符。</p>
+</li>
+<li class="lvl-2">
+<p><code>\w</code>：等价于 <code>[a-zA-Z0-9_]</code>，匹配任意字母、数字或下划线。</p>
+</li>
+<li class="lvl-2">
+<p><code>\W</code>：等价于 <code>[^a-zA-Z0-9_]</code>，匹配任意非字母、数字或下划线的字符。</p>
+</li>
+<li class="lvl-2">
+<p><code>\s</code>：匹配任意空白字符，如空格、制表符和换行符。</p>
+</li>
+<li class="lvl-2">
+<p><code>\S</code>：匹配任意非空白字符。</p>
+</li>
+</ul>
+<h2 id="3-量词">3. 量词</h2>
+<p>量词指定一个模式出现的次数。常用的量词有：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>*</code>：匹配前面的模式 0 次或多次。</p>
+</li>
+<li class="lvl-2">
+<p><code>+</code>：匹配前面的模式 1 次或多次。</p>
+</li>
+<li class="lvl-2">
+<p><code>?</code>：匹配前面的模式 0 次或 1 次。</p>
+</li>
+<li class="lvl-2">
+<p><code>&#123;n&#125;</code>：匹配前面的模式正好 n 次。</p>
+</li>
+<li class="lvl-2">
+<p><code>&#123;n,&#125;</code>：匹配前面的模式至少 n 次。</p>
+</li>
+<li class="lvl-2">
+<p><code>&#123;n,m&#125;</code>：匹配前面的模式至少 n 次，最多 m 次。</p>
+</li>
+</ul>
+<h2 id="4-分组和捕获">4. 分组和捕获</h2>
+<p>使用圆括号 <code>(</code> 和 <code>)</code> 可以将多个字符组合成一个分组。例如，正则表达式 <code>(ab)+</code> 匹配字符串 <code>&quot;ab&quot;</code> 重复出现的部分，如 <code>&quot;ab&quot;</code>、<code>&quot;abab&quot;</code> 等。</p>
+<p>分组还具有捕获功能，可以在匹配成功后提取分组中的内容。捕获的顺序是从左到右，按照左括号的顺序编号。</p>
+<h2 id="5-断言">5. 断言</h2>
+<p>断言用于判断字符串的当前位置是否满足某个条件，但不消耗字符。常用的断言有：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>^</code>：匹配字符串的开始位置。</p>
+</li>
+<li class="lvl-2">
+<p><code>$</code>：匹配字符串的结束位置。</p>
+</li>
+<li class="lvl-2">
+<p><code>\b</code>：匹配单词的边界（即单词与空白字符之间的位置）。</p>
+</li>
+<li class="lvl-2">
+<p><code>\B</code>：匹配非单词边界的位置。</p>
+</li>
+<li class="lvl-2">
+<p><code>(?=...)</code>：正向先行断言，要求接下来的字符满足指定的模式，但不消耗字符。</p>
+</li>
+<li class="lvl-2">
+<p><code>(?!...)</code>：负向先行断言，要求接下来的字符不满足指定的模式，但不消耗字符。</p>
+</li>
+</ul>
+<h2 id="6-使用正则表达式的语言功能">6. 使用正则表达式的语言功能</h2>
+<p>大多数编程语言都内置了对正则表达式的支持。以下是一些常见编程语言中使用正则表达式的示例：</p>
+<h3 id="6-1-C">6.1 C++</h3>
+<p>在 C++ 中，可以使用 <code>&lt;regex&gt;</code> 头文件中的正则表达式库来处理正则表达式。以下是一些常见的正则表达式库函数：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>std::regex_search(str, pattern)</code>：在字符串中查找指定模式的第一个匹配项。</p>
+</li>
+<li class="lvl-2">
+<p><code>std::regex_match(str, pattern)</code>：检查字符串是否与指定模式完全匹配。</p>
+</li>
+<li class="lvl-2">
+<p><code>std::regex_replace(str, pattern, newStr)</code>：将字符串中与指定模式匹配的项替换为指定的字符串。</p>
+</li>
+<li class="lvl-2">
+<p><code>std::regex_iterator</code>：用于迭代查找字符串中所有与指定模式匹配的项。</p>
+</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;regex&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="function">std::regex <span class="title">pattern</span><span class="params">(<span class="string">&quot;\\d+&quot;</span>)</span></span>; <span class="comment">// 创建一个匹配数字的正则表达式模式</span></span><br><span class="line">  std::string str = <span class="string">&quot;Found 42 items, each costs $15&quot;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 查找第一个匹配项</span></span><br><span class="line">  std::smatch match;</span><br><span class="line">  <span class="keyword">if</span> (std::<span class="built_in">regex_search</span>(str, match, pattern)) &#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;First match: &quot;</span> &lt;&lt; match[<span class="number">0</span>] &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 检查是否完全匹配</span></span><br><span class="line">  <span class="keyword">if</span> (std::<span class="built_in">regex_match</span>(str, pattern)) &#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Matched completely\n&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 查找所有匹配项</span></span><br><span class="line">  <span class="function">std::sregex_iterator <span class="title">it</span><span class="params">(str.begin(), str.end(), pattern)</span></span>;</span><br><span class="line">  std::sregex_iterator end;</span><br><span class="line">  std::cout &lt;&lt; <span class="string">&quot;All matches: &quot;</span>;</span><br><span class="line">  <span class="keyword">while</span> (it != end) &#123;</span><br><span class="line">    std::cout &lt;&lt; (*it)[<span class="number">0</span>] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    ++it;</span><br><span class="line">  &#125;</span><br><span class="line">  std::cout &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 替换匹配项</span></span><br><span class="line">  std::string newStr = std::<span class="built_in">regex_replace</span>(str, pattern, <span class="string">&quot;NUMBER&quot;</span>);</span><br><span class="line">  std::cout &lt;&lt; <span class="string">&quot;New string: &quot;</span> &lt;&lt; newStr &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-2-Python">6.2 Python</h3>
+<p>在 Python 中，可以使用 <code>re</code> 模块处理正则表达式。以下是一些常见的 <code>re</code> 模块函数：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>re.search(pattern, string)</code>：在字符串中查找指定模式的第一个匹配项。</p>
+</li>
+<li class="lvl-2">
+<p><code>re.findall(pattern, string)</code>：返回字符串中所有与指定模式匹配的项的列表。</p>
+</li>
+<li class="lvl-2">
+<p><code>re.sub(pattern, repl, string, count=0)</code>：将字符串中与指定模式匹配的项替换为指定的字符串，可限制替换次数。</p>
+</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern = <span class="string">r&#x27;\d+&#x27;</span></span><br><span class="line">string = <span class="string">&#x27;Found 42 items, each costs $15&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找第一个匹配项</span></span><br><span class="line"><span class="keyword">match</span> = re.search(pattern, string)</span><br><span class="line"><span class="built_in">print</span>(<span class="keyword">match</span>.group())  <span class="comment"># 输出：42</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找所有匹配项</span></span><br><span class="line">numbers = re.findall(pattern, string)</span><br><span class="line"><span class="built_in">print</span>(numbers)  <span class="comment"># 输出：[&#x27;42&#x27;, &#x27;15&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 替换匹配项</span></span><br><span class="line">new_string = re.sub(pattern, <span class="string">&#x27;NUMBER&#x27;</span>, string)</span><br><span class="line"><span class="built_in">print</span>(new_string)  <span class="comment"># 输出：Found NUMBER items, each costs $NUMBER</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-3-JavaScript">6.3 JavaScript</h3>
+<p>在 JavaScript 中，正则表达式可以使用 <code>RegExp</code> 对象表示。以下是一些常见的正则表达式方法：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>regex.test(string)</code>：测试字符串是否包含与正则表达式匹配的部分。</p>
+</li>
+<li class="lvl-2">
+<p><code>regex.exec(string)</code>：在字符串中查找与正则表达式匹配的部分，返回一个匹配对象或 <code>null</code>。</p>
+</li>
+<li class="lvl-2">
+<p><code>string.match(regex)</code>：返回一个数组，其中包含字符串中与正则表达式匹配的所有部分。</p>
+</li>
+<li class="lvl-2">
+<p><code>string.replace(regex, replacement)</code>：将字符串中与正则表达式匹配的部分替换为指定的字符串。</p>
+</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> pattern = <span class="regexp">/\d+/</span>;</span><br><span class="line"><span class="keyword">const</span> string = <span class="string">&#x27;Found 42 items, each costs $15&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试是否匹配</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(pattern.<span class="title function_">test</span>(string));  <span class="comment">// 输出：true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 查找第一个匹配项</span></span><br><span class="line"><span class="keyword">const</span> match = pattern.<span class="title function_">exec</span>(string);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(match[<span class="number">0</span>]);  <span class="comment">// 输出：42</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 查找所有匹配项</span></span><br><span class="line"><span class="keyword">const</span> numbers = string.<span class="title function_">match</span>(<span class="regexp">/\d+/g</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(numbers);  <span class="comment">// 输出：[ &#x27;42&#x27;, &#x27;15&#x27; ]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 替换匹配项</span></span><br><span class="line"><span class="keyword">const</span> newString = string.<span class="title function_">replace</span>(pattern, <span class="string">&#x27;NUMBER&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newString);  <span class="comment">// 输出：Found NUMBER items, each costs $15</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>Python</tag>
+        <tag>正则表达式</tag>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo搭建个人博客</title>
     <url>/archives/ec7d7221.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -126,9 +280,10 @@
 </li>
 </ul>
 <h2 id="Reference">Reference</h2>
-<p>[1]	hexo theme next7.8 主题美化: <a href="https://blog.csdn.net/tuckEnough/article/details/107383201">https://blog.csdn.net/tuckEnough/article/details/107383201</a></p>
-<p>[2]	Github+Hexo搭建个人博客(图文详解): <a href="https://blog.csdn.net/weixin_45377770/article/details/105228938?spm=1001.2014.3001.5506">https://blog.csdn.net/weixin_45377770/article/details/105228938?spm=1001.2014.3001.5506</a></p>
-<p>[3]	在hexo-NexT中插入note提示块: <a href="https://jinnsjj.github.io/uncategorized/hexo-next-note/">https://jinnsjj.github.io/uncategorized/hexo-next-note/</a></p>
+<p>[1]	超详细Hexo+Github博客搭建小白教程: <a href="https://zhuanlan.zhihu.com/p/35668237">https://zhuanlan.zhihu.com/p/35668237</a></p>
+<p>[2]	hexo theme next7.8 主题美化: <a href="https://blog.csdn.net/tuckEnough/article/details/107383201">https://blog.csdn.net/tuckEnough/article/details/107383201</a></p>
+<p>[3]	Github+Hexo搭建个人博客(图文详解): <a href="https://blog.csdn.net/weixin_45377770/article/details/105228938?spm=1001.2014.3001.5506">https://blog.csdn.net/weixin_45377770/article/details/105228938?spm=1001.2014.3001.5506</a></p>
+<p>[4]	在hexo-NexT中插入note提示块: <a href="https://jinnsjj.github.io/uncategorized/hexo-next-note/">https://jinnsjj.github.io/uncategorized/hexo-next-note/</a></p>
 ]]></content>
       <categories>
         <category>Web</category>
