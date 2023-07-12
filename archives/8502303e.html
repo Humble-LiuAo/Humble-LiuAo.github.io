@@ -21,28 +21,23 @@
     var CONFIG = {"hostname":"liuaoao.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":false,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="安装   conda安装   打开Anaconda Prompt，输入 conda install jupyter notebook">
+  <meta name="description" content="左值、右值 C++ 11对C++ 98中的右值进行了扩充。在C++11中右值又分为纯右值（prvalue，Pure Rvalue）和将亡值（xvalue，eXpiring Value）。 左值是指可以出现在赋值操作符（&#x3D;）的左边的表达式，它们具有持久的内存地址。左值可以被取地址（&amp;）操作符获取其内存地址，可以被修改，也可以作为参数传递给函数。 纯右值是指生成临时对象或字面量的表达式，它们">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Jupyter安装配置">
-<meta property="og:url" content="https://liuaoao.top/archives/72216da9.html">
+<meta property="og:title" content="C++左值与右值">
+<meta property="og:url" content="https://liuaoao.top/archives/8502303e.html">
 <meta property="og:site_name" content="白茶不雨的博客">
-<meta property="og:description" content="安装   conda安装   打开Anaconda Prompt，输入 conda install jupyter notebook">
+<meta property="og:description" content="左值、右值 C++ 11对C++ 98中的右值进行了扩充。在C++11中右值又分为纯右值（prvalue，Pure Rvalue）和将亡值（xvalue，eXpiring Value）。 左值是指可以出现在赋值操作符（&#x3D;）的左边的表达式，它们具有持久的内存地址。左值可以被取地址（&amp;）操作符获取其内存地址，可以被修改，也可以作为参数传递给函数。 纯右值是指生成临时对象或字面量的表达式，它们">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230509223656406.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/a6b56b88c868a12438d03169baed880.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230509223042167.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/7e5c619809d4324a7bfd40810834af3.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230509225426973.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230509230915195.png">
-<meta property="article:published_time" content="2023-05-09T15:10:46.000Z">
-<meta property="article:modified_time" content="2023-05-12T16:18:43.118Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d0517035f9af48be86bd99df75b5669e.png">
+<meta property="article:published_time" content="2023-07-11T15:40:35.000Z">
+<meta property="article:modified_time" content="2023-07-11T15:45:36.854Z">
 <meta property="article:author" content="白茶不雨">
-<meta property="article:tag" content="Anaconda">
-<meta property="article:tag" content="Jupyter">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="左值与右值">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230509223656406.png">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/d0517035f9af48be86bd99df75b5669e.png">
 
-<link rel="canonical" href="https://liuaoao.top/archives/72216da9.html">
+<link rel="canonical" href="https://liuaoao.top/archives/8502303e.html">
 
 
 <script id="page-configurations">
@@ -55,7 +50,7 @@
   };
 </script>
 <link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css">
-  <title>Jupyter安装配置 | 白茶不雨的博客</title>
+  <title>C++左值与右值 | 白茶不雨的博客</title>
   
 
 
@@ -212,7 +207,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liuaoao.top/archives/72216da9.html">
+    <link itemprop="mainEntityOfPage" href="https://liuaoao.top/archives/8502303e.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -225,7 +220,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Jupyter安装配置
+          C++左值与右值
         </h1>
 
         <div class="post-meta">
@@ -234,32 +229,26 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2023-05-09 23:10:46" itemprop="dateCreated datePublished" datetime="2023-05-09T23:10:46+08:00">2023-05-09</time>
+              <time title="创建时间：2023-07-11 23:40:35 / 修改时间：23:45:36" itemprop="dateCreated datePublished" datetime="2023-07-11T23:40:35+08:00">2023-07-11</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-05-13 00:18:43" itemprop="dateModified" datetime="2023-05-13T00:18:43+08:00">2023-05-13</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tools/Software/" itemprop="url" rel="index"><span itemprop="name">Software</span></a>
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
                 </span>
             </span>
 
           
-            <span id="/archives/72216da9.html" class="post-meta-item leancloud_visitors" data-flag-title="Jupyter安装配置" title="阅读次数">
+            <span id="/archives/8502303e.html" class="post-meta-item leancloud_visitors" data-flag-title="C++左值与右值" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -274,8 +263,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/archives/72216da9.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/archives/72216da9.html" itemprop="commentCount"></span>
+    <a title="valine" href="/archives/8502303e.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/archives/8502303e.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -285,14 +274,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>886</span>
+              <span>6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -305,65 +294,80 @@
 
       
         <meta name="referrer" content="no-referrer" />
-<h2 id="安装">安装</h2>
-<ol>
-<li class="lvl-3">
-<p><strong>conda安装</strong></p>
-</li>
-</ol>
-<p>打开<code>Anaconda Prompt</code>，输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda install jupyter notebook</span><br></pre></td></tr></table></figure>
+<h2 id="左值、右值">左值、右值</h2>
+<p>C++ 11对C++ 98中的右值进行了扩充。在<strong>C++11中右值又分为纯右值（prvalue，Pure Rvalue）和将亡值（xvalue，eXpiring Value）</strong>。</p>
+<p>左值是指可以出现在赋值操作符（=）的左边的表达式，它们具有持久的内存地址。左值可以被取地址（&amp;）操作符获取其内存地址，可以被修改，也可以作为参数传递给函数。</p>
+<p>纯右值是指生成临时对象或字面量的表达式，它们通常是即将被使用的临时值。纯右值没有持久的内存地址，不能被取地址（&amp;）操作符获取其内存地址。例如，<code>int result = 2 + 3;</code> 中的 <code>2 + 3</code> 就是一个纯右值。</p>
 <span id="more"></span>
-<ol start="2">
-<li class="lvl-3">
-<p><strong>navigator安装</strong></p>
-</li>
-</ol>
-<p>打开<code>Anaconda Navigator</code>，点击<code>Jupyter</code>下的 <code>Insatll</code></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230509223656406.png" alt=""></p>
-<h2 id="修改默认打开路径">修改默认打开路径</h2>
-<ol>
-<li class="lvl-3">
-<p><strong>生成配置文件</strong></p>
-</li>
-</ol>
-<p>打开<code>Anaconda Prompt</code>，输入<code>jupyter notebook --generate-config</code></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/a6b56b88c868a12438d03169baed880.png" alt=""></p>
-<ol start="2">
-<li class="lvl-3">
-<p><strong>修改配置文件</strong></p>
-<p>根据显示的路径，打开配置文件<code>jupyter_notebook_config.py</code>，全文搜索 <code>notebook_dir</code>，找到后填入自己的工作路径并保存。（注意：工作路径不能出现中文，否则无法打开<code>Jupyter Notebook</code>）</p>
-</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230509223042167.png" alt=""></p>
-<ol start="3">
-<li class="lvl-3">
-<p><strong>修改JupyterNotebook快捷方式的目标属性</strong></p>
-</li>
-</ol>
-<p>右击<code>JupyterNotebook</code>快捷方式，选择【属性】，删除【目标】属性中的【%USERPROFILE%】，点击【应用】–【确定】</p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/7e5c619809d4324a7bfd40810834af3.png" alt=""></p>
-<h2 id="优化">优化</h2>
+<p>将亡值是指具有资源所有权的表达式，它们可以被移动（move）而不是复制（copy）。将亡值是一种特殊的右值引用，可以延长右值的生命周期，用于实现移动语义。通过将资源所有权转移给新对象，可以避免不必要的复制操作，提高了效率。例如，<code>std::vector&lt;int&gt; v1; std::vector&lt;int&gt; v2 = std::move(v1);</code> 中的 <code>std::move(v1)</code> 就是一个将亡值。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;utility&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">foo</span><span class="params">(<span class="type">int</span>&amp; x)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;lvalue reference&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">foo</span><span class="params">(<span class="type">int</span>&amp;&amp; x)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;rvalue reference&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">bar</span><span class="params">(T&amp;&amp; x)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">foo</span>(std::forward&lt;T&gt;(x));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">42</span>;          <span class="comment">// a 是左值</span></span><br><span class="line">    <span class="type">int</span>&amp; b = a;          <span class="comment">// b 是左值引用</span></span><br><span class="line">    <span class="type">int</span>&amp;&amp; c = std::<span class="built_in">move</span>(a); <span class="comment">// c 是右值引用，将亡值</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">foo</span>(a);              <span class="comment">// 调用 foo(int&amp; x)，因为 a 是左值</span></span><br><span class="line">    <span class="built_in">foo</span>(<span class="number">42</span>);             <span class="comment">// 调用 foo(int&amp;&amp; x)，因为 42 是纯右值</span></span><br><span class="line">    <span class="built_in">foo</span>(std::<span class="built_in">move</span>(a));   <span class="comment">// 调用 foo(int&amp;&amp; x)，因为 std::move(a) 是将亡值</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">bar</span>(a);              <span class="comment">// 完美转发，调用 foo(int&amp; x)</span></span><br><span class="line">    <span class="built_in">bar</span>(<span class="number">42</span>);             <span class="comment">// 完美转发，调用 foo(int&amp;&amp; x)</span></span><br><span class="line">    <span class="built_in">bar</span>(std::<span class="built_in">move</span>(a));   <span class="comment">// 完美转发，调用 foo(int&amp;&amp; x)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="左值引用、右值引用">左值引用、右值引用</h2>
+<p>左值引用就是对一个左值进行引用的类型。右值引用就是对一个右值进行引用的类型，事实上，<strong>由于右值通常不具有名字，我们也只能通过引用的方式找到它的存在</strong>。</p>
+<p><strong>右值引用和左值引用都是属于引用类型，并且都是左值</strong>。无论是声明一个左值引用还是右值引用，都必须立即进行初始化。而其原因可以理解为是引用类型本身自己并不拥有所绑定对象的内存，只是该对象的一个别名。左值引用是具名变量值的别名，而右值引用则是不具名（匿名）变量的别名。</p>
+<p>左值引用通常也不能绑定到右值，但常量左值引用是个“万能”的引用类型。它可以接受非常量左值、常量左值、右值对其进行初始化。不过常量左值所引用的右值在它的“余生”中只能是只读的。相对地，非常量左值只能接受非常量左值对其进行初始化。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> &amp;a = <span class="number">2</span>;       # 左值引用绑定到右值，编译失败</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> b = <span class="number">2</span>;        # 非常量左值</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> &amp;c = b; # 常量左值引用绑定到非常量左值，编译通过</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> d = <span class="number">2</span>;  # 常量左值</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> &amp;e = c; # 常量左值引用绑定到常量左值，编译通过</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> &amp;b =<span class="number">2</span>;  # 常量左值引用绑定到右值，编程通过</span><br><span class="line"><span class="number">1234567</span></span><br></pre></td></tr></table></figure>
+<p>右值值引用通常不能绑定到任何的左值，要想绑定一个左值到右值引用，通常需要std::move()将左值强制转换为右值，例如：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a;</span><br><span class="line"><span class="type">int</span> &amp;&amp;r1 = c;             # 编译失败</span><br><span class="line"><span class="type">int</span> &amp;&amp;r2 = std::<span class="built_in">move</span>(a);  # 编译通过</span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+<p>下表列出了在C++11中各种引用类型可以引用的值的类型。值得注意的是，只要能够绑定右值的引用类型，都能够延长右值的生命期。<br>
+<img src="https://img-blog.csdnimg.cn/d0517035f9af48be86bd99df75b5669e.png" alt=""></p>
+<h2 id="std-move">std::move()</h2>
+<p><strong>move作用是可以将一个左值转换成右值引用</strong>，从而可以调用C++11的拷贝构造函数。</p>
+<h3 id="std-move-的实现">std::move()的实现</h3>
+<p>std::move的实现主要依赖于static_cast&lt;T&amp;&amp; &gt;，但同时也会做一些参数推导（traits）的工作。其实现如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">typename</span> remove_reference&lt;T&gt;::<span class="function">type&amp;&amp; <span class="title">move</span><span class="params">(T&amp;&amp; t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">static_cast</span>&lt;<span class="keyword">typename</span> remove_reference&lt;T&gt;::type &amp;&amp;&gt;(t);</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">12345</span></span><br></pre></td></tr></table></figure>
+<p>对于t为右值的情况，有如下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">std::<span class="built_in">move</span>(<span class="built_in">string</span>(<span class="string">&quot;dengwen&quot;</span>));</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>首先模板类型推导确定T的类型为string，得remove_reference::type为string，故返回值和static的模板参数类型都为string &amp;&amp;，而move的参数就是string &amp;&amp;,于是不需要进行类型转换直接返回。</p>
+<p>对于t为左值的情况，引入一条规则：<strong>当将一个左值传递给一个参数是右值引用的函数，且此右值引用指向模板类型参数(T&amp;&amp;)时，编译器推断模板参数类型为实参的左值引用</strong>。有如下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">string <span class="title">str</span><span class="params">(<span class="string">&quot;dengwen&quot;</span>)</span></span>;</span><br><span class="line">std::<span class="built_in">move</span>(str);</span><br><span class="line"><span class="number">12</span></span><br></pre></td></tr></table></figure>
+<p>此时明显str是一个左值，首先模板类型推导确定T的类型为string &amp;，得remove_reference::type为string。故返回值和static的模板参数类型都为string &amp;&amp;，而move的参数类型为string&amp; &amp;&amp;，折叠后为sting &amp;。</p>
+<p>所以结果就为将string &amp;通过static_cast转为string &amp;&amp;。返回string &amp;&amp;。</p>
+<h2 id="引用折叠">引用折叠</h2>
+<p>1.所有右值引用折叠到右值引用上仍然是一个右值引用。（<code>A&amp;&amp; &amp;&amp;</code> 变成 <code>A&amp;&amp;</code>）<br>
+2.所有的其他引用类型之间的折叠都将变成左值引用。 （<code>A&amp; &amp;</code> 变成 <code>A&amp;</code>; <code>A&amp; &amp;&amp;</code> 变成 <code>A&amp;</code>; <code>A&amp;&amp; &amp;</code> 变成 <code>A&amp;</code>）</p>
+<h2 id="完美转发">完美转发</h2>
+<p>考虑下面例子：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(T t)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;in func&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">relay</span><span class="params">(T&amp;&amp; t)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;in relay&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">func</span>(t);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">relay</span>(<span class="built_in">Test</span>());</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">1234567891011121314</span></span><br></pre></td></tr></table></figure>
+<p>在这个例子当中，我们的期待是，我们在main当中调用relay，Test的临时对象作为一个右值传入relay，在relay当中又被转发给了func，那这时候转发给func的参数t也应当是一个右值。也就是说，我们希望：<strong>当relay的参数是右值的时候，func的参数也是右值；当relay的参数是左值的时候，func的参数也是左值</strong>。</p>
+<p>那么现在我们来运行一下这个程序，我们会看到，结果与我们预想的似乎并不相同：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">default</span> constructor</span><br><span class="line">in relay</span><br><span class="line">copy constructor</span><br><span class="line">in func</span><br><span class="line">destructor</span><br><span class="line">destructor</span><br><span class="line"><span class="number">123456</span></span><br></pre></td></tr></table></figure>
+<p>我们看到，在relay当中转发的时候，调用了复制构造函数，也就是说<strong>编译器认为这个参数t并不是一个右值，而是左值，因为它有一个名字</strong>。那么如果我们想要实现我们所说的，如果传进来的参数是一个左值，则将它作为左值转发给下一个函数；如果它是右值，则将其作为右值转发给下一个函数，我们应该怎么做呢？</p>
+<p>这时，我们需要<code>std::forward&lt;T&gt;()</code>。<strong>与std::move()相区别的是，move()会无条件的将一个参数转换成右值，而forward()则会保留参数的左右值类型</strong>。所以我们的代码应该是这样：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(T t)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;in func &quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">relay</span><span class="params">(T&amp;&amp; t)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;in relay &quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">func</span>(std::forward&lt;T&gt;(t));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">relay</span>(<span class="built_in">Test</span>());</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">1234567891011121314</span></span><br></pre></td></tr></table></figure>
+<p>现在运行的结果就成为了：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">default</span> constructor</span><br><span class="line">in relay</span><br><span class="line">move constructor</span><br><span class="line">in func</span><br><span class="line">destructor</span><br><span class="line">destructor</span><br><span class="line"><span class="number">123456</span></span><br></pre></td></tr></table></figure>
+<p>而如果我们的调用方法变成：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Test t;</span><br><span class="line">    <span class="built_in">relay</span>(t);</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">1234</span></span><br></pre></td></tr></table></figure>
+<p>那么输出就会变成：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">default</span> constructor</span><br><span class="line">in relay</span><br><span class="line">copy constructor</span><br><span class="line">in func</span><br><span class="line">destructor</span><br><span class="line">destructor</span><br><span class="line"><span class="number">123456</span></span><br></pre></td></tr></table></figure>
+<p>完美地实现了我们所要的转发效果。</p>
+<h2 id="forward-的实现">forward()的实现</h2>
+<p>std::forward()提供两个重载版本， 一个针对左值， 一个针对右值。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> _Tp&amp;&amp;</span></span><br><span class="line"><span class="function"><span class="title">forward</span><span class="params">(<span class="keyword">typename</span> std::remove_reference&lt;_Tp&gt;::type&amp; <span class="type">__t</span>)</span> <span class="keyword">noexcept</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="keyword">return</span> <span class="built_in">static_cast</span>&lt;_Tp&amp;&amp;&gt;(<span class="type">__t</span>); &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> _Tp&amp;&amp;</span></span><br><span class="line"><span class="function"><span class="title">forward</span><span class="params">(<span class="keyword">typename</span> std::remove_reference&lt;_Tp&gt;::type&amp;&amp; <span class="type">__t</span>)</span> <span class="keyword">noexcept</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">static_assert</span>(!std::is_lvalue_reference&lt;_Tp&gt;::value, <span class="string">&quot;template argument&quot;</span></span><br><span class="line"><span class="string">&quot; substituting _Tp is an lvalue reference type&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">static_cast</span>&lt;_Tp&amp;&amp;&gt;(<span class="type">__t</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">1234567891011121314</span></span><br></pre></td></tr></table></figure>
+<p>根据以下实例进行分析：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">foo</span><span class="params">(T&amp;&amp; fparam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">std::forward&lt;T&gt;(fparam);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> i = <span class="number">7</span>;</span><br><span class="line"><span class="built_in">foo</span>(i);</span><br><span class="line"><span class="built_in">foo</span>(<span class="number">47</span>);</span><br><span class="line"><span class="number">123456789</span></span><br></pre></td></tr></table></figure>
+<p>在foo(i)， 如果传入的是一个左值， 那么foo中T的类型将是int&amp;, fparam类型是int&amp; &amp;&amp;, 经过折叠为int&amp;. 因此在std::forward模板函数中，推断出T的类型为int&amp;,因此，std::remove_reference用int&amp; 进行实例化。std::remove_reference的type成员是int。forward返回类型为int&amp; &amp;&amp;, 折叠为int&amp;。forward的参数类型__t为int&amp;。static_cast&lt;int &amp; &amp;&amp;&gt; 折叠为static_cast&lt;int &amp;&gt;。</p>
+<p>因此std::forward最终被实例化如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> &amp;<span class="title">forward</span><span class="params">(<span class="type">int</span> &amp;<span class="type">__t</span>)</span></span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">static_cast</span>&lt;<span class="type">int</span> &amp;&gt;(<span class="type">__t</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+<p>可以发现，函数什么都不用做， 最终的传入forward的左值引用被保留了。</p>
+<p>在foo(47)中， 传入的是一个右值，那么foo中T的类型将是int, fparam类型是T&amp;&amp;, 因此，在std::forward模板函数中推断出T的类型为int。因此， std::remove_reference用int 进行实例化。std::remove_reference的type成员是int。forward返回类型为int&amp;&amp;。forward的参数类型__t为int&amp;&amp;。static_cast&lt;int &amp;&amp; &amp;&amp;&gt; 折叠为static_cast&lt;int &amp;&amp;&gt;<br>
+因此std::forward最终被实例化如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> &amp;&amp;<span class="title">forward</span><span class="params">(<span class="type">int</span> &amp;&amp;<span class="type">__t</span>)</span></span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">static_cast</span>&lt;<span class="type">int</span> &amp;&amp;&gt;(<span class="type">__t</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+<p>可以发现，函数什么都不用做， 最终的传入forward的右值引用被保留了。</p>
+<p>通过以上分析， 实际上无论传递左值还是右值， forward都可以完美转发， 并且函数内部什么都不用做。</p>
+<h2 id="函数返回值是左值还是右值">函数返回值是左值还是右值</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p><strong>主题切换</strong></p>
+<p>如果函数返回值是引用类型，则为左值。</p>
 </li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># install jupyterthemes</span><br><span class="line">conda install -c conda-forge jupyterthemes</span><br><span class="line"># update to latest version</span><br><span class="line">conda update jupyterthemes</span><br><span class="line"></span><br><span class="line">jt -l # 加载可用主题列表</span><br><span class="line"># selecting a particular theme</span><br><span class="line">jt -t &lt;name of the theme&gt;</span><br><span class="line"># reverting to original Theme</span><br><span class="line">jt -r</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230509225426973.png" alt=""></p>
-<ul class="lvl-0">
 <li class="lvl-2">
-<p><strong>插件安装</strong></p>
+<p>如果函数返回值是值类型，则为右值。</p>
 </li>
 </ul>
-<p>打开<code>Anaconda Prompt</code>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda install -c conda-forge jupyter_contrib_nbextensions</span><br></pre></td></tr></table></figure>
-<p>安装完点击<code>extensions</code>，勾选相应的功能即可</p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/image-20230509230915195.png" alt=""></p>
+<h2 id="如何判断一个值是左值还是右值">如何判断一个值是左值还是右值</h2>
+<p>右值是能够赋值给左值，但是左值不能赋值给右值。</p>
 <h2 id="Reference">Reference</h2>
-<p>[1]	jupyter-contrib-nbextensions: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://pypi.org/project/jupyter-contrib-nbextensions/">https://pypi.org/project/jupyter-contrib-nbextensions/</a></p>
-<p>[2]	jupyter-themes: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/dunovank/jupyter-themes">https://github.com/dunovank/jupyter-themes</a></p>
-<p>[3]	Installing Jupyter: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://jupyter.org/install">https://jupyter.org/install</a></p>
+<p>[1]	C++ 左值和右值: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/TABE_/article/details/122609775">https://blog.csdn.net/TABE_/article/details/122609775</a></p>
 
     </div>
 
@@ -374,13 +378,19 @@
   <div class="popular-posts-header">推荐文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\archives\eabeff19.html" rel="bookmark">Anaconda-Python环境安装</a></div>
+      <div class="popular-posts-title"><a href="\archives\3065ab21.html" rel="bookmark">Lambda函数</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\archives\1a24c243.html" rel="bookmark">Linux配置C++</a></div>
+      <div class="popular-posts-title"><a href="\archives\c7331187.html" rel="bookmark">RE（正则表达式）</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\archives\4da17f55.html" rel="bookmark">VMware安装配置Ubuntu</a></div>
+      <div class="popular-posts-title"><a href="\archives\7b6761ef.html" rel="bookmark">C++类构造函数 & 析构函数</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\9f089854.html" rel="bookmark">C++多线程</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\e8e79e61.html" rel="bookmark">C++并发编程</a></div>
     </li>
   </ul>
 <div class="post-widgets">
@@ -434,7 +444,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://liuaoao.top/archives/72216da9.html" title="Jupyter安装配置">https://liuaoao.top/archives/72216da9.html</a>
+    <a href="https://liuaoao.top/archives/8502303e.html" title="C++左值与右值">https://liuaoao.top/archives/8502303e.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -446,8 +456,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Anaconda/" rel="tag"><i class="fa fa-tag"></i> Anaconda</a>
-              <a href="/tags/Jupyter/" rel="tag"><i class="fa fa-tag"></i> Jupyter</a>
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+              <a href="/tags/%E5%B7%A6%E5%80%BC%E4%B8%8E%E5%8F%B3%E5%80%BC/" rel="tag"><i class="fa fa-tag"></i> 左值与右值</a>
           </div>
 
         
@@ -456,12 +466,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/archives/96ba4918.html" rel="prev" title="You-Get下载视频">
-      <i class="fa fa-chevron-left"></i> You-Get下载视频
+    <a href="/archives/c7331187.html" rel="prev" title="RE（正则表达式）">
+      <i class="fa fa-chevron-left"></i> RE（正则表达式）
     </a></div>
       <div class="post-nav-item">
-    <a href="/archives/4da17f55.html" rel="next" title="VMware安装配置Ubuntu">
-      VMware安装配置Ubuntu <i class="fa fa-chevron-right"></i>
+    <a href="/archives/3065ab21.html" rel="next" title="Lambda函数">
+      Lambda函数 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -522,7 +532,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E6%89%93%E5%BC%80%E8%B7%AF%E5%BE%84"><span class="nav-number">2.</span> <span class="nav-text">修改默认打开路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A6%E5%80%BC%E3%80%81%E5%8F%B3%E5%80%BC"><span class="nav-number">1.</span> <span class="nav-text">左值、右值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8%E3%80%81%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">左值引用、右值引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#std-move"><span class="nav-number">3.</span> <span class="nav-text">std::move()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#std-move-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.1.</span> <span class="nav-text">std::move()的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E6%8A%98%E5%8F%A0"><span class="nav-number">4.</span> <span class="nav-text">引用折叠</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91"><span class="nav-number">5.</span> <span class="nav-text">完美转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#forward-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">6.</span> <span class="nav-text">forward()的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC%E6%98%AF%E5%B7%A6%E5%80%BC%E8%BF%98%E6%98%AF%E5%8F%B3%E5%80%BC"><span class="nav-number">7.</span> <span class="nav-text">函数返回值是左值还是右值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%80%BC%E6%98%AF%E5%B7%A6%E5%80%BC%E8%BF%98%E6%98%AF%E5%8F%B3%E5%80%BC"><span class="nav-number">8.</span> <span class="nav-text">如何判断一个值是左值还是右值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">9.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -1027,7 +1037,7 @@ window.addEventListener('pjax:success', () => {
       quicklink({
         timeout : 3000,
         priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'https://liuaoao.top/archives/72216da9.html',]
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://liuaoao.top/archives/8502303e.html',]
       });
       });
   </script>
