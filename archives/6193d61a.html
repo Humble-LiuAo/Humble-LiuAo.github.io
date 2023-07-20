@@ -21,17 +21,26 @@
     var CONFIG = {"hostname":"liuaoao.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":false,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="种一棵树最好的时间是十年前，其次是现在！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="白茶不雨的博客">
-<meta property="og:url" content="https://liuaoao.top/tags/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/index.html">
+  <meta name="description" content="数组理论基础 数组是非常基础的数据结构，在面试中，考察数组的题目一般在思维上都不难，主要是考察对代码的掌控能力 也就是说，想法很简单，但实现起来 可能就不是那么回事了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组理论基础">
+<meta property="og:url" content="https://liuaoao.top/archives/6193d61a.html">
 <meta property="og:site_name" content="白茶不雨的博客">
-<meta property="og:description" content="种一棵树最好的时间是十年前，其次是现在！">
+<meta property="og:description" content="数组理论基础 数组是非常基础的数据结构，在面试中，考察数组的题目一般在思维上都不难，主要是考察对代码的掌控能力 也就是说，想法很简单，但实现起来 可能就不是那么回事了。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/07/19/QksAyZeBXjWdVK9.png">
+<meta property="og:image" content="https://s2.loli.net/2023/07/19/5fqvJkEZWtDjSRL.png">
+<meta property="og:image" content="https://s2.loli.net/2023/07/19/inkBdNrhVDG3a5q.png">
+<meta property="og:image" content="https://s2.loli.net/2023/07/19/1zu7ArUa3B6ZoLf.png">
+<meta property="og:image" content="https://s2.loli.net/2023/07/19/wxgSvju5EWHZlfL.png">
+<meta property="article:published_time" content="2023-07-19T15:41:57.000Z">
+<meta property="article:modified_time" content="2023-07-20T15:45:45.086Z">
 <meta property="article:author" content="白茶不雨">
+<meta property="article:tag" content="数组">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/07/19/QksAyZeBXjWdVK9.png">
 
-<link rel="canonical" href="https://liuaoao.top/tags/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">
+<link rel="canonical" href="https://liuaoao.top/archives/6193d61a.html">
 
 
 <script id="page-configurations">
@@ -39,12 +48,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 <link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css">
-  <title>标签: 空间复杂度 | 白茶不雨的博客</title>
+  <title>数组理论基础 | 白茶不雨的博客</title>
   
 
 
@@ -194,57 +203,257 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liuaoao.top/archives/6193d61a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="白茶不雨">
+      <meta itemprop="description" content="种一棵树最好的时间是十年前，其次是现在！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白茶不雨的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数组理论基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-07-19 23:41:57" itemprop="dateCreated datePublished" datetime="2023-07-19T23:41:57+08:00">2023-07-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-20 23:45:45" itemprop="dateModified" datetime="2023-07-20T23:45:45+08:00">2023-07-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">算法与数据结构</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/6193d61a.html" class="post-meta-item leancloud_visitors" data-flag-title="数组理论基础" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">空间复杂度
-          <small>标签</small>
-        </h2>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/archives/6193d61a.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/archives/6193d61a.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+        <meta name="referrer" content="no-referrer" />
+<h2 id="数组理论基础">数组理论基础</h2>
+<p>数组是非常基础的数据结构，在面试中，考察数组的题目一般在思维上都不难，主要是考察对代码的掌控能力</p>
+<p>也就是说，想法很简单，但实现起来 可能就不是那么回事了。</p>
+<span id="more"></span>
+<p>首先要知道数组在内存中的存储方式，这样才能真正理解数组相关的面试题</p>
+<p><strong>数组是存放在连续内存空间上的相同类型数据的集合。</strong></p>
+<p>数组可以方便的通过下标索引的方式获取到下标下对应的数据。</p>
+<p>举一个字符数组的例子，如图所示：</p>
+<p><img src="https://s2.loli.net/2023/07/19/QksAyZeBXjWdVK9.png" alt=""></p>
+<p>需要两点注意的是</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>数组下标都是从0开始的。</strong></p>
+</li>
+<li class="lvl-2">
+<p><strong>数组内存空间的地址是连续的</strong></p>
+</li>
+</ul>
+<p>正是<strong>因为数组的在内存空间的地址是连续的，所以我们在删除或者增添元素的时候，就难免要移动其他元素的地址。</strong></p>
+<p>例如删除下标为3的元素，需要对下标为3的元素后面的所有元素都要做移动操作，如图所示：</p>
+<p><img src="https://s2.loli.net/2023/07/19/5fqvJkEZWtDjSRL.png" alt=""></p>
+<p>而且大家如果使用C++的话，要注意vector 和 array的区别，vector的底层实现是array，严格来讲vector是容器，不是数组。</p>
+<p><strong>数组的元素是不能删的，只能覆盖。</strong></p>
+<p>那么二维数组直接上图，大家应该就知道怎么回事了</p>
+<p><img src="https://s2.loli.net/2023/07/19/inkBdNrhVDG3a5q.png" alt=""></p>
+<p><strong>那么二维数组在内存的空间地址是连续的么？</strong></p>
+<p>不同编程语言的内存管理是不一样的，以C<ins>为例，在C</ins>中二维数组是连续分布的。</p>
+<p>我们来做一个实验，C++测试代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">test_arr</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> array[<span class="number">2</span>][<span class="number">3</span>] = &#123;</span><br><span class="line">		&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>&#125;,</span><br><span class="line">		&#123;<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    cout &lt;&lt; &amp;array[<span class="number">0</span>][<span class="number">0</span>] &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; &amp;array[<span class="number">0</span>][<span class="number">1</span>] &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; &amp;array[<span class="number">0</span>][<span class="number">2</span>] &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; &amp;array[<span class="number">1</span>][<span class="number">0</span>] &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; &amp;array[<span class="number">1</span>][<span class="number">1</span>] &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; &amp;array[<span class="number">1</span>][<span class="number">2</span>] &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">test_arr</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>测试地址为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">0x7ffee4065820 0x7ffee4065824 0x7ffee4065828</span><br><span class="line">0x7ffee406582c 0x7ffee4065830 0x7ffee4065834</span><br></pre></td></tr></table></figure>
+<p>注意地址为16进制，可以看出二维数组地址是连续一条线的。</p>
+<p>一些录友可能看不懂内存地址，我就简单介绍一下， 0x7ffee4065820 与 0x7ffee4065824 差了一个4，就是4个字节，因为这是一个int型的数组，所以两个相邻数组元素地址差4个字节。</p>
+<p>0x7ffee4065828 与 0x7ffee406582c 也是差了4个字节，在16进制里8 + 4 = c，c就是12。</p>
+<p>如图：</p>
+<p><img src="https://s2.loli.net/2023/07/19/1zu7ArUa3B6ZoLf.png" alt=""></p>
+<p><strong>所以可以看出在C++中二维数组在地址空间上是连续的</strong>。</p>
+<p>像Java是没有指针的，同时也不对程序员暴露其元素的地址，寻址操作完全交给虚拟机。</p>
+<p>所以看不到每个元素的地址情况，这里我以Java为例，也做一个实验。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">test_arr</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span>[][] arr = &#123;&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;, &#123;<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>&#125;, &#123;<span class="number">9</span>,<span class="number">9</span>,<span class="number">9</span>&#125;&#125;;</span><br><span class="line">    System.out.println(arr[<span class="number">0</span>]);</span><br><span class="line">    System.out.println(arr[<span class="number">1</span>]);</span><br><span class="line">    System.out.println(arr[<span class="number">2</span>]);</span><br><span class="line">    System.out.println(arr[<span class="number">3</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出的地址为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[I@7852e922</span><br><span class="line">[I@4e25154f</span><br><span class="line">[I@70dea4e</span><br><span class="line">[I@5c647e05</span><br></pre></td></tr></table></figure>
+<p>这里的数值也是16进制，这不是真正的地址，而是经过处理过后的数值了，我们也可以看出，二维数组的每一行头结点的地址是没有规则的，更谈不上连续。</p>
+<p>所以Java的二维数组可能是如下排列的方式：</p>
+<p><img src="https://s2.loli.net/2023/07/19/wxgSvju5EWHZlfL.png" alt=""></p>
+<h2 id="Reference">Reference</h2>
+<p>[1]	代码随想录: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://programmercarl.com/">https://programmercarl.com/</a></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-07-19T22:45:31+08:00"
-              content="2023-07-19">
-          07-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/archives/bc5d8ac6.html" itemprop="url">
-            <span itemprop="name">算法的时间与空间复杂度</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+    
+    
+    
+      
+  <div class="popular-posts-header">推荐文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\d993e4b5.html" rel="bookmark">链表理论基础</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\bc5d8ac6.html" rel="bookmark">算法的时间与空间复杂度</a></div>
+    </li>
+  </ul>
+<div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,douban,qzone,facebook,twitter"
+      
+      
+        data-wechat-qrcode-title="share.title"
+      
+      
+        data-wechat-qrcode-helper="share.prompt"
+      
+    >
     </div>
   </div>
-  
-  
-  
+  <script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js"></script><div>
+    
+        <div style="text-align:center;color: #ccc;font-size:20px;">
+            ------------------------------- 本文结束啦❤<i class="fa fa-heart-o"></i>感谢您阅读-------------------------------
+     </div>
+    
+</div>
+        <div class="reward-container">
+  <div>赞赏一杯咖啡</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="白茶不雨 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="白茶不雨 支付宝">
+        <p>支付宝</p>
+      </div>
 
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>白茶不雨
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://liuaoao.top/archives/6193d61a.html" title="数组理论基础">https://liuaoao.top/archives/6193d61a.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E7%BB%84/" rel="tag"><i class="fa fa-tag"></i> 数组</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/bc5d8ac6.html" rel="prev" title="算法的时间与空间复杂度">
+      <i class="fa fa-chevron-left"></i> 算法的时间与空间复杂度
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/d993e4b5.html" rel="next" title="链表理论基础">
+      链表理论基础 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -291,6 +500,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">数组理论基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -795,7 +1005,7 @@ window.addEventListener('pjax:success', () => {
       quicklink({
         timeout : 3000,
         priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'https://liuaoao.top/tags/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/',]
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://liuaoao.top/archives/6193d61a.html',]
       });
       });
   </script>
