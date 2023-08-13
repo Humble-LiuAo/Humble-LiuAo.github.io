@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>选择排序与快速排序</title>
+    <url>/archives/d48e34d2.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<h1>选择排序</h1>
+<p>选择排序是一种简单直观的排序算法，无论什么数据进去都是 O(n²) 的时间复杂度。所以用到它的时候，数据规模越小越好。唯一的好处可能就是不占用额外的内存空间了吧。</p>
+<h2 id="算法步骤">算法步骤</h2>
+<p>首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置。</p>
+<p>再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。</p>
+<p>重复第二步，直到所有元素均排序完毕</p>
+<span id="more"></span>
+<h2 id="C-实现">C++实现</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">selection_sort</span><span class="params">(std::vector&lt;T&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; arr.<span class="built_in">size</span>() - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="type">int</span> min = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; arr.<span class="built_in">size</span>(); j++)</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &lt; arr[min])</span><br><span class="line">                min = j;</span><br><span class="line">        std::<span class="built_in">swap</span>(arr[i], arr[min]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; arr1 = &#123;<span class="number">10</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">5</span>&#125;;</span><br><span class="line">    <span class="built_in">selection_sort</span>(arr1);</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Sorted array (int): &quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; arr1.<span class="built_in">size</span>(); i++)</span><br><span class="line">        std::cout &lt;&lt; arr1[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    std::vector&lt;<span class="type">float</span>&gt; arr2 = &#123;<span class="number">3.14</span>, <span class="number">2.71</span>, <span class="number">1.618</span>, <span class="number">0.707</span>, <span class="number">2.718</span>&#125;;</span><br><span class="line">    <span class="built_in">selection_sort</span>(arr2);</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Sorted array (float): &quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; arr2.<span class="built_in">size</span>(); i++)</span><br><span class="line">        std::cout &lt;&lt; arr2[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>时间复杂度 O(n^2)，需要遍历每个元素</p>
+</li>
+<li class="lvl-2">
+<p>空间复杂度O(1)，不占用额外空间</p>
+</li>
+</ul>
+<h1>快速排序</h1>
+<p>快速排序是一种使用分治策略的排序算法。它选择一个元素作为“枢纽”或“基准”元素，然后将数组分为两个子数组——一个包含所有比基准元素小的元素，另一个包含所有比基准元素大的元素。然后对这两个子数组进行递归地快速排序。</p>
+<h2 id="算法步骤-2">算法步骤</h2>
+<ol>
+<li class="lvl-3">
+<p>从数列中挑出一个元素，称为 “基准”（pivot）;</p>
+</li>
+<li class="lvl-3">
+<p>重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作；</p>
+</li>
+<li class="lvl-3">
+<p>递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序；</p>
+</li>
+</ol>
+<h2 id="C-实现：">C++实现：</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Partition</span><span class="params">(<span class="type">int</span> A[], <span class="type">int</span> low, <span class="type">int</span> high)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> pivot = A[low];</span><br><span class="line">    <span class="keyword">while</span> (low &lt; high) &#123;</span><br><span class="line">        <span class="keyword">while</span> (low &lt; high &amp;&amp; A[high] &gt;= pivot) &#123;</span><br><span class="line">            --high;</span><br><span class="line">        &#125;</span><br><span class="line">        A[low] = A[high];</span><br><span class="line">        <span class="keyword">while</span> (low &lt; high &amp;&amp; A[low] &lt;= pivot) &#123;</span><br><span class="line">            ++low;</span><br><span class="line">        &#125;</span><br><span class="line">        A[high] = A[low];</span><br><span class="line">    &#125;</span><br><span class="line">    A[low] = pivot;</span><br><span class="line">    <span class="keyword">return</span> low;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">QuickSort</span><span class="params">(<span class="type">int</span> A[], <span class="type">int</span> low, <span class="type">int</span> high)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (low &lt; high) &#123;</span><br><span class="line">        <span class="type">int</span> pivot = <span class="built_in">Partition</span>(A, low, high);</span><br><span class="line">        <span class="built_in">QuickSort</span>(A, low, pivot - <span class="number">1</span>);</span><br><span class="line">        <span class="built_in">QuickSort</span>(A, pivot + <span class="number">1</span>, high);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> arr[] = &#123;<span class="number">10</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">5</span>&#125;;</span><br><span class="line">    <span class="type">int</span> n = <span class="built_in">sizeof</span>(arr) / <span class="built_in">sizeof</span>(arr[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">QuickSort</span>(arr, <span class="number">0</span>, n - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Sorted array: &quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        std::cout &lt;&lt; arr[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="时间空间复杂度分析">时间空间复杂度分析</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>时间复杂度</p>
+<p>对于最好和平均情况，快速排序的时间复杂度是 O(nlogn)。这是因为在这些情况下，每次分区操作，我们可以将数组分为两个近乎相等的部分。这就意味着每次递归调用处理一半的大小。</p>
+<p>但是在最坏情况下（即当给定的数组已经完全排序或者完全逆序排列时），快排的时间复杂度是 O(n^2)。这是因为每次分区操作只能减少数组大小1。</p>
+</li>
+<li class="lvl-2">
+<p>空间复杂度</p>
+<ul class="lvl-2">
+<li class="lvl-4">快速排序是原地排序，不需要额外的存储空间，所以空间复杂度为 O(1)。</li>
+<li class="lvl-4">但是，快速排序是递归的，因此需要考虑递归栈的空间。在最坏的情况下，递归栈的深度为 O(n)。在平均情况下，递归栈的深度为 O(log n)。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>算法与数据结构</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>链表理论基础</title>
     <url>/archives/d993e4b5.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
