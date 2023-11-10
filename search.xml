@@ -563,7 +563,7 @@
 <p>通过 <code>--stat</code> 参数可以查看变更统计数据</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">test.md | 1 -</span><br><span class="line">1 file changed, 1 deletion(-)</span><br></pre></td></tr></table></figure>
 <h4 id="git-reflog">git reflog</h4>
-<p><code>reflog</code> 可以查看所有分支的所有操作记录（包括commit和reset的操作、已经被删除的commit记录，跟 <code>git log</code> 的区别在于它不能查看已经删除了的commit记录<img src="https://mmbiz.qpic.cn/mmbiz_jpg/kChlCQZAfH5eBrzeP4kHVbwcqAicZkgow9g0GgTQppOgauVPMguPXWE8qOQqsic0j3IL9NxNns5D16qa9HvOn9rA/640?wx_fmt=jpeg&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
+<p><code>reflog</code> 可以查看所有分支的所有操作记录（包括commit和reset的操作、已经被删除的commit记录，跟 <code>git log</code> 的区别在于它不能查看已经删除了的commit记录<img src="https://s2.loli.net/2023/11/11/VpM9WLKwcDItBHn.jpg" alt=""></p>
 <h3 id="远程版本库连接">远程版本库连接</h3>
 <p>如果在GitHub项目初始化之前，文件已经存在于本地目录中，那可以在本地初始化本地版本库，再将本地版本库跟远程版本库连接起来</p>
 <h4 id="git-init">git init</h4>
@@ -1922,8 +1922,8 @@ O(2 × n^2 + 10 × n + 1000) &lt; O(3 × n<sup>2)，所以说最后省略掉常�
         <category>编程语言</category>
       </categories>
       <tags>
-        <tag>C++</tag>
         <tag>Python</tag>
+        <tag>C++</tag>
         <tag>Lambda</tag>
       </tags>
   </entry>
@@ -2163,8 +2163,8 @@ O(2 × n^2 + 10 × n + 1000) &lt; O(3 × n<sup>2)，所以说最后省略掉常�
         <category>编程语言</category>
       </categories>
       <tags>
-        <tag>C++</tag>
         <tag>Python</tag>
+        <tag>C++</tag>
         <tag>正则表达式</tag>
         <tag>JavaScript</tag>
       </tags>
@@ -2511,8 +2511,8 @@ O(2 × n^2 + 10 × n + 1000) &lt; O(3 × n<sup>2)，所以说最后省略掉常�
         <category>C/C++</category>
       </categories>
       <tags>
-        <tag>多线程</tag>
         <tag>C++</tag>
+        <tag>多线程</tag>
       </tags>
   </entry>
   <entry>
