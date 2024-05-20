@@ -21,17 +21,22 @@
     var CONFIG = {"hostname":"liuaoao.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":false,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="种一棵树最好的时间是十年前，其次是现在！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="白茶不雨的博客">
-<meta property="og:url" content="https://liuaoao.top/categories/Web/%E6%A6%82%E5%BF%B5/index.html">
+  <meta name="description" content="优先级高的运算符在优先级低的运算符之前计算。当运算符具有相同的优先级时，它们的结合性决定了计算顺序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C&#x2F;C++运算符优先级">
+<meta property="og:url" content="https://liuaoao.top/archives/10aa9482.html">
 <meta property="og:site_name" content="白茶不雨的博客">
-<meta property="og:description" content="种一棵树最好的时间是十年前，其次是现在！">
+<meta property="og:description" content="优先级高的运算符在优先级低的运算符之前计算。当运算符具有相同的优先级时，它们的结合性决定了计算顺序">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-18T13:37:15.000Z">
+<meta property="article:modified_time" content="2024-05-20T09:26:54.955Z">
 <meta property="article:author" content="白茶不雨">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="运算符">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://liuaoao.top/categories/Web/%E6%A6%82%E5%BF%B5/">
+<link rel="canonical" href="https://liuaoao.top/archives/10aa9482.html">
 
 
 <script id="page-configurations">
@@ -39,12 +44,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 <link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css">
-  <title>分类: 概念 | 白茶不雨的博客</title>
+  <title>C/C++运算符优先级 | 白茶不雨的博客</title>
   
 
 
@@ -120,17 +125,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">38</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">43</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">36</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">38</span></a>
 
   </li>
         <li class="menu-item menu-item-chatgpt">
@@ -194,57 +199,422 @@
         <div class="content-wrap">
           
 
-          <div class="content category">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liuaoao.top/archives/10aa9482.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="白茶不雨">
+      <meta itemprop="description" content="种一棵树最好的时间是十年前，其次是现在！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白茶不雨的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C/C++运算符优先级
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-05-18 21:37:15" itemprop="dateCreated datePublished" datetime="2024-05-18T21:37:15+08:00">2024-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-20 17:26:54" itemprop="dateModified" datetime="2024-05-20T17:26:54+08:00">2024-05-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/10aa9482.html" class="post-meta-item leancloud_visitors" data-flag-title="C/C++运算符优先级" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">概念
-          <small>分类</small>
-        </h2>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/archives/10aa9482.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/archives/10aa9482.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-divider">|</span>
+    <i class="fa fa-thumb-tack"></i>
+    <font color=7D26CD>置顶</font>
+    <span class="post-meta-divider">|</span>
+<br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>872</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+        <meta name="referrer" content="no-referrer" />
+<blockquote>
+<p>优先级高的运算符在优先级低的运算符之前计算。当运算符具有相同的优先级时，它们的结合性决定了计算顺序</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="C语言中的运算符">C语言中的运算符</h2>
+<table>
+<thead>
+<tr>
+<th>说明</th>
+<th>运算符</th>
+<th>结合性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初等运算符</td>
+<td>() [] -&gt; .</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>单目运算符</td>
+<td>! ~ ++ – - (类型) * &amp; sizeof</td>
+<td>&lt;-</td>
+</tr>
+<tr>
+<td>算术运算符</td>
+<td>* / %</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>算术运算符</td>
+<td>+ -</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>移位运算符</td>
+<td>&lt;&lt; &gt;&gt;</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>关系运算符</td>
+<td>&gt; &gt;= &lt; &lt;=</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>关系运算符</td>
+<td>== !=</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>按位与</td>
+<td>&amp;</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>按位异或</td>
+<td>^</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>按位或</td>
+<td>|</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>逻辑与</td>
+<td>&amp;&amp;</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>逻辑或</td>
+<td>||</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>条件运算符</td>
+<td>?:</td>
+<td>&lt;-</td>
+</tr>
+<tr>
+<td>赋值运算符</td>
+<td>= += -= *= /= %= &lt;&lt;= &gt;&gt;= &amp;= ^= |=</td>
+<td>&lt;-</td>
+</tr>
+<tr>
+<td>逗号运算符</td>
+<td>,</td>
+<td>-&gt;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="C-语言中的运算符">C++语言中的运算符</h2>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>结合性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>::</td>
+<td>二元作用域 一元作用域</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>() [] . -&gt; ++ – typeid dynamic_cast<type> static_cast<type> reinterpret_cast<type> const_cast<type></td>
+<td>初等/类型转换 +±-为一元后自增</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>++ – + - ! ~ (类型) sizeof &amp; * new new[] delete delete[]</td>
+<td>+±-为一元前自增</td>
+<td>&lt;-</td>
+</tr>
+<tr>
+<td>.* -&gt;*</td>
+<td>取指向成员的指针</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>* / %</td>
+<td>算术运算符</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>+ -</td>
+<td>算术运算符</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>&lt;&lt; &gt;&gt;</td>
+<td>移位运算符</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>&lt; &lt;= &gt; &gt;=</td>
+<td>关系运算符</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>== !=</td>
+<td>关系运算符</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>按位与</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>^</td>
+<td>按位异或</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>|</td>
+<td>按位或</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>逻辑与</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>||</td>
+<td>逻辑或</td>
+<td>-&gt;</td>
+</tr>
+<tr>
+<td>?:</td>
+<td>条件运算符</td>
+<td>&lt;-</td>
+</tr>
+<tr>
+<td>= += -= *= /= %= &amp;= ^= |= &lt;&lt;= &gt;&gt;=</td>
+<td>赋值运算符</td>
+<td>&lt;-</td>
+</tr>
+<tr>
+<td>,</td>
+<td>逗号运算符</td>
+<td>-&gt;</td>
+</tr>
+</tbody>
+</table>
+<p>注:从上到下优先级递减!</p>
+<p><strong>总结:初单算移关,位逻条赋逗!(请一定记住这句话,虽然不是很顺口)</strong></p>
+<h2 id="Reference">Reference</h2>
+<p>[1]	C/C++中的运算符优先级总结：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.twofei.com/531/">https://blog.twofei.com/531/</a></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-05-11T20:46:34+08:00"
-              content="2023-05-11">
-          05-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/archives/b512fc98.html" itemprop="url">
-            <span itemprop="name">代理与内网穿透</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+    
+    
+    
+      
+  <div class="popular-posts-header">推荐文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\d59d73b9.html" rel="bookmark">C++虚函数详解</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\9725cb23.html" rel="bookmark">C++设计模式</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\9460e0c1.html" rel="bookmark">C++参数传递</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\29ca4c7e.html" rel="bookmark">C++初始化列表与赋值</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\8502303e.html" rel="bookmark">C++左值与右值</a></div>
+    </li>
+  </ul>
+<div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,douban,qzone,facebook,twitter"
+      
+      
+        data-wechat-qrcode-title="share.title"
+      
+      
+        data-wechat-qrcode-helper="share.prompt"
+      
+    >
     </div>
   </div>
-  
-  
-  
+  <script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js"></script><div>
+    
+        <div style="text-align:center;color: #ccc;font-size:20px;">
+            ------------------------------- 本文结束啦❤<i class="fa fa-heart-o"></i>感谢您阅读-------------------------------
+     </div>
+    
+</div>
+        <div class="reward-container">
+  <div>赞赏一杯咖啡</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="白茶不雨 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="白茶不雨 支付宝">
+        <p>支付宝</p>
+      </div>
 
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>白茶不雨
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://liuaoao.top/archives/10aa9482.html" title="C&#x2F;C++运算符优先级">https://liuaoao.top/archives/10aa9482.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C</a>
+              <a href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="tag"><i class="fa fa-tag"></i> 运算符</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/55b0962b.html" rel="prev" title="同步、异步、阻塞、非阻塞">
+      <i class="fa fa-chevron-left"></i> 同步、异步、阻塞、非阻塞
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/3c19d3a7.html" rel="next" title="OSI七层网络模型">
+      OSI七层网络模型 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -291,6 +661,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">1.</span> <span class="nav-text">C语言中的运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">2.</span> <span class="nav-text">C++语言中的运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -306,20 +677,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -343,7 +714,7 @@
   <div class="widget-wrap">
     <div id="myCanvasContainer" class="widget tagcloud">
       <canvas width="250" height="250" id="resCanvas" style="width:100%">
-        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Anaconda/" rel="tag">Anaconda</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/" rel="tag">CMD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-mining/" rel="tag">Data mining</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter/" rel="tag">Jupyter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LaTeX/" rel="tag">LaTeX</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pr/" rel="tag">Pr</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ps/" rel="tag">Ps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/" rel="tag">VSCode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8/" rel="tag">初始化列表</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/" rel="tag">参数传递</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E5%80%BC%E4%B8%8E%E5%8F%B3%E5%80%BC/" rel="tag">左值与右值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" rel="tag">时间复杂度</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" rel="tag">构造函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" rel="tag">析构函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" rel="tag">空间复杂度</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90/" rel="tag">语义分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a><span class="tag-list-count">1</span></li></ul>
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Anaconda/" rel="tag">Anaconda</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/" rel="tag">CMD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-mining/" rel="tag">Data mining</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter/" rel="tag">Jupyter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LaTeX/" rel="tag">LaTeX</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSI/" rel="tag">OSI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pr/" rel="tag">Pr</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ps/" rel="tag">Ps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP&#x2F;IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/" rel="tag">VSCode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%90%86/" rel="tag">代理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" rel="tag">内网穿透</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8/" rel="tag">初始化列表</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/" rel="tag">参数传递</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E5%80%BC%E4%B8%8E%E5%8F%B3%E5%80%BC/" rel="tag">左值与右值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" rel="tag">时间复杂度</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" rel="tag">构造函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" rel="tag">析构函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" rel="tag">空间复杂度</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90/" rel="tag">语义分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="tag">运算符</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a><span class="tag-list-count">1</span></li></ul>
       </canvas>
     </div>
   </div>
@@ -645,12 +1016,12 @@ if(canvas.getContext){
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">126k</span>
+    <span title="站点总字数">165k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:54</span>
+    <span title="站点阅读时长">2:30</span>
 </div><!-- 网站运行时间的设置 -->
 <span id="timeDate">载入天数...</span>
 <span id="times">载入时分秒...</span>  When you want to give up，remember why you started！
@@ -795,7 +1166,7 @@ window.addEventListener('pjax:success', () => {
       quicklink({
         timeout : 3000,
         priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'https://liuaoao.top/categories/Web/%E6%A6%82%E5%BF%B5/',]
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://liuaoao.top/archives/10aa9482.html',]
       });
       });
   </script>
