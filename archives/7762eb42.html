@@ -21,27 +21,24 @@
     var CONFIG = {"hostname":"liuaoao.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":false,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="LaTeX是一种专业的排版系统和标记语言，用于创建高质量的文档，尤其适合包含数学公式、技术内容和复杂结构的文档，如学术论文、书籍、报告、简历等。TeX Live是一款跨平台的LaTeX发行版，它包含了LaTeX编译器、宏包、字体和各种工具，适用于多种操作系统，如Windows、Linux和macOS。TeXstudio是一款免费开源的LaTeX编辑器。 WIindows推荐： Texlive">
+  <meta name="description" content="GCC编译 GCC 介绍 GCC（GNU Compiler Collection）是由GNU开发的编程语言编译器。最初为GNU操作系统开发，现在已被多数类Unix系统（如Linux、BSD、MacOS X等）采用，甚至在Windows上也可以使用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LaTeX安装">
-<meta property="og:url" content="https://liuaoao.top/archives/88b90715.html">
+<meta property="og:title" content="GCC&amp;Gdb基础教程">
+<meta property="og:url" content="https://liuaoao.top/archives/7762eb42.html">
 <meta property="og:site_name" content="白茶不雨的博客">
-<meta property="og:description" content="LaTeX是一种专业的排版系统和标记语言，用于创建高质量的文档，尤其适合包含数学公式、技术内容和复杂结构的文档，如学术论文、书籍、报告、简历等。TeX Live是一款跨平台的LaTeX发行版，它包含了LaTeX编译器、宏包、字体和各种工具，适用于多种操作系统，如Windows、Linux和macOS。TeXstudio是一款免费开源的LaTeX编辑器。 WIindows推荐： Texlive">
+<meta property="og:description" content="GCC编译 GCC 介绍 GCC（GNU Compiler Collection）是由GNU开发的编程语言编译器。最初为GNU操作系统开发，现在已被多数类Unix系统（如Linux、BSD、MacOS X等）采用，甚至在Windows上也可以使用。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/explorer_vgFd0Lbe70.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/20230502111347.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/wish_PhEbgdUYiI.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/SystemPropertiesAdvanced_iXSckGIh1W.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/texstudio-4.5.2-win-qt6_5StfAN4gxi.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/texstudio_xkx0Bq0fS9.png">
-<meta property="article:published_time" content="2023-05-02T02:54:59.000Z">
-<meta property="article:modified_time" content="2023-05-06T12:26:13.808Z">
+<meta property="og:image" content="https://s2.loli.net/2024/09/01/jMHENBayplD2AoC.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/01/MsDmtgBJEGa4fTC.png">
+<meta property="article:published_time" content="2024-09-01T08:15:05.000Z">
+<meta property="article:modified_time" content="2024-09-01T08:22:19.116Z">
 <meta property="article:author" content="白茶不雨">
-<meta property="article:tag" content="LaTeX">
+<meta property="article:tag" content="Gdb">
+<meta property="article:tag" content="GCC">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/explorer_vgFd0Lbe70.png">
+<meta name="twitter:image" content="https://s2.loli.net/2024/09/01/jMHENBayplD2AoC.png">
 
-<link rel="canonical" href="https://liuaoao.top/archives/88b90715.html">
+<link rel="canonical" href="https://liuaoao.top/archives/7762eb42.html">
 
 
 <script id="page-configurations">
@@ -54,7 +51,7 @@
   };
 </script>
 <link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css">
-  <title>LaTeX安装 | 白茶不雨的博客</title>
+  <title>GCC&Gdb基础教程 | 白茶不雨的博客</title>
   
 
 
@@ -206,7 +203,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liuaoao.top/archives/88b90715.html">
+    <link itemprop="mainEntityOfPage" href="https://liuaoao.top/archives/7762eb42.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -219,7 +216,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LaTeX安装
+          GCC&Gdb基础教程
         </h1>
 
         <div class="post-meta">
@@ -228,16 +225,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2023-05-02 10:54:59" itemprop="dateCreated datePublished" datetime="2023-05-02T10:54:59+08:00">2023-05-02</time>
+              <time title="创建时间：2024-09-01 16:15:05 / 修改时间：16:22:19" itemprop="dateCreated datePublished" datetime="2024-09-01T16:15:05+08:00">2024-09-01</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-05-06 20:26:13" itemprop="dateModified" datetime="2023-05-06T20:26:13+08:00">2023-05-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -248,12 +239,12 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tools/Software/" itemprop="url" rel="index"><span itemprop="name">Software</span></a>
+                  <a href="/categories/Tools/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
                 </span>
             </span>
 
           
-            <span id="/archives/88b90715.html" class="post-meta-item leancloud_visitors" data-flag-title="LaTeX安装" title="阅读次数">
+            <span id="/archives/7762eb42.html" class="post-meta-item leancloud_visitors" data-flag-title="GCC&Gdb基础教程" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -268,8 +259,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/archives/88b90715.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/archives/88b90715.html" itemprop="commentCount"></span>
+    <a title="valine" href="/archives/7762eb42.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/archives/7762eb42.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -279,14 +270,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>914</span>
+              <span>4.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -299,60 +290,325 @@
 
       
         <meta name="referrer" content="no-referrer" />
-<blockquote>
-<p>LaTeX是一种专业的排版系统和标记语言，用于创建高质量的文档，尤其适合包含数学公式、技术内容和复杂结构的文档，如学术论文、书籍、报告、简历等。TeX Live是一款跨平台的LaTeX发行版，它包含了LaTeX编译器、宏包、字体和各种工具，适用于多种操作系统，如Windows、Linux和macOS。TeXstudio是一款免费开源的LaTeX编辑器。</p>
-<p>WIindows推荐： <mark>Texlive 2023 + TeX studio</mark></p>
-</blockquote>
+<h2 id="GCC编译">GCC编译</h2>
+<h3 id="GCC-介绍">GCC 介绍</h3>
+<p><strong>GCC</strong>（GNU Compiler Collection）是由GNU开发的编程语言编译器。最初为GNU操作系统开发，现在已被多数类Unix系统（如Linux、BSD、MacOS X等）采用，甚至在Windows上也可以使用。</p>
 <span id="more"></span>
-<h2 id="Texlive-2023">Texlive 2023</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>ISO 映像下载：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.tug.org/texlive/acquire-iso.html">https://www.tug.org/texlive/acquire-iso.html</a></p>
-</li>
-</ul>
-<p><strong>打开下载后的.ISO文件，以管理员身份运行install-tl-windows.bat文件。</strong></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/explorer_vgFd0Lbe70.png" alt=""></p>
-<p><strong>修改安装位置</strong></p>
-<p><strong>选择安装语言</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>高级选项里 <mark>Advanced</mark> $\rightarrow$点击 <mark>Customize</mark> $\rightarrow$选择 <mark>中文和英文</mark></p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/20230502111347.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/wish_PhEbgdUYiI.png" alt=""></p>
-<p><strong>确定安装，等待安装完成后关闭窗口</strong></p>
-<hr>
-<h3 id="Texlive添加环境变量">Texlive添加环境变量</h3>
-<p>添加Texlive环境变量，以在命令行中执行tex的命令</p>
+<h3 id="GCC-编译流程">GCC 编译流程</h3>
 <ol>
 <li class="lvl-3">
-<p>win+R 然后输入**sysdm.cpl **在高级中选择<em>环境变量</em></p>
+<p><strong>预处理</strong>：生成 <code>.i</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -o hello.i -E hello.c</span><br></pre></td></tr></table></figure>
 </li>
 <li class="lvl-3">
-<p>编辑的Path变量（建议<u>用户和系统</u>的Path都添加），添加txtlive中的<mark>bin/windows</mark>路径（如：D:\Software\texlive\2023\bin\windows）</p>
+<p><strong>编译</strong>：将预处理后的文件转换为汇编语言，生成 <code>.s</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -o hello.s -S hello.i</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/SystemPropertiesAdvanced_iXSckGIh1W.png" alt=""></p>
-<ol start="3">
 <li class="lvl-3">
-<p>查看验证安装版本（出现 <mark>版本号</mark> 则成功）</p>
+<p><strong>汇编</strong>：将汇编代码转换为目标代码（机器代码），生成 <code>.o</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -o hello.o -c hello.s</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p><strong>链接</strong>：将目标代码链接生成可执行程序</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -o hello hello.o</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tex -v</span><br><span class="line">latex -v</span><br><span class="line">xelatex -v</span><br><span class="line">pdflatex -v</span><br></pre></td></tr></table></figure>
-<h2 id="TeXstudio的安装">TeXstudio的安装</h2>
+<h3 id="GCC-参数">GCC 参数</h3>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>官网下载：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://texstudio.sourceforge.net/">https://texstudio.sourceforge.net/</a></p>
+<p><strong>-o</strong>：指定目标文件名称</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -o output file.c</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p><strong>-S</strong>：仅生成汇编语言文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -S file.c</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p><strong>-c</strong>：仅编译为目标文件，不进行链接</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -c file.c</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p><strong>-E</strong>：仅进行预处理</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -E file.c -o file.i</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p><strong>-I[dirname]</strong>：将 <code>dirname</code> 加入到包含文件的搜索目录列表中</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -I /usr/include file.c</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p><strong>-L[dirname]</strong>：将 <code>dirname</code> 加入到库文件的搜索目录列表中</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -L /usr/lib file.c</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p><strong>-l[library]</strong>：链接时使用指定的库文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -L /usr/lib -lcurses file.c</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p><strong>-O0, -O1, -O2, -O3</strong>：设置优化级别，-O0 表示无优化，-O3 表示最高优化级别</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -O3 -o output file.c</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p><strong>-w</strong>：忽略警告信息</p>
+</li>
+<li class="lvl-2">
+<p><strong>-Wall</strong>：显示所有警告信息</p>
+</li>
+<li class="lvl-2">
+<p><strong>-Werror</strong>：将所有警告视为错误</p>
+</li>
+<li class="lvl-2">
+<p><strong>-g</strong>：生成调试信息</p>
+</li>
+<li class="lvl-2">
+<p><strong>-M</strong>：生成依赖关系信息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -M file.c</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p><strong>-MM</strong>：生成依赖关系，但忽略标准头文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -MM file.c</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p><strong>-MD</strong> 和 <strong>-MMD</strong>：生成 <code>.d</code> 文件，包含依赖关系</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -MD file.c</span><br><span class="line">gcc -MMD file.c</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p><strong>-MF File</strong>：指定依赖文件名称</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -M -MF dependencies.d file.c</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p><strong>-D macro</strong>：定义宏</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -DYES -o output file.c</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p><strong>-U macro</strong>：取消宏定义</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -DYES -UYES -o output file.c</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p><strong>双击安装$\rightarrow$修改安装位置即可</strong></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/texstudio-4.5.2-win-qt6_5StfAN4gxi.png" alt=""></p>
-<p><strong>使用注意</strong>：<em>如果撰写中文论文，将默认编译器改为<code>Xelatex</code>。如果撰写英文论文，将默认编译器改为<code>Pdflatex</code></em></p>
-<p><img src="https://raw.githubusercontent.com/Humble-LiuAo/Study-notes/main/img/texstudio_xkx0Bq0fS9.png" alt=""></p>
+<h3 id="静态库与动态库">静态库与动态库</h3>
+<p><strong>静态库</strong>：以空间换时间，增加代码量，减少运行时间。静态库文件扩展名一般为 <code>.a</code>。</p>
+<p><strong>动态库</strong>：以时间换空间，增加运行时间，减少代码量。动态库文件扩展名一般为 <code>.so</code>。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// myalib.h</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">test</span><span class="params">()</span>;</span><br><span class="line"><span class="comment">// myalib.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">test</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">printf</span> (<span class="string">&quot;test\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// main</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;myalib.h&quot;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span>*argu[])</span></span><br><span class="line">&#123;</span><br><span class="line">	test();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="创建静态库">创建静态库</h4>
+<ol>
+<li class="lvl-3">
+<p>编译生成目标文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -c myalib.c</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>使用 <code>ar</code> 命令归档目标文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ar -rc libtest.a myalib.o</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>使用库文件测试程序main.c</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -I ./ -o main.o -c main.c</span><br><span class="line">gcc -o main -L ./ main.o -ltest</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="创建动态库">创建动态库</h4>
+<ol>
+<li class="lvl-3">
+<p>编译生成动态库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -shared -fPIC -o libtest.so mylib.c</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>编译并链接使用动态库的程序</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -o main main.c -L ./ -ltest</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>使用 <code>ldd</code> 命令检查动态库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ldd main</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>解决动态库问题</p>
+<ul class="lvl-2">
+<li class="lvl-5">将库文件拷贝到系统库目录（如 <code>/lib</code>）。</li>
+<li class="lvl-5">修改系统库搜索路径，通过配置 <code>/etc/ld.so.conf</code> 或在 <code>/etc/ld.so.conf.d/</code> 中添加配置文件，运行 <code>ldconfig</code> 更新配置。</li>
+</ul>
+</li>
+</ol>
+<h2 id="Gdb调试">Gdb调试</h2>
+<h3 id="什么是-gdb">什么是 gdb</h3>
+<p><strong>gdb</strong> 是 GNU 开源组织发布的一个强大的 Unix/Linux 下的程序调试工具。它可以帮助用户调试程序，检查程序运行中的状态，并动态改变程序的执行环境。</p>
+<p><strong>gdb 说明文档位置</strong>：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://sourceware.org/gdb/current/onlinedocs/gdb/">gdb 在线文档</a></p>
+<h3 id="gdb-的作用">gdb 的作用</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>启动用户程序</strong>：可以按照用户的要求随意运行程序。</p>
+</li>
+<li class="lvl-2">
+<p><strong>设置断点</strong>：可让被调试的程序在用户设定的断点处停住。</p>
+</li>
+<li class="lvl-2">
+<p><strong>检查程序状态</strong>：程序被停住时，可以检查当前程序中的状态。</p>
+</li>
+<li class="lvl-2">
+<p><strong>动态改变执行环境</strong>：可以动态修改程序的执行环境。</p>
+</li>
+</ul>
+<h3 id="gdb调试core">gdb调试core</h3>
+<p><strong>查看程序是否带有调试信息</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">readelf -S &lt;executable&gt; | grep debug</span><br></pre></td></tr></table></figure>
+<p><strong>生成Core文件方法</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ulimit</span> -c unlimited</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/data/coredump/core.%e.%p&quot;</span> &gt; /proc/sys/kernel/core_pattern</span><br></pre></td></tr></table></figure>
+<p><strong>编译包含调试信息的可执行文件</strong>：使用 <code>-g</code> 选项编译源代码，以确保生成的可执行文件包含调试信息。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -g main.c -o <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<p><strong>调试Core文件</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gdb &lt;executable&gt; &lt;core_file&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="gdb-常用命令">gdb 常用命令</h3>
+<p><strong>启动GDB</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gdb &lt;executable&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>载入被调试程序</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">file &lt;executable&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>查看源码</strong>:</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>列出指定行号的代码:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">list &lt;line_number&gt;,&lt;line_number&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p>列出指定文件的源码:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">list &lt;filename&gt;:&lt;line_number&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p>列出指定函数的源码:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">list &lt;function_name&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>运行程序</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">run [arguments]</span><br></pre></td></tr></table></figure>
+<p><strong>设置断点</strong>:</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>通过行号设置断点:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">break</span> &lt;filename&gt;:&lt;line_number&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p>通过函数名设置断点:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">break</span> &lt;function_name&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p>设置条件断点:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">break</span> &lt;line_number&gt; <span class="keyword">if</span> &lt;condition&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>查看断点</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">info breakpoints</span><br></pre></td></tr></table></figure>
+<p><strong>删除断点</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">delete &lt;breakpoint_number&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>删除所有断点</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">delete</span><br></pre></td></tr></table></figure>
+<p><strong>禁用/启用所有断点</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">disable</span> &lt;breakpoint_number&gt;</span><br><span class="line"><span class="built_in">enable</span> &lt;breakpoint_number&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>单步调试</strong>:</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>单步进入（进入函数内部）:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">step</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p>单步执行（不进入函数内部）:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">next</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>继续执行到下一个断点</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">continue</span></span><br></pre></td></tr></table></figure>
+<p><strong>查看变量</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span> &lt;variable_name&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>设置变量</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> variable &lt;variable_name&gt; = &lt;value&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>设置观察点</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">watch &lt;variable_name&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>查看函数调用栈</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">backtrace</span><br></pre></td></tr></table></figure>
+<p><strong>分屏调试</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gdb -tui &lt;executable&gt;</span><br></pre></td></tr></table></figure>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>上半屏显示代码，下半屏显示 GDB 交互界面。</p>
+</li>
+<li class="lvl-2">
+<p>使用方向键调整源代码视图。</p>
+</li>
+<li class="lvl-2">
+<p>使用 <code>fs n</code> 或 <code>focus next</code> 切换焦点。</p>
+</li>
+</ul>
+<h2 id="Gdb调试死锁">Gdb调试死锁</h2>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> g_tickets = <span class="number">100</span>;</span><br><span class="line"><span class="type">pthread_mutex_t</span> g_mutex = PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line"><span class="type">void</span>* <span class="title function_">thread_proc1</span><span class="params">(<span class="type">void</span>* arg)</span> &#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        pthread_mutex_lock(&amp;g_mutex);</span><br><span class="line">        <span class="keyword">if</span> (g_tickets &gt; <span class="number">0</span>)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;thread 1 sell tickets:%d\n&quot;</span>, g_tickets--);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            pthread_mutex_lock(&amp;g_mutex); <span class="comment">// 错误地再次加锁</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        pthread_mutex_lock(&amp;g_mutex); <span class="comment">// 错误地再次加锁</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">void</span>*)<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span>* <span class="title function_">thread_proc2</span><span class="params">(<span class="type">void</span>* arg)</span> &#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        pthread_mutex_lock(&amp;g_mutex);</span><br><span class="line">        <span class="keyword">if</span> (g_tickets &gt; <span class="number">0</span>)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;thread 2 sell tickets:%d\n&quot;</span>, g_tickets--);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            pthread_mutex_unlock(&amp;g_mutex); <span class="comment">// 正确的解锁</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        pthread_mutex_unlock(&amp;g_mutex); <span class="comment">// 正确的解锁</span></span><br><span class="line">    &#125;</span><br><span class="line">    pthread_exit((<span class="type">void</span>*)<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>*argv[])</span> &#123;</span><br><span class="line">    <span class="type">pthread_t</span> tid1, tid2;</span><br><span class="line">    <span class="type">void</span> *ret1, *ret2;</span><br><span class="line">    pthread_create(&amp;tid1, <span class="literal">NULL</span>, thread_proc1, <span class="literal">NULL</span>);</span><br><span class="line">    pthread_create(&amp;tid2, <span class="literal">NULL</span>, thread_proc2, <span class="literal">NULL</span>);</span><br><span class="line">    pthread_join(tid1, &amp;ret1);</span><br><span class="line">    pthread_join(tid2, &amp;ret2);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;ret1:%d\n&quot;</span>,(<span class="type">int</span>)ret1);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;ret2:%d\n&quot;</span>,(<span class="type">int</span>)ret2);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="编译运行">编译运行</h3>
+<ol>
+<li class="lvl-3">
+<p>编译代码：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">gcc -g test.c -lpthread -o test</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>运行程序：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">./test</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p><strong>输出结果：</strong> 程序输出&quot;thread 1 sell tickets:…&quot;直到死锁发生。</p>
+</li>
+</ol>
+<h3 id="调试方法1">调试方法1</h3>
+<ol>
+<li class="lvl-3">
+<p>查看test进程号：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">ps aux | grep test</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>查看进程中的所有线程：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">pstree -p &lt;process_id&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>使用GDB调试：</p>
+<ul class="lvl-2">
+<li class="lvl-5">
+<p>启动GDB：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">gdb</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-5">
+<p>附加到进程：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">attach &lt;process_id&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-5">
+<p>查看所有线程的堆栈跟踪：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">thread apply all bt</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://s2.loli.net/2024/09/01/jMHENBayplD2AoC.png" alt=""></p>
+<h3 id="调试方法2">调试方法2</h3>
+<ol>
+<li class="lvl-3">
+<p>查看test进程号：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">ps -e | grep test</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>使用GDB调试：</p>
+<ul class="lvl-2">
+<li class="lvl-5">
+<p>启动GDB并附加到进程：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">gdb test &lt;process_id&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-5">
+<p>显示所有线程信息：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">info threads</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-5">
+<p>切换到特定线程（例如第二个线程）：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">thread 2</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-5">
+<p>查看该线程的堆栈跟踪，以确定死锁位置：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">bt</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://s2.loli.net/2024/09/01/MsDmtgBJEGa4fTC.png" alt=""></p>
 <h2 id="Reference">Reference</h2>
-<p>[1]	LaTeX的安装教程：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_43872190/article/details/113736283">https://blog.csdn.net/weixin_43872190/article/details/113736283</a><br>
-[2]	Latex（一）安装和环境变量的设置：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/explorer9607/article/details/103506387">https://blog.csdn.net/explorer9607/article/details/103506387</a></p>
+<p>[1]	GDB调试指南(入门，看这篇够了): <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/chen1415886044/article/details/105094688">https://blog.csdn.net/chen1415886044/article/details/105094688</a></p>
+<p>[2]	GDB：调试死锁:<a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/guowenyan001/article/details/46238355">https://blog.csdn.net/guowenyan001/article/details/46238355</a></p>
 
     </div>
 
@@ -363,10 +619,10 @@
   <div class="popular-posts-header">推荐文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\archives\1a24c243.html" rel="bookmark">Linux配置C++</a></div>
+      <div class="popular-posts-title"><a href="\archives\29207ea7.html" rel="bookmark">Git入门教程</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\archives\4da17f55.html" rel="bookmark">VMware安装配置Ubuntu</a></div>
+      <div class="popular-posts-title"><a href="\archives\e72b9632.html" rel="bookmark">Vim入门教程</a></div>
     </li>
   </ul>
 <div class="post-widgets">
@@ -420,7 +676,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://liuaoao.top/archives/88b90715.html" title="LaTeX安装">https://liuaoao.top/archives/88b90715.html</a>
+    <a href="https://liuaoao.top/archives/7762eb42.html" title="GCC&amp;Gdb基础教程">https://liuaoao.top/archives/7762eb42.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -432,7 +688,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/LaTeX/" rel="tag"><i class="fa fa-tag"></i> LaTeX</a>
+              <a href="/tags/Gdb/" rel="tag"><i class="fa fa-tag"></i> Gdb</a>
+              <a href="/tags/GCC/" rel="tag"><i class="fa fa-tag"></i> GCC</a>
           </div>
 
         
@@ -441,13 +698,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/archives/2888cf0.html" rel="prev" title="Ps2019基础总结">
-      <i class="fa fa-chevron-left"></i> Ps2019基础总结
+    <a href="/archives/3c19d3a7.html" rel="prev" title="OSI七层网络模型">
+      <i class="fa fa-chevron-left"></i> OSI七层网络模型
     </a></div>
-      <div class="post-nav-item">
-    <a href="/archives/c545af56.html" rel="next" title="PyCharm安装配置">
-      PyCharm安装配置 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -507,7 +761,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Texlive-2023"><span class="nav-number">1.</span> <span class="nav-text">Texlive 2023</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Texlive%E6%B7%BB%E5%8A%A0%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.</span> <span class="nav-text">Texlive添加环境变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TeXstudio%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">TeXstudio的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GCC%E7%BC%96%E8%AF%91"><span class="nav-number">1.</span> <span class="nav-text">GCC编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GCC-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">GCC 介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GCC-%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">GCC 编译流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GCC-%E5%8F%82%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">GCC 参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%BA%93%E4%B8%8E%E5%8A%A8%E6%80%81%E5%BA%93"><span class="nav-number">1.4.</span> <span class="nav-text">静态库与动态库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%9D%99%E6%80%81%E5%BA%93"><span class="nav-number">1.4.1.</span> <span class="nav-text">创建静态库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%8A%A8%E6%80%81%E5%BA%93"><span class="nav-number">1.4.2.</span> <span class="nav-text">创建动态库</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gdb%E8%B0%83%E8%AF%95"><span class="nav-number">2.</span> <span class="nav-text">Gdb调试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-gdb"><span class="nav-number">2.1.</span> <span class="nav-text">什么是 gdb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gdb-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">gdb 的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gdb%E8%B0%83%E8%AF%95core"><span class="nav-number">2.3.</span> <span class="nav-text">gdb调试core</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gdb-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">2.4.</span> <span class="nav-text">gdb 常用命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gdb%E8%B0%83%E8%AF%95%E6%AD%BB%E9%94%81"><span class="nav-number">3.</span> <span class="nav-text">Gdb调试死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C"><span class="nav-number">3.1.</span> <span class="nav-text">编译运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%951"><span class="nav-number">3.2.</span> <span class="nav-text">调试方法1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%952"><span class="nav-number">3.3.</span> <span class="nav-text">调试方法2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -1012,7 +1266,7 @@ window.addEventListener('pjax:success', () => {
       quicklink({
         timeout : 3000,
         priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'https://liuaoao.top/archives/88b90715.html',]
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://liuaoao.top/archives/7762eb42.html',]
       });
       });
   </script>
