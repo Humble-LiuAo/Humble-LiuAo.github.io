@@ -1371,6 +1371,151 @@
       </tags>
   </entry>
   <entry>
+    <title>数据表示方式</title>
+    <url>/archives/73a6de26.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<h2 id="数字系统">数字系统</h2>
+<h3 id="二进制">二进制</h3>
+<p>早期的计算机使用 <strong>真空管</strong> 来表示数据：通电表示1，断电表示0。这种方式形成了 <strong>二进制</strong> 系统，英文称为 <strong>binary</strong>。二进制与十进制的区别在于进位规则：十进制是逢十进一，而二进制是逢二进一。</p>
+<p>在十进制中，数字 3456 的含义如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3456 = 3 × 10^3 + 4 × 10^2 + 5 × 10^1 + 6 × 10^0</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h3 id="二进制转十进制">二进制转十进制</h3>
+<p>将二进制数 <code>11011.101</code> 转换为十进制的步骤如下：</p>
+<p><strong>整数部分：11011</strong></p>
+<p>从右往左，将每一位上的数字与其在二进制数中的权重相乘，并求和</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 × 2^4 = 16</span><br><span class="line">1 × 2^3 = 8</span><br><span class="line">0 × 2^2 = 0</span><br><span class="line">1 × 2^1 = 2</span><br><span class="line">1 × 2^0 = 1</span><br><span class="line">总和 = 16 + 8 + 0 + 2 + 1 = 27</span><br></pre></td></tr></table></figure>
+<p><strong>小数部分：.101</strong></p>
+<p>从左往右，将每一位上的数字与其在二进制数中的权重相乘，并求和</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 × 2^(-1) = 0.5</span><br><span class="line">0 × 2^(-2) = 0</span><br><span class="line">1 × 2^(-3) = 0.125</span><br><span class="line">总和 = 0.5 + 0 + 0.125 = 0.625</span><br></pre></td></tr></table></figure>
+<p>整数部分 + 小数部分 = 27 + 0.625 = 27.625，二进制数 <code>11011.101</code> 转换为十进制数为 <strong>27.625</strong></p>
+<h3 id="十进制转换为二进制">十进制转换为二进制</h3>
+<p>十进制整数转换为二进制整数采用&quot;<strong>除2取余，逆序排列</strong>&quot;法。具体做法是：用2去除十进制整数，可以得到一个商和余数；再用2去除商，又会得到一个商和余数，如此进行，直到商为零时为止，然后把先得到的余数作为二进制数的低位有效位，后得到的余数作为二进制数的高位有效位，依次排列起来。</p>
+<p><img src="https://s2.loli.net/2024/09/01/ByLfoczOjsnXGRl.png" alt=""></p>
+<p>十进制小数转换成二进制小数采用&quot;**乘2取整，顺序排列&quot;**法。具体做法是：用2乘十进制小数，可以得到积，将积的整数部分取出，再用2乘余下的小数 部分，又得到一个积，再将积的整数部分取出，如此进行，直到积中的小数部分为零，或者达到所要求的精度为止。</p>
+<p>然后把取出的整数部分按顺序排列起来，先取的整数作为二进制小数的高位有效位，后取的整数作为低位有效位。</p>
+<p><img src="https://s2.loli.net/2024/09/01/LaB8WOM24rXhmcv.png" alt=""></p>
+<p>二进制、八进制、十六进制等都基于类似的进位规则进行转换。二进制的运算还涉及到 <strong>补码</strong> 运算（1的补码和2的补码），这对于计算机的加减乘除运算尤为重要。对于有兴趣的朋友，可以进一步查阅相关的计算机基础书籍。</p>
+<hr>
+<h2 id="文字编码系统">文字编码系统</h2>
+<p>计算机只能处理二进制数据（0和1），但通过编码系统，计算机可以记录和处理文字文件。<strong>编码系统</strong>就像一个“字码对照表”，负责将文字转为数字存储在计算机中，并在需要时将数字转换回文字显示。</p>
+<p><img src="https://s2.loli.net/2024/09/01/mfRXG927lpHyYLt.png" alt=""></p>
+<h3 id="编码系统的工作原理">编码系统的工作原理</h3>
+<ol>
+<li class="lvl-3">
+<p><strong>写入文件</strong>：文字数据通过编码对照表转换为相应的数字，存入文件中。</p>
+</li>
+<li class="lvl-3">
+<p><strong>读取文件</strong>：文件中的数字通过编码对照表转换为对应的文字，显示在屏幕上。</p>
+</li>
+</ol>
+<h3 id="常用的编码系统">常用的编码系统</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>ASCII编码</strong>：常用的英文编码系统，每个符号占用1字节（Byte），共计256种字符。</p>
+</li>
+<li class="lvl-2">
+<p><strong>Big5编码</strong>：常用于中文，每个中文字占用2字节。理论上可表示65536个字符，但实际只定义了一万三千多个中文字。</p>
+</li>
+</ul>
+<h3 id="编码问题">编码问题</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>乱码现象</strong>：如果使用错误的编码对照表，字符会显示为乱码。这是因为不同编码系统对字符的映射不同。</p>
+</li>
+<li class="lvl-2">
+<p><strong>Big5码的问题</strong>：由于某些字的编码可能与符号冲突，可能在读取时出现乱码，尤其是在数据库中。</p>
+</li>
+</ul>
+<h3 id="Unicode与UTF-8">Unicode与UTF-8</h3>
+<p>为解决不同编码系统间的冲突，国际组织ISO/IEC制定了<strong>Unicode编码系统</strong>，其广泛使用的编码形式是<strong>UTF-8</strong>。Unicode统一了所有语言的编码，使得不同语言的文字可以兼容地显示在同一系统中。</p>
+<p>目前，互联网等领域普遍采用UTF-8编码，因此在设置编码系统时，建议优先选择Unicode或UTF-8。</p>
+<hr>
+<h2 id="浮点数">浮点数</h2>
+<p><strong>定点数</strong>表示小数时，会将小数点的位置固定不变，整数部分和小数部分分别转换为二进制表示。然而，定点数的数值范围和精度有限。因此，计算机中通常使用<strong>浮点数</strong>来表示小数。</p>
+<h3 id="浮点数的表示形式">浮点数的表示形式</h3>
+<p>浮点数使用<strong>科学计数法</strong>表示数字，其中小数点的位置可以“漂浮”。其通用形式为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">V = (-1)^S * M * R^E</span><br></pre></td></tr></table></figure>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>S</strong>：符号位，0 表示正，1 表示负。</p>
+</li>
+<li class="lvl-2">
+<p><strong>M</strong>：尾数，用小数表示，如 8.345。</p>
+</li>
+<li class="lvl-2">
+<p><strong>R</strong>：基数，表示进制，二进制中 R = 2，十进制中 R = 10。</p>
+</li>
+<li class="lvl-2">
+<p><strong>E</strong>：指数，表示小数点后的位移。</p>
+</li>
+</ul>
+<h3 id="IEEE-754-浮点数标准">IEEE 754 浮点数标准</h3>
+<p>IEEE 754 标准规定了浮点数的表示形式，并定义了两种常见浮点数格式：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>单精度浮点数（float）</strong>：32 位，其中符号位 S 占 1 bit，指数 E 占 8 bit，尾数 M 占 23 bit。</p>
+</li>
+<li class="lvl-2">
+<p><strong>双精度浮点数（double）</strong>：64 位，其中符号位 S 占 1 bit，指数 E 占 11 bit，尾数 M 占 52 bit。</p>
+</li>
+</ul>
+<p><strong>规定：</strong></p>
+<ol>
+<li class="lvl-3">
+<p><strong>隐藏位</strong>：尾数 M 的第一位总是 1，可省略不写。单精度可表示 24 位有效数字，双精度可表示 53 位有效数字。</p>
+</li>
+<li class="lvl-3">
+<p><strong>指数偏移</strong>：存储指数 E 时需加上偏移量（单精度为 127，双精度为 1023），确保指数可表示正负数。</p>
+</li>
+<li class="lvl-3">
+<p><strong>特殊值</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">指数 E 非全 0 且非全 1：规格化数字，按常规计算。</li>
+<li class="lvl-5">指数 E 全 0，尾数非 0：非规格化数，表示 0 或非常小的数。</li>
+<li class="lvl-5">指数 E 全 1，尾数全 0：正无穷大或负无穷大。</li>
+<li class="lvl-5">指数 E 全 1，尾数非 0：NaN（Not a Number）。</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://s2.loli.net/2024/09/01/quLRfm7cUaDjOWw.jpg" alt=""></p>
+<h3 id="浮点数表示示例">浮点数表示示例</h3>
+<p>将十进制数 25.125 转换为单精度浮点数：</p>
+<ol>
+<li class="lvl-3">
+<p><strong>整数部分</strong>：25 = 11001 (二进制)。</p>
+</li>
+<li class="lvl-3">
+<p><strong>小数部分</strong>：0.125 = 0.001 (二进制)。</p>
+</li>
+<li class="lvl-3">
+<p><strong>科学计数法</strong>：25.125 = 11001.001 = 1.1001001 × 2^4。</p>
+</li>
+</ol>
+<p>结果为 S = 0，尾数 M = 1.1001001（省略首位1），指数 E = 4 + 127 = 135。最后，将这些值填充至 32 位浮点数格式中。</p>
+<p><img src="https://s2.loli.net/2024/09/01/p1tFQPCvgd7z5em.jpg" alt=""></p>
+<h3 id="浮点数的精度损失">浮点数的精度损失</h3>
+<p>以 0.2 为例，其二进制表示为 0.001100110011…，由于 0.2 的二进制表示为无限循环小数，而计算机的存储空间有限，因此只能截断表示，导致精度损失。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">0.2 * 2 = 0.4 -&gt; 0</span><br><span class="line">0.4 * 2 = 0.8 -&gt; 0</span><br><span class="line">0.8 * 2 = 1.6 -&gt; 1</span><br><span class="line">0.6 * 2 = 1.2 -&gt; 1</span><br><span class="line">0.2 * 2 = 0.4 -&gt; 0（发生循环）</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="浮点数的范围与精度">浮点数的范围与精度</h3>
+<p>以单精度浮点数 float 为例，它能表示的最大二进制数为 +1.1.11111…1 * 2^127（小数点后23个1），而二进制 1.11111…1 ≈ 2，所以 float 能表示的最大数为 2^128 = 3.4 * 10^38，即 float 的表示范围为：<strong>-3.4 * 10^38 ~ 3.4 * 10 ^38</strong>。</p>
+<p>float 能表示的最小二进制数为 0.0000….1（小数点后22个0，1个1），用十进制数表示就是 <strong>1/2^23</strong>。</p>
+<p>用同样的方法可以算出，double 能表示的最大二进制数为 +1.111…111（小数点后52个1） * 2^1023 ≈ 2^1024 = 1.79 * 10^308，所以 double 能表示范围为：<strong>-1.79 * 10^308 ~ +1.79 * 10^308</strong>。</p>
+<p>double 的最小精度为：0.0000…1(51个0，1个1)，用十进制表示就是 <strong>1/2^52</strong>。</p>
+<h2 id="Reference">Reference</h2>
+<p>[1]	计算机系统基础（四）浮点数:<a href="http://kaito-kidd.com/2018/08/08/computer-system-float-point/">http://kaito-kidd.com/2018/08/08/computer-system-float-point/</a></p>
+]]></content>
+      <categories>
+        <category>计算机基础</category>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>二进制</tag>
+        <tag>UTF-8</tag>
+        <tag>浮点数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>深入理解Makefile</title>
     <url>/archives/d5c3c62.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -4781,7 +4926,7 @@ Front-matter 是位于文章最上方，用 <code>---</code> 分隔的区域。�
 <p>并列+子分类</p>
 <p>如果你需要为文章添加多个分类，可以尝试以下 list 中的方法。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories:</span><br><span class="line">- [Diary, PlayStation]</span><br><span class="line">- [Diary, Games]</span><br><span class="line">- [Life]</span><br></pre></td></tr></table></figure>
-<p>此时这篇文章同时包括三个分类： PlayStation 和 Games 分别都是父分类 Diary 的子分类，同时 Life 是一个没有子分类的分类。## hexo提示块</p>
+<p>此时这篇文章同时包括三个分类： PlayStation 和 Games 分别都是父分类 Diary 的子分类，同时 Life 是一个没有子分类的分类。</p>
 </li>
 </ol>
 <h2 id="标签大小写">标签大小写</h2>
