@@ -1371,6 +1371,447 @@
       </tags>
   </entry>
   <entry>
+    <title>C++模板</title>
+    <url>/archives/2f739cfa.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<h3 id="泛型编程">泛型编程</h3>
+<p>泛型编程允许编写与类型无关的代码，从而实现代码的重用。模板是泛型编程的基础，通过编写模板函数或模板类来实现类型无关的逻辑。</p>
+<span id="more"></span>
+<h3 id="函数模板">函数模板</h3>
+<p>函数模板代表一个函数家族，与类型无关。实际使用时，模板通过传递不同的类型参数生成具体的函数版本。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, ..., <span class="keyword">typename</span> Tn&gt;</span><br><span class="line">返回类型 函数名(参数列表);</span><br></pre></td></tr></table></figure>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>template</code> 和 <code>typename</code> 为关键字。</p>
+</li>
+<li class="lvl-2">
+<p><code>T1</code>, <code>T2</code>, …, <code>Tn</code> 为模板形参名字，<code>typename</code> 也可以用 <code>class</code> 替代，但建议使用 <code>typename</code>。</p>
+</li>
+</ul>
+<p><strong>调用方法</strong>：</p>
+<ol>
+<li class="lvl-3">
+<p><strong>显式类型推导</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(T param)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 函数实现</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line"><span class="built_in">func</span>&lt;<span class="type">int</span>&gt;(<span class="number">10</span>); <span class="comment">// 显式指定类型为 int</span></span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p><strong>隐式类型推导</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(T param)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 函数实现</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line"><span class="built_in">func</span>(<span class="number">10</span>); <span class="comment">// 编译器根据实参推导类型为 int</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>普通函数与函数模板比较</strong>：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>数据类型匹配</strong>：普通函数只能处理一种数据类型，而函数模板可以处理多种数据类型。</p>
+</li>
+<li class="lvl-2">
+<p><strong>优先级</strong>：隐式类型推导优先使用普通函数，当普通函数不匹配时才使用函数模板。</p>
+</li>
+<li class="lvl-2">
+<p><strong>构建时间</strong>：函数模板在调用时构建，普通函数在编译时已构建完成。</p>
+</li>
+<li class="lvl-2">
+<p><strong>类型转换</strong>：普通函数支持自动类型转换，而函数模板不进行自动类型转换。</p>
+</li>
+</ul>
+<h3 id="类模板">类模板</h3>
+<p>类模板用于定义那些数据成员和成员函数类型不同的类。模板本身是蓝图，编译器用模板生成特定类型的类。</p>
+<p><strong>编译阶段</strong>：</p>
+<ol>
+<li class="lvl-3">
+<p><strong>模板定义检查</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">检查模板定义的语法和逻辑错误，例如遗漏的分号。</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p><strong>模板实例化检查</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">在实例化期间，编译器检查所有调用的有效性，确保实例化的类型支持所需操作。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类模板</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Box</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Box</span>(T val) : <span class="built_in">value</span>(val) &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        cout &lt;&lt; value &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    T value;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">Box&lt;<span class="type">int</span>&gt; <span class="title">intBox</span><span class="params">(<span class="number">123</span>)</span></span>;</span><br><span class="line">    <span class="function">Box&lt;string&gt; <span class="title">strBox</span><span class="params">(<span class="string">&quot;Hello, Template&quot;</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    intBox.<span class="built_in">show</span>();  <span class="comment">// 输出: 123</span></span><br><span class="line">    strBox.<span class="built_in">show</span>();  <span class="comment">// 输出: Hello, Template</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结">总结</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>函数模板</strong>：用于定义泛型函数，支持显式和隐式类型推导，可处理多种数据类型。</p>
+</li>
+<li class="lvl-2">
+<p><strong>类模板</strong>：用于定义泛型类，编译器生成特定类型的类，编译过程包括定义检查和实例化检查。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>模板</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++类型转换</title>
+    <url>/archives/c07d3922.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<h2 id="转化运算符">转化运算符</h2>
+<h3 id="static-cast">static_cast</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>功能</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-4">静态类型转换，用于在编译期确定的转换。</li>
+<li class="lvl-4">能完成 C 语言中大部分的强制类型转换，但不能移除表达式中的 <code>const</code>、<code>volatile</code> 或者 <code>__unaligned</code> 属性。</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>用途</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-4">将 <code>int</code> 转换为 <code>char</code>。</li>
+<li class="lvl-4">数据指针与指针之间的转换，但不能用于两个无关指针类型之间的直接转换，需通过 <code>void*</code> 进行间接转换。</li>
+<li class="lvl-4">父类指针转换为子类指针是安全的，反之则不安全，因为 <code>static_cast</code> 没有动态类型检查。</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p><strong>使用时机</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-4">当编译器隐式执行类型转换时，可能会丢失精度并给出警告。这种情况下使用 <code>static_cast</code> 可以明确告知编译器你知道这种转换。</li>
+</ul>
+</li>
+</ul>
+<h3 id="dynamic-cast">dynamic_cast</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>功能</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-4">仅用于类继承结构中基类和派生类之间的指针或引用的转换。</li>
+<li class="lvl-4">可以进行向上、向下或横向的转换。</li>
+<li class="lvl-4">在运行时进行类型检查。</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p><strong>条件</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-4">必须在有继承关系的类之间才能转换。</li>
+<li class="lvl-4">基类中必须有虚函数。</li>
+<li class="lvl-4">特殊情况下，可以把类指针转换成 <code>void*</code> 类型。</li>
+</ul>
+</li>
+</ul>
+<h3 id="const-cast">const_cast</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>功能</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-4">不能移除变量的常量性。</li>
+<li class="lvl-4">只能用于去除指向常量对象的指针或引用的常量性。</li>
+<li class="lvl-4">去除常量性的对象必须为指针或引用。</li>
+</ul>
+</li>
+</ul>
+<h3 id="reinterpret-cast">reinterpret_cast</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>功能</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-4">进行不同类型指针或引用之间的转换。</li>
+<li class="lvl-4">指针和整数之间的转换。</li>
+<li class="lvl-4">对比特位的简单拷贝并重新解释，不改变数据在内存中的二进制形式。</li>
+<li class="lvl-4">不同基础类型指针类型之间的转换。</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p><strong>注意</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-4"><code>reinterpret_cast</code> 是 C++ 中最不安全的类型转换方式，应该谨慎使用，尤其是在涉及不同类型的指针之间转换时，以避免未定义行为。</li>
+</ul>
+</li>
+</ul>
+<h2 id="多种类型之间的切换">多种类型之间的切换</h2>
+<h3 id="string与万物互转">string与万物互转</h3>
+<h4 id="string与-const-char互转">string与 const char互转</h4>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>std::string</code> 是 C++ 标准库提供的字符串类，支持动态大小变化。<code>const char*</code> 是指向 C 风格字符串的指针，字符串以 <code>\0</code> 结束。</p>
+</li>
+<li class="lvl-2">
+<p>从 <code>std::string</code> 到 <code>const char*</code> 的转换，可以通过 <code>c_str()</code> 方法得到。反之，通过 <code>const char*</code> 创建 <code>std::string</code> 对象。</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    // string 转 const char*</span><br><span class="line">    std::string str = &quot;Hello, World!&quot;;</span><br><span class="line">    const char* cstr = str.c_str();</span><br><span class="line">    std::cout &lt;&lt; &quot;const char*: &quot; &lt;&lt; cstr &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    // const char* 转 string</span><br><span class="line">    const char* anotherCStr = &quot;Welcome to C++&quot;;</span><br><span class="line">    std::string anotherStr(anotherCStr);</span><br><span class="line">    std::cout &lt;&lt; &quot;std::string: &quot; &lt;&lt; anotherStr &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="string与-char-互转">string与 char*互转</h4>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>C++ 不允许直接将 <code>std::string</code> 转换为 <code>char*</code>，因为 <code>string</code> 的数据是常量，不应直接修改。</p>
+</li>
+<li class="lvl-2">
+<p>如果需要 <code>char*</code>，通常使用 <code>std::vector&lt;char&gt;</code> 来保存字符串的可变拷贝。</p>
+</li>
+<li class="lvl-2">
+<p>从 <code>char*</code> 到 <code>string</code> 直接使用构造函数即可。</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    // string 转 char*</span><br><span class="line">    std::string str = &quot;Hello, World!&quot;;</span><br><span class="line">    std::vector&lt;char&gt; vec(str.begin(), str.end());</span><br><span class="line">    vec.push_back(&#x27;\0&#x27;);  // 添加空字符终止符</span><br><span class="line">    char* cstr = vec.data();</span><br><span class="line">    std::cout &lt;&lt; &quot;char*: &quot; &lt;&lt; cstr &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    // char* 转 string</span><br><span class="line">    char* anotherCStr = &quot;Welcome to C++&quot;;</span><br><span class="line">    std::string anotherStr(anotherCStr);</span><br><span class="line">    std::cout &lt;&lt; &quot;std::string: &quot; &lt;&lt; anotherStr &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="string与-char-互转-2">string与 char[] 互转</h4>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>char[]</code> 是字符数组，是一种在栈上分配的固定大小的字符串。<code>std::string</code> 可以从 <code>char[]</code> 构造，也可以通过 <code>std::copy</code> 转换为 <code>char[]</code>。</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    // string 转 char[]</span><br><span class="line">    std::string str = &quot;Hello, World!&quot;;</span><br><span class="line">    char cstr[50]; // 需要足够大的数组</span><br><span class="line">    std::copy(str.begin(), str.end(), cstr);</span><br><span class="line">    cstr[str.size()] = &#x27;\0&#x27;; // 手动添加空字符</span><br><span class="line">    std::cout &lt;&lt; &quot;char[]: &quot; &lt;&lt; cstr &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    // char[] 转 string</span><br><span class="line">    char anotherCStr[] = &quot;Welcome to C++&quot;;</span><br><span class="line">    std::string anotherStr(anotherCStr);</span><br><span class="line">    std::cout &lt;&lt; &quot;std::string: &quot; &lt;&lt; anotherStr &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="string与-int-float-double互转">string与 int, float, double互转</h4>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>C++ 提供了 <code>std::stoi</code>, <code>std::stof</code>, <code>std::stod</code> 等函数用于从 <code>string</code> 转换为基本数据类型。</p>
+</li>
+<li class="lvl-2">
+<p>反向转换可以使用 <code>std::to_string</code> 函数。</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    // string 转 int</span><br><span class="line">    std::string intStr = &quot;12345&quot;;</span><br><span class="line">    int num = std::stoi(intStr);</span><br><span class="line">    std::cout &lt;&lt; &quot;int: &quot; &lt;&lt; num &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    // string 转 float</span><br><span class="line">    std::string floatStr = &quot;123.45&quot;;</span><br><span class="line">    float fnum = std::stof(floatStr);</span><br><span class="line">    std::cout &lt;&lt; &quot;float: &quot; &lt;&lt; fnum &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    // int 转 string</span><br><span class="line">    int anotherNum = 67890;</span><br><span class="line">    std::string anotherIntStr = std::to_string(anotherNum);</span><br><span class="line">    std::cout &lt;&lt; &quot;std::string: &quot; &lt;&lt; anotherIntStr &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    // float 转 string</span><br><span class="line">    float anotherFNum = 678.90f;</span><br><span class="line">    std::string anotherFloatStr = std::to_string(anotherFNum);</span><br><span class="line">    std::cout &lt;&lt; &quot;std::string: &quot; &lt;&lt; anotherFloatStr &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="const-char-与万物互转">const char* 与万物互转</h3>
+<h4 id="const-char-与-char-互转">const char* 与 char* 互转</h4>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>const char*</code> 到 <code>char*</code> 的转换涉及去掉 <code>const</code> 限制。这通常是危险的，因为可能导致未定义行为。因此，一般通过 <code>strcpy</code> 等函数拷贝到新分配的 <code>char*</code> 中。</p>
+</li>
+<li class="lvl-2">
+<p><code>char*</code> 到 <code>const char*</code> 是安全的，直接赋值即可。</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    // const char* 转 char*</span><br><span class="line">    const char* cstr = &quot;Hello, World!&quot;;</span><br><span class="line">    char buffer[50];</span><br><span class="line">    std::strcpy(buffer, cstr); // 复制到可变的 char* 中</span><br><span class="line">    std::cout &lt;&lt; &quot;char*: &quot; &lt;&lt; buffer &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    // char* 转 const char*</span><br><span class="line">    char* mutableCStr = buffer;</span><br><span class="line">    const char* constCStr = mutableCStr; // 安全转换</span><br><span class="line">    std::cout &lt;&lt; &quot;const char*: &quot; &lt;&lt; constCStr &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="const-char-与-char-互转-2">const char*与 char[] 互转</h4>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>const char*</code> 可以通过 <code>strcpy</code> 等方法拷贝到 <code>char[]</code> 中。</p>
+</li>
+<li class="lvl-2">
+<p><code>char[]</code> 直接赋值给 <code>const char*</code> 即可。</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    // const char* 转 char[]</span><br><span class="line">    const char* cstr = &quot;Hello, World!&quot;;</span><br><span class="line">    char buffer[50];</span><br><span class="line">    std::strcpy(buffer, cstr);</span><br><span class="line">    std::cout &lt;&lt; &quot;char[]: &quot; &lt;&lt; buffer &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    // char[] 转 const char*</span><br><span class="line">    char anotherBuffer[] = &quot;Welcome to C++&quot;;</span><br><span class="line">    const char* anotherCStr = anotherBuffer;</span><br><span class="line">    std::cout &lt;&lt; &quot;const char*: &quot; &lt;&lt; anotherCStr &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="const-char-与-int-float-double互转">const char*与 int, float, double互转</h4>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>const char*</code> 到数字类型的转换可以通过 <code>atoi</code>, <code>atof</code> 等函数实现。</p>
+</li>
+<li class="lvl-2">
+<p>反向转换可以使用 <code>sprintf</code> 或者 C++11 以后的 <code>std::to_string</code> 再转换成 <code>const char*</code>。</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cstdlib&gt;   // for atoi, atof</span><br><span class="line">#include &lt;cstdio&gt;    // for sprintf</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    // const char* 转 int</span><br><span class="line">    const char* intCStr = &quot;12345&quot;;</span><br><span class="line">    int num = std::atoi(intCStr);</span><br><span class="line">    std::cout &lt;&lt; &quot;int: &quot; &lt;&lt; num &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    // const char* 转 float</span><br><span class="line">    const char* floatCStr = &quot;123.45&quot;;</span><br><span class="line">    float fnum = std::atof(floatCStr);</span><br><span class="line">    std::cout &lt;&lt; &quot;float: &quot; &lt;&lt; fnum &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    // int 转 const char*</span><br><span class="line">    int anotherNum = 67890;</span><br><span class="line">    char buffer[50];</span><br><span class="line">    std::sprintf(buffer, &quot;%d&quot;, anotherNum);</span><br><span class="line">    const char* intToStr = buffer;</span><br><span class="line">    std::cout &lt;&lt; &quot;const char*: &quot; &lt;&lt; intToStr &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    // float 转 const char*</span><br><span class="line">    float anotherFNum = 678.90f;</span><br><span class="line">    std::sprintf(buffer, &quot;%.2f&quot;, anotherFNum);</span><br><span class="line">    const char* floatToStr = buffer;</span><br><span class="line">    std::cout &lt;&lt; &quot;const char*: &quot; &lt;&lt; floatToStr &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结">总结</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong><code>string</code> 与 <code>const char\*</code> 互转：</strong> 使用 <code>c_str()</code> 方法和 <code>std::string</code> 的构造函数。</p>
+</li>
+<li class="lvl-2">
+<p><strong><code>string</code> 与 <code>char\*</code> 互转：</strong> 需要创建一个可变的字符数组 (<code>std::vector&lt;char&gt;</code>)，通过 <code>data()</code> 获取指针；<code>char*</code> 转换为 <code>string</code> 直接使用构造函数。</p>
+</li>
+<li class="lvl-2">
+<p><strong><code>string</code> 与 <code>char[]</code> 互转：</strong> 使用 <code>std::copy</code> 将 <code>string</code> 转换为 <code>char[]</code>；通过 <code>string</code> 的构造函数从 <code>char[]</code> 创建。</p>
+</li>
+<li class="lvl-2">
+<p><strong><code>string</code> 与基本类型 (<code>int</code>, <code>float</code>, <code>double</code>) 互转：</strong> 使用 <code>std::stoi</code>、<code>std::stof</code>、<code>std::stod</code> 转换为数字类型，使用 <code>std::to_string</code> 转换为 <code>string</code>。</p>
+</li>
+<li class="lvl-2">
+<p><strong><code>const char\*</code> 与 <code>char\*</code> 互转：</strong> 通过 <code>strcpy</code> 等拷贝方法将 <code>const char*</code> 复制到 <code>char*</code>；<code>char*</code> 转换为 <code>const char*</code> 直接赋值即可。</p>
+</li>
+<li class="lvl-2">
+<p><strong><code>const char\*</code> 与 <code>char[]</code> 互转：</strong> 类似于上面，使用 <code>strcpy</code> 等拷贝方法将 <code>const char*</code> 复制到 <code>char[]</code>。</p>
+</li>
+<li class="lvl-2">
+<p><strong><code>const char\*</code> 与基本类型 (<code>int</code>, <code>float</code>, <code>double</code>) 互转：</strong> 使用 <code>atoi</code>, <code>atof</code> 等 C 标准库函数从 <code>const char*</code> 转换为数字类型，使用 <code>sprintf</code> 或 C++11 以后的 <code>std::to_string</code> 再转换为 <code>const char*</code>。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>类型转换</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++重载运算符</title>
+    <url>/archives/2ffb8101.html</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<p>常用运算符：<a href="https://liuaoao.top/archives/10aa9482.html#more">C/C++运算符优先级</a></p>
+<h2 id="operator">operator()</h2>
+<p><code>operator()</code> 在 C++ 中有两个主要作用：</p>
+<span id="more"></span>
+<h3 id="重载-操作符-Overloading">重载 ()操作符 (Overloading)</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>函数对象（Functors）</strong>: 当一个类重载了 <code>()</code> 操作符时，它的对象可以像函数一样被调用。这样的类对象被称为函数对象。</p>
+</li>
+<li class="lvl-2">
+<p><strong>灵活性</strong>: 与普通函数相比，函数对象更为灵活，代码也更加优雅。</p>
+</li>
+<li class="lvl-2">
+<p><strong>状态共享</strong>: 函数对象可以有自己的状态变量，使得在多次调用过程中可以共享这些状态。</p>
+</li>
+<li class="lvl-2">
+<p><strong>独特的类型</strong>: 函数对象有其特有的类型，可以通过传递相应的类型作为参数来实例化特定的模块，例如带参数的函数形参。</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Adder</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Adder</span>(<span class="type">int</span> n) : <span class="built_in">total</span>(n) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重载 () 操作符</span></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="type">int</span> value)</span> </span>&#123;</span><br><span class="line">        total += value;</span><br><span class="line">        <span class="keyword">return</span> total;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> total;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">Adder <span class="title">add</span><span class="params">(<span class="number">10</span>)</span></span>; <span class="comment">// 创建一个 Adder 对象，初始值为 10</span></span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="built_in">add</span>(<span class="number">5</span>) &lt;&lt; std::endl;  <span class="comment">// 输出 15</span></span><br><span class="line">    std::cout &lt;&lt; <span class="built_in">add</span>(<span class="number">10</span>) &lt;&lt; std::endl; <span class="comment">// 输出 25</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="实现对象类型转换-Casting">实现对象类型转换 (Casting)</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>在 C++ 中，可以通过 <code>operator Type()</code> 的形式定义类型转换函数，从而将类对象转换为指定的 <code>Type</code> 类型。</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Integer</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Integer</span>(<span class="type">int</span> n) : <span class="built_in">value</span>(n) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义类型转换函数，将 Integer 对象转换为 int 类型</span></span><br><span class="line">    <span class="function"><span class="keyword">operator</span> <span class="title">int</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> value;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">Integer <span class="title">obj</span><span class="params">(<span class="number">42</span>)</span></span>;   <span class="comment">// 创建一个 Integer 对象</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> num = obj;     <span class="comment">// 通过类型转换函数将对象转换为 int 类型</span></span><br><span class="line">    std::cout &lt;&lt; num &lt;&lt; std::endl;  <span class="comment">// 输出 42</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="不能重载的运算符">不能重载的运算符</h2>
+<table>
+<thead>
+<tr>
+<th><strong>运算符</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>不能重载的原因</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&amp;&amp;</code> 和 `</td>
+<td></td>
+<td>`</td>
+</tr>
+<tr>
+<td><code>?:</code></td>
+<td>条件运算符</td>
+<td>固有语法，语法层面与控制流结构绑定，重载会影响逻辑清晰度和代码可读性。</td>
+</tr>
+<tr>
+<td><code>,</code></td>
+<td>逗号运算符</td>
+<td>重载后无法保证左侧表达式先于右侧表达式求值，破坏顺序求值语义。</td>
+</tr>
+<tr>
+<td><code>::</code></td>
+<td>作用域解析运算符</td>
+<td>直接影响作用域解析机制，重载会破坏语言的基本结构，影响编译器解析符号的能力。</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>成员访问运算符</td>
+<td>影响对象的成员访问机制，破坏类的封装性和对象模型。</td>
+</tr>
+<tr>
+<td><code>.*</code></td>
+<td>成员指针访问运算符</td>
+<td>重载会复杂化成员指针解析，影响代码的可读性和一致性。</td>
+</tr>
+<tr>
+<td><code>typeid</code>, <code>const_cast</code>, <code>dynamic_cast</code>, <code>reinterpret_cast</code>, <code>static_cast</code></td>
+<td>类型转换运算符</td>
+<td>重载会破坏类型安全性，导致代码不稳定。</td>
+</tr>
+<tr>
+<td><code>sizeof</code></td>
+<td>获取类型或对象大小</td>
+<td>与内存布局和编译器行为直接相关，重载会导致内存管理和优化过程复杂化。</td>
+</tr>
+<tr>
+<td><code>alignof</code></td>
+<td>获取类型的对齐要求</td>
+<td>与内存布局相关，不能重载。</td>
+</tr>
+<tr>
+<td><code>typeid</code></td>
+<td>获取类型信息</td>
+<td>属于RTTI机制的一部分，重载会影响类型信息获取，破坏RTTI机制。</td>
+</tr>
+<tr>
+<td><code>new</code>, <code>delete</code>, <code>new[]</code>, <code>delete[]</code></td>
+<td>内存分配和释放</td>
+<td>关键字 <code>new</code> 和 <code>delete</code> 的行为是固定的，尽管可以重载 <code>operator new</code> 和 <code>operator delete</code>，但不能重载关键字本身的行为。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="运算符重载">运算符重载</h2>
+<ol>
+<li class="lvl-3">
+<p><strong>保持运算符语义</strong>：在重载运算符时，应保留该运算符作用于基本数据类型时的特性和语义。例如：</p>
+<ul class="lvl-2">
+<li class="lvl-5"><code>+</code> 和 <code>+=</code>：应体现加法和复合赋值操作的语义。</li>
+<li class="lvl-5"><code>++</code> 和 <code>--</code>：区分前置和后置操作符，前置返回自增/自减后的值，后置返回自增/自减前的值。</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p><strong>运算符重载形式</strong>：运算符重载可以作为类的成员函数或友元函数来实现：</p>
+<ul class="lvl-2">
+<li class="lvl-5"><strong>成员函数</strong>：适用于操作数个数减少的情况。形参个数等于操作数个数减1（<code>++</code> 和 <code>--</code> 的后置版本除外）。</li>
+<li class="lvl-5"><strong>友元函数</strong>：适用于需要访问类的私有成员的情况。形参个数等于操作数个数（<code>++</code> 和 <code>--</code> 的后置版本除外）。</li>
+</ul>
+</li>
+</ol>
+<h3 id="重载成员函数">重载成员函数</h3>
+<ol>
+<li class="lvl-3">
+<p><strong>改变对象状态</strong>：通常涉及改变对象内部状态的运算符（如自增、自减、赋值）应该定义为成员函数。这是因为成员函数可以直接访问对象的私有成员并修改其状态。</p>
+</li>
+<li class="lvl-3">
+<p><strong>必须定义为成员的运算符</strong>：</p>
+<p>赋值运算符 (<code>=</code>)、下标运算符 (<code>[]</code>)、函数调用运算符 (<code>()</code>)、成员访问箭头运算符 (<code>-&gt;</code>) 必须定义为类的成员函数，否则会出现编译错误。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> value;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数</span></span><br><span class="line">    <span class="built_in">MyClass</span>(<span class="type">int</span> v) : <span class="built_in">value</span>(v) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重载 += 运算符（成员函数）</span></span><br><span class="line">    MyClass&amp; <span class="keyword">operator</span>+=(<span class="type">const</span> MyClass&amp; rhs) &#123;</span><br><span class="line">        value += rhs.value;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重载前置 ++ 运算符（成员函数）</span></span><br><span class="line">    MyClass&amp; <span class="keyword">operator</span>++() &#123;</span><br><span class="line">        ++value;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重载后置 ++ 运算符（成员函数）</span></span><br><span class="line">    MyClass <span class="keyword">operator</span>++(<span class="type">int</span>) &#123;</span><br><span class="line">        MyClass temp = *<span class="keyword">this</span>;</span><br><span class="line">        ++value;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="重载友元函数">重载友元函数</h3>
+<ol>
+<li class="lvl-3">
+<p><strong>访问私有成员</strong>：如果需要在类外访问对象的私有成员，可以将运算符重载为友元函数。</p>
+</li>
+<li class="lvl-3">
+<p><strong>避免对象调用的依赖</strong>：如果希望运算符在不依赖对象调用的情况下被使用，如 <code>a + b</code>，友元函数是更好的选择。</p>
+</li>
+<li class="lvl-3">
+<p><strong>类型兼容</strong>：如果运算符需要处理不同类型的操作数，如 <code>int + class</code> 的形式，则必须将运算符定义为全局的友元函数。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Complex</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Complex</span>(<span class="type">double</span> r, <span class="type">double</span> i) : <span class="built_in">real</span>(r), <span class="built_in">imag</span>(i) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 友元函数重载 +</span></span><br><span class="line">    <span class="keyword">friend</span> Complex <span class="keyword">operator</span>+(<span class="type">const</span> Complex&amp; lhs, <span class="type">const</span> Complex&amp; rhs);</span><br><span class="line">    <span class="keyword">friend</span> Complex <span class="keyword">operator</span>+(<span class="type">double</span> lhs, <span class="type">const</span> Complex&amp; rhs);</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">double</span> real;</span><br><span class="line">    <span class="type">double</span> imag;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Complex <span class="keyword">operator</span>+(<span class="type">const</span> Complex&amp; lhs, <span class="type">const</span> Complex&amp; rhs) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Complex</span>(lhs.real + rhs.real, lhs.imag + rhs.imag);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Complex <span class="keyword">operator</span>+(<span class="type">double</span> lhs, <span class="type">const</span> Complex&amp; rhs) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Complex</span>(lhs + rhs.real, rhs.imag);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="指导原则">指导原则</h3>
+<ol>
+<li class="lvl-3">
+<p><strong>必须定义为成员的运算符</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">赋值运算符 (<code>=</code>)、下标运算符 (<code>[]</code>)、函数调用运算符 (<code>()</code>)、成员访问箭头运算符 (<code>-&gt;</code>) 必须定义为类的成员函数。</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p><strong>通常定义为成员的运算符</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">改变对象状态的运算符，如自增 (<code>++</code>)、自减 (<code>--</code>)、解引用 (<code>*</code>)，通常定义为成员函数。</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p><strong>通常定义为友元的运算符</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">对称运算符，如算术运算符（<code>+</code>、<code>-</code> 等）、相等运算符（<code>==</code>、<code>!=</code>）、关系运算符（<code>&lt;</code>、<code>&gt;</code> 等）更适合定义为友元函数，因为它们通常涉及两个不同类型的操作数。</li>
+<li class="lvl-5">输入输出运算符 (<code>&lt;&lt;</code> 和 <code>&gt;&gt;</code>) 也应定义为友元函数，以便处理类与流对象的交互。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Complex</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Complex</span>(<span class="type">double</span> r, <span class="type">double</span> i) : <span class="built_in">real</span>(r), <span class="built_in">imag</span>(i) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 友元函数重载 &lt;&lt;</span></span><br><span class="line">    <span class="keyword">friend</span> std::ostream&amp; <span class="keyword">operator</span>&lt;&lt;(std::ostream&amp; os, <span class="type">const</span> Complex&amp; c);</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">double</span> real;</span><br><span class="line">    <span class="type">double</span> imag;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">std::ostream&amp; <span class="keyword">operator</span>&lt;&lt;(std::ostream&amp; os, <span class="type">const</span> Complex&amp; c) &#123;</span><br><span class="line">    os &lt;&lt; <span class="string">&quot;(&quot;</span> &lt;&lt; c.real &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; c.imag &lt;&lt; <span class="string">&quot;)&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> os;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> value;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数</span></span><br><span class="line">    <span class="built_in">MyClass</span>(<span class="type">int</span> v) : <span class="built_in">value</span>(v) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重载 + 运算符（友元函数）</span></span><br><span class="line">    <span class="keyword">friend</span> MyClass <span class="keyword">operator</span>+(<span class="type">const</span> MyClass&amp; lhs, <span class="type">const</span> MyClass&amp; rhs) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">MyClass</span>(lhs.value + rhs.value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重载 += 运算符（成员函数）</span></span><br><span class="line">    MyClass&amp; <span class="keyword">operator</span>+=(<span class="type">const</span> MyClass&amp; rhs) &#123;</span><br><span class="line">        value += rhs.value;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重载前置 ++ 运算符（成员函数）</span></span><br><span class="line">    MyClass&amp; <span class="keyword">operator</span>++() &#123;</span><br><span class="line">        ++value;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重载后置 ++ 运算符（成员函数）</span></span><br><span class="line">    MyClass <span class="keyword">operator</span>++(<span class="type">int</span>) &#123;</span><br><span class="line">        MyClass temp = *<span class="keyword">this</span>;</span><br><span class="line">        ++value;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>运算符重载</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++STL常用容器</title>
     <url>/archives/706cbf35.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -6054,7 +6495,7 @@ Front-matter 是位于文章最上方，用 <code>---</code> 分隔的区域。�
       </tags>
   </entry>
   <entry>
-    <title>C++类构造函数 &amp; 析构函数</title>
+    <title>C++类构造函数&amp;析构函数</title>
     <url>/archives/7b6761ef.html</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 <h2 id="类的构造函数">类的构造函数</h2>
@@ -6082,8 +6523,8 @@ Front-matter 是位于文章最上方，用 <code>---</code> 分隔的区域。�
 <blockquote>
 <p><code>static B b</code>：<code>B</code>类的构造函数没有被调用的原因是因为 <code>B</code> 类对象 <code>b</code> 被声明为静态成员变量。静态成员变量在类的定义中只是声明，需要在类外部进行定义和初始化。</p>
 </blockquote>
-<h2 id="拷贝构造函数-赋值构造函数">拷贝构造函数 &amp; 赋值构造函数</h2>
-<p>拷贝构造函数和赋值构造函数都是C++中的特殊成员函数，用于在对象之间进行数据的拷贝操作。它们的定义和功能有所不同。</p>
+<h2 id="拷贝构造函数-拷贝赋值运算符">拷贝构造函数&amp;拷贝赋值运算符</h2>
+<p>拷贝构造函数和拷贝赋值运算符用于在对象之间进行数据的拷贝操作。它们的定义和功能有所不同。</p>
 <ol>
 <li class="lvl-3">
 <p>拷贝构造函数：拷贝构造函数用于创建一个新对象，该对象与另一个已存在的同类对象具有相同的值和属性。它的定义形式为：<code> 类名(const 类名&amp; 对象名)</code>。拷贝构造函数通常用于以下情况：</p>
@@ -6128,6 +6569,44 @@ Front-matter 是位于文章最上方，用 <code>---</code> 分隔的区域。�
 </li>
 <li class="lvl-2">
 <p>拷贝构造函数在对象创建、返回和参数传递时调用，赋值构造函数在对象赋值时调用。</p>
+</li>
+</ul>
+<h2 id="移动构造函数-移动赋值运算符">移动构造函数&amp;移动赋值运算符</h2>
+<p>在C++中，移动构造函数和移动赋值运算符的引入解决了对象复制时性能低下的问题，特别是当对象包含动态分配的资源时。移动操作允许资源的所有权从一个对象转移到另一个对象，而不必进行资源的深拷贝。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>移动构造函数</strong>：负责将资源从一个对象“移动”到另一个对象，通常通过“偷走”资源指针而不是复制资源。</p>
+</li>
+<li class="lvl-2">
+<p><strong>移动赋值运算符</strong>：与移动构造函数类似，但用于已存在的对象之间的资源转移。</p>
+</li>
+</ul>
+<p>当满足以下条件时，C++会使用移动操作：</p>
+<ol>
+<li class="lvl-3">
+<p>目标对象是右值（例如临时对象或返回的函数值）。</p>
+</li>
+<li class="lvl-3">
+<p>类提供了移动构造函数或移动赋值运算符。</p>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;utility&gt;</span> <span class="comment">// 用于 std::move</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span>* data; <span class="comment">// 动态分配的资源</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 构造函数</span></span><br><span class="line">    <span class="built_in">MyClass</span>(<span class="type">int</span> value) : <span class="built_in">data</span>(<span class="keyword">new</span> <span class="built_in">int</span>(value)) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;构造函数被调用。值: &quot;</span> &lt;&lt; *data &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 析构函数</span></span><br><span class="line">    ~<span class="built_in">MyClass</span>() &#123;</span><br><span class="line">        <span class="keyword">delete</span> data; <span class="comment">// 释放资源</span></span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;析构函数被调用。&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 拷贝构造函数</span></span><br><span class="line">    <span class="built_in">MyClass</span>(<span class="type">const</span> MyClass&amp; other) : <span class="built_in">data</span>(<span class="keyword">new</span> <span class="built_in">int</span>(*other.data)) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;拷贝构造函数被调用。&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 移动构造函数</span></span><br><span class="line">    <span class="built_in">MyClass</span>(MyClass&amp;&amp; other) <span class="keyword">noexcept</span> : <span class="built_in">data</span>(other.data) &#123;</span><br><span class="line">        other.data = <span class="literal">nullptr</span>; <span class="comment">// 将 other 的指针设为 nullptr，转移资源所有权</span></span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;移动构造函数被调用。&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 拷贝赋值运算符</span></span><br><span class="line">    MyClass&amp; <span class="keyword">operator</span>=(<span class="type">const</span> MyClass&amp; other) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == &amp;other) <span class="keyword">return</span> *<span class="keyword">this</span>; <span class="comment">// 自赋值检查</span></span><br><span class="line">        <span class="keyword">delete</span> data; <span class="comment">// 释放当前对象的资源</span></span><br><span class="line">        data = <span class="keyword">new</span> <span class="built_in">int</span>(*other.data); <span class="comment">// 深拷贝</span></span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;拷贝赋值运算符被调用。&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 移动赋值运算符</span></span><br><span class="line">    MyClass&amp; <span class="keyword">operator</span>=(MyClass&amp;&amp; other) <span class="keyword">noexcept</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == &amp;other) <span class="keyword">return</span> *<span class="keyword">this</span>; <span class="comment">// 自赋值检查</span></span><br><span class="line">        <span class="keyword">delete</span> data; <span class="comment">// 释放当前对象的资源</span></span><br><span class="line">        data = other.data; <span class="comment">// 转移资源所有权</span></span><br><span class="line">        other.data = <span class="literal">nullptr</span>; <span class="comment">// 将 other 的指针设为 nullptr</span></span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;移动赋值运算符被调用。&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 显示当前对象的值</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">show</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (data)</span><br><span class="line">            std::cout &lt;&lt; <span class="string">&quot;值: &quot;</span> &lt;&lt; *data &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            std::cout &lt;&lt; <span class="string">&quot;值: nullptr&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">MyClass <span class="title">obj1</span><span class="params">(<span class="number">10</span>)</span></span>;           <span class="comment">// 构造函数被调用</span></span><br><span class="line">    MyClass obj2 = std::<span class="built_in">move</span>(obj1); <span class="comment">// 移动构造函数被调用</span></span><br><span class="line"></span><br><span class="line">    obj2.<span class="built_in">show</span>();   <span class="comment">// obj2 应该有值</span></span><br><span class="line">    obj1.<span class="built_in">show</span>();   <span class="comment">// obj1 应该是 nullptr</span></span><br><span class="line"></span><br><span class="line">    <span class="function">MyClass <span class="title">obj3</span><span class="params">(<span class="number">20</span>)</span></span>;           <span class="comment">// 构造函数被调用</span></span><br><span class="line">    obj3 = std::<span class="built_in">move</span>(obj2);     <span class="comment">// 移动赋值运算符被调用</span></span><br><span class="line"></span><br><span class="line">    obj3.<span class="built_in">show</span>();   <span class="comment">// obj3 应该有值</span></span><br><span class="line">    obj2.<span class="built_in">show</span>();   <span class="comment">// obj2 应该是 nullptr</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>代码解析</p>
+<ol>
+<li class="lvl-3">
+<p><strong>移动构造函数 (<code>MyClass(MyClass&amp;&amp; other)</code>)</strong>: 将资源指针从<code>other</code>对象转移到当前对象，并将<code>other</code>的指针设为<code>nullptr</code>。</p>
+</li>
+<li class="lvl-3">
+<p><strong>移动赋值运算符 (<code>MyClass&amp; operator=(MyClass&amp;&amp; other)</code>)</strong>: 在进行自赋值检查后，释放当前对象的资源，然后将<code>other</code>的资源转移到当前对象，最后将<code>other</code>的指针设为<code>nullptr</code>。</p>
+</li>
+</ol>
+<p>运行结果</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>当使用<code>std::move</code>将<code>obj1</code>的所有权转移给<code>obj2</code>时，<code>obj2</code>获得了资源，<code>obj1</code>被设置为<code>nullptr</code>。</p>
+</li>
+<li class="lvl-2">
+<p>同样，<code>obj2</code>的资源转移给<code>obj3</code>后，<code>obj2</code>被设置为<code>nullptr</code>。</p>
 </li>
 </ul>
 <h2 id="Reference">Reference</h2>
