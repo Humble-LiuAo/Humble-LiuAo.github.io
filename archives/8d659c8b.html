@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liuaoao.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":false,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="什么是UML？ UML是Unified Model Language的缩写，中文是统一建模语言，是由一整套图表组成的标准化建模语言。 为什么要用UML？ 通过使用UML使得在软件开发之前， 对整个软件设计有更好的可读性，可理解性，从而降低开发风险。同时，也能方便各个开发人员之间的交流。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UML图">
+<meta property="og:url" content="https://liuaoao.top/archives/8d659c8b.html">
+<meta property="og:site_name" content="白茶不雨的博客">
+<meta property="og:description" content="什么是UML？ UML是Unified Model Language的缩写，中文是统一建模语言，是由一整套图表组成的标准化建模语言。 为什么要用UML？ 通过使用UML使得在软件开发之前， 对整个软件设计有更好的可读性，可理解性，从而降低开发风险。同时，也能方便各个开发人员之间的交流。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/jGsM2qNHgvy4akf.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/ItjAoJxNZR3g25e.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/RoKt7XhJVlQ6Dj5.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/GxmtVd8OpCirBKb.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/wEouPgRQF9nvs5S.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/anIKeB76Duz2iVN.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/gLFbMrBI5dCP2TD.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/7WKZUaOoVSYvkgd.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/FqoHSW6U7mYE8xV.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/165zwDkspAdWuSU.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/RlkGjc6KhwqegUr.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/O4J3M7sxYCHPaBL.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/I8xH3zqCvFA5mGc.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/tkIsNO7w2ySgFeX.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/jkSH89guOzXPN4Q.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/xlwZfE9ASBLF8v1.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/hSn4XTck7DjbBtF.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/XxRV96g3ClTAj81.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/l7adOcqBPH3tuMC.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/U6pE4Lr7IiKzc9q.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/AWQu8V1Gi32Ynqe.png">
+<meta property="og:image" content="https://s2.loli.net/2024/09/17/S4cB8GNgCKrQl31.png">
+<meta property="article:published_time" content="2024-09-17T13:34:57.000Z">
+<meta property="article:modified_time" content="2024-09-17T13:52:11.075Z">
+<meta property="article:author" content="白茶不雨">
+<meta property="article:tag" content="UML">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2024/09/17/jGsM2qNHgvy4akf.png">
+
+<link rel="canonical" href="https://liuaoao.top/archives/8d659c8b.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css">
+  <title>UML图 | 白茶不雨的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">白茶不雨的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">世间所有的相遇，都是久别重逢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">64</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">51</span></a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links" rel="section"><i class="fas fa-link fa-fw"></i>links</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/Humble-LiuAo" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener external nofollow noreferrer" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liuaoao.top/archives/8d659c8b.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="白茶不雨">
+      <meta itemprop="description" content="种一棵树最好的时间是十年前，其次是现在！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白茶不雨的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          UML图
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-09-17 21:34:57 / 修改时间：21:52:11" itemprop="dateCreated datePublished" datetime="2024-09-17T21:34:57+08:00">2024-09-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tools/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/8d659c8b.html" class="post-meta-item leancloud_visitors" data-flag-title="UML图" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/archives/8d659c8b.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/archives/8d659c8b.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-divider">|</span>
+    <i class="fa fa-thumb-tack"></i>
+    <font color=7D26CD>置顶</font>
+    <span class="post-meta-divider">|</span>
+<br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <meta name="referrer" content="no-referrer" />
+<h3 id="什么是UML？">什么是UML？</h3>
+<p><code>UML</code>是<code>Unified Model Language</code>的缩写，中文是<code>统一建模语言</code>，是由一整套图表组成的标准化建模语言。</p>
+<h3 id="为什么要用UML？">为什么要用UML？</h3>
+<p>通过使用UML使得在软件开发之前， 对整个软件设计有更好的可读性，可理解性，从而降低开发风险。同时，也能方便各个开发人员之间的交流。</p>
+<span id="more"></span>
+<p>UML提供了极富表达能力的建模语言，可以让软件开发过程中的不同人员分别得到自己感兴趣的信息。</p>
+<p><code>Page-Jones</code> 在《Fundamental Object-Oriented Design in UML》 一书中总结了UML的主要目的，如下：</p>
+<ol>
+<li class="lvl-3">
+<p>为用户提供现成的、有表现力的可视化建模]语言，以便他们开发和交换有意义的模型。</p>
+</li>
+<li class="lvl-3">
+<p>为核心概念提供可扩展性 (Extensibility) 和特殊化 (Specialization) 机制。</p>
+</li>
+<li class="lvl-3">
+<p>独立于特定的编程语言和开发过程。</p>
+</li>
+<li class="lvl-3">
+<p>为了解建模语言提供一个正式的基础。</p>
+</li>
+<li class="lvl-3">
+<p>鼓励面向对象工具市场的发展。</p>
+</li>
+<li class="lvl-3">
+<p>支持更高层次的开发概念，如协作，框架，模式和组件。</p>
+</li>
+<li class="lvl-3">
+<p>整合最佳的工作方法 (Best Practices)。</p>
+</li>
+</ol>
+<h3 id="UML图有哪些？">UML图有哪些？</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>UML图分为结构图和行为图。</p>
+</li>
+<li class="lvl-2">
+<p>结构图分为类图、轮廓图、组件图、组合结构图、对象图、部署图、包图。</p>
+</li>
+<li class="lvl-2">
+<p>行为图又分活动图、用例图、状态机图和交互图。</p>
+</li>
+<li class="lvl-2">
+<p>交互图又分为序列图、时序图、通讯图、交互概览图。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/jGsM2qNHgvy4akf.png" alt=""></p>
+<h3 id="UML图概览">UML图概览</h3>
+<p><img src="https://s2.loli.net/2024/09/17/ItjAoJxNZR3g25e.png" alt=""></p>
+<h3 id="什么是类图？">什么是类图？</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【概念】 类图是一切面向对象方法的核心建模工具。类图描述了系统中对象的类型以及它们之间存在的各种静态关系。</p>
+</li>
+<li class="lvl-2">
+<p>【目的】用来表示类、接口以及它们之间的静态结构和关系。</p>
+</li>
+</ul>
+<blockquote>
+<p>❝在类图中，常见的有以下几种关系。 ❞</p>
+</blockquote>
+<h4 id="泛化（Generalization）">泛化（Generalization）</h4>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【泛化关系】是一种继承关系，表示子类继承父类的所有特征和行为。</p>
+</li>
+<li class="lvl-2">
+<p>【箭头指向】带三角箭头的实线，箭头指向父类。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/RoKt7XhJVlQ6Dj5.png" alt=""></p>
+<h4 id="实现（Realization）">实现（Realization）</h4>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【实现关系】是一种类与接口的关系，表示类是接口所有特征和行为的实现。</p>
+</li>
+<li class="lvl-2">
+<p>【箭头指向】带三角箭头的虚线，箭头指向接口。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/GxmtVd8OpCirBKb.png" alt=""></p>
+<h4 id="关联（Association）">关联（Association）</h4>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【关联关系】是一种拥有关系，它使得一个类知道另一个类的属性和方法。</p>
+</li>
+<li class="lvl-2">
+<p>【代码体现】成员变量</p>
+</li>
+<li class="lvl-2">
+<p>【箭头指向】带普通箭头的实线，指向被拥有者。双向的关联可以有两个箭头，或者没有箭头。单向的关联有一个箭头。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/wEouPgRQF9nvs5S.png" alt=""></p>
+<blockquote>
+<p>❝自己买的车，想什么时候开就开。但是车是车，人是人，没有整体与部分的关系。 ❞</p>
+</blockquote>
+<h4 id="聚合（Aggregation）">聚合（Aggregation）</h4>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【聚合关系】是一种整体与部分的关系。且部分可以离开整体而单独存在。聚合关系是关联关系的一种，是强的关联关系；关联和聚合在语法上无法区分，必须考察具体的逻辑关系。</p>
+</li>
+<li class="lvl-2">
+<p>【代码体现】成员变量</p>
+</li>
+<li class="lvl-2">
+<p>【箭头指向】带空心菱形的实线，空心菱形指向整体。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/anIKeB76Duz2iVN.png" alt=""></p>
+<blockquote>
+<p>❝电脑有键盘才能输入信息，电脑是整体，键盘是部分，键盘也可以离开电脑，单纯的拿去敲。所以是聚合。 ❞</p>
+</blockquote>
+<h4 id="组合（Composition）">组合（Composition）</h4>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【组合关系】是一种整体与部分的关系。但部分不能离开整体而单独存在，组合关系是关联关系的一种，是比聚合关系还要强的关系。</p>
+</li>
+<li class="lvl-2">
+<p>【代码体现】成员变量</p>
+</li>
+<li class="lvl-2">
+<p>【箭头指向】带实心菱形的实线，实心菱形指向整体。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/gLFbMrBI5dCP2TD.png" alt=""></p>
+<blockquote>
+<p>❝鸟是整体，翅膀是部分。鸟死了，翅膀也就不能飞了。所以是组合。我们再看一下，下面的一组经典的聚合组合关系的例子。 ❞</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2024/09/17/7WKZUaOoVSYvkgd.png" alt=""></p>
+<blockquote>
+<p>❝一个公司拥有多个部门，公司和部门之间是组合关系，公司破产了，部门就不复存在了。部门和员工是聚合关系，部门被裁掉，员工就换下家了。 ❞</p>
+</blockquote>
+<h4 id="依赖（Dependency）">依赖（Dependency）</h4>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【依赖关系】是一种使用关系，即一个类的实现需要另一个类的协助。</p>
+</li>
+<li class="lvl-2">
+<p>【箭头指向】带普通箭头的虚线，普通箭头指向被使用者。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/FqoHSW6U7mYE8xV.png" alt=""></p>
+<blockquote>
+<p>❝老司机只管开车，车是谁的不重要，给什么车开什么车。 ❞</p>
+</blockquote>
+<h3 id="什么是组件图？">什么是组件图？</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【概念】描绘了系统中组件提供的、需要的接口、端口等，以及它们之间的关系。</p>
+</li>
+<li class="lvl-2">
+<p>【目的】用来展示各个组件之间的依赖关系。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/165zwDkspAdWuSU.png" alt=""></p>
+<blockquote>
+<p>❝订单系统组件依赖于客户资源库和库存系统组件。中间的虚线箭头表示依赖关系。另外两个符号，表示组件连接器，一个提供接口，一个需要接口。 ❞</p>
+</blockquote>
+<h3 id="什么是部署图？">什么是部署图？</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【概念】描述了系统内部的软件如何分布在不同的节点上。</p>
+</li>
+<li class="lvl-2">
+<p>【目的】用来表示软件和硬件的映射关系。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/RlkGjc6KhwqegUr.png" alt=""></p>
+<blockquote>
+<p>❝图中简单的表示，不同机器上面部署的不同软件。 ❞</p>
+</blockquote>
+<h3 id="什么是对象图？">什么是对象图？</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【概念】对象图是类图的一个实例，是系统在某个时间点的详细状态的快照。</p>
+</li>
+<li class="lvl-2">
+<p>【目的】用来表示两个或者多个对象之间在某一时刻之间的关系。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/O4J3M7sxYCHPaBL.png" alt=""></p>
+<blockquote>
+<p>❝图中就是描述的，某时间点<code>bat</code>这个公司有一个研发部，一个销售部，两个部门只有一个人<code>iisheng</code>。 ❞</p>
+</blockquote>
+<h3 id="什么是包图？">什么是包图？</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【概念】描绘了系统在包层面上的结构设计。</p>
+</li>
+<li class="lvl-2">
+<p>【目的】用来表示包和包之间的依赖关系。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/I8xH3zqCvFA5mGc.png" alt=""></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>《Use》关系表示使用依赖，<code>Web Shopping</code>依赖<code>Payment</code></p>
+</li>
+<li class="lvl-2">
+<p>《Merge》关系表示合并，<code>Web Shopping</code>合并了<code>Shopping Cart</code>就拥有了<code>Shopping Cart</code>的功能</p>
+</li>
+<li class="lvl-2">
+<p>《Access》关系表示私有引入，比如代码中的指定包名类名</p>
+</li>
+<li class="lvl-2">
+<p>《Import》关系表示公共引入，比如Java中的<code>import</code>之后，就可以直接使用<code>import</code>包中的类了。</p>
+</li>
+</ul>
+<h3 id="什么是组合结构图？">什么是组合结构图？</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【概念】描述了一个&quot;组合结构&quot;的内部结构，以及他们之间的关系。这个&quot;组合结构&quot;可以是系统的一部分，或者一个整体。</p>
+</li>
+<li class="lvl-2">
+<p>【目的】用来表示系统中逻辑上的&quot;组合结构&quot;。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/tkIsNO7w2ySgFeX.png" alt=""></p>
+<blockquote>
+<p>❝图中描述了<code>Car</code>是由车轴连接着的两个前面轮子、两个后面轮子，和引擎组合的。 ❞</p>
+</blockquote>
+<h3 id="什么是轮廓图？">什么是轮廓图？</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【概念】轮廓图提供了一种通用的扩展机制，用于为特定域和平台定制UML模型。</p>
+</li>
+<li class="lvl-2">
+<p>【目的】用于在特定领域中构建UML模型。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/jkSH89guOzXPN4Q.png" alt=""></p>
+<blockquote>
+<p>❝图中我们定义了一个简易的<code>EJB</code>的概要图。<code>Bean</code>是从<code>Component</code>扩展来的。<code>Entity Bean</code>和<code>Session Bean</code>继承了<code>Bean</code>。<code>EJB</code>拥有<code>Remote</code>和<code>Home</code>接口，和<code>JAR</code>包。 ❞</p>
+</blockquote>
+<h3 id="什么是用例图？">什么是用例图？</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【概念】用例图是指由参与者、用例，边界以及它们之间的关系构成的用于描述系统功能的视图。</p>
+</li>
+<li class="lvl-2">
+<p>【目的】用来描述整个系统的功能。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/xlwZfE9ASBLF8v1.png" alt=""></p>
+<p>用例图中包含以下三种关系：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>包含关系使用符号《include》，想要查看订单列表，前提是需要先登录。</p>
+</li>
+<li class="lvl-2">
+<p>扩展关系使用符号《extend》，基于查询订单列表的功能，可以增加一个导出数据的功能</p>
+</li>
+<li class="lvl-2">
+<p>泛化关系，子用例继承父用例所有结构、行为和关系。</p>
+</li>
+</ul>
+<h3 id="什么是活动图？">什么是活动图？</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【概念】描述了具体业务用例的实现流程。</p>
+</li>
+<li class="lvl-2">
+<p>【目的】用来表示用例实现的工作流程。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/hSn4XTck7DjbBtF.png" alt=""></p>
+<blockquote>
+<p>❝图中简单描述了，从开始到登录到查看订单列表，或者登录失败直接结束。 ❞</p>
+</blockquote>
+<h3 id="什么是状态机图？">什么是状态机图？</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【概念】状态机图对一个单独对象的行为建模，指明对象在它的整个生命周期里，响应不同事件时，执行相关事件的顺序。</p>
+</li>
+<li class="lvl-2">
+<p>【目的】用来表示指定对象，在整个生命周期，响应不同事件的不同状态。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/XxRV96g3ClTAj81.png" alt=""></p>
+<blockquote>
+<p>❝图中描述了，门在其生命周期内所经历的状态。 ❞</p>
+</blockquote>
+<h3 id="什么是序列图？">什么是序列图？</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【概念】序列图根据时间序列展示对象如何进行协作。它展示了在用例的特定场景中，对象如何与其他对象交互。</p>
+</li>
+<li class="lvl-2">
+<p>【目的】通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/l7adOcqBPH3tuMC.png" alt=""></p>
+<blockquote>
+<p>❝图中展示的是支付宝条码支付场景的序列图。其中，<code>loop</code>是循环，<code>alt</code>是选择，序列图的其他关系这里就不介绍了。 ❞</p>
+</blockquote>
+<h3 id="什么是通讯图？">什么是通讯图？</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【概念】描述了收发消息的对象的组织关系，强调对象之间的合作关系而不是时间顺序。</p>
+</li>
+<li class="lvl-2">
+<p>【目的】用来显示不同对象的关系。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/U6pE4Lr7IiKzc9q.png" alt=""></p>
+<blockquote>
+<p>❝图中展示了一个线上书店的通讯图，方框和小人表示生命线，不同生命线之间可以传递消息，消息前面的数字可以表达序列顺序。 ❞</p>
+</blockquote>
+<h3 id="什么是交互概览图？">什么是交互概览图？</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【概念】交互概览图与活动图类似，但是它的节点是交互图。</p>
+</li>
+<li class="lvl-2">
+<p>【目的】提供了控制流的概述。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/AWQu8V1Gi32Ynqe.png" alt=""></p>
+<blockquote>
+<p>❝图中表示一个调度系统的交互概览图，跟活动图很像。其中<code>sd</code>的框代表具体的交互流程，<code>ref</code>框代表使用交互。 ❞</p>
+</blockquote>
+<h3 id="什么是时序图？">什么是时序图？</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>【概念】时序图被用来显示随时间变化，一个或多个元素的值或状态的更改。也显示时控事件之间的交互和管理它们的时间和期限约束。</p>
+</li>
+<li class="lvl-2">
+<p>【目的】用来表示元素状态或者值随时间的变化而变化的视图。</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/09/17/S4cB8GNgCKrQl31.png" alt=""></p>
+<blockquote>
+<p>❝图中展示了老年痴呆病人随着时间的变化病情的变化。 ❞</p>
+</blockquote>
+<h3 id="总结">总结</h3>
+<p>学习UML，我们没必要纠结比如像聚合关系是带箭头还是不带箭头，这样的问题。更重要的是UML图所给我们带来的画图思想，让我们画UML图或者其他图能让其他人更好的理解我们的设计思想。</p>
+<p>当然，你要是明确知道带箭头或者不带箭头哪个是错误的，欢迎留言告诉我。</p>
+<p>参考文献：</p>
+<p>[1]:《Learning UML 2.0》 [2]: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.uml-diagrams.org/">https://www.uml-diagrams.org/</a> [3]: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.visual-paradigm.com/guide/">https://www.visual-paradigm.com/guide/</a> [4]: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://sparxsystems.com/resources/tutorials/">https://sparxsystems.com/resources/tutorials/</a></p>
+<p>&lt; END &gt;</p>
+<blockquote>
+<p>转载于：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://cloud.tencent.com/developer/article/1684161">一文掌握14种UML图</a></p>
+</blockquote>
+<p>转载于：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://cloud.tencent.com/developer/article/1684161?pos=comment">一文掌握14种UML图</a></p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">推荐文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\d5c3c62.html" rel="bookmark">Makefile基础及进阶</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\7762eb42.html" rel="bookmark">GCC&Gdb基础教程</a></div>
+    </li>
+  </ul>
+<div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,douban,qzone,facebook,twitter"
+      
+      
+        data-wechat-qrcode-title="share.title"
+      
+      
+        data-wechat-qrcode-helper="share.prompt"
+      
+    >
+    </div>
+  </div>
+  <script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js"></script><div>
+    
+        <div style="text-align:center;color: #ccc;font-size:20px;">
+            ------------------------------- 本文结束啦❤<i class="fa fa-heart-o"></i>感谢您阅读-------------------------------
+     </div>
+    
+</div>
+        <div class="reward-container">
+  <div>赞赏一杯咖啡</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="白茶不雨 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="白茶不雨 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>白茶不雨
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://liuaoao.top/archives/8d659c8b.html" title="UML图">https://liuaoao.top/archives/8d659c8b.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/UML/" rel="tag"><i class="fa fa-tag"></i> UML</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/1ef8d4dc.html" rel="prev" title="C++类作用域和this指针">
+      <i class="fa fa-chevron-left"></i> C++类作用域和this指针
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFUML%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是UML？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8UML%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">为什么要用UML？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML%E5%9B%BE%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">UML图有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML%E5%9B%BE%E6%A6%82%E8%A7%88"><span class="nav-number">4.</span> <span class="nav-text">UML图概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%B1%BB%E5%9B%BE%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">什么是类图？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%9B%E5%8C%96%EF%BC%88Generalization%EF%BC%89"><span class="nav-number">5.1.</span> <span class="nav-text">泛化（Generalization）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%EF%BC%88Realization%EF%BC%89"><span class="nav-number">5.2.</span> <span class="nav-text">实现（Realization）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E8%81%94%EF%BC%88Association%EF%BC%89"><span class="nav-number">5.3.</span> <span class="nav-text">关联（Association）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%81%9A%E5%90%88%EF%BC%88Aggregation%EF%BC%89"><span class="nav-number">5.4.</span> <span class="nav-text">聚合（Aggregation）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E5%90%88%EF%BC%88Composition%EF%BC%89"><span class="nav-number">5.5.</span> <span class="nav-text">组合（Composition）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%EF%BC%88Dependency%EF%BC%89"><span class="nav-number">5.6.</span> <span class="nav-text">依赖（Dependency）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BB%84%E4%BB%B6%E5%9B%BE%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">什么是组件图？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%83%A8%E7%BD%B2%E5%9B%BE%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">什么是部署图？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%AF%B9%E8%B1%A1%E5%9B%BE%EF%BC%9F"><span class="nav-number">8.</span> <span class="nav-text">什么是对象图？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8C%85%E5%9B%BE%EF%BC%9F"><span class="nav-number">9.</span> <span class="nav-text">什么是包图？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BB%84%E5%90%88%E7%BB%93%E6%9E%84%E5%9B%BE%EF%BC%9F"><span class="nav-number">10.</span> <span class="nav-text">什么是组合结构图？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%BD%AE%E5%BB%93%E5%9B%BE%EF%BC%9F"><span class="nav-number">11.</span> <span class="nav-text">什么是轮廓图？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%94%A8%E4%BE%8B%E5%9B%BE%EF%BC%9F"><span class="nav-number">12.</span> <span class="nav-text">什么是用例图？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B4%BB%E5%8A%A8%E5%9B%BE%EF%BC%9F"><span class="nav-number">13.</span> <span class="nav-text">什么是活动图？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%8A%B6%E6%80%81%E6%9C%BA%E5%9B%BE%EF%BC%9F"><span class="nav-number">14.</span> <span class="nav-text">什么是状态机图？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BA%8F%E5%88%97%E5%9B%BE%EF%BC%9F"><span class="nav-number">15.</span> <span class="nav-text">什么是序列图？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%80%9A%E8%AE%AF%E5%9B%BE%EF%BC%9F"><span class="nav-number">16.</span> <span class="nav-text">什么是通讯图？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%A4%E4%BA%92%E6%A6%82%E8%A7%88%E5%9B%BE%EF%BC%9F"><span class="nav-number">17.</span> <span class="nav-text">什么是交互概览图？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%97%B6%E5%BA%8F%E5%9B%BE%EF%BC%9F"><span class="nav-number">18.</span> <span class="nav-text">什么是时序图？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">19.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="白茶不雨"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">白茶不雨</p>
+  <div class="site-description" itemprop="description">种一棵树最好的时间是十年前，其次是现在！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Humble-LiuAo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Humble-LiuAo" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1743185682@qq.com" title="E-Mail → mailto:1743185682@qq.com" rel="noopener external nofollow noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+  <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+  <div class="widget-wrap">
+    <div id="myCanvasContainer" class="widget tagcloud">
+      <canvas width="250" height="250" id="resCanvas" style="width:100%">
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Anaconda/" rel="tag">Anaconda</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/" rel="tag">CMD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-mining/" rel="tag">Data mining</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCC/" rel="tag">GCC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gdb/" rel="tag">Gdb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter/" rel="tag">Jupyter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LaTeX/" rel="tag">LaTeX</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSI/" rel="tag">OSI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pr/" rel="tag">Pr</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ps/" rel="tag">Ps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL/" rel="tag">STL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP&#x2F;IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UML/" rel="tag">UML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UTF-8/" rel="tag">UTF-8</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/" rel="tag">VSCode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/explicit/" rel="tag">explicit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/" rel="tag">makefile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E6%8C%87%E9%92%88/" rel="tag">this指针</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/" rel="tag">二进制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%90%86/" rel="tag">代理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" rel="tag">内网穿透</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%85%E8%81%94/" rel="tag">内联</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8/" rel="tag">初始化列表</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/" rel="tag">参数传递</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8B%E5%85%83/" rel="tag">友元</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E6%80%81/" rel="tag">多态</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E5%80%BC%E4%B8%8E%E5%8F%B3%E5%80%BC/" rel="tag">左值与右值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" rel="tag">时间复杂度</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" rel="tag">构造函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" rel="tag">析构函数</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%9D%BF/" rel="tag">模板</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D/" rel="tag">浅拷贝与深拷贝</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%AE%E7%82%B9%E6%95%B0/" rel="tag">浮点数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" rel="tag">空间复杂度</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">类作用域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" rel="tag">类型转换</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%A7%E6%89%BF/" rel="tag">继承</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%81%9A%E5%90%88%E5%88%9D%E5%A7%8B%E5%8C%96/" rel="tag">聚合初始化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%99%9A%E5%87%BD%E6%95%B0/" rel="tag">虚函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90/" rel="tag">语义分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="tag">运算符</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" rel="tag">运算符重载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a><span class="tag-list-count">1</span></li></ul>
+      </canvas>
+    </div>
+  </div>
+
+
+
+
+<div style="">
+  <canvas id="canvas" style="width:80%; height:80%">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=430685732&auto=0&height=66"></iframe>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">白茶不雨</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">236k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:35</span>
+</div><!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>  When you want to give up，remember why you started！
+<script>
+	var now = new Date();
+	function createtime() {
+		var grt= new Date("03/07/2023 00:00:00");//此处修改你的建站时间或者网站上线时间
+		now.setTime(now.getTime()+250);
+		days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+		hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+		if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+		mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+		seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+		snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+		document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+		document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()",250);
+</script>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://liuaoao.top/archives/8d659c8b.html',]
+      });
+      });
+  </script>
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'hpWRbFYPjuqQOOWegUU9wApt-gzGzoHsz',
+      appKey     : 'ijVoqxTEPQ3UW87ZGimvY741',
+      placeholder: "有什么问题，欢迎留言指正与交流...",
+      avatar     : 'retro',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":5,"vOffset":120},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
