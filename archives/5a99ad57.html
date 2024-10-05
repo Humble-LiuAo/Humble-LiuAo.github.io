@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liuaoao.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":false,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="基本概念 我们先看看gstreamer结构体中的一些对象的继承关系图： GObject  +----GstElement（包含GstBus,GstState, List of pad、GstClock等）    +----GstBin （元件的容器，包含GstClock，子bus等）      +----GstPipeline（包含stream_time等）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gstreamer入坑">
+<meta property="og:url" content="https://liuaoao.top/archives/5a99ad57.html">
+<meta property="og:site_name" content="白茶不雨的博客">
+<meta property="og:description" content="基本概念 我们先看看gstreamer结构体中的一些对象的继承关系图： GObject  +----GstElement（包含GstBus,GstState, List of pad、GstClock等）    +----GstBin （元件的容器，包含GstClock，子bus等）      +----GstPipeline（包含stream_time等）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2024/10/05/kFaT3GhBJxUI5rc.png">
+<meta property="og:image" content="https://s2.loli.net/2024/10/05/yANzU2GcIKboMB7.png">
+<meta property="article:published_time" content="2024-10-05T12:35:58.000Z">
+<meta property="article:modified_time" content="2024-10-05T12:48:33.213Z">
+<meta property="article:author" content="白茶不雨">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="Gstreamer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2024/10/05/kFaT3GhBJxUI5rc.png">
+
+<link rel="canonical" href="https://liuaoao.top/archives/5a99ad57.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css">
+  <title>Gstreamer入坑 | 白茶不雨的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">白茶不雨的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">世间所有的相遇，都是久别重逢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">65</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">52</span></a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links" rel="section"><i class="fas fa-link fa-fw"></i>links</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/Humble-LiuAo" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener external nofollow noreferrer" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liuaoao.top/archives/5a99ad57.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="白茶不雨">
+      <meta itemprop="description" content="种一棵树最好的时间是十年前，其次是现在！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白茶不雨的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Gstreamer入坑
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-10-05 20:35:58 / 修改时间：20:48:33" itemprop="dateCreated datePublished" datetime="2024-10-05T20:35:58+08:00">2024-10-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">后端开发</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/5a99ad57.html" class="post-meta-item leancloud_visitors" data-flag-title="Gstreamer入坑" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/archives/5a99ad57.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/archives/5a99ad57.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>10k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <meta name="referrer" content="no-referrer" />
+<h2 id="基本概念">基本概念</h2>
+<p>我们先看看gstreamer结构体中的一些对象的继承关系图：</p>
+<pre><code>GObject
+ +----GstElement（包含GstBus,GstState, List of pad、GstClock等）
+   +----GstBin （元件的容器，包含GstClock，子bus等）
+     +----GstPipeline（包含stream_time等）
+</code></pre>
+<span id="more"></span>
+<p>另外几个类关系：</p>
+<p>GObject<br>
+±— GstPad</p>
+<p>GObject<br>
+±— GstBus</p>
+<p>GstObject<br>
+±— GstPluginFeature<br>
+±— GstElementFactory（factory that the element was created from，_GstElementClass保存有该结构的一个指针）</p>
+<p>我们看一个pipeline的解释和示例图：</p>
+<p><strong>Pipeline</strong></p>
+<p><em>A pipeline is a special bin subclass that provides the following features to its</em><br>
+<em>children:</em></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><em>Select and manage a global clock for all its children.</em></p>
+</li>
+<li class="lvl-2">
+<p><em>Manage running_time based on the selected clock. Running_time is the elapsed</em><br>
+<em>time the pipeline spent in the PLAYING state and is used for</em><br>
+<em>synchronisation.</em></p>
+</li>
+<li class="lvl-2">
+<p><em>Manage latency in the pipeline.</em></p>
+</li>
+<li class="lvl-2">
+<p><em>Provide means for elements to comunicate with the application by the GstBus.</em></p>
+</li>
+<li class="lvl-2">
+<p><em>Manage the global state of the elements such as Errors and end-of-stream.</em></p>
+</li>
+</ul>
+<p><em>Normally the application creates one pipeline that will manage all the elements</em><br>
+<em>in the application.</em></p>
+<p>±----------------------------------------------------------+<br>
+|    ----------&gt; downstream -------------------&gt;            |<br>
+|                                                           |<br>
+| pipeline                                                  |<br>
+| ±--------+   ±---------+   ±----------+   ±---------+ |<br>
+| | filesrc |   | oggdemux |   | vorbisdec |   | alsasink | |<br>
+| |        src-sink       src-sink        src-sink        | |<br>
+| ±--------+   ±---------+   ±----------+   ±---------+ |<br>
+|                                                           |<br>
+|    &lt;---------&lt; upstream &lt;-------------------&lt;             |<br>
+±----------------------------------------------------------+</p>
+<p><em>The application does not have to manage any of the complexities of the</em><br>
+<em>actual dataflow/decoding/conversions/synchronisation etc. but only calls high</em><br>
+<em>level functions on the pipeline object such as PLAY/PAUSE/STOP.</em></p>
+<p><em>GStreamer supports two possible types of dataflow, the push and pull model. In the</em><br>
+<em>push model, an upstream element sends data to a downstream element by calling a</em><br>
+<em>method on a sinkpad. In the pull model, a downstream element requests data from</em><br>
+<em>an upstream element by calling a method on a source pad.</em></p>
+<p><em>The most common dataflow is the push model. The pull model can be used in specific</em><br>
+<em>circumstances by demuxer elements. The pull model can also be used by low latency</em><br>
+<em>audio applications.</em></p>
+<p><em>The data passed between pads is encapsulated in Buffers. The buffer contains a</em><br>
+<em>pointer to the actual data and also metadata describing the data.</em></p>
+<p><img src="https://s2.loli.net/2024/10/05/kFaT3GhBJxUI5rc.png" alt=""></p>
+<p>可见，pipeline的主要布局是elements, Bins 和pads.把上述几个对象继承关系牢记脑海中。PADs是连接器。pipeline的各对象之间的通信通过缓存buffers、事件event、查询query、消息message机制实现， 调度通过时钟和队列实现。</p>
+<p><img src="https://s2.loli.net/2024/10/05/yANzU2GcIKboMB7.png" alt=""></p>
+<h3 id="元件（Elements）">元件（Elements）</h3>
+<p>元件(element)是GStreamer中最重要的概念。它是整个gstreamer框架中最重要的一个对象，它定义了pipeline的结构。你可以通过创建一系列的元件(Elements),并把它们连接起来,从而让数据流在这个被连接的各个元件(Elements)之间传输。每个元件(Elements)都有一个特殊的函数接口,对于有些元件(Elements)的函数接口它们是用于能够读取文件的数据,解码文件数据的。而有些元件(Elements)的函数接口只是输出相应的数据到具体的设备上(例如,声卡设备)。你可以将若干个元件(Elements)连接在一起,从而创建一个管道(pipeline)来完成一个特殊的任务,例如,媒体播放或者录音。GStreamer已经默认安装了很多有用的元件(Elements),通过使用这些元件(Elements)你能够构建一个具有多种功能的应用程序。</p>
+<p>每个元件包含有多个gstPad(衬垫)。这些gstpad随后用于元件（element）之间的连接和通信，并最终构成一个可以传递和处理数据的管道pipeline.几乎所有的decoder,encoder,demuxer,video or audio output都实际上是一个GstElement。（ 注：面向对象里的is-a 关系）</p>
+<p>gstelement实例的结构如下所示,  添加和删除pad的方法在gstelement的类结构体中有定义，这里从略。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">GstElement</span> &#123;</span></span><br><span class="line">  GstObject  object;  <span class="comment">// 继承自 GstObject</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/*&lt; public &gt;*/</span> <span class="comment">/* with LOCK */</span></span><br><span class="line">  GStaticRecMutex *state_lock; <span class="comment">// 用于串行化执行 gst_element_set_state()</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* element state */</span></span><br><span class="line">  GCond *state_cond;  <span class="comment">// 用于状态变化完成时发射通知信号</span></span><br><span class="line">  guint32 state_cookie;  <span class="comment">// 用于检测 gst_element_set_state() 和 gst_element_get_state() 的并发执行</span></span><br><span class="line"></span><br><span class="line">  GstState current_state;  <span class="comment">// 元件当前所处状态   </span></span><br><span class="line">  GstState next_state;     <span class="comment">// 元件的下一个状态。如果正处于正确的状态，该值可以为 GST_STATE_VOID_PENDING</span></span><br><span class="line">  GstState pending_state;  <span class="comment">// 元件的应趋向的最终状态。如果正处于正确的状态，该值可以为 GST_STATE_VOID_PENDING</span></span><br><span class="line">  GstStateChangeReturn last_return;  <span class="comment">// 元件状态改变时，最后的那个返回值</span></span><br><span class="line"></span><br><span class="line">  GstBus *bus;  <span class="comment">// 包含的 GstBus，该总线由父元素或应用程序提供。GstPipeline 有自己的 bus</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* allocated clock */</span></span><br><span class="line">  GstClock *clock;  <span class="comment">// 时钟，通常由顶级的 gstpipeline 管道提供</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">/* element 状态刚变为 playing 时的时钟时间，播放状态下时钟时间减去 base_time 可以获得流时间（即播放时间，运行时间） */</span></span><br><span class="line">  GstClockTimeDiff base_time;  <span class="comment">/* NULL/READY: 0 - PAUSED: current time - PLAYING: difference to clock */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* element pads, these lists can only be iterated while holding</span></span><br><span class="line"><span class="comment">   * the LOCK or checking the cookie after each LOCK. */</span></span><br><span class="line">  guint16 numpads;  <span class="comment">// 元件的 pad 数量，包含 source 和 sink pads</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 衬垫列表（每个元件都包含有 pad），一个衬垫 (Pads) 可以被看作是一个元件 (element) 插座或者端口，元件之间的链接依靠这些衬垫完成 */</span></span><br><span class="line">  GList *pads;   </span><br><span class="line"></span><br><span class="line">  guint16 numsrcpads;</span><br><span class="line">  GList *srcpads;</span><br><span class="line">  guint16 numsinkpads;</span><br><span class="line">  GList *sinkpads;</span><br><span class="line">  guint32 pads_cookie;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*&lt; private &gt;*/</span></span><br><span class="line">  <span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">      <span class="comment">/* state set by application */</span></span><br><span class="line">      GstState target_state;  <span class="comment">// 应用程序设置的目标状态</span></span><br><span class="line">    &#125; ABI;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 预留字段，用于 ABI 兼容性 */</span></span><br><span class="line">    gpointer _gst_reserved[GST_PADDING + <span class="number">0</span>]; </span><br><span class="line">  &#125; abidata;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="箱柜（Bins）和管道（pipelines）">箱柜（Bins）和管道（pipelines）</h3>
+<p>箱柜(Bins)是一个可装载一系列元件(element)的容器。管道(pipelines)是箱柜(Bins)的一个特殊的子类型,管道(pipelines)可以操作包含在它自身内部的所有元件(element)。gstbin的实例结构体定义如下：</p>
+<p><em>A bin is an element subclass and acts as a container for other elements so that multiple</em><br>
+<em>elements can be combined into one element.</em>*</p>
+<p>*<em>A bin can have its own source and sinkpads by ghostpadding one or more of its children’s</em><br>
+<em>pads to itself.</em></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">GstBin</span> &#123;</span></span><br><span class="line">  GstElement element;  </span><br><span class="line"></span><br><span class="line">  <span class="comment">/*&lt; public &gt;*/</span> <span class="comment">/* with LOCK */</span></span><br><span class="line">  <span class="comment">/* the number of children in this bin */</span></span><br><span class="line">  gint numchildren; <span class="comment">// 子元件的数量</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">/* the list of children in this bin */</span></span><br><span class="line">  GList *children; <span class="comment">// 该 bin 中子元件的列表</span></span><br><span class="line"></span><br><span class="line">  guint32 children_cookie; <span class="comment">// 每当 @children 变化时更新</span></span><br><span class="line"></span><br><span class="line">  GstBus *child_bus; <span class="comment">// 处理子元件消息的内部总线</span></span><br><span class="line">  GList *messages; <span class="comment">// 排队和缓存的消息</span></span><br><span class="line"></span><br><span class="line">  gboolean polling; <span class="comment">// bin 正在计算其状态</span></span><br><span class="line">  gboolean state_dirty; <span class="comment">// bin 需要重新计算其状态 (已弃用)</span></span><br><span class="line"></span><br><span class="line">  gboolean clock_dirty; <span class="comment">// bin 需要选择一个新时钟</span></span><br><span class="line">  GstClock *provided_clock; <span class="comment">// 上次选择的时钟</span></span><br><span class="line">  GstElement *clock_provider; <span class="comment">// 提供 @provided_clock 的元件</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/*&lt; private &gt;*/</span></span><br><span class="line">  GstBinPrivate *priv; <span class="comment">// 私有结构体</span></span><br><span class="line"></span><br><span class="line">  gpointer _gst_reserved[GST_PADDING - <span class="number">1</span>]; <span class="comment">// 预留字段</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">GstPipeline</span> &#123;</span></span><br><span class="line">  GstBin bin; <span class="comment">// 继承自 GstBin</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/*&lt; public &gt;*/</span> <span class="comment">/* with LOCK */</span></span><br><span class="line">  <span class="comment">/* The fixed clock of the pipeline, used when GST_PIPELINE_FLAG_FIXED_CLOCK is set. */</span></span><br><span class="line">  GstClock *fixed_clock; <span class="comment">// 管道的固定时钟</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* The stream time of the pipeline. A better name for this property would be the running_time,</span></span><br><span class="line"><span class="comment">     the total time spent in the PLAYING state without being flushed. </span></span><br><span class="line"><span class="comment">     (deprecated, use the start_time on GstElement). </span></span><br><span class="line"><span class="comment">     注意到 gstelement 实例结构里有一个 base_time. 它们是什么关系呢？</span></span><br><span class="line"><span class="comment">     当前时间与 base_time 相减可以得到 running-time (运行时间)。</span></span><br><span class="line"><span class="comment">     在播放速率一致的情况下，这个运行时间与 stream_time 是相等的！ </span></span><br><span class="line"><span class="comment">     element 可以提供一个时钟，管道 pipeline 可以选择一个时钟，所有的接收器 sinks 都要与之同步！ */</span></span><br><span class="line">  GstClockTime stream_time; <span class="comment">// 管道的流时间</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Extra delay added to base_time to compensate for computing delays when setting elements to PLAYING */</span></span><br><span class="line">  GstClockTime delay; <span class="comment">// 额外的延迟，添加到 base_time 以补偿在设置元件为 PLAYING 时的计算延迟</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/*&lt; private &gt;*/</span></span><br><span class="line">  GstPipelinePrivate *priv; <span class="comment">// 私有结构体</span></span><br><span class="line"></span><br><span class="line">  gpointer _gst_reserved[GST_PADDING - <span class="number">1</span>]; <span class="comment">// 预留字段</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>因为箱柜(Bins)本身又是元件(element)的子集,所以你能够象操作普通元件(element)一样的操作一个箱柜(Bins),通过这种方法可以降低你的应用程序的复杂度。你可以改变一个箱柜(Bins)的状态来改变箱柜(Bins)内部所有元件(element)的状态。箱柜(Bins)可以发送总线消息(bus messages)给它的子集元件(element)(这些消息包括:错误消息(error messages),标签消息(tag messages),EOS消息(EOS messages))。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">GstPipelineClass</span> &#123;</span></span><br><span class="line">  GstBinClass parent_class;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*&lt; private &gt;*/</span></span><br><span class="line">  gpointer _gst_reserved[GST_PADDING];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>管道(pipeline)是高级的箱柜(Bins)。当你设定管道的暂停或者播放状态的时候,数据流将开始流动,并且媒体数据处理也开始处理。一旦开始,管道将在一个单独的线程中运行,直到被停止或者数据流播放完毕。</p>
+<h3 id="衬垫（Pads）">衬垫（Pads）</h3>
+<p>衬垫在GStreamer中被用于多个元件的链接,从而让数据流能在这样的链接中流动。一个衬垫(Pads)可以被看作是一个元件(element)插座或者端口,元件(element)之间的链接就是依靠着衬垫(Pads)。衬垫(Pads)有处理特殊数据的能力:一个衬垫(Pads)能够限制数据流类型的通过。链接成功的条件是：只有在两个衬垫(Pads)允许通过的数据类型一致的时候才被建立。数据类型的设定使用了一个叫做caps negotiation的方法。数据类型被为一个GstCaps变量所描述。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">GstCaps</span> &#123;</span></span><br><span class="line">  GType type; <span class="comment">// 类型</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/*&lt; public &gt;*/</span> <span class="comment">/* with COW */</span></span><br><span class="line">  <span class="comment">/* refcounting */</span></span><br><span class="line">  gint refcount; <span class="comment">// 引用计数</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/*&lt; public &gt;*/</span> <span class="comment">/* read only */</span></span><br><span class="line">  GstCapsFlags flags; <span class="comment">// 标志位</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/*&lt; private &gt;*/</span></span><br><span class="line">  GPtrArray *structs; <span class="comment">// 存储结构体的指针数组</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 注释，方便理解 ----------- </span></span><br><span class="line"><span class="comment">     struct _GPtrArray &#123;</span></span><br><span class="line"><span class="comment">       gpointer *pdata; // 指向数据的指针</span></span><br><span class="line"><span class="comment">       guint len; // 数组长度</span></span><br><span class="line"><span class="comment">     &#125;; */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/*&lt; private &gt;*/</span></span><br><span class="line">  gpointer _gst_reserved[GST_PADDING]; <span class="comment">// 预留字段</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>下面的这个比喻可能对你理解衬垫(Pads)有所帮助。一个衬垫(Pads)很象一个物理设备上的插头。例如一个家庭影院系统。一个家庭影院系统由一个功放(amplifier),一个DVD机,还有一个无声的视频投影组成。我们需要连接DVD机到功放(amplifier),因为两个设备都有音频插口;我们还需要连接投影机到DVD机上,因为两个设备都有视频处理插口。但我们很难将投影机与功放(amplifier)连接起来,因为他们之间处理的是不同的插口。GStreamer衬垫(Pads)的作用跟家庭影院系统中的插口是一样的。</p>
+<p>对于大部分情况,所有的数据流都是在链接好的元素之间流动。数据向元件(element)以外流出可以通过一个或者多个 source衬垫(Pads),元件(element)接受数据是通过一个或者多个sink衬垫(Pads)来完成的。Source元件(element)和sink元件(element)分别有且仅有一个 sink 衬垫(Pads)或者source衬垫(Pads)。数据在这里代表的是缓冲区(buffers) (<a href="https://link.csdn.net/?target=http%3A%2F%2Fgstreamer.freedesktop.org%2Fdata%2Fdoc%2Fgstreamer%2Fstable%2Fgstreamer%2Fhtml%2Fgstreamer-GstBuffer.html%3Flogin%3Dfrom_csdn" rel="external nofollow noreferrer">GstBuffer对象描述了数据的缓冲区(buffers)的信息</a>)和事件(events) (<a href="https://link.csdn.net/?target=http%3A%2F%2Fgstreamer.freedesktop.org%2Fdata%2Fdoc%2Fgstreamer%2Fstable%2Fgstreamer%2Fhtml%2Fgstreamer-GstEvent.html%3Flogin%3Dfrom_csdn" rel="external nofollow noreferrer">GstEvent对象描述了数据的事件(events)信息</a>)。</p>
+<p>GstPad结构体字段：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * GstPad:</span></span><br><span class="line"><span class="comment"> * @element_private: private data owned by the parent element</span></span><br><span class="line"><span class="comment"> * @padtemplate: padtemplate for this pad</span></span><br><span class="line"><span class="comment"> * @direction: the direction of the pad, cannot change after creating</span></span><br><span class="line"><span class="comment"> *             the pad.</span></span><br><span class="line"><span class="comment"> * @stream_rec_lock: recursive stream lock of the pad, used to protect</span></span><br><span class="line"><span class="comment"> *                   the data used in streaming.</span></span><br><span class="line"><span class="comment"> * @task: task for this pad if the pad is actively driving dataflow.</span></span><br><span class="line"><span class="comment"> * @preroll_lock: lock used when prerolling</span></span><br><span class="line"><span class="comment"> * @preroll_cond: conf to signal preroll</span></span><br><span class="line"><span class="comment"> * @block_cond: conditional to signal pad block</span></span><br><span class="line"><span class="comment"> * @block_callback: callback for the pad block if any</span></span><br><span class="line"><span class="comment"> * @block_data: user data for @block_callback</span></span><br><span class="line"><span class="comment"> * @caps: the current caps of the pad</span></span><br><span class="line"><span class="comment"> * @getcapsfunc: function to get caps of the pad</span></span><br><span class="line"><span class="comment"> * @setcapsfunc: function to set caps on the pad</span></span><br><span class="line"><span class="comment"> * @acceptcapsfunc: function to check if pad can accept caps</span></span><br><span class="line"><span class="comment"> * @fixatecapsfunc: function to fixate caps</span></span><br><span class="line"><span class="comment"> * @activatefunc: pad activation function</span></span><br><span class="line"><span class="comment"> * @activatepushfunc: function to activate/deactivate pad in push mode</span></span><br><span class="line"><span class="comment"> * @activatepullfunc: function to activate/deactivate pad in pull mode</span></span><br><span class="line"><span class="comment"> * @linkfunc: function called when pad is linked</span></span><br><span class="line"><span class="comment"> * @unlinkfunc: function called when pad is unlinked</span></span><br><span class="line"><span class="comment"> * @peer: the pad this pad is linked to</span></span><br><span class="line"><span class="comment"> * @sched_private: private storage for the scheduler</span></span><br><span class="line"><span class="comment"> * @chainfunc: function to chain data to pad</span></span><br><span class="line"><span class="comment"> * @checkgetrangefunc: function to check if pad can operate in pull mode</span></span><br><span class="line"><span class="comment"> * @getrangefunc: function to get a range of data from a pad</span></span><br><span class="line"><span class="comment"> * @eventfunc: function to send an event to a pad</span></span><br><span class="line"><span class="comment"> * @mode: current activation mode of the pad</span></span><br><span class="line"><span class="comment"> * @querytypefunc: get list of supported queries</span></span><br><span class="line"><span class="comment"> * @queryfunc: perform a query on the pad</span></span><br><span class="line"><span class="comment"> * @intlinkfunc: get the internal links of this pad</span></span><br><span class="line"><span class="comment"> * @bufferallocfunc: function to allocate a buffer for this pad</span></span><br><span class="line"><span class="comment"> * @do_buffer_signals: counter counting installed buffer signals</span></span><br><span class="line"><span class="comment"> * @do_event_signals: counter counting installed event signals</span></span><br><span class="line"><span class="comment"> * @iterintlinkfunc: get the internal links iterator of this pad</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * The #GstPad structure. Use the functions to update the variables.</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<h2 id="在Linux上安装GStreamer">在Linux上安装GStreamer</h2>
+<h3 id="先决条件">先决条件</h3>
+<p>GStreamer 已包含在大多数Linux发行版中。建议使用最新的快速更新的发行版（如Fedora、Ubuntu非LTS版、Debian sid或OpenSuse）来获取最近版本的GStreamer。</p>
+<div class="note warning">
+            <p>确保具有超级用户（root）权限来安装GStreamer。</p>
+          </div>
+<h3 id="在Fedora上安装GStreamer">在Fedora上安装GStreamer</h3>
+<p>在终端中运行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dnf install gstreamer1-devel gstreamer1-plugins-base-tools gstreamer1-doc \</span><br><span class="line">gstreamer1-plugins-base-devel gstreamer1-plugins-good gstreamer1-plugins-good-extras \</span><br><span class="line">gstreamer1-plugins-ugly gstreamer1-plugins-bad-free gstreamer1-plugins-bad-free-devel \</span><br><span class="line">gstreamer1-plugins-bad-free-extras</span><br></pre></td></tr></table></figure>
+<h3 id="在Ubuntu或Debian上安装GStreamer">在Ubuntu或Debian上安装GStreamer</h3>
+<p>在终端中运行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \</span><br><span class="line">libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good \</span><br><span class="line">gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-tools \</span><br><span class="line">gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 \</span><br><span class="line">gstreamer1.0-pulseaudio</span><br></pre></td></tr></table></figure>
+<h3 id="构建使用GStreamer的应用程序">构建使用GStreamer的应用程序</h3>
+<p>除了需要安装的GStreamer库，还需要安装gcc编译器。编译代码时，需要在gcc命令中加入以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pkg-config --cflags --libs gstreamer-1.0</span><br></pre></td></tr></table></figure>
+<p>如果使用其他GStreamer库（如视频库），则需要在命令中添加相应的包（如 <code>gstreamer-video-1.0</code>）。</p>
+<h4 id="获取教程源码">获取教程源码</h4>
+<p>可以从教程页面复制源代码，也可以通过以下命令克隆GIT仓库：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://gitlab.freedesktop.org/gstreamer/gstreamer</span><br></pre></td></tr></table></figure>
+<p>教程代码位于 <code>subprojects/gst-docs/examples/tutorials</code> 子目录中。</p>
+<h4 id="编译教程">编译教程</h4>
+<p>例如，编译 <code>basic-tutorial-1</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc basic-tutorial-1.c -o basic-tutorial-1 `pkg-config --cflags --libs gstreamer-1.0`</span><br></pre></td></tr></table></figure>
+<h4 id="运行教程">运行教程</h4>
+<p>运行教程代码：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./basic-tutorial-1</span><br></pre></td></tr></table></figure>
+<h2 id="Reference">Reference</h2>
+<p>[1] 	Installing on Linux: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c">https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c</a></p>
+<p>[2]	<a target="_blank" rel="noopener external nofollow noreferrer" href="https://devpress.csdn.net/cloudnative/66d308039a494d224f78db0d.html?dp_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NDgxNTk4OCwiZXhwIjoxNzI4MjY3NDU3LCJpYXQiOjE3Mjc2NjI2NTcsInVzZXJuYW1lIjoiSHVtYmxlX0FvU2lyIn0.YqVEQUXTs_7LUsK61BzrlyIBNjRUVvMZFVey86nERuY#:~:text=%E6%88%91%E4%BB%AC%E5%85%88%E7%9C%8B%E7%9C%8Bgstre">Gstreamer基本概念深入解析</a></p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">推荐文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\10aa9482.html" rel="bookmark">C/C++运算符优先级</a></div>
+    </li>
+  </ul>
+<div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,douban,qzone,facebook,twitter"
+      
+      
+        data-wechat-qrcode-title="share.title"
+      
+      
+        data-wechat-qrcode-helper="share.prompt"
+      
+    >
+    </div>
+  </div>
+  <script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js"></script><div>
+    
+        <div style="text-align:center;color: #ccc;font-size:20px;">
+            ------------------------------- 本文结束啦❤<i class="fa fa-heart-o"></i>感谢您阅读-------------------------------
+     </div>
+    
+</div>
+        <div class="reward-container">
+  <div>赞赏一杯咖啡</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="白茶不雨 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="白茶不雨 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>白茶不雨
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://liuaoao.top/archives/5a99ad57.html" title="Gstreamer入坑">https://liuaoao.top/archives/5a99ad57.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C</a>
+              <a href="/tags/Gstreamer/" rel="tag"><i class="fa fa-tag"></i> Gstreamer</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/8d659c8b.html" rel="prev" title="UML图">
+      <i class="fa fa-chevron-left"></i> UML图
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%83%E4%BB%B6%EF%BC%88Elements%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">元件（Elements）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%B1%E6%9F%9C%EF%BC%88Bins%EF%BC%89%E5%92%8C%E7%AE%A1%E9%81%93%EF%BC%88pipelines%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">箱柜（Bins）和管道（pipelines）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%AC%E5%9E%AB%EF%BC%88Pads%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">衬垫（Pads）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8Linux%E4%B8%8A%E5%AE%89%E8%A3%85GStreamer"><span class="nav-number">2.</span> <span class="nav-text">在Linux上安装GStreamer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%88%E5%86%B3%E6%9D%A1%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">先决条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8Fedora%E4%B8%8A%E5%AE%89%E8%A3%85GStreamer"><span class="nav-number">2.2.</span> <span class="nav-text">在Fedora上安装GStreamer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8Ubuntu%E6%88%96Debian%E4%B8%8A%E5%AE%89%E8%A3%85GStreamer"><span class="nav-number">2.3.</span> <span class="nav-text">在Ubuntu或Debian上安装GStreamer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E4%BD%BF%E7%94%A8GStreamer%E7%9A%84%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.4.</span> <span class="nav-text">构建使用GStreamer的应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%95%99%E7%A8%8B%E6%BA%90%E7%A0%81"><span class="nav-number">2.4.1.</span> <span class="nav-text">获取教程源码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E6%95%99%E7%A8%8B"><span class="nav-number">2.4.2.</span> <span class="nav-text">编译教程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%95%99%E7%A8%8B"><span class="nav-number">2.4.3.</span> <span class="nav-text">运行教程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="白茶不雨"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">白茶不雨</p>
+  <div class="site-description" itemprop="description">种一棵树最好的时间是十年前，其次是现在！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Humble-LiuAo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Humble-LiuAo" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1743185682@qq.com" title="E-Mail → mailto:1743185682@qq.com" rel="noopener external nofollow noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+  <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+  <div class="widget-wrap">
+    <div id="myCanvasContainer" class="widget tagcloud">
+      <canvas width="250" height="250" id="resCanvas" style="width:100%">
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Anaconda/" rel="tag">Anaconda</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/" rel="tag">CMD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-mining/" rel="tag">Data mining</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCC/" rel="tag">GCC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gdb/" rel="tag">Gdb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gstreamer/" rel="tag">Gstreamer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter/" rel="tag">Jupyter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LaTeX/" rel="tag">LaTeX</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSI/" rel="tag">OSI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pr/" rel="tag">Pr</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ps/" rel="tag">Ps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL/" rel="tag">STL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP&#x2F;IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UML/" rel="tag">UML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UTF-8/" rel="tag">UTF-8</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/" rel="tag">VSCode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/explicit/" rel="tag">explicit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/" rel="tag">makefile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E6%8C%87%E9%92%88/" rel="tag">this指针</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/" rel="tag">二进制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%90%86/" rel="tag">代理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" rel="tag">内网穿透</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%85%E8%81%94/" rel="tag">内联</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8/" rel="tag">初始化列表</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/" rel="tag">参数传递</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8B%E5%85%83/" rel="tag">友元</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E6%80%81/" rel="tag">多态</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E5%80%BC%E4%B8%8E%E5%8F%B3%E5%80%BC/" rel="tag">左值与右值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" rel="tag">时间复杂度</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" rel="tag">构造函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" rel="tag">析构函数</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%9D%BF/" rel="tag">模板</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D/" rel="tag">浅拷贝与深拷贝</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%AE%E7%82%B9%E6%95%B0/" rel="tag">浮点数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" rel="tag">空间复杂度</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">类作用域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" rel="tag">类型转换</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%A7%E6%89%BF/" rel="tag">继承</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%81%9A%E5%90%88%E5%88%9D%E5%A7%8B%E5%8C%96/" rel="tag">聚合初始化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%99%9A%E5%87%BD%E6%95%B0/" rel="tag">虚函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90/" rel="tag">语义分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="tag">运算符</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" rel="tag">运算符重载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a><span class="tag-list-count">1</span></li></ul>
+      </canvas>
+    </div>
+  </div>
+
+
+
+
+<div style="">
+  <canvas id="canvas" style="width:80%; height:80%">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=430685732&auto=0&height=66"></iframe>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">白茶不雨</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">246k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:44</span>
+</div><!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>  When you want to give up，remember why you started！
+<script>
+	var now = new Date();
+	function createtime() {
+		var grt= new Date("03/07/2023 00:00:00");//此处修改你的建站时间或者网站上线时间
+		now.setTime(now.getTime()+250);
+		days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+		hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+		if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+		mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+		seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+		snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+		document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+		document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()",250);
+</script>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://liuaoao.top/archives/5a99ad57.html',]
+      });
+      });
+  </script>
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'hpWRbFYPjuqQOOWegUU9wApt-gzGzoHsz',
+      appKey     : 'ijVoqxTEPQ3UW87ZGimvY741',
+      placeholder: "有什么问题，欢迎留言指正与交流...",
+      avatar     : 'retro',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":5,"vOffset":120},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
